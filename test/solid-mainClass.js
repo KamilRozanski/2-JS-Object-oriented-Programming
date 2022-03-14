@@ -12,8 +12,6 @@ class Budget {
     }
 }
 
-
-
 class Company {
     constructor() {
         this.roles = ['mechanic', 'menager', 'head of department'];
@@ -23,7 +21,7 @@ class Company {
         this.roles.forEach(el => console.log(el));
     }
 
-    addRole(role){
+    addRole(role) {
         this.roles.push(role);
     }
 
@@ -53,11 +51,12 @@ class Student {
     }
 
     addGrade = (grade) => {
-        this.grades.push(grade);    }
+        this.grades.push(grade);
+    }
 }
 
 class GradeBook {
-    constructor(){
+    constructor() {
         this.students = [];
     }
 
@@ -67,5 +66,6 @@ class GradeBook {
 
     addGrade = (student, grade) => {
         const gradedStudent = this.students.filter(...);
-        gradedStudent.grades.push(grade);    }
+        gradedStudent.grades.push(grade);
+    }
 }
