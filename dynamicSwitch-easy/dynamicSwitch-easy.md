@@ -54,7 +54,7 @@ formChecker.add(!value.includes("@"), () => {
 });
 
 // formChecker.isEmpty() === false
-formChecker.isValid(); // === false
+// formChecker.isValid(); // === false
 // console.error('value is to short')
 // console.error('value is not an email')
 // formChecker.isEmpty() === true
