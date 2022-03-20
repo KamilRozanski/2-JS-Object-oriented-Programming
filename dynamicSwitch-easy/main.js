@@ -7,15 +7,18 @@ class Switch {
     add(condition, callback) {
         this.conditions.push(condition)
         this.cases.push(callback)
+        // console.log(this.conditions)
     }
 
     isValid() {
-        return this.conditions.reduce((acc, el, index) => {
-            el === true ? this.cases[index]() : false
+        const isValid = this.conditions.reduce((acc, el, index) => {
+            // console.log(el, index)
+            return el === false ? this.cases[index]() : true
         }, 0)
+        this.conditions = []
+        this.cases = []
     }
     isEmpty() {
-        // console.log(this.conditions)
         return this.conditions.length <= 0
     }
 }
@@ -28,6 +31,9 @@ formChecker.add(value.length < 5, () => {
 })
 formChecker.add(value !== "Kamil", () => {
     console.error("The input is not a Kamil")
+})
+formChecker.add(value !== "test", () => {
+    console.error("The input is not a test")
 })
 
 console.log(formChecker.isEmpty() + " isEmpty") // false
