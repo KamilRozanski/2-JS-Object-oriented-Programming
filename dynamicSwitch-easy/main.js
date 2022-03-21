@@ -16,9 +16,13 @@ class Switch {
     }
 
     isValid() {
-        const isValid = this.conditions.reduce((acc, el, index) => {
-            console.log(el, acc)
-            return el === false ? this.cases[index]() : true
+        const isValid = this.conditions.map((el, index) => {
+            console.log(el)
+            if (el === false) {
+                this.cases[index]()
+            } else {
+                return el
+            }
         })
         this.conditions = []
         this.cases = []
@@ -36,10 +40,10 @@ const value = "test";
 formChecker.add(value.length > 5, () => {
     console.error("input is to short")
 })
-formChecker.add(value !== "Kamil", () => {
+formChecker.add(value === "Kamil", () => {
     console.error("The input is not a Kamil")
 })
-formChecker.add(value !== "test", () => {
+formChecker.add(value === "test", () => {
     console.error("The input is not a test")
 })
 
