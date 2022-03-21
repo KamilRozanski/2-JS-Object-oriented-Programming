@@ -4,19 +4,21 @@ class Switch {
     cases = [];
     conditions = [];
 
+    validation(input, expectedInputType) {
+        if ((typeof (input)) !== `${expectedInputType}`) {
+            throw new Error(`${input} is not a ${expectedInputType} value`)
+        }
+    }
     add(condition, callback) {
-        if ((typeof (condition)) !== `boolean`) {
-            throw new Error(`It is not a boolean value`)
-        }
-        if (typeof (callback) !== `function`) {
-            throw new Error(`Your value it is not a function`)
-        }
+        this.validation(condition, "boolean")
+        this.validation(callback, "function")
+        // Czy robic validacje na pusta tablice?
         this.conditions.push(condition)
         this.cases.push(callback)
     }
 
     isValid() {
-        let validResult = this.conditions.every(el => el === false)
+        let validationResult = this.conditions.every(el => el === false)
         for (let i = 0; i < this.conditions.length; i++) {
             if (this.conditions[i] === false) {
                 this.cases[i]()
@@ -24,17 +26,19 @@ class Switch {
         }
         this.conditions = []
         this.cases = []
-        return validResult
+        return validationResult
     }
     isEmpty() {
         return this.conditions.length <= 0
     }
+
+
 }
 
 const formChecker = new Switch();
 const value = "test";
 
-formChecker.add(value.length < 5, () => {
+formChecker.add(value.length > 5, () => {
     console.error("input is to short")
 })
 formChecker.add(value === "Kamil", () => {
