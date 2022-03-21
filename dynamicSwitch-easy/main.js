@@ -16,18 +16,15 @@ class Switch {
     }
 
     isValid() {
-        const isValid = this.conditions.map((el, index) => {
-            console.log(el)
-            if (el === false) {
-                this.cases[index]()
-            } else {
-                return el
+        let validResult = this.conditions.every(el => el === false)
+        for (let i = 0; i < this.conditions.length; i++) {
+            if (this.conditions[i] === false) {
+                this.cases[i]()
             }
-        })
+        }
         this.conditions = []
         this.cases = []
-        console.log(isValid)
-        return isValid
+        return validResult
     }
     isEmpty() {
         return this.conditions.length <= 0
@@ -37,13 +34,13 @@ class Switch {
 const formChecker = new Switch();
 const value = "test";
 
-formChecker.add(value.length > 5, () => {
+formChecker.add(value.length < 5, () => {
     console.error("input is to short")
 })
 formChecker.add(value === "Kamil", () => {
     console.error("The input is not a Kamil")
 })
-formChecker.add(value === "test", () => {
+formChecker.add(value !== "test", () => {
     console.error("The input is not a test")
 })
 
