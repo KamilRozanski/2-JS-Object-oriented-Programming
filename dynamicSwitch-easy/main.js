@@ -5,18 +5,25 @@ class Switch {
     conditions = [];
 
     add(condition, callback) {
+        if ((typeof (condition)) !== `boolean`) {
+            throw new Error(`It is not a boolean value`)
+        }
+        if (typeof (callback) !== `function`) {
+            throw new Error(`Your value it is not a function`)
+        }
         this.conditions.push(condition)
         this.cases.push(callback)
-        // console.log(this.conditions)
     }
 
     isValid() {
         const isValid = this.conditions.reduce((acc, el, index) => {
-            // console.log(el, index)
+            console.log(el, acc)
             return el === false ? this.cases[index]() : true
-        }, 0)
+        })
         this.conditions = []
         this.cases = []
+        console.log(isValid)
+        return isValid
     }
     isEmpty() {
         return this.conditions.length <= 0
@@ -26,7 +33,7 @@ class Switch {
 const formChecker = new Switch();
 const value = "test";
 
-formChecker.add(value.length < 5, () => {
+formChecker.add(value.length > 5, () => {
     console.error("input is to short")
 })
 formChecker.add(value !== "Kamil", () => {
