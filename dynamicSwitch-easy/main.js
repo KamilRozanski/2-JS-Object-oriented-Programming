@@ -7,7 +7,6 @@ class Switch {
     }
 
     add(condition, callback) {
-        // Robic validacje na pustą tablice.
         this.conditions.push(condition)
         this.cases.push(callback)
     }
@@ -15,19 +14,23 @@ class Switch {
     isValid() {
         // to można zrobić w jednej pętli
         const isValidChecker = this.conditions.map((el, index) => el === true ? this.cases[index]() : false)
+        this.cases = []
+        this.conditions = []
         return isValidChecker.every(el => el === false)
     }
+
     isEmpty() {
         return this.conditions.length === 0 && this.cases.length === 0
     }
 }
 
-class SwitchValidator {
+class SwitchValidator extends Switch {
     // osobna klasa na walidację, najlepiej statyczna
     constructor() {
-
+        super()
     }
-    validator = (input, expectedInputType) => {
+
+    static validator = (input, expectedInputType) => {
         if ((typeof (input)) !== `${expectedInputType}`) {
             throw new Error(`${input} is not a ${expectedInputType} value`)
         }
