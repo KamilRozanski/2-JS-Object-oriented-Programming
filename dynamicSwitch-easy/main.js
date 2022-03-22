@@ -1,39 +1,40 @@
 `use strict`
 
 class Switch {
-    cases = [];
-    conditions = [];
-
-    validation(input, expectedInputType) {
-        if ((typeof (input)) !== `${expectedInputType}`) {
-            throw new Error(`${input} is not a ${expectedInputType} value`)
-        }
+    constructor() {
+        this.cases = [];
+        this.conditions = [];
     }
+
     add(condition, callback) {
-        this.validation(condition, "boolean")
-        this.validation(callback, "function")
-        // Czy robic validacje na pusta tablice?
+        // Robic validacje na pustą tablice.
         this.conditions.push(condition)
         this.cases.push(callback)
     }
 
     isValid() {
-        let validationResult = this.conditions.every(el => el === false)
-        for (let i = 0; i < this.conditions.length; i++) {
-            if (this.conditions[i] === false) {
-                this.cases[i]()
-            }
-        }
-        this.conditions = []
-        this.cases = []
-        return validationResult
+        // to można zrobić w jednej pętli
+        const isValidChecker = this.conditions.map((el, index) => el === true ? this.cases[index]() : false)
+        return isValidChecker.every(el => el === false)
     }
     isEmpty() {
-        return this.conditions.length <= 0
+        return this.conditions.length === 0 && this.cases.length === 0
     }
-
-
 }
+
+class SwitchValidator {
+    // osobna klasa na walidację, najlepiej statyczna
+    constructor() {
+
+    }
+    validator = (input, expectedInputType) => {
+        if ((typeof (input)) !== `${expectedInputType}`) {
+            throw new Error(`${input} is not a ${expectedInputType} value`)
+        }
+    }
+}
+
+
 
 const formChecker = new Switch();
 const value = "test";
