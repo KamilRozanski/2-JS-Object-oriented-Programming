@@ -12,8 +12,13 @@ class Switch {
     }
 
     isValid() {
-        // to można zrobić w jednej pętli
-        const isValidChecker = this.conditions.map((el, index) => el === true ? this.cases[index]() : false)
+        const isValidChecker = this.conditions.map((el, index) => {
+            if (el) {
+                this.cases[index]()
+                return el
+            }
+            return false
+        })
         this.cases = []
         this.conditions = []
         return isValidChecker.every(el => el === false)
@@ -41,7 +46,6 @@ class SwitchValidator extends Switch {
 
 const formChecker = new Switch();
 const value = "test";
-
 formChecker.add(value.length > 5, () => {
     console.error("input is to short")
 })
