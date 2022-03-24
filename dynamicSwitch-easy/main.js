@@ -6,12 +6,13 @@ class Switch {
         this.conditions = [];
     }
 
-    add(condition, callback) {
+
+    add = (condition, callback) => {
         this.conditions.push(condition)
         this.cases.push(callback)
     }
 
-    isValid() {
+    isValid = () => {
         const isValidChecker = this.conditions.map((el, index) => {
             if (el) {
                 this.cases[index]()
@@ -24,28 +25,30 @@ class Switch {
         return isValidChecker.every(el => el === false)
     }
 
-    isEmpty() {
+    isEmpty = () => {
         return this.conditions.length === 0 && this.cases.length === 0
     }
 }
 
-class SwitchValidator extends Switch {
-    // osobna klasa na walidację, najlepiej statyczna
+class ValidateSwitch extends Switch {
     constructor() {
         super()
     }
+    static validator = () => {
+        console.log(this.conditions)
 
-    static validator = (input, expectedInputType) => {
-        if ((typeof (input)) !== `${expectedInputType}`) {
-            throw new Error(`${input} is not a ${expectedInputType} value`)
-        }
+
     }
+
 }
 
 
-
 const formChecker = new Switch();
+console.log(ValidateSwitch.validator())
 const value = "test";
+
+
+
 formChecker.add(value.length > 5, () => {
     console.error("input is to short")
 })
