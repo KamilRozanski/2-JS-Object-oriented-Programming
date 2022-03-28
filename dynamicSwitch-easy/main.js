@@ -6,7 +6,6 @@ class Switch {
         this.conditions = [];
     }
 
-
     add = (condition, callback) => {
         this.conditions.push(condition)
         this.cases.push(callback)
@@ -33,22 +32,20 @@ class Switch {
 class ValidateSwitch extends Switch {
     constructor() {
         super()
+        this.cases = [];
+        this.conditions = [];
     }
+
     static validator = () => {
-        console.log(this.conditions)
-
-
+        return isEmpty()
     }
 
 }
 
-
 const formChecker = new Switch();
-console.log(ValidateSwitch.validator())
 const value = "test";
 
-
-
+console.log(ValidateSwitch.validator())
 formChecker.add(value.length > 5, () => {
     console.error("input is to short")
 })
