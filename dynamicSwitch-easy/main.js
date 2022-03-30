@@ -44,8 +44,8 @@ class ValidateSwitch extends Switch {
 
 const formChecker = new Switch();
 const value = "test";
-
 console.log(ValidateSwitch.validator())
+
 formChecker.add(value.length > 5, () => {
     console.error("input is to short")
 })
