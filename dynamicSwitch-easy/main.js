@@ -17,6 +17,7 @@ class Switch {
         this.cases.push(callback)
     }
 
+
     isValid = () => {
         const isValidChecker = this.conditions.map((el, index) => {
             if (el) {
@@ -25,6 +26,7 @@ class Switch {
             }
             return false
         })
+
         this.cases = []
         this.conditions = []
         return isValidChecker.every(el => el === false)
@@ -48,7 +50,7 @@ const formChecker = new Switch();
 const value = "test";
 
 
-formChecker.add(24, () => {
+formChecker.add(value < 5, () => {
     console.error("input is to short")
 })
 formChecker.add(value === "Kamil", () => {
@@ -57,7 +59,7 @@ formChecker.add(value === "Kamil", () => {
 formChecker.add(value !== "test", () => {
     console.error("The input is not a test")
 })
-// console.log(ValidateSwitch.validator())
+
 
 console.log(formChecker.isEmpty() + " isEmpty") // false
 console.log(formChecker.isValid() + " isValid"); // === false
