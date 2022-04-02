@@ -41,6 +41,9 @@
 // - imię i nazwisko musi być niepuste
 
 class User{
+construktor() {
+    
+}
  imię
  nazwisko
  datę urodzenia
