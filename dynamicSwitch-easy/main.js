@@ -7,6 +7,12 @@ class Switch {
     }
 
     add = (condition, callback) => {
+        if (!Validate.validateBoolean(condition)) {
+            throw new Error("it is not a Boolean value")
+        }
+        if (!Validate.validateFunction(callback)) {
+            throw new Error("it is not a Function")
+        }
         this.conditions.push(condition)
         this.cases.push(callback)
     }
@@ -29,24 +35,20 @@ class Switch {
     }
 }
 
-class ValidateSwitch extends Switch {
-    constructor() {
-        super()
-        this.cases = [];
-        this.conditions = [];
+class Validate {
+    static validateBoolean(value) {
+        return typeof value === "boolean"
     }
-
-    static validator = () => {
-        return isEmpty()
+    static validateFunction(value) {
+        return typeof value === "function"
     }
-
 }
 
 const formChecker = new Switch();
 const value = "test";
-console.log(ValidateSwitch.validator())
 
-formChecker.add(value.length > 5, () => {
+
+formChecker.add(24, () => {
     console.error("input is to short")
 })
 formChecker.add(value === "Kamil", () => {
@@ -55,6 +57,7 @@ formChecker.add(value === "Kamil", () => {
 formChecker.add(value !== "test", () => {
     console.error("The input is not a test")
 })
+// console.log(ValidateSwitch.validator())
 
 console.log(formChecker.isEmpty() + " isEmpty") // false
 console.log(formChecker.isValid() + " isValid"); // === false
