@@ -16,11 +16,11 @@ class Switch {
 
     isValid = () => {
         const isValidChecker = this.conditions.map((el, index) => {
+            // console.log(el)
             if (el) {
                 this.cases[index]()
                 return el
             }
-            return false
         })
 
         this.cases = []
