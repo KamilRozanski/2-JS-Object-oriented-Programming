@@ -1,14 +1,15 @@
 `use strict`
 class User {
     constructor(name, secondName, dateOfBirth, password, gender, emailAddress, accessLevel) {
+        //brak walidacji
         this.name = name
         this.secondName = secondName
         this.dateOfBirth = dateOfBirth
         this.password = password
         this.gender = gender
         this.emailAddress = emailAddress
-        this.accessLevel = accessLevel
-        // ["user", "admin"]
+        this.accessLevel = accessLevel.toLowerCase()
+        this.allUsers = []
     }
 
     changePassword = (newPassword) => {
@@ -27,40 +28,40 @@ class User {
         }
     }
 
-    levelAccess = (level) => {
+    setAccessLevel = (level) => {
         this.accessLevel = level
     }
 
 }
 
-class App extends User {
-    constructor(name, secondName, dateOfBirth, password, gender, emailAddress, accessLevel) {
-        super(name, secondName, dateOfBirth, password, gender, emailAddress, accessLevel)
+class App {
+    constructor() {
+       this.allUsers = []
     }
-    createUser = (name, secondName, dateOfBirth, password, gender, emailAddress, accessLevel) => {
-        const user = {
-            name,
-            secondName,
-            dateOfBirth,
-            password,
-            gender,
-            emailAddress,
-            accessLevel
-        }
-        return user
+
+    listOfUsers = () => {
+        return this.user
     }
-    // listOfUsers
-    // createUser(...)
-    // createAdmin(...)
-    // wszystkie metody w których admin ingeruje we właściwości innych użytkowników
+
+
+    
 }
 
 
-const newUser = new User("Kamil", "Rozanski", "27.02.1986", "Anglia15", "male", "motomc1@gmail.com", "admin")
-newUser.changePassword("Anglia2022")
-newUser.changeEmail("www@www.pl")
-newUser.levelAccess("user")
-console.log(newUser)
+const newKamil = new User("Kamil", "Rozanski", "27.02.1986", "Anglia15", "male", "motomc1@gmail.com", "user")
+const newPatryk = new User("Patryk", "Rozanski", "27.02.1989", "Anglia15", "male", "jajo@gmail.com", "admin")
+// newKamil.levelAccess("admin")
+// newKamil.changeEmail("www@www.pl")
+// newPatryk.levelAccess("user")
+console.log(newKamil)
+// console.log(newPatryk)
+
+
+
+
+
 
 // const app = new App
-// console.log(app.createUser("Kamil", "Rozanski", "27.02.1986", "Anglia15", "male", "motomc1@gmail.com", "admin"))
+// console.log(app.createUser("Kamil", "Rozanski", "27.02.1986", "Anglia15", "male", "motomc1@gmail.com", "user"))
+// console.log(app.createAdmin("Krystian", "Rozanski", "27.02.1986", "Bialas", "male", "bialas@gmail.com", "admin"))
+// console.log("list of users", app.listOfUsers())
