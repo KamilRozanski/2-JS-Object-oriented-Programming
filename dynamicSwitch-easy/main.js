@@ -7,12 +7,8 @@ class Switch {
     }
 
     add = (condition, callback) => {
-        if (!Validate.validateBoolean(condition)) {
-            throw new Error("it is not a Boolean value")
-        }
-        if (!Validate.validateFunction(callback)) {
-            throw new Error("it is not a Function")
-        }
+        Validates.isBoolean(condition)
+        Validates.isFunction(callback)
         this.conditions.push(condition)
         this.cases.push(callback)
     }
@@ -37,12 +33,16 @@ class Switch {
     }
 }
 
-class Validate {
-    static validateBoolean(value) {
-        return typeof value === "boolean"
+class Validates {
+    static isBoolean(value) {
+        if (typeof value !== "boolean") {
+            throw new Error("it is not a Boolean value")
+        }
     }
-    static validateFunction(value) {
-        return typeof value === "function"
+    static isFunction(value) {
+        if (typeof value !== "function") {
+            throw new Error("it is not a function")
+        }
     }
 }
 
