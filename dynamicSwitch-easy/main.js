@@ -6,7 +6,7 @@ class Switch {
         this.conditions = [];
     }
 
-    add = (condition, callback) => {
+    addsValue = (condition, callback) => {
         Validates.isBoolean(condition)
         Validates.isFunction(callback)
         this.conditions.push(condition)
@@ -14,21 +14,23 @@ class Switch {
     }
 
 
-    isValid = () => {
+    checkValues = () => {
         const isValidChecker = this.conditions.map((el, index) => {
-            // console.log(el)
+            console.log(el)
             if (el) {
                 this.cases[index]()
                 return el
             }
+            return false
         })
 
         this.cases = []
         this.conditions = []
+        console.log(isValidChecker)
         return isValidChecker.every(el => el === false)
     }
 
-    isEmpty = () => {
+    checkIfArrayIsEmpty = () => {
         return this.conditions.length === 0 && this.cases.length === 0
     }
 }
@@ -50,17 +52,17 @@ const formChecker = new Switch();
 const value = "test";
 
 
-formChecker.add(value < 5, () => {
+formChecker.addsValue(value < 5, () => {
     console.error("input is to short")
 })
-formChecker.add(value === "Kamil", () => {
+formChecker.addsValue(value === "Kamil", () => {
     console.error("The input is not a Kamil")
 })
-formChecker.add(value !== "test", () => {
+formChecker.addsValue(value !== "test", () => {
     console.error("The input is not a test")
 })
 
 
-console.log(formChecker.isEmpty() + " isEmpty") // false
-console.log(formChecker.isValid() + " isValid"); // === false
-console.log(formChecker.isEmpty() + " isEmpty") // === true
+console.log(formChecker.checkIfArrayIsEmpty() + " isEmpty") // false
+console.log(formChecker.checkValues() + " isValid"); // === false
+console.log(formChecker.checkIfArrayIsEmpty() + " isEmpty") // === true
