@@ -1,7 +1,34 @@
 `use strict`
+class Validates {
+    static isString(value) {
+        if (typeof value !== "string") {
+            throw new Error("it is not a string value")
+        }
+    }
+    static ValidateEmail(email) {
+        if (!email.includes("@") || !email.includes(".")) {
+            throw new Error("Email address has a wrong format!");
+        }
+    }
+    static ValidatePassword(password) {
+        const minPasswordLength = 8
+        if (password.length < minPasswordLength) {
+            throw new Error(`Your password is to short. (Minimum ${minPasswordLength}th characters)`);
+        }
+    }
+}
 class User {
     constructor(name, secondName, dateOfBirth, password, gender, emailAddress, accessLevel) {
         //brak walidacji
+        Validates.isString(name)
+        Validates.isString(secondName)
+        Validates.isString(dateOfBirth)
+        Validates.isString(password)
+        Validates.ValidatePassword(password)
+        Validates.isString(gender)
+        Validates.isString(emailAddress)
+        Validates.ValidateEmail(emailAddress)
+        Validates.isString(accessLevel)
         this.name = name
         this.secondName = secondName
         this.dateOfBirth = dateOfBirth
@@ -9,7 +36,6 @@ class User {
         this.gender = gender
         this.emailAddress = emailAddress
         this.accessLevel = accessLevel.toLowerCase()
-        this.allUsers = []
     }
 
     changePassword = (newPassword) => {
@@ -36,15 +62,12 @@ class User {
 
 class App {
     constructor() {
-       this.allUsers = []
+        this.allUsers = []
     }
 
     listOfUsers = () => {
         return this.user
     }
-
-
-    
 }
 
 
