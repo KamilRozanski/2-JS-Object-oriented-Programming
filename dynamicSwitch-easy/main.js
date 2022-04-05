@@ -15,8 +15,8 @@ class Switch {
 
 
     checkValues = () => {
-        const isValidChecker = this.conditions.map((el, index) => {
-            console.log(el)
+        //jak uzyć tylko metody map?
+        const isValidChecker = this.conditions.map((el, index, array) => {
             if (el) {
                 this.cases[index]()
                 return el
@@ -26,7 +26,6 @@ class Switch {
 
         this.cases = []
         this.conditions = []
-        console.log(isValidChecker)
         return isValidChecker.every(el => el === false)
     }
 
