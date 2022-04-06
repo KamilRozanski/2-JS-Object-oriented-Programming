@@ -11,12 +11,7 @@ class Validates {
             throw new Error("Email address has a wrong format!");
         }
     }
-    static ValidatePassword(password) {
-        const minPasswordLength = 8
-        if (password.length < minPasswordLength) {
-            throw new Error(`Your password is to short. (Minimum ${minPasswordLength}th characters)`);
-        }
-    }
+
     static ValidatePassword(password) {
         const minPasswordLength = 8
         if (password.length < minPasswordLength) {
@@ -27,6 +22,12 @@ class Validates {
         if (!["male", "female"].includes(gender.toLowerCase())) {
             throw new Error("Gender, male or female only")
         }
+    }
+
+    // - data (nieważne jaka wejdzie) do konstruktora musi wejść w formacie MM/DD/YYYY
+    static checkDateFormat(date) {
+        const datee = new Date(date)
+        console.log(datee.getDay(), datee.getMonth(), new Date().getDate())
     }
 }
 class User {
@@ -42,6 +43,7 @@ class User {
         Validates.isString(emailAddress)
         Validates.ValidateEmail(emailAddress)
         Validates.isString(accessLevel)
+        Validates.checkDateFormat(27021986)
         this.name = name
         this.secondName = secondName
         this.dateOfBirth = dateOfBirth
@@ -85,7 +87,7 @@ class App {
 
 
 const newKamil = new User("Kamil", "Rozanski", "27.02.1986", "Anglia15", "male", "motomcC#1@gmail.com", "user")
-const newPatryk = new User("Patryk", "Rozanski", "27.02.1989", "Anglia15", "mal", "jajoJAJO#@gmail.com", "admin")
+const newPatryk = new User("Patryk", "Rozanski", "27.02.1989", "Anglia15", "male", "jajoJAJO#@gmail.com", "admin")
 // newKamil.levelAccess("admin")
 // newKamil.changeEmail("www@www.pl")
 // newPatryk.levelAccess("user")
