@@ -6,7 +6,8 @@ class Validates {
         }
     }
     static ValidateEmail(email) {
-        if (!email.includes("@") || !email.includes(".")) {
+        const regex = /(?=.{8,32})(?=.*[a-z])(?=.*[A-Z])(?=.*[!#$%^&*()<>?]).+@[a-z]+.[a-z].{1,3}/g
+        if (!regex.test(email)) {
             throw new Error("Email address has a wrong format!");
         }
     }
@@ -14,6 +15,17 @@ class Validates {
         const minPasswordLength = 8
         if (password.length < minPasswordLength) {
             throw new Error(`Your password is to short. (Minimum ${minPasswordLength}th characters)`);
+        }
+    }
+    static ValidatePassword(password) {
+        const minPasswordLength = 8
+        if (password.length < minPasswordLength) {
+            throw new Error(`Your password is to short. (Minimum ${minPasswordLength}th characters)`);
+        }
+    }
+    static ValidateGender(gender) {
+        if (!["male", "female"].includes(gender.toLowerCase())) {
+            throw new Error("Gender, male or female only")
         }
     }
 }
@@ -26,6 +38,7 @@ class User {
         Validates.isString(password)
         Validates.ValidatePassword(password)
         Validates.isString(gender)
+        Validates.ValidateGender(gender)
         Validates.isString(emailAddress)
         Validates.ValidateEmail(emailAddress)
         Validates.isString(accessLevel)
@@ -64,15 +77,15 @@ class App {
     constructor() {
         this.allUsers = []
     }
+    createUser() {
 
-    listOfUsers = () => {
-        return this.user
     }
+
 }
 
 
-const newKamil = new User("Kamil", "Rozanski", "27.02.1986", "Anglia15", "male", "motomc1@gmail.com", "user")
-const newPatryk = new User("Patryk", "Rozanski", "27.02.1989", "Anglia15", "male", "jajo@gmail.com", "admin")
+const newKamil = new User("Kamil", "Rozanski", "27.02.1986", "Anglia15", "male", "motomcC#1@gmail.com", "user")
+const newPatryk = new User("Patryk", "Rozanski", "27.02.1989", "Anglia15", "mal", "jajoJAJO#@gmail.com", "admin")
 // newKamil.levelAccess("admin")
 // newKamil.changeEmail("www@www.pl")
 // newPatryk.levelAccess("user")

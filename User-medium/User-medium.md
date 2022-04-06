@@ -39,7 +39,7 @@
 // - płeć musi być ze zbioru [male, female]
 // - data (nieważne jaka wejdzie) do konstruktora musi wejść w formacie MM/DD/YYYY
 // - imię i nazwisko musi być niepuste
-
+[a-z0-9@#$%^&.+!=]+@[a-z]+\.[a-z]{2,3}
 class User{
 construktor() {
 
