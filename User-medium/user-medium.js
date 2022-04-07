@@ -9,16 +9,16 @@ class Validates {
         }
     }
     static ValidateEmail(email) {
-        const regex = /(?=.{8,32})(?=.*[a-z])(?=.*[A-Z])(?=.*[!#$%^&*()<>?]).+@[a-z]+.[a-z].{1,3}/g
+        const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-](.{7,32})+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9].{1,3})*$/g
         if (!regex.test(email)) {
             throw new Error("Email address has a wrong format!");
         }
     }
 
     static ValidatePassword(password) {
-        const minPasswordLength = 8
-        if (password.length < minPasswordLength) {
-            throw new Error(`Your password is to short. (Minimum ${minPasswordLength}th characters)`);
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!#$%^&*()<>?])+.{9,32}$/g
+        if (!regex.test(password)) {
+            throw new Error(`Invalid password. Password must have from 8 to 32 characters, includes at least one capital letter, one number and one special character  `);
         }
     }
     static ValidateGender(gender) {
@@ -95,8 +95,8 @@ class App {
 }
 
 
-const newKamil = new User("Kamil", "Rozanski", "27/02/1986", "Anglia15", "male", "motomcC#1@gmail.com", "user")
-const newPatryk = new User("Patryk", "Rozanski", "27/02/1989", "Anglia15", "male", "jajoJAJO#@gmail.com", "admin")
+const newKamil = new User("Kamil", "Rozanski", "27/02/1986", "Anglia15!", "male", "motomcC#1@gmail.com", "user")
+const newPatryk = new User("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com", "admin")
 // newKamil.levelAccess("admin")
 // newKamil.changeEmail("www@www.pl")
 // newPatryk.levelAccess("user")
