@@ -1,6 +1,9 @@
 `use strict`
 class Validates {
     static isString(value) {
+        if (value.length === 0) {
+            throw new Error("Provide a string value")
+        }
         if (typeof value !== "string") {
             throw new Error("it is not a string value")
         }
@@ -25,9 +28,13 @@ class Validates {
     }
 
     // - data (nieważne jaka wejdzie) do konstruktora musi wejść w formacie MM/DD/YYYY
-    static checkDateFormat(date) {
-        const datee = new Date(date)
-        console.log(datee.getDay(), datee.getMonth(), new Date().getDate())
+    // Czy taka walidacja jest ok??
+    static getFormattedDate(date) {
+        const regex = /^\d{2}\/\d{2}\/\d{4}$/g
+        const correctDate = regex.test(date)
+        if (!correctDate) {
+            throw new Error("Incorrect date format. Correct one is MM/DD/YYYY")
+        }
     }
 }
 class User {
@@ -37,20 +44,22 @@ class User {
         Validates.isString(secondName)
         Validates.isString(dateOfBirth)
         Validates.isString(password)
-        Validates.ValidatePassword(password)
         Validates.isString(gender)
-        Validates.ValidateGender(gender)
         Validates.isString(emailAddress)
-        Validates.ValidateEmail(emailAddress)
         Validates.isString(accessLevel)
-        Validates.checkDateFormat(27021986)
+
+        Validates.ValidatePassword(password)
+        Validates.ValidateGender(gender)
+        Validates.ValidateEmail(emailAddress)
+        Validates.getFormattedDate(dateOfBirth)
+
         this.name = name
         this.secondName = secondName
-        this.dateOfBirth = dateOfBirth
+        this.dateOfBirth = new Date(dateOfBirth)
         this.password = password
         this.gender = gender
         this.emailAddress = emailAddress
-        this.accessLevel = accessLevel.toLowerCase()
+        this.accessLevel = accessLevel
     }
 
     changePassword = (newPassword) => {
@@ -86,18 +95,13 @@ class App {
 }
 
 
-const newKamil = new User("Kamil", "Rozanski", "27.02.1986", "Anglia15", "male", "motomcC#1@gmail.com", "user")
-const newPatryk = new User("Patryk", "Rozanski", "27.02.1989", "Anglia15", "male", "jajoJAJO#@gmail.com", "admin")
+const newKamil = new User("Kamil", "Rozanski", "27/02/1986", "Anglia15", "male", "motomcC#1@gmail.com", "user")
+const newPatryk = new User("Patryk", "Rozanski", "27/02/1989", "Anglia15", "male", "jajoJAJO#@gmail.com", "admin")
 // newKamil.levelAccess("admin")
 // newKamil.changeEmail("www@www.pl")
 // newPatryk.levelAccess("user")
 console.log(newKamil)
 // console.log(newPatryk)
-
-
-
-
-
 
 // const app = new App
 // console.log(app.createUser("Kamil", "Rozanski", "27.02.1986", "Anglia15", "male", "motomc1@gmail.com", "user"))
