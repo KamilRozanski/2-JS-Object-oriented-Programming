@@ -1,7 +1,9 @@
 `use strict`
+
+// class Utils <= klasa narzędziowa
 class Validates {
     static isString(...value) {
-        return value.find(el => {
+        value.find(el => {
             if (typeof el !== "string") {
                 throw new Error("it is not a string value")
             }
@@ -10,20 +12,20 @@ class Validates {
             }
         })
     }
-    static ValidateEmail(email) {
+    static validateEmail(email) {
         const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-](.{7,32})+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9].{1,3})*$/g
         if (!regex.test(email)) {
             throw new Error("Email address has a wrong format!");
         }
     }
 
-    static ValidatePassword(password) {
+    static validatePassword(password) {
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!#$%^&*()<>?])+.{9,32}$/g
         if (!regex.test(password)) {
             throw new Error(`Invalid password. Password must have from 8 to 32 characters, includes at least one capital letter, one number and one special character  `);
         }
     }
-    static ValidateGender(gender) {
+    static validateGender(gender) {
         if (!["male", "female"].includes(gender.toLowerCase())) {
             throw new Error("Gender, male or female only")
         }
@@ -51,7 +53,6 @@ class Validates {
 }
 class User {
     constructor(name, secondName, dateOfBirth, password, gender, emailAddress, accessLevel) {
-        //brak walidacji
         Validates.isString(name, secondName, dateOfBirth, password, gender, emailAddress, accessLevel)
         Validates.checkInputAccessLevel(accessLevel)
         Validates.ValidatePassword(password)
@@ -72,26 +73,25 @@ class User {
     }
 }
 
+
+
 class Admin extends User {
     constructor(name, secondName, dateOfBirth, password, gender, emailAddress, accessLevel) {
         super(name, secondName, dateOfBirth, password, gender, emailAddress, accessLevel)
     }
 
     setPassword = (user, newPassword) => {
-        //zrobic walidacje ma user.
         Validates.isString(newPassword)
         Validates.ValidatePassword(newPassword)
         user.password = newPassword
     }
     setEmail = (user, newEmail) => {
-        //zrobic walidacje ma user.
         Validates.isString(newEmail)
         Validates.ValidateEmail(newEmail)
         user.emailAddress = newEmail
 
     }
     setAccessLevel = (user, level) => {
-        //zrobic walidacje ma user.
         Validates.isString(level)
         Validates.checkInputAccessLevel(level)
         user.accessLevel = level
@@ -104,7 +104,7 @@ class App {
         this.allUsers = []
     }
     createUser(user) {
-        // ...
+        // this.allUsers.push(user)
     }
     showAllUsers = () => {
         return this.allUsers
