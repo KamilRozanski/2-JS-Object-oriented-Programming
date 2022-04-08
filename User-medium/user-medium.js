@@ -1,51 +1,48 @@
 `use strict`
 
 // class Utils <= klasa narzędziowa
-class Validates {
-    static isString(...value) {
-        value.find(el => {
+class Validator {
+    static isStrings(...value) {
+        value.forEach(el => {
             if (typeof el !== "string") {
                 throw new Error("it is not a string value")
             }
             if (el.length === 0) {
                 throw new Error("Provide a string value")
             }
-        })
+        });
     }
-    static validateEmail(email) {
+    static checkEmail(email) {
         const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-](.{7,32})+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9].{1,3})*$/g
         if (!regex.test(email)) {
-            throw new Error("Email address has a wrong format!");
+            throw new Error(`Email address has a wrong format! Correct format is 8-32 characters, at least one capital letter, one number and one special character `);
         }
     }
 
-    static validatePassword(password) {
+    static checkPassword(password) {
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!#$%^&*()<>?])+.{9,32}$/g
         if (!regex.test(password)) {
             throw new Error(`Invalid password. Password must have from 8 to 32 characters, includes at least one capital letter, one number and one special character  `);
         }
     }
-    static validateGender(gender) {
-        if (!["male", "female"].includes(gender.toLowerCase())) {
+    static checkGender(gender) {
+        if (!["male", "female"].includes(gender.toString().toLowerCase())) {
             throw new Error("Gender, male or female only")
         }
-
-
-
     }
 
     // - data (nieważne jaka wejdzie) do konstruktora musi wejść w formacie MM/DD/YYYY
-    // Czy taka walidacja jest ok??
-    static getFormattedDate(date) {
+
+    static checkDate(value) {
         const regex = /^\d{2}\/\d{2}\/\d{4}$/g
-        const correctDate = regex.test(date)
+        const correctDate = regex.test(value)
         if (!correctDate) {
             throw new Error("Incorrect date format. Correct one is MM/DD/YYYY")
         }
     }
 
     static checkInputAccessLevel = (accLevel) => {
-        if (!["admin", "user"].includes(accLevel.toLowerCase())) {
+        if (!["admin", "user"].includes(accLevel.toString().toLowerCase())) {
             throw new Error(`Access level is not an "admin" or "user"`)
         }
     }
@@ -53,12 +50,12 @@ class Validates {
 }
 class User {
     constructor(name, secondName, dateOfBirth, password, gender, emailAddress, accessLevel) {
-        Validates.isString(name, secondName, dateOfBirth, password, gender, emailAddress, accessLevel)
-        Validates.checkInputAccessLevel(accessLevel)
-        Validates.ValidatePassword(password)
-        Validates.ValidateGender(gender)
-        Validates.ValidateEmail(emailAddress)
-        Validates.getFormattedDate(dateOfBirth) // dać tu domyślnie accLEvel = "user", mozliwosci podawania w argumencie konstrukora
+        Validator.isStrings(name, secondName)
+        Validator.checkInputAccessLevel(accessLevel)
+        Validator.checkPassword(password)
+        Validator.checkGender(gender)
+        Validator.checkEmail(emailAddress)
+        Validator.checkDate(dateOfBirth)
 
         this.name = name
         this.secondName = secondName
@@ -66,10 +63,19 @@ class User {
         this.password = password
         this.gender = gender
         this.emailAddress = emailAddress
-        this.accessLevel = accessLevel.toLowerCase()
+        this.accessLevel = accessLevel
     }
-    getAccessLevel = () => {
-        return this.accessLevel
+    changeName = (value) => {
+        this.name = value
+    }
+    changeSecondName = (value) => {
+        this.secondName = value
+    }
+    changeDateOfBirth = (value) => {
+        this.dateOfBirth = value
+    }
+    changeGenderh = (value) => {
+        this.gender = value
     }
 }
 
@@ -81,19 +87,19 @@ class Admin extends User {
     }
 
     setPassword = (user, newPassword) => {
-        Validates.isString(newPassword)
-        Validates.ValidatePassword(newPassword)
+        Validator.isStrings(newPassword)
+        Validator.checkPassword(newPassword)
         user.password = newPassword
     }
     setEmail = (user, newEmail) => {
-        Validates.isString(newEmail)
-        Validates.ValidateEmail(newEmail)
+        Validator.isStrings(newEmail)
+        Validator.checkEmail(newEmail)
         user.emailAddress = newEmail
 
     }
     setAccessLevel = (user, level) => {
-        Validates.isString(level)
-        Validates.checkInputAccessLevel(level)
+        Validator.isStrings(level)
+        Validator.checkInputAccessLevel(level)
         user.accessLevel = level
     }
 
@@ -112,7 +118,7 @@ class App {
 }
 
 
-const userAdmin = new Admin("Kamil", "Rozanski", "27/02/1986", "Anglia15!", "male", "motomcC#1@gmail.com", "Admin")
+const userAdmin = new Admin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com", "Admin")
 const userUser = new User("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com", "user")
 // console.log(userAdmin.setAccessLevel(userUser, "Admin"))
 console.log(userAdmin.setAccessLevel(userUser, "user"))
