@@ -49,7 +49,7 @@ class Validator {
 
 }
 class User {
-    constructor(name, secondName, dateOfBirth, password, gender, emailAddress, accessLevel) {
+    constructor(name, secondName, dateOfBirth, password, gender, emailAddress) {
         Validator.isStrings(name, secondName)
         Validator.checkInputAccessLevel(accessLevel)
         Validator.checkPassword(password)
@@ -63,7 +63,7 @@ class User {
         this.password = password
         this.gender = gender
         this.emailAddress = emailAddress
-        this.accessLevel = accessLevel
+        this.accessLevel = "user"
     }
     changeName = (value) => {
         this.name = value
@@ -74,16 +74,29 @@ class User {
     changeDateOfBirth = (value) => {
         this.dateOfBirth = value
     }
-    changeGenderh = (value) => {
+    changeGender = (value) => {
         this.gender = value
     }
 }
 
 
 
-class Admin extends User {
-    constructor(name, secondName, dateOfBirth, password, gender, emailAddress, accessLevel) {
-        super(name, secondName, dateOfBirth, password, gender, emailAddress, accessLevel)
+class Admin {
+    constructor(name, secondName, dateOfBirth, password, gender, emailAddress) {
+        Validator.isStrings(name, secondName)
+        Validator.checkInputAccessLevel(accessLevel)
+        Validator.checkPassword(password)
+        Validator.checkGender(gender)
+        Validator.checkEmail(emailAddress)
+        Validator.checkDate(dateOfBirth)
+
+        this.name = name
+        this.secondName = secondName
+        this.dateOfBirth = dateOfBirth
+        this.password = password
+        this.gender = gender
+        this.emailAddress = emailAddress
+        this.accessLevel = "admin"
     }
 
     setPassword = (user, newPassword) => {
@@ -109,7 +122,8 @@ class App {
     constructor() {
         this.allUsers = []
     }
-    createUser(user) {
+    createAdmin(user) {
+        return user = new Admin("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com", "Admin")
         // this.allUsers.push(user)
     }
     showAllUsers = () => {
@@ -121,12 +135,12 @@ class App {
 const userAdmin = new Admin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com", "Admin")
 const userUser = new User("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com", "user")
 // console.log(userAdmin.setAccessLevel(userUser, "Admin"))
-console.log(userAdmin.setAccessLevel(userUser, "user"))
+// console.log(userUser.changeName("Grazyna"))
 
-console.log(userAdmin)
-console.log(userUser)
+// console.log(userAdmin)
+// console.log(userUser)
 
 
-// const app = new App
-// console.log(app.createUser(newKamil))
+const app = new App
+console.log(app.createAdmin("krystian"))
 // console.log(app.showAllUsers())
