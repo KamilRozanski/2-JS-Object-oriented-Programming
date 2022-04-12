@@ -100,18 +100,15 @@ class Admin {
     }
 
     setPassword = (newPassword) => {
-        Validator.isStrings(newPassword)
         Validator.checkPassword(newPassword)
         this.password = newPassword
     }
     setEmail = (newEmail) => {
-        Validator.isStrings(newEmail)
         Validator.checkEmail(newEmail)
         this.emailAddress = newEmail
 
     }
     setAccessLevel = (level) => {
-        Validator.isStrings(level)
         Validator.checkInputAccessLevel(level)
         this.accessLevel = level
     }
@@ -153,7 +150,7 @@ class App {
 const app = new App
 app.createAdmin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
 app.createAdmin("Patryk", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
-// app.createUser("Alan", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
+app.createUser("Alan", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
 // // app.createUser("Dominika", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
 // // console.log(app.allUsers[0].setPassword(app.allUsers[2], "AlanA@a15!"))
 console.log(app.showAllUsers())
