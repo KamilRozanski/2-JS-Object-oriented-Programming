@@ -102,6 +102,7 @@ class Admin {
     setPassword = (newPassword) => {
         Validator.checkPassword(newPassword)
         this.password = newPassword
+
     }
     setEmail = (newEmail) => {
         Validator.checkEmail(newEmail)
@@ -116,8 +117,9 @@ class Admin {
 }
 
 class App {
-    constructor() {
+    constructor(userType) {
         this.allUsers = []
+        console.log(userType)
     }
     createAdmin = (name, secondName, dateOfBirth, password, gender, emailAddress) => {
         const admin = new Admin(name, secondName, dateOfBirth, password, gender, emailAddress)
@@ -135,22 +137,23 @@ class App {
 }
 
 
-// const userAdmin = new Admin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com", "Admin")
-// const userAdminTwo = new Admin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com", "Admin")
+const userAdmin = new Admin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com", "Admin")
+const userAdminTwo = new Admin("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com", "Admin")
 // console.log(userAdmin.setAccessLevel("user"))
 
 // const userUser = new User("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com", "user")
 
 // console.log(userUser.changeName("Grazyna"))
 
+// console.log(userAdmin.setAccessLevel("user"))
 // console.log(userAdmin)
-// console.log(userUser)
+// console.log(userAdminTwo)
 
 
-const app = new App
-app.createAdmin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
-app.createAdmin("Patryk", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
-app.createUser("Alan", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
-// // app.createUser("Dominika", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
-// // console.log(app.allUsers[0].setPassword(app.allUsers[2], "AlanA@a15!"))
-console.log(app.showAllUsers())
+const app = new App(userAdmin)
+// app.createAdmin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
+// app.createAdmin("Patryk", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
+// app.createUser("Alan", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
+// app.createUser("Dominika", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
+// console.log(app.showAllUsers())
+// console.log(Admin)
