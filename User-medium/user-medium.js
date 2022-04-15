@@ -99,32 +99,43 @@ class Admin {
         this.accessLevel = "admin"
     }
 
-    setPassword = (newPassword) => {
+    setPassword = (user, newPassword) => {
         Validator.checkPassword(newPassword)
+        if (user.accessLevel === "user") {
+            user.password = newPassword
+        } else {
+            throw new Error("You can not change a password")
+        }
         this.password = newPassword
-
     }
-    setEmail = (newEmail) => {
+    setEmail = (user, newEmail) => {
         Validator.checkEmail(newEmail)
+        if (user.accessLevel === "user") {
+            user.emailAddress = newEmail
+        } else {
+            throw new Error("You can not change an email")
+        }
         this.emailAddress = newEmail
-
     }
-    setAccessLevel = (level) => {
-        Validator.checkInputAccessLevel(level)
-        this.accessLevel = level
+    setAccessLevel = (user, accLevel) => {
+        Validator.checkInputAccessLevel(accLevel)
+        if (user.accessLevel === "user") {
+            user.accessLevel = accLevel
+        } else {
+            throw new Error("You can not change a level access")
+        }
     }
 
 }
 
 class App {
-    constructor(userType) {
+    constructor() {
         this.allUsers = []
-        console.log(userType)
     }
     createAdmin = (name, secondName, dateOfBirth, password, gender, emailAddress) => {
         const admin = new Admin(name, secondName, dateOfBirth, password, gender, emailAddress)
+        // console.log(admin.setAccessLevel("user"))
         this.allUsers.push(admin)
-        return admin
     }
     createUser = (name, secondName, dateOfBirth, password, gender, emailAddress) => {
         const user = new User(name, secondName, dateOfBirth, password, gender, emailAddress)
@@ -137,20 +148,25 @@ class App {
 }
 
 
-const userAdmin = new Admin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com", "Admin")
-const userAdminTwo = new Admin("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com", "Admin")
-// console.log(userAdmin.setAccessLevel("user"))
+const kamil = new Admin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
+const patryk = new Admin("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
+const krystian = new User("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com", "user")
+kamil.setAccessLevel(krystian, "admin")
 
-// const userUser = new User("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com", "user")
+
 
 // console.log(userUser.changeName("Grazyna"))
 
 // console.log(userAdmin.setAccessLevel("user"))
-// console.log(userAdmin)
-// console.log(userAdminTwo)
+console.log(kamil)
+console.log(patryk)
+console.log(krystian)
 
 
-const app = new App(userAdmin)
+// const app = new App()
+// app.createAdmin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
+// app.createAdmin("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
+// app.createAdmin(userAdminTwo)
 // app.createAdmin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
 // app.createAdmin("Patryk", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
 // app.createUser("Alan", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
