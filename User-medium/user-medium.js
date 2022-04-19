@@ -118,6 +118,8 @@ class Admin {
         this.emailAddress = newEmail
     }
     setAccessLevel = (user, accLevel) => {
+        console.log(user)
+        // console.log(app.allUsers[0].setAccessLevel(app.allUsers[2], "admin"))
         Validator.checkInputAccessLevel(accLevel)
         if (user.accessLevel === "user") {
             user.accessLevel = accLevel
@@ -150,11 +152,12 @@ class App {
 const app = new App()
 app.createAdmin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
 app.createAdmin("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
-// app.createAdmin(userAdminTwo)
+
+
 app.createUser("Alan", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
-// app.createUser("Dominika", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
+app.createUser("Dominika", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
+console.log(app.allUsers[0].setAccessLevel(app.allUsers[2], "admin"))
 console.log(app.showAllUsers())
-console.log(app)
 
 
 // const kamil = new Admin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
