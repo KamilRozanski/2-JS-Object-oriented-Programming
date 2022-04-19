@@ -147,29 +147,26 @@ class App {
     }
 }
 
+const app = new App()
+app.createAdmin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
+app.createAdmin("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
+// app.createAdmin(userAdminTwo)
+app.createUser("Alan", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
+// app.createUser("Dominika", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
+console.log(app.showAllUsers())
+console.log(app)
 
-const kamil = new Admin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
-const patryk = new Admin("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
-const krystian = new User("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com", "user")
-kamil.setAccessLevel(krystian, "admin")
+
+// const kamil = new Admin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
+// const patryk = new Admin("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
+// const krystian = new User("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com", "user")
+// kamil.setAccessLevel(krystian, "admin")
 
 
 
 // console.log(userUser.changeName("Grazyna"))
 
 // console.log(userAdmin.setAccessLevel("user"))
-console.log(kamil)
-console.log(patryk)
-console.log(krystian)
-
-
-// const app = new App()
-// app.createAdmin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
-// app.createAdmin("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
-// app.createAdmin(userAdminTwo)
-// app.createAdmin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
-// app.createAdmin("Patryk", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
-// app.createUser("Alan", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
-// app.createUser("Dominika", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
-// console.log(app.showAllUsers())
-// console.log(Admin)
+// console.log(kamil)
+// console.log(patryk)
+// console.log(krystian)
