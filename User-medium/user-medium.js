@@ -7,8 +7,12 @@ class Validator {
             if (typeof el !== "string") {
                 throw new Error("it is not a string value")
             }
+        });
+    }
+    static paraIsNotEmpty(...value) {
+        value.forEach(el => {
             if (el.length === 0) {
-                throw new Error("Provide a string value")
+                throw new Error("You must provide an value")
             }
         });
     }
@@ -51,6 +55,7 @@ class Validator {
 class User {
     constructor(name, secondName, dateOfBirth, password, gender, emailAddress) {
         Validator.isStrings(name, secondName)
+        Validator.paraIsNotEmpty(name, secondName)
         // Validator.checkInputAccessLevel(accessLevel)
         Validator.checkPassword(password)
         Validator.checkGender(gender)
@@ -84,6 +89,7 @@ class User {
 class Admin {
     constructor(name, secondName, dateOfBirth, password, gender, emailAddress) {
         Validator.isStrings(name, secondName)
+        Validator.paraIsNotEmpty(name, secondName)
         // Validator.checkInputAccessLevel(accessLevel)
         Validator.checkPassword(password)
         Validator.checkGender(gender)
@@ -118,7 +124,7 @@ class Admin {
         this.emailAddress = newEmail
     }
     setAccessLevel = (user, accLevel) => {
-        console.log(user)
+        console.log(user.name)
         // console.log(app.allUsers[0].setAccessLevel(app.allUsers[2], "admin"))
         Validator.checkInputAccessLevel(accLevel)
         if (user.accessLevel === "user") {
@@ -152,18 +158,16 @@ class App {
 const app = new App()
 app.createAdmin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
 app.createAdmin("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
-
-
 app.createUser("Alan", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
 app.createUser("Dominika", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
-console.log(app.allUsers[0].setAccessLevel(app.allUsers[2], "admin"))
+// console.log(app.allUsers[0].setAccessLevel(app.allUsers[2], "admin"))
 console.log(app.showAllUsers())
 
 
 // const kamil = new Admin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
 // const patryk = new Admin("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
-// const krystian = new User("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com", "user")
-// kamil.setAccessLevel(krystian, "admin")
+// const krystian = new User("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com")
+// kamil.setAccessLevel(patryk, "admin")
 
 
 
