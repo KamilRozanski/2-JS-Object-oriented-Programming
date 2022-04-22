@@ -1,5 +1,4 @@
 `use strict`
-
 // class Utils <= klasa narzędziowa
 class Validator {
     static isStrings(...value) {
@@ -56,7 +55,6 @@ class User {
     constructor(name, secondName, dateOfBirth, password, gender, emailAddress) {
         Validator.isStrings(name, secondName)
         Validator.paraIsNotEmpty(name, secondName)
-        // Validator.checkInputAccessLevel(accessLevel)
         Validator.checkPassword(password)
         Validator.checkGender(gender)
         Validator.checkEmail(emailAddress)
@@ -90,7 +88,6 @@ class Admin {
     constructor(name, secondName, dateOfBirth, password, gender, emailAddress) {
         Validator.isStrings(name, secondName)
         Validator.paraIsNotEmpty(name, secondName)
-        // Validator.checkInputAccessLevel(accessLevel)
         Validator.checkPassword(password)
         Validator.checkGender(gender)
         Validator.checkEmail(emailAddress)
@@ -126,7 +123,6 @@ class Admin {
     setAccessLevel = (user, accLevel) => {
         console.log(user.name)
         // console.log(app.allUsers[0].setAccessLevel(app.allUsers[2], "admin"))
-        Validator.checkInputAccessLevel(accLevel)
         if (user.accessLevel === "user") {
             user.accessLevel = accLevel
         } else {
@@ -160,7 +156,7 @@ app.createAdmin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1
 app.createAdmin("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
 app.createUser("Alan", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
 app.createUser("Dominika", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
-// console.log(app.allUsers[0].setAccessLevel(app.allUsers[2], "admin"))
+console.log(app.allUsers[0].setAccessLevel(app.allUsers[2], "user"))
 console.log(app.showAllUsers())
 
 
