@@ -1,19 +1,41 @@
-const {
-    v4: uuidv4
-} = require('uuid');
+import {
+    v4 as uuidv4
+} from 'https://jspm.dev/uuid';
+let id = uuidv4()
+
 
 
 class Contact {
     // Ma mieć: Imie, Nazwisko, adres-emial, datę modyfikacji i utworzenia, uuid
     // Ma umożliwiać: aktualizację datę modyfikacji, pozwalac na modyfikację imienia, nazwiska oraz adresu email
-    construktor(name, lastName, email) {
+    constructor(name, lastName, email) {
         this.name = name
-        this.lastNAme = lastName
+        this.lastName = lastName
         this.email = email
-        this.modificationDate = modificationDate
-        this.id = uuidv4()
+        this.dateOfCreation = new Date()
+        this.modificationDate = false
+        this.id = id
     }
+
+    changeName = (value) => {
+        this.name = value
+        this.modificationDate = new Date()
+    }
+    changeLastName = (value) => {
+        this.lastName = value
+        this.modificationDate = new Date()
+    }
+    changeEmail = (value) => {
+        this.email = value
+        this.modificationDate = new Date()
+    }
+
+
 }
+const contact = new Contact("kamil", "rozanski", "@@@")
+contact.changeName("Jakil")
+console.log(contact)
+
 
 class Group {
     // Ma mieć: listę kontaktów oraz nazwę grupy oraz uuid
