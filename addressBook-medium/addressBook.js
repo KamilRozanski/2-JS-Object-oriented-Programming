@@ -1,7 +1,8 @@
 import {
     v4 as uuidv4
-} from 'https://jspm.dev/uuid';
-let id = uuidv4()
+} from 'uuid';
+// let id = uuidv4()
+
 
 
 
@@ -12,9 +13,9 @@ class Contact {
         this.name = name
         this.lastName = lastName
         this.email = email
-        this.dateOfCreation = new Date()
+        this.creationDate = new Date()
         this.modificationDate = false
-        this.id = id
+        this.id = uuidv4()
     }
 
     changeName = (value) => {
@@ -29,17 +30,21 @@ class Contact {
         this.email = value
         this.modificationDate = new Date()
     }
-
-
 }
-const contact = new Contact("kamil", "rozanski", "@@@")
+const contact = new Contact("kamil", "rozanski", "mail@mail.com")
+const contact1 = new Contact("kamil", "rozanski", "mail@mail.com")
 contact.changeName("Jakil")
-console.log(contact)
+// console.log(contact.creationDate, contact.id)
+console.log(contact, contact1)
 
 
 class Group {
     // Ma mieć: listę kontaktów oraz nazwę grupy oraz uuid
     // Ma umożliwiać: zmianę nazwy grupy, można dodać lub usunac kontakt z grupy, można sprawdzić czy kontakt istnieje w grupie
+    constructor() {
+        this.contacts = []
+        this.group = []
+    }
 }
 
 class AddressBook {
