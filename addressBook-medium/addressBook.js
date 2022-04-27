@@ -36,8 +36,6 @@ class Contact {
         this.modificationDate = new Date()
     }
 }
-const contact = new Contact("kamil", "rozanski", "mail@mail.com")
-const contact1 = new Contact("kamil", "rozanski", "mail@mail.com")
 
 
 class Group {
@@ -52,12 +50,22 @@ class Group {
     addContact = (contact) => {
         this.contacts.push(contact)
     }
+
+    showAllContacts = () => {
+        return this.contacts
+    }
+
 }
 
-const group = new Group()
-group.addContact(contact)
+const males = new Group()
+const females = new Group()
+males.addContact(new Contact("kamil", "rozanski", "mail@mail.com"))
+females.addContact(new Contact("dominika", "rozanska", "dominika@mail.com"))
+females.addContact(new Contact("Weronika", "rozanska", "weronika@mail.com"))
 
-console.log(group)
+// console.log(males)
+// console.log(females)
+console.log(females.showAllContacts())
 
 class AddressBook {
     // Ma mieć: listę wszystkich kontaktów, listę grup kontaktów 
