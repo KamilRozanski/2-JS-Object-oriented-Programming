@@ -50,9 +50,7 @@ class Group {
     }
 
     removeContact = (contactName) => {
-        this.group = this.group.filter(el => {
-            el.name !== contactName;
-        })
+        this.group = this.group.filter(el => el.name !== contactName)
     }
 
 
@@ -76,7 +74,7 @@ const females = new Group("females")
 
 males.addContact(new Contact("Kamil", "rozanski", "mail@mail.com"))
 males.addContact(new Contact("Patryk", "rozanski", "mail@mail.com"))
-males.removeContact("Kamil")
+// males.removeContact("Kamil")
 console.log(males.group)
 
 // females.addContact(new Contact("Dominika", "rozanska", "dominika@mail.com"))
