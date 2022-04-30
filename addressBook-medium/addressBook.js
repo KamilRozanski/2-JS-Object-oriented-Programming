@@ -49,13 +49,20 @@ class Group {
         this.group.push(contact)
     }
 
-    removeContact = (contactName) => {
-        this.group = this.group.filter(el => el.name !== contactName)
+    removeContact = (contactDetail) => {
+        //do poprawy usuwanie uzytkownika. Mozna usunac go nie tylko po imieniu.
+        this.group = this.group.filter(el => el.name !== contactDetail)
     }
 
 
-    hasContactExistInGroup = (contact) => {
-        // this.contacts.push(contact)
+    hasContactExistInGroup = (contactDetail) => {
+        return this.group.find(element => {
+
+            const ojbValues = Object.values(element)
+            console.log(ojbValues)
+            ojbValues.includes(contactDetail)
+            console.log(ojbValues.includes(contactDetail))
+        });
     }
 
     showAllContacts = () => {
@@ -74,8 +81,8 @@ const females = new Group("females")
 
 males.addContact(new Contact("Kamil", "rozanski", "mail@mail.com"))
 males.addContact(new Contact("Patryk", "rozanski", "mail@mail.com"))
-// males.removeContact("Kamil")
-console.log(males.group)
+males.hasContactExistInGroup("Kamil")
+// console.log(males.group)
 
 // females.addContact(new Contact("Dominika", "rozanska", "dominika@mail.com"))
 // females.addContact(new Contact("Weronika", "rozanska", "weronika@mail.com"))
