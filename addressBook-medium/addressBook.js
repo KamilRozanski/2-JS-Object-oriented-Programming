@@ -55,15 +55,20 @@ class Group {
     }
 
 
-    hasContactExistInGroup = (contactDetail) => {
-        return this.group.find(element => {
+    checkIfContactIsInGroup = (contactDetail) => {
+        const result = this.group.find(obj => Object.keys(obj).some(key => {
+            if (typeof obj[key] !== "function") {
+                return obj[key] === contactDetail
+            }
+        }))
 
-            const ojbValues = Object.values(element)
-            console.log(ojbValues)
-            ojbValues.includes(contactDetail)
-            console.log(ojbValues.includes(contactDetail))
-        });
+        if (result) {
+            return result
+        } else {
+            throw new Error(`${contactDetail} dosent exist`)
+        }
     }
+
 
     showAllContacts = () => {
         return this.group
@@ -72,8 +77,6 @@ class Group {
     changeGroupName = (newName) => {
         this.groupName = newName
     }
-
-
 }
 
 const males = new Group("males")
@@ -81,7 +84,7 @@ const females = new Group("females")
 
 males.addContact(new Contact("Kamil", "rozanski", "mail@mail.com"))
 males.addContact(new Contact("Patryk", "rozanski", "mail@mail.com"))
-males.hasContactExistInGroup("Kamil")
+males.checkIfContactIsInGroup("Kamil")
 // console.log(males.group)
 
 // females.addContact(new Contact("Dominika", "rozanska", "dominika@mail.com"))
