@@ -65,7 +65,7 @@ class Group {
         if (result) {
             return result
         } else {
-            throw new Error(`${contactDetail} dosent exist`)
+            throw new Error(`${contactDetail} does not exist`)
         }
     }
 
@@ -79,21 +79,19 @@ class Group {
     }
 }
 
+class AddressBook {
+    // Ma mieć: listę wszystkich kontaktów, listę grup kontaktów 
+    // Ma umożliwiać: szukanie kontaktu po frazie, dodawanie/usuwanie/modyfikacje nowych kontaktów, dodawanie/usuwanie/modyfikacje nowych grup
+}
 const males = new Group("males")
 const females = new Group("females")
 
 males.addContact(new Contact("Kamil", "rozanski", "mail@mail.com"))
 males.addContact(new Contact("Patryk", "rozanski", "mail@mail.com"))
 males.checkIfContactIsInGroup("Kamil")
-// console.log(males.group)
+// males.removeContact("Kamil")
+// console.log(males)
 
-// females.addContact(new Contact("Dominika", "rozanska", "dominika@mail.com"))
-// females.addContact(new Contact("Weronika", "rozanska", "weronika@mail.com"))
-// console.log(males.changeGroupName("elo"))
-
-
-
-class AddressBook {
-    // Ma mieć: listę wszystkich kontaktów, listę grup kontaktów 
-    // Ma umożliwiać: szukanie kontaktu po frazie, dodawanie/usuwanie/modyfikacje nowych kontaktów, dodawanie/usuwanie/modyfikacje nowych grup
-}
+females.addContact(new Contact("Dominika", "rozanska", "dominika@mail.com"))
+females.addContact(new Contact("Weronika", "rozanska", "weronika@mail.com"))
+// console.log(females.showAllContacts())
