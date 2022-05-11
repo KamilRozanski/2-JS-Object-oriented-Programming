@@ -56,17 +56,18 @@ class Group {
 
 
     checkIfContactIsInGroup = (contactDetail) => {
-        const result = this.group.find(obj => Object.keys(obj).some(key => {
+        const result = this.group.find((obj, index) => Object.keys(obj).some(key => {
+            // console.log(obj[key])
             if (typeof obj[key] !== "function") {
+                console.log(obj[key], index)
                 return obj[key] === contactDetail
             }
+            return console.log(obj[key], index + "out")
         }))
 
-        if (result) {
-            return result
-        } else {
-            throw new Error(`${contactDetail} does not exist`)
-        }
+        return result
+
+
     }
 
 
@@ -86,12 +87,12 @@ class AddressBook {
 const males = new Group("males")
 const females = new Group("females")
 
-males.addContact(new Contact("Kamil", "rozanski", "mail@mail.com"))
-males.addContact(new Contact("Patryk", "rozanski", "mail@mail.com"))
-males.checkIfContactIsInGroup("Kamil")
+males.addContact(new Contact("Kamil", "Rozanski", "mail@mail.com"))
+males.addContact(new Contact("Patryk", "Rozanski", "mail@mail.com"))
+males.checkIfContactIsInGroup("Ptryk")
 // males.removeContact("Kamil")
 // console.log(males)
 
-females.addContact(new Contact("Dominika", "rozanska", "dominika@mail.com"))
-females.addContact(new Contact("Weronika", "rozanska", "weronika@mail.com"))
+females.addContact(new Contact("Dominika", "Rozanska", "dominika@mail.com"))
+females.addContact(new Contact("Weronika", "Rozanska", "weronika@mail.com"))
 // console.log(females.showAllContacts())
