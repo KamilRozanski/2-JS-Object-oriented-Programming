@@ -123,13 +123,17 @@ class StopWatch {
         const seconds = (this.endTime.getTime() - this.startTime.getTime()) / 1000
         this.durationTime += seconds
     }
+
     duration() {
         return this.durationTime
     }
 
     reset() {
-
+        this.startTime = null
+        this.endTime = null
+        this.running = false
     }
+
 }
 
 const sw = new StopWatch()
