@@ -1,6 +1,6 @@
-import {
-    v4 as uuidv4
-} from 'uuid';
+// import {
+//     v4 as uuidv4
+// } from 'uuid';
 
 
 
@@ -17,7 +17,7 @@ class Contact {
         this.email = email
         this.creationDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
         this.modificationDate = false
-        this.id = uuidv4()
+        // this.id = uuidv4()
     }
 
     changeName = (value) => {
@@ -42,7 +42,7 @@ class Group {
     constructor(groupName) {
         this.group = []
         this.groupName = groupName
-        this.groupID = uuidv4()
+        // this.groupID = uuidv4()
     }
 
     addContact = (contact) => {
@@ -59,10 +59,10 @@ class Group {
         const result = this.group.find((obj, index) => Object.keys(obj).some(key => {
             // console.log(obj[key])
             if (typeof obj[key] !== "function") {
-                console.log(obj[key], index)
+                // console.log(obj[key], index)
                 return obj[key] === contactDetail
             }
-            return console.log(obj[key], index + "out")
+            // return console.log(obj[key], index + "out")
         }))
 
         return result
@@ -96,3 +96,43 @@ males.checkIfContactIsInGroup("Ptryk")
 females.addContact(new Contact("Dominika", "Rozanska", "dominika@mail.com"))
 females.addContact(new Contact("Weronika", "Rozanska", "weronika@mail.com"))
 // console.log(females.showAllContacts())
+
+
+
+
+class StopWatch {
+    constructor() {
+        this.startTime;
+        this.endTime;
+        this.running = false
+        this.durationTime = 0
+    }
+    start() {
+        if (this.running) {
+            throw new Error("stop watch already runing")
+        }
+        this.running = true
+        this.startTime = new Date()
+    }
+    stop() {
+        if (!this.running) {
+            throw new Error("stop watch already stoped")
+        }
+        this.running = false
+        this.endTime = new Date()
+        const seconds = (this.endTime.getTime() - this.startTime.getTime()) / 1000
+        this.durationTime += seconds
+    }
+    duration() {
+        return this.durationTime
+    }
+
+    reset() {
+
+    }
+}
+
+const sw = new StopWatch()
+console.log(sw.start())
+console.log(sw.stop())
+console.log(sw.duration())
