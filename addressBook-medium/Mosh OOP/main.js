@@ -47,25 +47,31 @@ class StopWatch {
 
 //Stack
 
+const _stack = new WeakMap();
 class Stack {
     constructor() {
-        this.stack = []
+        _stack.set(this, [])
     }
 
     push(value) {
-        this.stack.push(value)
-        console.log(value)
+        _stack.get(this).push(value)
     }
     pop() {
-        this.stack.pop()
-        console.log(this.stack.pop(), " pop")
+        if (_stack.get(this).length === 0) {
+            throw new Error("Stack is empty")
+        }
+        return _stack.get(this).pop()
     }
 
-    get peek() {
-        console.log(this.stack[this.stack.length - 1])
+    peek() {
+        if (_stack.get(this).length === 0) {
+            throw new Error("Stack is empty")
+        }
+        return _stack.get(this)[_stack.get(this) - 1]
     }
+
     get count() {
-        console.log(this.stack.length, this.stack)
+        return _stack.get(this).length, _stack.get(this)
     }
 }
 
@@ -75,4 +81,7 @@ stack.push("a")
 stack.push("b")
 stack.push("c")
 stack.pop()
+// stack.pop()
+
+stack.peek()
 stack.count
