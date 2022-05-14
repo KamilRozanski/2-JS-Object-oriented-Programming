@@ -47,3 +47,32 @@ class StopWatch {
 
 //Stack
 
+class Stack {
+    constructor() {
+        this.stack = []
+    }
+
+    push(value) {
+        this.stack.push(value)
+        console.log(value)
+    }
+    pop() {
+        this.stack.pop()
+        console.log(this.stack.pop(), " pop")
+    }
+
+    get peek() {
+        console.log(this.stack[this.stack.length - 1])
+    }
+    get count() {
+        console.log(this.stack.length, this.stack)
+    }
+}
+
+
+const stack = new Stack()
+stack.push("a")
+stack.push("b")
+stack.push("c")
+stack.pop()
+stack.count
