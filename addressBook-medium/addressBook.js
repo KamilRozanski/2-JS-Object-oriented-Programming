@@ -2,10 +2,6 @@
 //     v4 as uuidv4
 // } from 'uuid';
 
-
-
-
-
 class Contact {
     // Ma mieć: Imie, Nazwisko, adres-emial, datę modyfikacji i utworzenia, uuid
     // Ma umożliwiać: aktualizację datę modyfikacji, pozwalac na modyfikację imienia, nazwiska oraz adresu email
@@ -35,6 +31,11 @@ class Contact {
     }
 }
 
+const contactOne = new Contact("Kamil", "Rozanski", "mail@mail.com")
+const contactTwo = new Contact("Patryk", "Rozanski", "mail@mail.com")
+const contactThree = new Contact("Dominika", "Rozanska", "dominika@mail.com")
+const contactFour = new Contact("Weronika", "Rozanska", "weronika@mail.com")
+
 
 class Group {
     // Ma mieć: listę kontaktów oraz nazwę grupy oraz uuid
@@ -49,9 +50,9 @@ class Group {
         this.group.push(contact)
     }
 
-    removeContact = (contactDetail) => {
+    removeContact = (contactName) => {
         //do poprawy usuwanie uzytkownika. Mozna usunac go nie tylko po imieniu.
-        this.group = this.group.filter(el => el.name !== contactDetail)
+        this.group = this.group.filter(el => el.name !== contactName)
     }
 
 
@@ -64,12 +65,8 @@ class Group {
             }
             // return console.log(obj[key], index + "out")
         }))
-
         return result
-
-
     }
-
 
     showAllContacts = () => {
         return this.group
@@ -80,63 +77,17 @@ class Group {
     }
 }
 
+const males = new Group("males")
+const females = new Group("females")
+
+males.addContact(contactOne)
+males.addContact(contactTwo)
+females.addContact(contactThree)
+females.addContact(contactFour)
+
+console.log(males)
+console.log(females)
 class AddressBook {
     // Ma mieć: listę wszystkich kontaktów, listę grup kontaktów 
     // Ma umożliwiać: szukanie kontaktu po frazie, dodawanie/usuwanie/modyfikacje nowych kontaktów, dodawanie/usuwanie/modyfikacje nowych grup
 }
-const males = new Group("males")
-const females = new Group("females")
-
-males.addContact(new Contact("Kamil", "Rozanski", "mail@mail.com"))
-males.addContact(new Contact("Patryk", "Rozanski", "mail@mail.com"))
-males.checkIfContactIsInGroup("Ptryk")
-// males.removeContact("Kamil")
-// console.log(males)
-
-females.addContact(new Contact("Dominika", "Rozanska", "dominika@mail.com"))
-females.addContact(new Contact("Weronika", "Rozanska", "weronika@mail.com"))
-// console.log(females.showAllContacts())
-
-
-
-
-class StopWatch {
-    constructor() {
-        this.startTime;
-        this.endTime;
-        this.running = false
-        this.durationTime = 0
-    }
-    start() {
-        if (this.running) {
-            throw new Error("stop watch already runing")
-        }
-        this.running = true
-        this.startTime = new Date()
-    }
-    stop() {
-        if (!this.running) {
-            throw new Error("stop watch already stoped")
-        }
-        this.running = false
-        this.endTime = new Date()
-        const seconds = (this.endTime.getTime() - this.startTime.getTime()) / 1000
-        this.durationTime += seconds
-    }
-
-    duration() {
-        return this.durationTime
-    }
-
-    reset() {
-        this.startTime = null
-        this.endTime = null
-        this.running = false
-    }
-
-}
-
-const sw = new StopWatch()
-console.log(sw.start())
-console.log(sw.stop())
-console.log(sw.duration())
