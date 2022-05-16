@@ -56,16 +56,15 @@ class Group {
     }
 
 
-    checkIfContactIsInGroup = (contactDetail) => {
-        const result = this.group.find((obj, index) => Object.keys(obj).some(key => {
-            // console.log(obj[key])
-            if (typeof obj[key] !== "function") {
-                // console.log(obj[key], index)
-                return obj[key] === contactDetail
+    checkIfContactExists = (contactDetails) => {
+        const findContact = this.group.find(el => {
+            for (const value in el) {
+                if (typeof el[value] !== "function" && el[value] === contactDetails) {
+                    return true
+                }
             }
-            // return console.log(obj[key], index + "out")
-        }))
-        return result
+        })
+        return findContact === undefined ? false : true
     }
 
     showAllContacts = () => {
@@ -85,8 +84,8 @@ males.addContact(contactTwo)
 females.addContact(contactThree)
 females.addContact(contactFour)
 
-console.log(males)
-console.log(females)
+console.log(males.checkIfContactExists("mail@mail.com"))
+// console.log(females)
 class AddressBook {
     // Ma mieć: listę wszystkich kontaktów, listę grup kontaktów 
     // Ma umożliwiać: szukanie kontaktu po frazie, dodawanie/usuwanie/modyfikacje nowych kontaktów, dodawanie/usuwanie/modyfikacje nowych grup
