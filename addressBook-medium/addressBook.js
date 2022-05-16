@@ -51,8 +51,8 @@ class Group {
     }
 
     removeContact = (contactName) => {
-        //do poprawy usuwanie uzytkownika. Mozna usunac go nie tylko po imieniu.
-        this.group = this.group.filter(el => el.name !== contactName)
+        //usówa tylko po imieniu
+        return this.group = this.group.filter(el => el.name !== contactName)
     }
 
 
@@ -84,8 +84,8 @@ males.addContact(contactTwo)
 females.addContact(contactThree)
 females.addContact(contactFour)
 
-console.log(males.checkIfContactExists("mail@mail.com"))
-// console.log(females)
+console.log(males.removeContact("Kamil"))
+console.log(males)
 class AddressBook {
     // Ma mieć: listę wszystkich kontaktów, listę grup kontaktów 
     // Ma umożliwiać: szukanie kontaktu po frazie, dodawanie/usuwanie/modyfikacje nowych kontaktów, dodawanie/usuwanie/modyfikacje nowych grup
