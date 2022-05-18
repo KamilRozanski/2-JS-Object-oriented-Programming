@@ -41,18 +41,18 @@ class Group {
     // Ma mieć: listę kontaktów oraz nazwę grupy oraz uuid
     // Ma umożliwiać: zmianę nazwy grupy, można dodać lub usunac kontakt z grupy, można sprawdzić czy kontakt istnieje w grupie
     constructor(groupName) {
-        this.group = []
+        this.allContacts = []
         this.groupName = groupName
         // this.groupID = uuidv4()
     }
 
     addContact = (contact) => {
-        this.group.push(contact)
+        this.allContacts.push(contact)
     }
 
     removeContact = (contactName) => {
         //usówa tylko po imieniu
-        return this.group = this.group.filter(el => el.name !== contactName)
+        return this.allContacts = this.allContacts.filter(el => el.name !== contactName)
     }
 
 
@@ -68,7 +68,7 @@ class Group {
     }
 
     showAllContacts = () => {
-        return this.group
+        return this.allContacts
     }
 
     changeGroupName = (newName) => {
@@ -84,9 +84,20 @@ males.addContact(contactTwo)
 females.addContact(contactThree)
 females.addContact(contactFour)
 
-console.log(males.removeContact("Kamil"))
-console.log(males)
+// console.log(males.removeContact("Kamil"))
+// console.log(males)
+
 class AddressBook {
     // Ma mieć: listę wszystkich kontaktów, listę grup kontaktów 
     // Ma umożliwiać: szukanie kontaktu po frazie, dodawanie/usuwanie/modyfikacje nowych kontaktów, dodawanie/usuwanie/modyfikacje nowych grup
+    constructor(groupName) {
+        this.allContacts = new Group(groupName)
+    }
+    show() {
+        console.log(this.allContacts.showAllContacts())
+    }
+
 }
+
+const addressBook = new AddressBook("elo")
+console.log(addressBook.show())
