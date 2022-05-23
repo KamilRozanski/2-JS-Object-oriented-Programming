@@ -1,24 +1,24 @@
 // import {
 //     v4 as uuidv4
 // } from 'uuid';
-
+const currentDate = new Date()
+const correctFormatDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`
 class Contact {
     // Ma mieć: Imie, Nazwisko, adres-emial, datę modyfikacji i utworzenia, uuid
     // Ma umożliwiać: aktualizację datę modyfikacji, pozwalac na modyfikację imienia, nazwiska oraz adresu email
     constructor(name, lastName, email) {
-        const date = new Date()
-
+        this.date = new Date()
         this.name = name
         this.lastName = lastName
         this.email = email
-        this.creationDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+        this.creationDate = correctFormatDate
         this.modificationDate = false
         // this.id = uuidv4()
     }
 
     changeName = (value) => {
         this.name = value
-        this.modificationDate = new Date()
+        this.modificationDate = `${this.date.getDate()}/${this.date.getMonth() + 1}/${this.date.getFullYear()}`
     }
 
     changeLastName = (value) => {
@@ -29,12 +29,23 @@ class Contact {
         this.email = value
         this.modificationDate = new Date()
     }
+
+    creationDate() {
+        return this.creationDate
+    }
+
+    dateOfLastModification() {
+        return this.modificationDate
+    }
 }
 
 const contactOne = new Contact("Kamil", "Rozanski", "mail@mail.com")
 const contactTwo = new Contact("Patryk", "Rozanski", "mail@mail.com")
 const contactThree = new Contact("Dominika", "Rozanska", "dominika@mail.com")
 const contactFour = new Contact("Weronika", "Rozanska", "weronika@mail.com")
+console.log(contactOne.creationDate)
+contactOne.changeName("Roman")
+console.log(contactOne.dateOfLastModification())
 
 
 class Group {
@@ -104,6 +115,17 @@ const addressBook = new AddressBook("elo")
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 class Store {
     constructor(paymentProcessor) {
         this.paymentProcessor = paymentProcessor
@@ -154,9 +176,4 @@ class MBankPaymentProcessor {
 }
 
 
-
-
-
-
 const store = new Store(new MBankPay("kamil"))
-console.log(store.pay())
