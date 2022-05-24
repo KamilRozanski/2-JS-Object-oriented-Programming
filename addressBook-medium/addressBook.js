@@ -1,24 +1,42 @@
 // import {
 //     v4 as uuidv4
 // } from 'uuid';
-const currentDate = new Date()
-const correctFormatDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`
+
+const addZero = (i) => {
+    if (i < 10) {
+        i = "0" + i
+    }
+    return i;
+}
+const getDate = () => {
+    const date = new Date()
+    let day = addZero(date.getDate())
+    let month = addZero(date.getMonth() + 1)
+    let year = date.getFullYear()
+
+    let hours = addZero(date.getHours())
+    let minutes = addZero(date.getMinutes())
+    let seconds = addZero(date.getSeconds())
+
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`
+}
+getDate()
 class Contact {
     // Ma mieć: Imie, Nazwisko, adres-emial, datę modyfikacji i utworzenia, uuid
     // Ma umożliwiać: aktualizację datę modyfikacji, pozwalac na modyfikację imienia, nazwiska oraz adresu email
     constructor(name, lastName, email) {
-        this.date = new Date()
+        this.formatDate = getDate()
         this.name = name
         this.lastName = lastName
         this.email = email
-        this.creationDate = correctFormatDate
+        this.creationDate = getDate()
         this.modificationDate = false
         // this.id = uuidv4()
     }
 
     changeName = (value) => {
         this.name = value
-        this.modificationDate = `${this.date.getDate()}/${this.date.getMonth() + 1}/${this.date.getFullYear()}`
+        this.modificationDate = this.formatDate
     }
 
     changeLastName = (value) => {
@@ -132,7 +150,11 @@ class Store {
     }
 
     pay() {
-        return `${this.paymentProcessor.pay(2, 20)}`
+        return `
+            $ {
+                this.paymentProcessor.pay(2, 20)
+            }
+            `
     }
 }
 
@@ -141,7 +163,14 @@ class AllegroPay {
         this.user = user
     }
     pay(quantity, price) {
-        return `${this.user} made a payment ${quantity * price} PLN`
+        return `
+            $ {
+                this.user
+            }
+            made a payment $ {
+                quantity * price
+            }
+            PLN `
     }
 }
 
@@ -161,7 +190,14 @@ class MBankPay {
         this.user = user
     }
     pay(quantity, price) {
-        return `${this.user} made a payment by mBank ${(quantity * price) * 100} groszy`
+        return `
+            $ {
+                this.user
+            }
+            made a payment by mBank $ {
+                (quantity * price) * 100
+            }
+            groszy `
     }
 
 }
