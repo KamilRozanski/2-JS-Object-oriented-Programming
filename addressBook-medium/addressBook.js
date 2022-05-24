@@ -1,51 +1,51 @@
-// import {
-//     v4 as uuidv4
-// } from 'uuid';
+import {
+    v4 as uuidv4
+} from 'uuid';
 
-const addZero = (i) => {
-    if (i < 10) {
-        i = "0" + i
-    }
-    return i;
-}
-const getDate = () => {
-    const date = new Date()
-    let day = addZero(date.getDate())
-    let month = addZero(date.getMonth() + 1)
-    let year = date.getFullYear()
 
-    let hours = addZero(date.getHours())
-    let minutes = addZero(date.getMinutes())
-    let seconds = addZero(date.getSeconds())
-
-    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`
-}
-getDate()
 class Contact {
     // Ma mieć: Imie, Nazwisko, adres-emial, datę modyfikacji i utworzenia, uuid
     // Ma umożliwiać: aktualizację datę modyfikacji, pozwalac na modyfikację imienia, nazwiska oraz adresu email
     constructor(name, lastName, email) {
-        this.formatDate = getDate()
+        this.addZero = (i) => {
+            if (i < 10) {
+                i = "0" + i
+            }
+            return i;
+        }
+        this.getDate = () => {
+            const date = new Date()
+            let day = this.addZero(date.getDate())
+            let month = this.addZero(date.getMonth() + 1)
+            let year = date.getFullYear()
+
+            let hours = this.addZero(date.getHours())
+            let minutes = this.addZero(date.getMinutes())
+            let seconds = this.addZero(date.getSeconds())
+
+            return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`
+        }
+
         this.name = name
         this.lastName = lastName
         this.email = email
-        this.creationDate = getDate()
+        this.creationDate = this.getDate()
         this.modificationDate = false
-        // this.id = uuidv4()
+        this.id = uuidv4()
     }
 
     changeName = (value) => {
         this.name = value
-        this.modificationDate = this.formatDate
+        this.modificationDate = this.getDate()
     }
 
     changeLastName = (value) => {
         this.lastName = value
-        this.modificationDate = new Date()
+        this.modificationDate = this.getDate()
     }
     changeEmail = (value) => {
         this.email = value
-        this.modificationDate = new Date()
+        this.modificationDate = this.getDate()
     }
 
     creationDate() {
@@ -58,12 +58,12 @@ class Contact {
 }
 
 const contactOne = new Contact("Kamil", "Rozanski", "mail@mail.com")
-const contactTwo = new Contact("Patryk", "Rozanski", "mail@mail.com")
+const contactTwo = new Contact("Patryk", "Rozanski", "patryk@mail.com")
 const contactThree = new Contact("Dominika", "Rozanska", "dominika@mail.com")
 const contactFour = new Contact("Weronika", "Rozanska", "weronika@mail.com")
-console.log(contactOne.creationDate)
-contactOne.changeName("Roman")
-console.log(contactOne.dateOfLastModification())
+// console.log(contactOne.creationDate)
+// contactOne.changeName("Roman")
+// console.log(contactOne)
 
 
 class Group {
@@ -72,7 +72,7 @@ class Group {
     constructor(groupName) {
         this.allContacts = []
         this.groupName = groupName
-        // this.groupID = uuidv4()
+        this.groupID = uuidv4()
     }
 
     addContact = (contact) => {
@@ -86,7 +86,7 @@ class Group {
 
 
     checkIfContactExists = (contactDetails) => {
-        const findContact = this.group.find(el => {
+        const findContact = this.allContacts.find(el => {
             for (const value in el) {
                 if (typeof el[value] !== "function" && el[value] === contactDetails) {
                     return true
@@ -114,6 +114,7 @@ females.addContact(contactThree)
 females.addContact(contactFour)
 
 // console.log(males.removeContact("Kamil"))
+// console.log(males.checkIfContactExists("patryk@mail.com"))
 // console.log(males)
 
 class AddressBook {
