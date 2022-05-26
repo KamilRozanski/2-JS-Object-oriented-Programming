@@ -70,23 +70,23 @@ class Group {
     // Ma mieć: listę kontaktów oraz nazwę grupy oraz uuid
     // Ma umożliwiać: zmianę nazwy grupy, można dodać lub usunac kontakt z grupy, można sprawdzić czy kontakt istnieje w grupie
     constructor(groupName) {
-        this.allContacts = []
+        this.allGroupContacts = []
         this.groupName = groupName
         this.groupID = uuidv4()
     }
 
     addContact = (contact) => {
-        this.allContacts.push(contact)
+        this.allGroupContacts.push(contact)
     }
 
     removeContact = (contactName) => {
         //usówa tylko po imieniu
-        return this.allContacts = this.allContacts.filter(el => el.name !== contactName)
+        return this.allGroupContacts = this.allGroupContacts.filter(el => el.name !== contactName)
     }
 
 
     checkIfContactExists = (contactDetails) => {
-        const findContact = this.allContacts.find(el => {
+        const findContact = this.allGroupContacts.find(el => {
             for (const value in el) {
                 if (typeof el[value] !== "function" && el[value] === contactDetails) {
                     return true
@@ -96,8 +96,8 @@ class Group {
         return findContact === undefined ? false : true
     }
 
-    showAllContacts = () => {
-        return this.allContacts
+    show = () => {
+        return this.allGroupContacts
     }
 
     changeGroupName = (newName) => {
@@ -115,102 +115,104 @@ females.addContact(contactFour)
 
 // console.log(males.removeContact("Kamil"))
 // console.log(males.checkIfContactExists("patryk@mail.com"))
-// console.log(males)
+// console.log(females.show())
 
 class AddressBook {
     // Ma mieć: listę wszystkich kontaktów, listę grup kontaktów 
     // Ma umożliwiać: szukanie kontaktu po frazie, dodawanie/usuwanie/modyfikacje nowych kontaktów, dodawanie/usuwanie/modyfikacje nowych grup
     constructor(groupName) {
-        this.allContacts = new Group(groupName)
-    }
-    show() {
-        console.log(this.allContacts.showAllContacts())
+        this.contact = new Contact()
+        this.group = new Group(groupName)
     }
 
-}
+    show = () => {
 
-const addressBook = new AddressBook("elo")
-// console.log(addressBook.show())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class Store {
-    constructor(paymentProcessor) {
-        this.paymentProcessor = paymentProcessor
-    }
-
-    pay() {
-        return `
-            $ {
-                this.paymentProcessor.pay(2, 20)
-            }
-            `
-    }
-}
-
-class AllegroPay {
-    constructor(user) {
-        this.user = user
-    }
-    pay(quantity, price) {
-        return `
-            $ {
-                this.user
-            }
-            made a payment $ {
-                quantity * price
-            }
-            PLN `
-    }
-}
-
-class AllegroPaymentProcessor {
-    constructor(user) {
-        this.allegroPay = new AllegroPay(user)
-    }
-
-    pay(quantity, price) {
-        return this.allegroPay.pay(quantity, price)
-    }
-}
-
-
-class MBankPay {
-    constructor(user) {
-        this.user = user
-    }
-    pay(quantity, price) {
-        return `
-            $ {
-                this.user
-            }
-            made a payment by mBank $ {
-                (quantity * price) * 100
-            }
-            groszy `
     }
 
 }
-class MBankPaymentProcessor {
-    constructor(user) {
-        this.mBank = new MBankPay(user)
-    }
 
-    pay(quantity, price) {
-        return this.mBank.pay(quantity, price)
-    }
-}
+const addressBook = new AddressBook()
+// console.log(addressBook.sho.allGroupContacts())
 
 
-const store = new Store(new MBankPay("kamil"))
+
+
+
+
+
+
+
+
+
+
+
+
+// class Store {
+//     constructor(paymentProcessor) {
+//         this.paymentProcessor = paymentProcessor
+//     }
+
+//     pay() {
+//         return `
+//             $ {
+//                 this.paymentProcessor.pay(2, 20)
+//             }
+//             `
+//     }
+// }
+
+// class AllegroPay {
+//     constructor(user) {
+//         this.user = user
+//     }
+//     pay(quantity, price) {
+//         return `
+//             $ {
+//                 this.user
+//             }
+//             made a payment $ {
+//                 quantity * price
+//             }
+//             PLN `
+//     }
+// }
+
+// class AllegroPaymentProcessor {
+//     constructor(user) {
+//         this.allegroPay = new AllegroPay(user)
+//     }
+
+//     pay(quantity, price) {
+//         return this.allegroPay.pay(quantity, price)
+//     }
+// }
+
+
+// class MBankPay {
+//     constructor(user) {
+//         this.user = user
+//     }
+//     pay(quantity, price) {
+//         return `
+//             $ {
+//                 this.user
+//             }
+//             made a payment by mBank $ {
+//                 (quantity * price) * 100
+//             }
+//             groszy `
+//     }
+
+// }
+// class MBankPaymentProcessor {
+//     constructor(user) {
+//         this.mBank = new MBankPay(user)
+//     }
+
+//     pay(quantity, price) {
+//         return this.mBank.pay(quantity, price)
+//     }
+// }
+
+
+// const store = new Store(new MBankPay("kamil"))
