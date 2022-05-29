@@ -56,11 +56,6 @@ class Contact {
         return this.modificationDate
     }
 }
-
-const contactOne = new Contact("Kamil", "Rozanski", "mail@mail.com")
-const contactTwo = new Contact("Patryk", "Rozanski", "patryk@mail.com")
-const contactThree = new Contact("Dominika", "Rozanska", "dominika@mail.com")
-const contactFour = new Contact("Weronika", "Rozanska", "weronika@mail.com")
 // console.log(contactOne.creationDate)
 // contactOne.changeName("Roman")
 // console.log(contactOne)
@@ -73,10 +68,12 @@ class Group {
         this.allGroupContacts = []
         this.groupName = groupName
         this.groupID = uuidv4()
+        this.contact;
     }
 
-    addContact = (contact) => {
-        this.allGroupContacts.push(contact)
+    addContact = (name, lastName, email) => {
+        this.contact = new Contact(name, lastName, email)
+        this.allGroupContacts.push(this.contact)
     }
 
     removeContact = (contactName) => {
@@ -96,7 +93,8 @@ class Group {
         return findContact === undefined ? false : true
     }
 
-    show = () => {
+    showAllGroupContacts = () => {
+        // console.log(this.allGroupContacts, this.groupName)
         return this.allGroupContacts
     }
 
@@ -106,33 +104,35 @@ class Group {
 }
 
 const males = new Group("males")
+males.addContact("Kamil", "Róański", "kamil@wp.pl")
+males.addContact("Patryk", "Rozanski", "patryk@mail.com")
+// males.showAllGroupContacts()
+
 const females = new Group("females")
+females.addContact("Dominika", "Rozanska", "dominika@mail.com")
+females.addContact("Weronika", "Rozanska", "weronika@mail.com")
 
-males.addContact(contactOne)
-males.addContact(contactTwo)
-females.addContact(contactThree)
-females.addContact(contactFour)
 
-// console.log(males.removeContact("Kamil"))
-// console.log(males.checkIfContactExists("patryk@mail.com"))
-// console.log(females.show())
+
+
 
 class AddressBook {
     // Ma mieć: listę wszystkich kontaktów, listę grup kontaktów 
     // Ma umożliwiać: szukanie kontaktu po frazie, dodawanie/usuwanie/modyfikacje nowych kontaktów, dodawanie/usuwanie/modyfikacje nowych grup
     constructor(groupName) {
-        this.contact = new Contact()
-        this.group = new Group(groupName)
-    }
-
-    show = () => {
+        this.allContacts = []
+        this.groupName = groupName
+        this.allGroupContacts = this.groupName
 
     }
 
+    showAllContacts = () => {
+        return console.log(this.allGroupContacts.showAllGroupContacts())
+    }
 }
 
-const addressBook = new AddressBook()
-// console.log(addressBook.sho.allGroupContacts())
+const addressBook = new AddressBook(males)
+console.log(addressBook.showAllContacts())
 
 
 
