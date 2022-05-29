@@ -1,12 +1,30 @@
 import {
     v4 as uuidv4
 } from 'uuid';
-
-
+class Validator {
+    static isStrings(...value) {
+        value.forEach(el => {
+            if (typeof el !== "string") {
+                throw new Error("it is not a string value")
+            }
+            if (el.length === 0) {
+                throw new Error("You must provide a string value")
+            }
+        });
+    }
+    static checkEmail(email) {
+        const regex = /^[a-zA-Z0-9](.{4,32})+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9].{1,3})*$/g
+        if (!regex.test(email)) {
+            throw new Error(`Email address has a wrong format! Correct format is 5 to 32 characters`);
+        }
+    }
+}
 class Contact {
     // Ma mieć: Imie, Nazwisko, adres-emial, datę modyfikacji i utworzenia, uuid
     // Ma umożliwiać: aktualizację datę modyfikacji, pozwalac na modyfikację imienia, nazwiska oraz adresu email
     constructor(name, lastName, email) {
+        Validator.isStrings(name, lastName, email)
+        Validator.checkEmail(email)
         this.addZero = (i) => {
             if (i < 10) {
                 i = "0" + i
@@ -35,15 +53,19 @@ class Contact {
     }
 
     changeName = (value) => {
+        Validator.isStrings(value)
         this.name = value
         this.modificationDate = this.getDate()
     }
 
     changeLastName = (value) => {
+        Validator.isStrings(value)
         this.lastName = value
         this.modificationDate = this.getDate()
     }
     changeEmail = (value) => {
+        Validator.isStrings(value)
+        Validator.checkEmail(email)
         this.email = value
         this.modificationDate = this.getDate()
     }
@@ -65,6 +87,7 @@ class Group {
     // Ma mieć: listę kontaktów oraz nazwę grupy oraz uuid
     // Ma umożliwiać: zmianę nazwy grupy, można dodać lub usunac kontakt z grupy, można sprawdzić czy kontakt istnieje w grupie
     constructor(groupName) {
+        Validator.isStrings(groupName)
         this.allGroupContacts = []
         this.groupName = groupName
         this.groupID = uuidv4()
@@ -77,12 +100,14 @@ class Group {
     }
 
     removeContact = (contactName) => {
+        Validator.isStrings(contactName)
         //usówa tylko po imieniu
         return this.allGroupContacts = this.allGroupContacts.filter(el => el.name !== contactName)
     }
 
 
     checkIfContactExists = (contactDetails) => {
+        Validator.isStrings(contactDetails)
         const findContact = this.allGroupContacts.find(el => {
             for (const value in el) {
                 if (typeof el[value] !== "function" && el[value] === contactDetails) {
@@ -99,6 +124,7 @@ class Group {
     }
 
     changeGroupName = (newName) => {
+        Validator.isStrings(newName)
         this.groupName = newName
     }
 }
@@ -123,11 +149,16 @@ class AddressBook {
         this.allContacts = []
         this.groupName = groupName
         this.allGroupContacts = this.groupName
-
     }
 
     showAllContacts = () => {
         return console.log(this.allGroupContacts.showAllGroupContacts())
+    }
+}
+
+class addressBookMenager {
+    constructor() {
+
     }
 }
 
