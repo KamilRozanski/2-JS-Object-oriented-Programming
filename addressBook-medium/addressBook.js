@@ -7,10 +7,19 @@ class Validator {
             if (typeof el !== "string") {
                 throw new Error("it is not a string value")
             }
+        });
+    }
+    static isEmptyString(...value) {
+        value.forEach(el => {
             if (el.length === 0) {
                 throw new Error("You must provide a string value")
             }
         });
+    }
+    static isObject(value) {
+        if (Object.prototype.toString.call(value) !== "[object Object]")
+            throw new Error("You must provide a Object value")
+
     }
     static checkEmail(email) {
         const regex = /^[a-zA-Z0-9](.{4,32})+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9].{1,3})*$/g
@@ -23,6 +32,7 @@ class Contact {
     // Ma mieć: Imie, Nazwisko, adres-emial, datę modyfikacji i utworzenia, uuid
     // Ma umożliwiać: aktualizację datę modyfikacji, pozwalac na modyfikację imienia, nazwiska oraz adresu email
     constructor(name, lastName, email) {
+        Validator.isEmptyString(name, lastName, email)
         Validator.isStrings(name, lastName, email)
         Validator.checkEmail(email)
         this.addZero = (i) => {
@@ -53,17 +63,20 @@ class Contact {
     }
 
     changeName = (value) => {
+        Validator.isEmptyString(value)
         Validator.isStrings(value)
         this.name = value
         this.modificationDate = this.getDate()
     }
 
     changeLastName = (value) => {
+        Validator.isEmptyString(value)
         Validator.isStrings(value)
         this.lastName = value
         this.modificationDate = this.getDate()
     }
     changeEmail = (value) => {
+        Validator.isEmptyString(value)
         Validator.isStrings(value)
         Validator.checkEmail(email)
         this.email = value
@@ -78,28 +91,31 @@ class Contact {
         return this.modificationDate
     }
 }
-// console.log(contactOne.creationDate)
-// contactOne.changeName("Roman")
-// console.log(contactOne)
+const contactOne = new Contact("Kamil", "Róański", "kamil@wp.pl")
+const contactTwo = new Contact("Patryk", "Rozanski", "patryk@mail.com")
+
+const contactThree = new Contact("Dominika", "Rozanska", "dominika@mail.com")
+const contactFour = new Contact("Weronika", "Rozanska", "weronika@mail.com")
 
 
 class Group {
     // Ma mieć: listę kontaktów oraz nazwę grupy oraz uuid
     // Ma umożliwiać: zmianę nazwy grupy, można dodać lub usunac kontakt z grupy, można sprawdzić czy kontakt istnieje w grupie
     constructor(groupName) {
+        Validator.isEmptyString(groupName)
         Validator.isStrings(groupName)
         this.allGroupContacts = []
         this.groupName = groupName
         this.groupID = uuidv4()
-        this.contact;
     }
 
-    addContact = (name, lastName, email) => {
-        this.contact = new Contact(name, lastName, email)
-        this.allGroupContacts.push(this.contact)
+    addContact = (contact) => {
+        Validator.isObject(contact)
+        this.allGroupContacts.push(contact)
     }
 
     removeContact = (contactName) => {
+        Validator.isEmptyString(contactName)
         Validator.isStrings(contactName)
         //usówa tylko po imieniu
         return this.allGroupContacts = this.allGroupContacts.filter(el => el.name !== contactName)
@@ -107,6 +123,7 @@ class Group {
 
 
     checkIfContactExists = (contactDetails) => {
+        Validator.isEmptyString(contactDetails)
         Validator.isStrings(contactDetails)
         const findContact = this.allGroupContacts.find(el => {
             for (const value in el) {
@@ -119,27 +136,25 @@ class Group {
     }
 
     showAllGroupContacts = () => {
-        // console.log(this.allGroupContacts, this.groupName)
+        console.log(this.allGroupContacts, this.groupName)
         return this.allGroupContacts
     }
 
     changeGroupName = (newName) => {
+        Validator.isEmptyString(newName)
         Validator.isStrings(newName)
         this.groupName = newName
     }
 }
 
 const males = new Group("males")
-males.addContact("Kamil", "Róański", "kamil@wp.pl")
-males.addContact("Patryk", "Rozanski", "patryk@mail.com")
-// males.showAllGroupContacts()
+males.addContact(contactOne)
+males.addContact(contactTwo)
+males.showAllGroupContacts()
 
 const females = new Group("females")
-females.addContact("Dominika", "Rozanska", "dominika@mail.com")
-females.addContact("Weronika", "Rozanska", "weronika@mail.com")
-
-
-
+females.addContact(contactThree)
+females.addContact(contactFour)
 
 
 class AddressBook {
@@ -163,7 +178,12 @@ class addressBookMenager {
 }
 
 const addressBook = new AddressBook(males)
-console.log(addressBook.showAllContacts())
+// console.log(addressBook.showAllContacts())
+
+
+
+
+
 
 
 
