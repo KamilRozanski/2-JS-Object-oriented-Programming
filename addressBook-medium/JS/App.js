@@ -24,5 +24,5 @@ females.addContact(contactThree)
 females.addContact(contactFour)
 
 
-const addressBook = new AddressBook(males, females)
-console.log(addressBook.allContacts("elo"))
+const addressBook = new AddressBook(males, females, contactOne)
+console.log(addressBook.showAllContacts())

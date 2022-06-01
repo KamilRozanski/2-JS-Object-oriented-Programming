@@ -11,10 +11,18 @@ export class AddressBook {
         // this.allContacts = []
         this.group = group
         this.allGroup = [...group]
+        this.allContacts = []
     }
 
-    allContacts = (value) => {
-        // const test = this.allGroup.map()
+    showAllContacts = () => {
+        // console.log(this.allGroup)
+        for (const el in this.allGroup) {
+            console.log(this.allGroup[el])
+        }
+
+    }
+    showAllGroupContacts = () => {
+
     }
 }
 
