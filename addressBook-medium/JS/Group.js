@@ -17,6 +17,7 @@ export class Group {
     }
 
     addContact = (contact) => {
+        //instanceOf walidacja
         Validator.isObject(contact)
         this.allGroupContacts.push(contact)
     }
@@ -25,25 +26,26 @@ export class Group {
         Validator.isEmptyString(contactName)
         Validator.isStrings(contactName)
         //usówa tylko po imieniu
-        return this.allGroupContacts = this.allGroupContacts.filter(el => el.name !== contactName)
+        // szukasz zawsze po id
+        this.allGroupContacts = this.allGroupContacts.filter(el => el.name !== contactName)
     }
 
 
     checkIfContactExists = (contactDetails) => {
         Validator.isEmptyString(contactDetails)
         Validator.isStrings(contactDetails)
-        const findContact = this.allGroupContacts.find(el => {
+        return this.allGroupContacts.find(el => {
             for (const value in el) {
                 if (typeof el[value] !== "function" && el[value] === contactDetails) {
                     return true
                 }
             }
         })
-        return findContact === undefined ? false : true
+
     }
 
     showAllGroupContacts = () => {
-        console.log(this.allGroupContacts, this.groupName)
+        // console.log(this.allGroupContacts, this.groupName)
         return this.allGroupContacts
     }
 

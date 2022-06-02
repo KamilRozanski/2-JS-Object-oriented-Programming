@@ -7,21 +7,23 @@ import {
 export class AddressBook {
     // Ma mieć: listę wszystkich kontaktów, listę grup kontaktów 
     // Ma umożliwiać: szukanie kontaktu po frazie, dodawanie/usuwanie/modyfikacje nowych kontaktów, dodawanie/usuwanie/modyfikacje nowych grup
-    constructor(...group) {
+    constructor() {
         // this.allContacts = []
-        this.group = group
-        this.allGroup = [...group]
+      
+        this.allGroup = []
         this.allContacts = []
     }
 
     showAllContacts = () => {
-        // console.log(this.allGroup)
-        for (const el in this.allGroup) {
-            console.log(this.allGroup[el])
-        }
+        // console.log(this.element)
+        this.element.forEach((el, index, array) => {
+            console.log(el); // 0, 1, 2
+            console.log(el.name); // 100, 200, 300
+            console.log(index); // 0, 1, 2
+        });
 
     }
-    showAllGroupContacts = () => {
+    showAllGroups = () => {
 
     }
 }
