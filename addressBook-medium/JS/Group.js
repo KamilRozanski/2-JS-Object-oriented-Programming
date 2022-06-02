@@ -24,19 +24,12 @@ export class Group {
 
     removeContact = (contact) => {
         this.allGroupContacts = this.allGroupContacts.filter(el => el.id !== contact.id)
-        console.log(this.allGroupContacts)
     }
 
 
     checkIfContactExists = (contact) => {
-        return this.allGroupContacts.find(el => {
-            for (const value in el) {
-                if (typeof el[value] !== "function" && el[value] === contactDetails) {
-                    return true
-                }
-            }
-        })
-
+        console.log(this.allGroupContacts.find(el => el.id === contact.id ? contact : false))
+        return this.allGroupContacts.find(el => el.id === contact.id ? contact : false)
     }
 
     showAllGroupContacts = () => {
