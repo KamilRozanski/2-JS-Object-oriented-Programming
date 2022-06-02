@@ -16,7 +16,8 @@ class Switch {
 
     checkValues = () => {
         //jak uzyć tylko metody map?
-        const isValidChecker = this.conditions.map((el, index, array) => {
+        const isValidChecker = this.conditions.map((el, index) => {
+            console.log(el)
             if (el) {
                 this.cases[index]()
                 return el
@@ -26,7 +27,8 @@ class Switch {
 
         this.cases = []
         this.conditions = []
-        return isValidChecker.every(el => el === false)
+        // console.log(isValidChecker)
+        return isValidChecker
     }
 
     checkIfArrayIsEmpty = () => {
@@ -51,7 +53,7 @@ const formChecker = new Switch();
 const value = "test";
 
 
-formChecker.addsValue(value < 5, () => {
+formChecker.addsValue(value.length > 5, () => {
     console.error("input is to short")
 })
 formChecker.addsValue(value === "Kamil", () => {
@@ -63,5 +65,5 @@ formChecker.addsValue(value !== "test", () => {
 
 
 console.log(formChecker.checkIfArrayIsEmpty() + " isEmpty") // false
-console.log(formChecker.checkValues() + " isValid"); // === false
+console.log(formChecker.checkValues() + " checkValues"); // === false
 console.log(formChecker.checkIfArrayIsEmpty() + " isEmpty") // === true

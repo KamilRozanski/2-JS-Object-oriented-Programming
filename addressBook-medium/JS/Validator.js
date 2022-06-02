@@ -1,17 +1,13 @@
 export class Validator {
-    static isStrings(value) {
-        value.forEach(el => {
-            if (typeof el !== "string") {
-                throw new Error("it is not a string value")
-            }
-        });
+    static isString(value) {
+        if (typeof value !== "string") {
+            throw new Error("it is not a string value")
+        }
     }
     static isEmptyString(value) {
-        value.forEach(el => {
-            if (el.length === 0) {
-                throw new Error("You must provide a string value")
-            }
-        });
+        if (typeof value.length === 0) {
+            throw new Error("it is not a string value")
+        }
     }
     static isObject(value) {
         //InstatnceOf zamiast Object.prototype

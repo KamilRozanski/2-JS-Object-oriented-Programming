@@ -54,7 +54,7 @@ class Validator {
 class User {
     constructor(name, secondName, dateOfBirth, password, gender, emailAddress) {
         Validator.isStrings(name, secondName)
-        Validator.paraIsNotEmpty(name, secondName)
+        Validator.paraIsNotEmpty(name, secondName)//do poprawy.
         Validator.checkPassword(password)
         Validator.checkGender(gender)
         Validator.checkEmail(emailAddress)
@@ -68,8 +68,10 @@ class User {
         this.emailAddress = emailAddress
         this.accessLevel = "user"
     }
-    changeName = (value) => {
-        this.name = value
+    changeName = (name) => {
+        //dodac walidacje do metod
+        this.name = name
+
     }
     changeSecondName = (value) => {
         this.secondName = value
@@ -82,7 +84,7 @@ class User {
     }
 }
 
-
+// zastosować dziedziczenie
 
 class Admin {
     constructor(name, secondName, dateOfBirth, password, gender, emailAddress) {
@@ -121,7 +123,6 @@ class Admin {
         this.emailAddress = newEmail
     }
     setAccessLevel = (user, accLevel) => {
-        console.log(user.name)
         // console.log(app.allUsers[0].setAccessLevel(app.allUsers[2], "admin"))
         if (user.accessLevel === "user") {
             user.accessLevel = accLevel
@@ -131,14 +132,15 @@ class Admin {
     }
 
 }
+class secondAdmin extends Admin {
 
+}
 class App {
     constructor() {
         this.allUsers = []
     }
     createAdmin = (name, secondName, dateOfBirth, password, gender, emailAddress) => {
         const admin = new Admin(name, secondName, dateOfBirth, password, gender, emailAddress)
-        // console.log(admin.setAccessLevel("user"))
         this.allUsers.push(admin)
     }
     createUser = (name, secondName, dateOfBirth, password, gender, emailAddress) => {
@@ -149,6 +151,10 @@ class App {
     showAllUsers = () => {
         return this.allUsers
     }
+    findUserByName = (name) => {
+        return this.allUsers.find(user => user.name === name)
+    }
+
 }
 
 const app = new App()
@@ -156,7 +162,7 @@ app.createAdmin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1
 app.createAdmin("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
 app.createUser("Alan", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
 app.createUser("Dominika", "Rozanski", "27/02/1989", "AnglidaA@a15!", "male", "motomc1M!@gmail.com")
-console.log(app.allUsers[0].setAccessLevel(app.allUsers[2], "user"))
+console.log(app.findUserByName("Kamil").setAccessLevel(app.findUserByName("Alan"), "admin"))
 console.log(app.showAllUsers())
 
 

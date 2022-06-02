@@ -9,19 +9,13 @@ export class AddressBook {
     // Ma umożliwiać: szukanie kontaktu po frazie, dodawanie/usuwanie/modyfikacje nowych kontaktów, dodawanie/usuwanie/modyfikacje nowych grup
     constructor() {
         // this.allContacts = []
-      
+
         this.allGroup = []
         this.allContacts = []
     }
 
     showAllContacts = () => {
         // console.log(this.element)
-        this.element.forEach((el, index, array) => {
-            console.log(el); // 0, 1, 2
-            console.log(el.name); // 100, 200, 300
-            console.log(index); // 0, 1, 2
-        });
-
     }
     showAllGroups = () => {
 

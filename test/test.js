@@ -1,4 +1,4 @@
-// class NewCar {
+// class Car {
 //     constructor(carName) {
 //         this.allCars = []
 //         this.carName = carName
@@ -9,11 +9,11 @@
 //         this.pushCarToArr()
 //     }
 // }
-// // const bmwF10 = new NewCar("bmwF10")
-// // const bmwE30 = new NewCar("bmwE30")
+// // const bmwF10 = new Car("bmwF10")
+// // const bmwE30 = new Car("bmwE30")
 
 
-// class GroupCars {
+// class GroupOfCars {
 //     constructor(groupName) {
 //         this.groupName = groupName
 //         this.allCarsInGroup = []
@@ -28,7 +28,7 @@
 //     }
 // }
 
-// const bmw = new GroupCars("BMW")
+// const bmw = new GroupOfCars("BMW")
 // bmw.addCarToGroup(bmwF10)
 // bmw.addCarToGroup(bmwE30)
 
@@ -37,7 +37,7 @@
 // audi.addCarToGroup("Audi C8")
 
 
-// class SearchCar {
+// class CarShop {
 //     constructor(carName, groupCars) {
 //         this.carName = carName
 //         this.groupCars = groupCars
@@ -53,8 +53,8 @@
 //     }
 // }
 
-// const searchCar = new SearchCar(bmwF10, bmw)
-// console.log(searchCar.showAllGroupCars(bmw))
+// const CarShop = new SearchCar(bmwF10, bmw)
+// console.log(CarShop.showAllGroupCars(bmw))
 
 
 
@@ -102,6 +102,6 @@ carRepository.add(audiC8);
 
 // Usage
 
-console.log(carRepository.getCarByName("BMW F10")); // Wyszukiwiwanie konkretnego auta po nazwie
+// console.log(carRepository.getCarByName("BMW F10")); // Wyszukiwiwanie konkretnego auta po nazwie
 
-console.log(carRepository.getCarsByBrand("BMW")); // Wyszukiwiwanie wszystkich aut danej marki
+// console.log(carRepository.getCarsByBrand("BMW")); // Wyszukiwiwanie wszystkich aut danej marki

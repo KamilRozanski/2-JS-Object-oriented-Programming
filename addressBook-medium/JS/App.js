@@ -17,6 +17,7 @@ const contactFour = new Contact("Weronika", "Rozanska", "weronika@mail.com")
 const males = new Group("males")
 males.addContact(contactOne)
 males.addContact(contactTwo)
+males.removeContact(contactOne)
 
 
 const females = new Group("females")
@@ -25,5 +26,5 @@ females.addContact(contactFour)
 
 
 const addressBook = new AddressBook()
-addressBook.addToList(contact)
-console.log(addressBook.showAllContacts())
+// addressBook.addToList(contact)
+// console.log(addressBook.showAllContacts())

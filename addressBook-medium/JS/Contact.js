@@ -9,60 +9,41 @@ export class Contact {
     // Ma mieć: Imie, Nazwisko, adres-emial, datę modyfikacji i utworzenia, uuid
     // Ma umożliwiać: aktualizację datę modyfikacji, pozwalac na modyfikację imienia, nazwiska oraz adresu email
     constructor(name, lastName, email) {
-        Validator.isStrings(name)
-        Validator.isStrings(lastName)
-        Validator.isStrings(email)
-        Validator.isEmptyString(name)
+        Validator.isString(name)
+        Validator.isString(name)
+        Validator.isString(lastName)
         Validator.isEmptyString(lastName)
+        Validator.isString(email)
         Validator.isEmptyString(email)
-
         Validator.checkEmail(email)
-        this.addZero = (i) => {
-            if (i < 10) {
-                i = "0" + i
-            }
-            return i;
-        }
-        this.getDate = () => {
-            const date = new Date()
-            let day = this.addZero(date.getDate())
-            let month = this.addZero(date.getMonth() + 1)
-            let year = date.getFullYear()
-
-            let hours = this.addZero(date.getHours())
-            let minutes = this.addZero(date.getMinutes())
-            let seconds = this.addZero(date.getSeconds())
-
-            return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`
-        }
 
         this.name = name
         this.lastName = lastName
         this.email = email
-        this.creationDate = this.getDate()
-        this.modificationDate = false
+        this.creationDate = new Date()
+        this.modificationDate = new Date()
         this.id = uuidv4()
     }
 
-    changeName = (value) => {
-        Validator.isStrings(value)
-        Validator.isEmptyString(value)
-        this.name = value
-        this.modificationDate = this.getDate()
+    changeFirstName = (name) => {
+        Validator.isString(name)
+        Validator.isEmptyString(name)
+        this.name = name
+        this.modificationDate = new Date()
     }
 
-    changeLastName = (value) => {
-        Validator.isStrings(value)
-        Validator.isEmptyString(value)
-        this.lastName = value
-        this.modificationDate = this.getDate()
+    changeLastName = (name) => {
+        Validator.isString(name)
+        Validator.isEmptyString(name)
+        this.lastName = name
+        this.modificationDate = new Date()
     }
-    changeEmail = (value) => {
-        Validator.isStrings(value)
-        Validator.isEmptyString(value)
+    changeEmail = (email) => {
+        Validator.isString(email)
+        Validator.isEmptyString(email)
         Validator.checkEmail(email)
         this.email = value
-        this.modificationDate = this.getDate()
+        this.modificationDate = new Date()
     }
 
     creationDate() {
