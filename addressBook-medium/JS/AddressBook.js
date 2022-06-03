@@ -1,6 +1,12 @@
 import {
     Validator
 } from "./Validator.js"
+import {
+    Contact
+} from "./Contact.js";
+import {
+    Group
+} from "./Group.js";
 
 
 
@@ -8,17 +14,27 @@ export class AddressBook {
     // Ma mieć: listę wszystkich kontaktów, listę grup kontaktów 
     // Ma umożliwiać: szukanie kontaktu po frazie, dodawanie/usuwanie/modyfikacje nowych kontaktów, dodawanie/usuwanie/modyfikacje nowych grup
     constructor() {
-        // this.allContacts = []
-
-        this.allGroup = []
         this.allContacts = []
+        this.allGroup = []
+
+    }
+
+    addContactToList = (contact) => {
+        Validator.isInstanceOfClass(contact, Contact)
+        this.allContacts.push(contact)
+    }
+    addGroupToList = (group) => {
+        Validator.isInstanceOfClass(group, Group)
+        this.allGroup.push(group)
     }
 
     showAllContacts = () => {
-        // console.log(this.element)
+        //Why return dosent show the this.allContacts Arr in console
+        return this.allContacts
     }
     showAllGroups = () => {
-
+        //Why return dosent show the this.allContacts Arr in console
+        return this.allGroup
     }
 }
 

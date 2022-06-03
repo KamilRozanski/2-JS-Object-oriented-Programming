@@ -17,8 +17,6 @@ const contactFour = new Contact("Weronika", "Rozanska", "weronika@mail.com")
 const males = new Group("males")
 males.addContact(contactOne)
 males.addContact(contactTwo)
-males.checkIfContactExists(contactOne)
-
 
 const females = new Group("females")
 females.addContact(contactThree)
@@ -26,5 +24,12 @@ females.addContact(contactFour)
 
 
 const addressBook = new AddressBook()
-// addressBook.addToList(contact)
+addressBook.addContactToList(contactOne)
+addressBook.addContactToList(contactTwo)
+addressBook.addContactToList(contactThree)
+addressBook.addContactToList(contactFour)
 // console.log(addressBook.showAllContacts())
+
+addressBook.addGroupToList(males)
+addressBook.addGroupToList(females)
+console.log(addressBook.showAllGroups())

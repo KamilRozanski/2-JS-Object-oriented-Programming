@@ -1,12 +1,12 @@
 export class Validator {
     static isString(value) {
         if (typeof value !== "string") {
-            throw new Error("it is not a string value")
+            throw new Error("It is not a string value")
         }
     }
     static isEmptyString(value) {
-        if (typeof value.length === 0) {
-            throw new Error("it is not a string value")
+        if (value.length === 0) {
+            throw new Error("Provide a string value")
         }
     }
     static isInstanceOfClass(value, instance) {
