@@ -23,15 +23,27 @@ export class AddressBook {
         Validator.isInstanceOfClass(contact, Contact)
         this.allContacts.push(contact)
     }
-    addGroupToList = (group) => {
-        Validator.isInstanceOfClass(group, Group)
-        this.allGroup.push(group)
+
+    removeContactFromList = (contact) => {
+        Validator.isInstanceOfClass(contact, Contact)
+        this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
+    }
+
+    searchContact = (contact) => {
+        Validator.isInstanceOfClass(contact, Contact)
+        return this.allContacts.find(el => el.id === contact.id)
     }
 
     showAllContacts = () => {
         //Why return dosent show the this.allContacts Arr in console
         return this.allContacts
     }
+
+    addGroupToList = (group) => {
+        Validator.isInstanceOfClass(group, Group)
+        this.allGroup.push(group)
+    }
+
     showAllGroups = () => {
         //Why return dosent show the this.allContacts Arr in console
         return this.allGroup

@@ -25,6 +25,7 @@ export class Group {
     }
 
     removeContact = (contact) => {
+        Validator.isInstanceOfClass(contact, Contact)
         this.allGroupContacts = this.allGroupContacts.filter(el => el.id !== contact.id)
     }
 

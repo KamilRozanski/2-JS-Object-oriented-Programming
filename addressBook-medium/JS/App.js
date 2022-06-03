@@ -23,6 +23,7 @@ females.addContact(contactThree)
 females.addContact(contactFour)
 
 
+
 const addressBook = new AddressBook()
 addressBook.addContactToList(contactOne)
 addressBook.addContactToList(contactTwo)
@@ -32,4 +33,5 @@ addressBook.addContactToList(contactFour)
 
 addressBook.addGroupToList(males)
 addressBook.addGroupToList(females)
-console.log(addressBook.showAllGroups())
+addressBook.removeContactFromList(contactOne)
+console.log(addressBook.showAllContacts())
