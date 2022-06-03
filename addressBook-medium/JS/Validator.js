@@ -9,11 +9,10 @@ export class Validator {
             throw new Error("it is not a string value")
         }
     }
-    static isObject(value) {
-        //InstatnceOf zamiast Object.prototype
-        if (Object.prototype.toString.call(value) !== "[object Object]")
-            throw new Error("You must provide a Object value")
-
+    static isInstanceOfClass(value, instance) {
+        if (value instanceof instance === false) {
+            throw new Error("Incorrect Object instance")
+        }
     }
     static checkEmail(email) {
         const regex = /^[a-zA-Z0-9](.{4,32})+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9].{1,3})*$/g

@@ -17,7 +17,7 @@ const contactFour = new Contact("Weronika", "Rozanska", "weronika@mail.com")
 const males = new Group("males")
 males.addContact(contactOne)
 males.addContact(contactTwo)
-males.checkIfContactExists(contactTwo)
+males.checkIfContactExists(contactOne)
 
 
 const females = new Group("females")

@@ -4,6 +4,9 @@ import {
 import {
     v4 as uuidv4
 } from 'uuid';
+import {
+    Contact
+} from "./Contact.js";
 
 export class Group {
     // Ma mieć: listę kontaktów oraz nazwę grupy oraz uuid
@@ -17,8 +20,7 @@ export class Group {
     }
 
     addContact = (contact) => {
-        //instanceOf walidacja
-        Validator.isObject(contact)
+        Validator.isInstanceOfClass(contact, Contact)
         this.allGroupContacts.push(contact)
     }
 
@@ -28,8 +30,10 @@ export class Group {
 
 
     checkIfContactExists = (contact) => {
-        console.log(this.allGroupContacts.find(el => el.id === contact.id ? contact : false))
-        return this.allGroupContacts.find(el => el.id === contact.id ? contact : false)
+        Validator.isInstanceOfClass(contact, Contact)
+        // This method dosent return any value ???!!!
+        console.log(this.allGroupContacts.find(el => el.id === contact.id ? el : false))
+        return this.allGroupContacts.find(el => el.id === contact.id ? el : false)
     }
 
     showAllGroupContacts = () => {
