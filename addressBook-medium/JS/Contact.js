@@ -42,7 +42,7 @@ export class Contact {
         Validator.isString(email)
         Validator.isEmptyString(email)
         Validator.checkEmail(email)
-        this.email = value
+        this.email = email
         this.modificationDate = new Date()
     }
 

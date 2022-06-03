@@ -33,5 +33,7 @@ addressBook.addContactToList(contactFour)
 
 addressBook.addGroupToList(males)
 addressBook.addGroupToList(females)
-addressBook.removeContactFromList(contactOne)
+addressBook.changeFirstName(contactOne, "Roman")
+addressBook.changeLastName(contactOne, "Romański")
+addressBook.changeEmail(contactOne, "Romański@roman.pl")
 console.log(addressBook.showAllContacts())

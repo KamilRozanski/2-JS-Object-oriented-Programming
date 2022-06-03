@@ -28,6 +28,24 @@ export class AddressBook {
         Validator.isInstanceOfClass(contact, Contact)
         this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
     }
+    changeFirstName = (contact, firstName) => {
+        Validator.isInstanceOfClass(contact, Contact)
+        Validator.isString(firstName)
+        contact.name = firstName
+    }
+    changeLastName = (contact, lastName) => {
+        Validator.isInstanceOfClass(contact, Contact)
+        Validator.isString(lastName)
+        contact.changeLastName(lastName)
+    }
+
+    changeEmail = (contact, email) => {
+        Validator.isInstanceOfClass(contact, Contact)
+        Validator.isString(email)
+        Validator.isEmptyString(email)
+        Validator.checkEmail(email)
+        contact.changeEmail(email)
+    }
 
     searchContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
