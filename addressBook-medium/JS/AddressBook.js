@@ -31,7 +31,7 @@ export class AddressBook {
     changeFirstName = (contact, firstName) => {
         Validator.isInstanceOfClass(contact, Contact)
         Validator.isString(firstName)
-        contact.name = firstName
+        contact.changeFirstName(firstName)
     }
     changeLastName = (contact, lastName) => {
         Validator.isInstanceOfClass(contact, Contact)
@@ -47,9 +47,20 @@ export class AddressBook {
         contact.changeEmail(email)
     }
 
-    searchContact = (contact) => {
-        Validator.isInstanceOfClass(contact, Contact)
-        return this.allContacts.find(el => el.id === contact.id)
+    searchContact = (contactDetails) => {
+        Validator.isEmptyString(contactDetails)
+        Validator.isString(contactDetails)
+        const foundContacts = this.allContacts.filter(obj => {
+            //do poprawy. if w if :(
+            for (const el in obj) {
+                if (typeof obj[el] !== "function") {
+                    if (obj[el] === contactDetails) {
+                        return obj[el]
+                    }
+                }
+            }
+        })
+        return foundContacts
     }
 
     showAllContacts = () => {
@@ -57,9 +68,13 @@ export class AddressBook {
         return this.allContacts
     }
 
-    addGroupToList = (group) => {
+    addGroup = (group) => {
         Validator.isInstanceOfClass(group, Group)
         this.allGroup.push(group)
+    }
+    removeGroup = (contact) => {
+        Validator.isInstanceOfClass(contact, Contact)
+        this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
     }
 
     showAllGroups = () => {
