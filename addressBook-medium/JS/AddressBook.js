@@ -24,9 +24,9 @@ export class AddressBook {
         this.allContacts.push(contact)
     }
 
-    removeContactFromList = (contact) => {
-        Validator.isInstanceOfClass(contact, Contact)
-        this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
+    removeContactFromList = (contactID) => {
+        Validator.isInstanceOfClass(contactID, Contact)
+        this.allContacts = this.allContacts.filter(el => el.id !== contactID.id)
     }
     changeFirstName = (contact, firstName) => {
         Validator.isInstanceOfClass(contact, Contact)
@@ -72,9 +72,16 @@ export class AddressBook {
         Validator.isInstanceOfClass(group, Group)
         this.allGroup.push(group)
     }
-    removeGroup = (contact) => {
-        Validator.isInstanceOfClass(contact, Contact)
-        this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
+    removeGroup = (groupID) => {
+        Validator.isEmptyString(groupID)
+        Validator.isString(groupID)
+        // console.log(this.allGroup)
+        return this.allGroup = this.allGroup.filter(el => {
+            // console.log(el.groupID, groupID)
+            if (el.groupID !== groupID) {
+                throw new Error(`The group ID not exist`)
+            }
+        })
     }
 
     showAllGroups = () => {

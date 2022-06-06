@@ -16,7 +16,7 @@ export class Group {
         Validator.isEmptyString(groupName)
         this.allGroupContacts = []
         this.groupName = groupName
-        this.groupID = uuidv4()
+        this.groupID = "uuidv4()"
     }
 
     addContact = (contact) => {
