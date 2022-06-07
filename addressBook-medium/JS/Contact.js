@@ -21,7 +21,7 @@ export class Contact {
         this.lastName = lastName
         this.email = email
         this.creationDate = new Date()
-        this.modificationDate = new Date()
+        this.modificationDate = false
         this.id = uuidv4()
     }
 

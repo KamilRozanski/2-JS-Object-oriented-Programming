@@ -55,20 +55,18 @@ export class AddressBook {
         Validator.isString(contactDetails)
         Validator.isEmptyString(contactDetails)
         const foundContacts = this.allContacts.filter(obj => {
-            // if nested in if :(
             for (const el in obj) {
-                if (typeof obj[el] !== "function") {
-                    if (obj[el] === contactDetails) {
-                        return obj[el]
-                    }
+                if (typeof obj[el] !== "function" && obj[el] === contactDetails) {
+                    return obj[el]
                 }
             }
         })
-        return foundContacts
+        //Why return dosen't show the foundContacts Arr in console
+        return foundContacts.length === 0 ? new Error("Contact does not exist") : foundContacts
     }
 
     showAllContacts = () => {
-        //Why return dosent show the this.allContacts Arr in console
+        //Why return dosen't show the this.allContacts Arr in console
         return this.allContacts
     }
 
