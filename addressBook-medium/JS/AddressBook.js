@@ -24,18 +24,21 @@ export class AddressBook {
         this.allContacts.push(contact)
     }
 
-    removeContactFromList = (contactID) => {
-        Validator.isInstanceOfClass(contactID, Contact)
-        this.allContacts = this.allContacts.filter(el => el.id !== contactID.id)
+    removeContactFromList = (contact) => {
+        Validator.isInstanceOfClass(contact, Contact)
+        this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
+        //usuwac po ID?
     }
     changeFirstName = (contact, firstName) => {
         Validator.isInstanceOfClass(contact, Contact)
         Validator.isString(firstName)
+        Validator.isEmptyString(firstName)
         contact.changeFirstName(firstName)
     }
     changeLastName = (contact, lastName) => {
         Validator.isInstanceOfClass(contact, Contact)
         Validator.isString(lastName)
+        Validator.isEmptyString(lastName)
         contact.changeLastName(lastName)
     }
 
@@ -50,8 +53,9 @@ export class AddressBook {
     searchContact = (contactDetails) => {
         Validator.isEmptyString(contactDetails)
         Validator.isString(contactDetails)
+        Validator.isEmptyString(contactDetails)
         const foundContacts = this.allContacts.filter(obj => {
-            //do poprawy. if w if :(
+            // if nested in if :(
             for (const el in obj) {
                 if (typeof obj[el] !== "function") {
                     if (obj[el] === contactDetails) {
@@ -73,8 +77,8 @@ export class AddressBook {
         this.allGroup.push(group)
     }
     removeGroup = (groupID) => {
-        Validator.isEmptyString(groupID)
         Validator.isString(groupID)
+        Validator.isEmptyString(groupID)
         // console.log(this.allGroup)
         return this.allGroup = this.allGroup.filter(el => {
             // console.log(el.groupID, groupID)
@@ -82,6 +86,13 @@ export class AddressBook {
                 throw new Error(`The group ID not exist`)
             }
         })
+    }
+
+    changeGroupName = (newName, group) => {
+        Validator.isInstanceOfClass(group, Group)
+        Validator.isString(newName)
+        Validator.isEmptyString(newName)
+        group.changeGroupName = newName
     }
 
     showAllGroups = () => {
