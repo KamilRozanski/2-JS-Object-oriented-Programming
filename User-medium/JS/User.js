@@ -3,37 +3,44 @@ import {
 } from "./Validator.js"
 
 class User {
-    constructor(name, secondName, dateOfBirth, password, gender, emailAddress) {
-        Validator.isStrings(name, secondName)
-        Validator.paraIsNotEmpty(name, secondName) //do poprawy.
-        Validator.checkPassword(password)
+    constructor(firstName, secondName, dateOfBirth, password, gender, emailAddress) {
+        Validator.isString(firstName)
+        Validator.firstNameProvided(firstName)
+        Validator.isString(secondName)
+        Validator.firstNameProvided(secondName)
+        Validator.checkPasswordFormat(password)
         Validator.checkGender(gender)
-        Validator.checkEmail(emailAddress)
+        Validator.checkEmailFormat(emailAddress)
         Validator.checkDate(dateOfBirth)
 
-        this.name = name
+        this.firstName = firstName
         this.secondName = secondName
         this.dateOfBirth = dateOfBirth
         this.password = password
         this.gender = gender
         this.emailAddress = emailAddress
-        this.accessLevel = "user"
+        this.accessLevel = ["user", "admin"]
     }
-    changeName = (name) => {
-        //dodac walidacje do metod
-        this.name = name
-
+    changeName = (firstName) => {
+        Validator.isString(firstName)
+        Validator.isEmptyString(firstName)
+        this.name = firstName
     }
-    changeSecondName = (value) => {
-        this.secondName = value
+    changeSecondName = (secondName) => {
+        Validator.isString(secondName)
+        Validator.isEmptyString(secondName)
+        this.secondName = secondName
     }
-    changeDateOfBirth = (value) => {
-        this.dateOfBirth = value
+    changeDateOfBirth = (dateOfBirth) => {
+        this.dateOfBirth = dateOfBirth
     }
-    changeGender = (value) => {
-        this.gender = value
+    changeGender = (gender) => {
+        this.gender = gender
     }
 }
+
+
+
 
 export {
     User
