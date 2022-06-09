@@ -33,11 +33,12 @@ export class Group {
     checkIfContactExists = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
         // This method dosent return any value ???!!!
-        console.log(this.allGroupContacts.find(el => el.id === contact.id ? el : false))
-        return this.allGroupContacts.find(el => el.id === contact.id ? el : false)
+        console.log(this.allGroupContacts.find(el => el.id === contact.id))
+        return this.allGroupContacts.find(el => el.id === contact.id)
     }
 
     showAllGroupContacts = () => {
+        //Why return dosent show the this.allGroupContacts Arr in console
         return this.allGroupContacts
     }
 
