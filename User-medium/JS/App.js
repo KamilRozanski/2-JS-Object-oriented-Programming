@@ -6,7 +6,7 @@ import {
 } from "./Admin.js"
 import {
     User
-} from "./User.js"
+} from "./Useruser-medium .js"
 
 
 const kamil = new Admin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
