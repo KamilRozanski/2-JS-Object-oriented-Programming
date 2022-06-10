@@ -10,6 +10,9 @@ import {
 
 
 const kamil = new Admin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
-// const patryk = new Admin("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
+const dominika = new Admin("dominika", "Rozanska", "11/09/1999", "Ang4!7bgg", "female", "dominika!@gmail.com")
+const patryk = new User("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
 const krystian = new User("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com")
-console.log(kamil)
+
+kamil.setEmail(patryk, "Anglia15@wp.pl")
+console.log(patryk)

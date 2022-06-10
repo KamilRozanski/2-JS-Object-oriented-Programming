@@ -12,16 +12,20 @@ class Admin extends User {
     }
 
     setPassword = (user, newPassword) => {
-        Validator.checkPassword(newPassword)
+        Validator.isString(newPassword)
+        Validator.isEmptyString(newPassword)
+        Validator.checkPasswordFormat(newPassword)
+        console.log(user.accessLevel === "user")
         if (user.accessLevel === "user") {
             user.password = newPassword
         } else {
             throw new Error("You can not change a password")
         }
-        this.password = newPassword
     }
     setEmail = (user, newEmail) => {
-        Validator.checkEmail(newEmail)
+        Validator.isString(newEmail)
+        Validator.isEmptyString(newEmail)
+        Validator.checkEmailFormat(newEmail)
         if (user.accessLevel === "user") {
             user.emailAddress = newEmail
         } else {
