@@ -19,7 +19,7 @@ class User {
         this.password = password
         this.gender = gender
         this.emailAddress = emailAddress
-        this.accessLevel = ["user", "admin"]
+        this.accessLevel = "user"
     }
     changeName = (firstName) => {
         Validator.isString(firstName)
