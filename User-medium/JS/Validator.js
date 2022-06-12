@@ -1,3 +1,10 @@
+import {
+    User
+} from "./User.js"
+import {
+    Admin
+} from "./Admin.js"
+
 class Validator {
     static isString(value) {
         if (typeof value !== "string") {
@@ -25,6 +32,22 @@ class Validator {
     static checkGender(gender) {
         if (!["male", "female"].includes(gender.toString().toLowerCase())) {
             throw new Error("Gender, male or female only")
+        }
+    }
+    static isUserOrAdmin(accLevel) {
+        console.log(accLevel)
+        if (accLevel !== "admin" && accLevel !== "user") {
+            throw new Error("Access level can be user, or admin only")
+        }
+    }
+    static isInstanceOfUser = (user) => {
+        if (!user instanceof User) {
+            throw new Error(`${user} it is not instance of Admin Object`)
+        }
+    }
+    static isInstanceOfAdmin = (admin) => {
+        if (!admin instanceof Admin) {
+            throw new Error(`${admin} it is not instance of Admin Object`)
         }
     }
 

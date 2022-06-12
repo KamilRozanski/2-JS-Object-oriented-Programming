@@ -13,7 +13,6 @@ import {
 class AppMenager {
     constructor() {
         this.allUsers = []
-        this.allAdmins = []
     }
 
     createUser = (user) => {
@@ -22,7 +21,7 @@ class AppMenager {
     }
     createAdmin = (admin) => {
         Validator.isAdmin(admin)
-        this.allAdmins.push(admin)
+        this.allUsers.push(admin)
     }
     showAllUsers = () => {
         return this.allUsers
