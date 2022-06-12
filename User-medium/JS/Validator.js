@@ -37,9 +37,14 @@ class Validator {
         }
     }
 
-    static checkInputAccessLevel = (accLevel) => {
-        if (!["admin", "user"].includes(accLevel.toString().toLowerCase())) {
-            throw new Error(`Access level is not an "admin" or "user"`)
+    static isUser = (user) => {
+        if (user.accessLevel !== "user") {
+            throw new Error(`Access level is not a "User"`)
+        }
+    }
+    static isAdmin = (admin) => {
+        if (admin.accessLevel !== "admin") {
+            throw new Error(`Access level is not an "Admin"`)
         }
     }
 
