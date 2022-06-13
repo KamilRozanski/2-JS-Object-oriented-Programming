@@ -3,7 +3,7 @@ import {
 } from "./Validator.js"
 
 class User {
-    constructor(firstName, secondName, dateOfBirth, password, gender, emailAddress) {
+    constructor(firstName, secondName, dateOfBirth, login, password, gender, emailAddress) {
         Validator.isString(firstName)
         Validator.firstNameProvided(firstName)
         Validator.isString(secondName)
@@ -16,7 +16,10 @@ class User {
         this.firstName = firstName
         this.secondName = secondName
         this.dateOfBirth = dateOfBirth
-        this.password = password
+        this.credentials = {
+            login: login, 
+            password: password,
+        }
         this.gender = gender
         this.emailAddress = emailAddress
         this.accessLevel = "user"
@@ -36,6 +39,9 @@ class User {
     }
     changeGender = (gender) => {
         this.gender = gender
+    }
+    changePassword = (password) => {
+        this.credentials.password = password;
     }
 }
 

@@ -11,11 +11,11 @@ class Validator {
             throw new Error("it is not a string value")
         }
     }
-    static isEmptyString(value) {
-        if (typeof value.length === 0) {
-            throw new Error("Provida a string value")
-        }
-    }
+    // static isEmptyString(value) {
+    //     if (typeof value.length === 0) {
+    //         throw new Error("Provida a string value")
+    //     }
+    // }
     static checkEmailFormat(email) {
         const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-](.{7,32})+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9].{1,3})*$/g
         if (!regex.test(email)) {
@@ -35,9 +35,9 @@ class Validator {
         }
     }
     static isUserOrAdmin(accLevel) {
-        console.log(accLevel)
-        if (accLevel !== "admin" && accLevel !== "user") {
-            throw new Error("Access level can be user, or admin only")
+        // tablica z poziomami dostępu
+        if (accLevel.accessLevel !== "admin" && accLevel.accessLevel !== "user") {
+            throw new Error("Access level can be user or admin only")
         }
     }
     static isInstanceOfUser = (user) => {

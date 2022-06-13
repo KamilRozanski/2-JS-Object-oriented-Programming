@@ -12,12 +12,14 @@ class Admin extends User {
     }
 
     setPassword = (user, newPassword) => {
+        //set-y musi obsługiwany przez APP.js
         Validator.isInstanceOfUser(user)
         Validator.isUser(user)
         Validator.isString(newPassword)
         Validator.isEmptyString(newPassword)
         Validator.checkPasswordFormat(newPassword)
-        user.password = newPassword
+        user.changePassword(newPassword)
+        //metoda usera
     }
 
     setEmail = (user, newEmail) => {
@@ -31,7 +33,8 @@ class Admin extends User {
 
     setAccessLevel = (user, accLevel) => {
         Validator.isInstanceOfUser(user)
-        Validator.isUser(user)
+        Validator.isUserOrAdmin(user)
+
         user.accessLevel = accLevel
     }
 
@@ -40,3 +43,5 @@ class Admin extends User {
 export {
     Admin
 }
+
+

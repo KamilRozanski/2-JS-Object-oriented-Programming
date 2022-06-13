@@ -19,6 +19,7 @@ const appMenager = new AppMenager()
 appMenager.createUser(patryk)
 appMenager.createUser(krystian)
 appMenager.createAdmin(kamil)
+
 kamil.setAccessLevel(krystian, "admin")
 
 console.log(appMenager.showAllUsers())
