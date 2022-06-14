@@ -11,11 +11,18 @@ export class Switch {
     add = (condition, callback) => {
         Validator.isBoolean(condition)
         // Validator.isFunction(callback)
-        this.cases.push([condition, callback])
-        console.log(this.conditions)
+        this.cases.push({
+            condition,
+            callback
+        })
     }
     isValid() {
-        return this.cases
+        this.cases.find(obj => {
+            for (const el in obj) {
+                console.log(obj[el])
+
+            }
+        })
     }
 
 
