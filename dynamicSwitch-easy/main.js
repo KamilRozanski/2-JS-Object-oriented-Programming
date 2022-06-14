@@ -1,3 +1,6 @@
+import {
+    Validator
+} from "./Validator.js"
 `use strict`
 
 class Switch {
@@ -7,8 +10,8 @@ class Switch {
     }
 
     addsValue = (condition, callback) => {
-        Validates.isBoolean(condition)
-        Validates.isFunction(callback)
+        Validator.isBoolean(condition)
+        Validator.isFunction(callback)
         this.conditions.push(condition)
         this.cases.push(callback)
     }
@@ -35,35 +38,17 @@ class Switch {
         return this.conditions.length === 0 && this.cases.length === 0
     }
 }
-
-class Validates {
-    static isBoolean(value) {
-        if (typeof value !== "boolean") {
-            throw new Error("it is not a Boolean value")
-        }
-    }
-    static isFunction(value) {
-        if (typeof value !== "function") {
-            throw new Error("it is not a function")
-        }
-    }
-}
-
-const formChecker = new Switch();
-const value = "test";
+// formChecker.addsValue(value.length > 5, () => {
+//     console.error("input is to short")
+// })
+// formChecker.addsValue(value === "Kamil", () => {
+//     console.error("The input is not a Kamil")
+// })
+// formChecker.addsValue(value !== "test", () => {
+//     console.error("The input is not a test")
+// })
 
 
-formChecker.addsValue(value.length > 5, () => {
-    console.error("input is to short")
-})
-formChecker.addsValue(value === "Kamil", () => {
-    console.error("The input is not a Kamil")
-})
-formChecker.addsValue(value !== "test", () => {
-    console.error("The input is not a test")
-})
-
-
-console.log(formChecker.checkIfArrayIsEmpty() + " isEmpty") // false
-console.log(formChecker.checkValues() + " checkValues"); // === false
-console.log(formChecker.checkIfArrayIsEmpty() + " isEmpty") // === true
+// console.log(formChecker.checkIfArrayIsEmpty() + " isEmpty") // false
+// console.log(formChecker.checkValues() + " checkValues"); // === false
+// console.log(formChecker.checkIfArrayIsEmpty() + " isEmpty") // === true
