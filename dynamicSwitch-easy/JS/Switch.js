@@ -10,39 +10,22 @@ export class Switch {
 
     add = (condition, callback) => {
         Validator.isBoolean(condition)
-        // Validator.isFunction(callback)
+        Validator.isFunction(callback)
         this.cases.push({
             condition,
             callback
         })
     }
     isValid() {
-        this.cases.find(obj => {
+        this.cases.find((obj, index) => {
+            console.log(index)
             for (const el in obj) {
-                console.log(obj[el])
+                if (!obj.condition) {
 
+                    return obj.callback()
+                }
             }
         })
     }
 
-
-    // checkValues = () => {
-    //     //jak uzyć tylko metody map?
-    //     const isValidChecker = this.conditions.map((el, index) => {
-    //         console.log(el)
-    //         if (el) {
-    //             this.cases[index]()
-    //             return el
-    //         }
-    //         return false
-    //     })
-
-    //     this.cases = []
-    //     this.conditions = []
-    //     return isValidChecker
-    // }
-
-    // checkIfArrayIsEmpty = () => {
-    //     return this.conditions.length === 0 && this.cases.length === 0
-    // }
 }
