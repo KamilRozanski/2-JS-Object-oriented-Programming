@@ -5,7 +5,7 @@ import {
 const formChecker = new Switch();
 const testValue = "Hello Word"
 
-formChecker.add(typeof testValue !== "string", () => {
+formChecker.add(typeof testValue === "string", () => {
     console.error("Value is not a string")
 })
 formChecker.add(testValue.length < 5, () => {
