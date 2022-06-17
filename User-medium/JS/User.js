@@ -30,6 +30,7 @@ export class User {
     }
     changeEmail = (email) => {
         Validator.isString(email)
+        Validator.checkEmailFormat(email)
         this.emailAddress = email
     }
     changeDateOfBirth = (dateOfBirth) => {
@@ -41,6 +42,6 @@ export class User {
     }
     changePassword = (password) => {
         Validator.checkPasswordFormat(password)
-        this.credentials.password = password;
+        this.password = password;
     }
 }
