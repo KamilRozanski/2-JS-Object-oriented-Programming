@@ -5,17 +5,18 @@ import {
     Admin
 } from "./Admin.js"
 
-class Validator {
-    static isString(value) {
-        if (typeof value !== "string") {
-            throw new Error("it is not a string value")
+export class Validator {
+    static firstNameProvided = (firstName) => {
+        if (typeof firstName.length === 0) {
+            throw new Error("Provida a first name")
         }
     }
-    // static isEmptyString(value) {
-    //     if (typeof value.length === 0) {
-    //         throw new Error("Provida a string value")
-    //     }
-    // }
+    static secondNameProvided = (firstName) => {
+        if (typeof firstName.length === 0) {
+            throw new Error("Provida a second name")
+        }
+    }
+
     static checkEmailFormat(email) {
         const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-](.{7,32})+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9].{1,3})*$/g
         if (!regex.test(email)) {
@@ -29,29 +30,13 @@ class Validator {
             throw new Error(`Invalid password. Password must have from 8 to 32 characters, includes at least one capital letter, one number and one special character  `);
         }
     }
+
     static checkGender(gender) {
         if (!["male", "female"].includes(gender.toString().toLowerCase())) {
             throw new Error("Gender, male or female only")
         }
     }
-    static isUserOrAdmin(accLevel) {
-        // tablica z poziomami dostępu
-        if (accLevel.accessLevel !== "admin" && accLevel.accessLevel !== "user") {
-            throw new Error("Access level can be user or admin only")
-        }
-    }
-    static isInstanceOfUser = (user) => {
-        if (!user instanceof User) {
-            throw new Error(`${user} it is not instance of Admin Object`)
-        }
-    }
-    static isInstanceOfAdmin = (admin) => {
-        if (!admin instanceof Admin) {
-            throw new Error(`${admin} it is not instance of Admin Object`)
-        }
-    }
 
-    // - data (nieważne jaka wejdzie) do konstruktora musi wejść w formacie MM/DD/YYYY
     static checkDate(value) {
         const regex = /^\d{2}\/\d{2}\/\d{4}$/g
         const correctDate = regex.test(value)
@@ -65,25 +50,34 @@ class Validator {
             throw new Error(`Access level is not a "User"`)
         }
     }
+
     static isAdmin = (admin) => {
         if (admin.accessLevel !== "admin") {
             throw new Error(`Access level is not an "Admin"`)
         }
     }
 
-    static firstNameProvided = (firstName) => {
-        if (typeof firstName.length === 0) {
-            throw new Error("Provida a first name")
-        }
-    }
-    static secondNameProvided = (firstName) => {
-        if (typeof firstName.length === 0) {
-            throw new Error("Provida a second name")
+    static isString(value) {
+        if (typeof value !== "string") {
+            throw new Error("it is not a string value")
         }
     }
 
-}
+    static isInstanceOfUser = (user) => {
+        if (!user instanceof User) {
+            throw new Error(`${user} it is not instance of Admin Object`)
+        }
+    }
+    static isUserOrAdmin(accLevel) {
+        // tablica z poziomami dostępu
+        if (accLevel.accessLevel !== "admin" && accLevel.accessLevel !== "user") {
+            throw new Error("Access level can be user or admin only")
+        }
+    }
 
-export {
-    Validator
+    static isInstanceOfAdmin = (admin) => {
+        if (!admin instanceof Admin) {
+            throw new Error(`${admin} it is not instance of Admin Object`)
+        }
+    }
 }

@@ -10,7 +10,7 @@ import {
 } from "./Admin.js"
 // - [ ] Klasa App powinna zarządzać relacjami pomiędzy użytkownikami.
 // - [ ] Zawiera listę użytkowników, pozwala tworzyć nowych użytkowników o różnych poziomach dostępu.
-class AppMenager {
+export class AppMenager {
     constructor() {
         this.allUsers = []
     }
@@ -27,12 +27,4 @@ class AppMenager {
         return this.allUsers
     }
 
-}
-
-
-
-
-
-export {
-    AppMenager
 }
