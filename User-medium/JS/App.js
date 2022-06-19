@@ -49,7 +49,12 @@ class App {
     setAccessLevel = (user, accLevel) => {
         Validator.isInstanceOfUser(user)
         Validator.isUserOrAdmin(user)
+        Validator.isUserOrAdmin(accLevel)
+        this.users = this.users.filter(el => {
+            return el.emailAddress !== user.emailAddress
+        })
         user.accessLevel = accLevel
+        this.admins.push(user)
     }
 
     showAllUsers = () => {
@@ -68,4 +73,4 @@ const krystian = app.createUser("Krystian", "Rozanski", "27/02/1989", "Anglia15!
 
 
 app.setAccessLevel(patryk, "admin")
-console.log(app.showAllUsers())
+// console.log(app.showAllUsers())

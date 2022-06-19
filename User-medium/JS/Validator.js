@@ -68,10 +68,13 @@ export class Validator {
             throw new Error(`${user} it is not instance of Admin Object`)
         }
     }
-    static isUserOrAdmin(accLevel) {
+    static isUserOrAdmin(element) {
         // tablica z poziomami dostępu
-        if (accLevel.accessLevel !== "admin" && accLevel.accessLevel !== "user") {
+        if (typeof element === "object" && !["admin", "user"].includes(element.accessLevel)) {
             throw new Error("Access level can be user or admin only")
+        }
+        if (typeof element === "string" && !["admin", "user"].includes(element)) {
+            throw new Error("The new access level can be user or admin only")
         }
     }
 
