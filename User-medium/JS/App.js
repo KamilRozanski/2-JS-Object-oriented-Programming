@@ -12,23 +12,24 @@ import {
 // - [ ] Zawiera listę użytkowników, pozwala tworzyć nowych użytkowników o różnych poziomach dostępu.
 class App {
     constructor() {
-        this.allUsers = []
+        this.usersAndAdmins = []
+        this.users = []
+        this.admins = []
     }
 
     createUser = (firstName, secondName, dateOfBirth, password, gender, emailAddress) => {
         const newUser = new User(firstName, secondName, dateOfBirth, password, gender, emailAddress)
-        this.allUsers.push(newUser)
+        this.users.push(newUser)
         return newUser
     }
 
     createAdmin = (firstName, secondName, dateOfBirth, password, gender, emailAddress) => {
         const newAdmin = new Admin(firstName, secondName, dateOfBirth, password, gender, emailAddress)
-        this.allUsers.push(newAdmin)
+        this.admins.push(newAdmin)
         return newAdmin
     }
 
     setPassword = (user, newPassword) => {
-        //set-y musi obsługiwany przez APP.js
         Validator.isString(newPassword)
         Validator.isUser(user)
         Validator.isInstanceOfUser(user)
@@ -37,6 +38,7 @@ class App {
     }
 
     setEmail = (user, newEmail) => {
+        //Admin sam sobie powieniem miec mozliwosc zmiany email-a
         Validator.isString(newEmail)
         Validator.isUser(user)
         Validator.isInstanceOfUser(user)
@@ -51,7 +53,8 @@ class App {
     }
 
     showAllUsers = () => {
-        return this.allUsers
+        this.usersAndAdmins.push(this.admins, this.users)
+        return this.usersAndAdmins.flat()
     }
 }
 
@@ -63,6 +66,6 @@ const dominika = app.createAdmin("Dominika", "Rozanska", "11/09/1999", "Anglia15
 const patryk = app.createUser("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
 const krystian = app.createUser("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com")
 
-app.setPassword(kamil, "Radzy!min5b123")
 
+app.setAccessLevel(patryk, "admin")
 console.log(app.showAllUsers())

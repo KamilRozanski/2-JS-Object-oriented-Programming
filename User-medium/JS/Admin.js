@@ -10,4 +10,5 @@ export class Admin extends User {
         super(firstName, secondName, dateOfBirth, password, gender, emailAddress)
         this.accessLevel = "admin"
     }
+    
 }
