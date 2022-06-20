@@ -18,7 +18,7 @@ const males = new Group("males")
 males.addContact(contactOne)
 males.addContact(contactTwo)
 
-console.log(males.checkIfContactExists(contactOne));
+// console.log(males.checkIfContactExists(contactOne));
 
 const females = new Group("females")
 females.addContact(contactThree)
