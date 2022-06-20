@@ -16,6 +16,7 @@ export class User {
         this.firstName = firstName
         this.secondName = secondName
         this.dateOfBirth = dateOfBirth
+        this.password = password
         this.gender = gender
         this.emailAddress = emailAddress
         this.accessLevel = "user"

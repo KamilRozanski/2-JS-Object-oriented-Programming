@@ -53,8 +53,8 @@ class App {
         this.users = this.users.filter(el => {
             return el.emailAddress !== user.emailAddress
         })
-        user.accessLevel = accLevel
-        this.admins.push(user)
+
+        this.admins.push(new Admin(user.firstName, user.secondName, user.dateOfBirth, user.password, user.gender, user.emailAddress))
     }
 
     showAllUsers = () => {
@@ -68,9 +68,10 @@ const app = new App()
 const kamil = app.createAdmin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
 const dominika = app.createAdmin("Dominika", "Rozanska", "11/09/1999", "Anglia15!", "female", "dominika!@gmail.com")
 
-const patryk = app.createUser("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
+const patryk = app.createUser("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "Patryk1!@gmail.com")
+
 const krystian = app.createUser("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com")
 
 
-app.setAccessLevel(patryk, "admin")
-// console.log(app.showAllUsers())
+app.setAccessLevel(krystian, "admin")
+console.log(app.showAllUsers())
