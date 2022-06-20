@@ -62,25 +62,4 @@ export class Validator {
             throw new Error("it is not a string value")
         }
     }
-
-    static isInstanceOfUser = (user) => {
-        if (!user instanceof User) {
-            throw new Error(`${user} it is not instance of Admin Object`)
-        }
-    }
-    static isUserOrAdmin(element) {
-        // tablica z poziomami dostępu
-        if (typeof element === "object" && !["admin", "user"].includes(element.accessLevel)) {
-            throw new Error("Access level can be user or admin only")
-        }
-        if (typeof element === "string" && !["admin", "user"].includes(element)) {
-            throw new Error("The new access level can be user or admin only")
-        }
-    }
-
-    static isInstanceOfAdmin = (admin) => {
-        if (!admin instanceof Admin) {
-            throw new Error(`${admin} it is not instance of Admin Object`)
-        }
-    }
 }

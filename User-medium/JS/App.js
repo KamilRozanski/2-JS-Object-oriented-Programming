@@ -32,7 +32,6 @@ class App {
     setPassword = (user, newPassword) => {
         Validator.isString(newPassword)
         Validator.isUser(user)
-        Validator.isInstanceOfUser(user)
         Validator.checkPasswordFormat(newPassword)
         user.changePassword(newPassword)
     }
@@ -41,20 +40,26 @@ class App {
         //Admin sam sobie powieniem miec mozliwosc zmiany email-a
         Validator.isString(newEmail)
         Validator.isUser(user)
-        Validator.isInstanceOfUser(user)
         Validator.checkEmailFormat(newEmail)
         user.changeEmail(newEmail)
     }
 
-    setAccessLevel = (user, accLevel) => {
-        Validator.isInstanceOfUser(user)
-        Validator.isUserOrAdmin(user)
-        Validator.isUserOrAdmin(accLevel)
+    setAdminAccessLevel = (newAdmin) => {
+        //check if I have to create a new Admin, or I can push to arr.admins existing Admin(newAdmin) instance
+        Validator.isUser(newAdmin)
         this.users = this.users.filter(el => {
-            return el.emailAddress !== user.emailAddress
+            return el.emailAddress !== newAdmin.emailAddress
         })
-
-        this.admins.push(new Admin(user.firstName, user.secondName, user.dateOfBirth, user.password, user.gender, user.emailAddress))
+        newAdmin = new Admin(newAdmin.firstName, newAdmin.secondName, newAdmin.dateOfBirth, newAdmin.password, newAdmin.gender, newAdmin.emailAddress)
+        this.admins.push(newAdmin)
+    }
+    setUserAccessLevel = (newUser) => {
+        //check if I have to create a new User, or I can push to arr.users existing  Users(newUser) instance
+        Validator.isAdmin(newUser)
+        this.admins = this.admins.filter(el => {
+            return el.emailAddress !== newUser.emailAddress
+        })
+        this.users.push(new User(newUser.firstName, newUser.secondName, newUser.dateOfBirth, newUser.password, newUser.gender, newUser.emailAddress))
     }
 
     showAllUsers = () => {
@@ -69,9 +74,9 @@ const kamil = app.createAdmin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "m
 const dominika = app.createAdmin("Dominika", "Rozanska", "11/09/1999", "Anglia15!", "female", "dominika!@gmail.com")
 
 const patryk = app.createUser("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "Patryk1!@gmail.com")
-
 const krystian = app.createUser("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com")
 
 
-app.setAccessLevel(krystian, "admin")
-console.log(app.showAllUsers())
+// app.setEmail(krystian, "testTEST123#@ole.pl")
+// console.log(krystian)
+// console.log(app.showAllUsers())
