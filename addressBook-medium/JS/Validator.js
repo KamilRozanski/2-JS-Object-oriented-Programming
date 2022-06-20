@@ -4,14 +4,9 @@ export class Validator {
             throw new Error("It is not a string value")
         }
     }
-    static isEmptyString(value) {
-        if (value.length === 0) {
-            throw new Error("Provide a string value")
-        }
-    }
     static isInstanceOfClass(value, instance) {
-        if (value instanceof instance === false) {
-            throw new Error("Incorrect Object instance")
+        if (!value instanceof instance) {
+            throw new Error("Incorrect class instance")
         }
     }
     static checkEmail(email) {

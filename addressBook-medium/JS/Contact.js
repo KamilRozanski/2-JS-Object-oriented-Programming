@@ -10,47 +10,41 @@ export class Contact {
     // Ma umożliwiać: aktualizację datę modyfikacji, pozwalac na modyfikację imienia, nazwiska oraz adresu email
     constructor(name, lastName, email) {
         Validator.isString(name)
-        Validator.isString(name)
         Validator.isString(lastName)
-        Validator.isEmptyString(lastName)
         Validator.isString(email)
-        Validator.isEmptyString(email)
         Validator.checkEmail(email)
 
         this.name = name
         this.lastName = lastName
         this.email = email
         this.creationDate = new Date()
-        this.modificationDate = false
+        this.modificationDate = new Date()
         this.id = uuidv4()
     }
 
     changeFirstName = (name) => {
         Validator.isString(name)
-        Validator.isEmptyString(name)
         this.name = name
         this.modificationDate = new Date()
     }
 
     changeLastName = (name) => {
         Validator.isString(name)
-        Validator.isEmptyString(name)
         this.lastName = name
         this.modificationDate = new Date()
     }
     changeEmail = (email) => {
         Validator.isString(email)
-        Validator.isEmptyString(email)
         Validator.checkEmail(email)
         this.email = email
         this.modificationDate = new Date()
     }
 
-    creationDate() {
+    creationDate = () => {
         return this.creationDate
     }
 
-    dateOfLastModification() {
+    dateOfLastModification = () => {
         return this.modificationDate
     }
 }

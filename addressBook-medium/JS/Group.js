@@ -13,27 +13,27 @@ export class Group {
     // Ma umożliwiać: zmianę nazwy grupy, można dodać lub usunac kontakt z grupy, można sprawdzić czy kontakt istnieje w grupie
     constructor(groupName) {
         Validator.isString(groupName)
-        Validator.isEmptyString(groupName)
-        this.allGroupContacts = []
         this.groupName = groupName
         this.groupID = uuidv4()
+        this.allGroupContacts = []
     }
 
     addContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
         this.allGroupContacts.push(contact)
+        //sprwardzic czy nie ma dubla.
     }
 
     removeContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
         this.allGroupContacts = this.allGroupContacts.filter(el => el.id !== contact.id)
+        //sprawdzic czy kontakt intnieje
     }
 
 
-    checkIfContactExists = (contact) => {
+    findContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
         // This method dosent return any value ???!!!
-        console.log(this.allGroupContacts.find(el => el.id === contact.id))
         return this.allGroupContacts.find(el => el.id === contact.id)
     }
 
@@ -44,7 +44,6 @@ export class Group {
 
     changeGroupName = (newName) => {
         Validator.isString(newName)
-        Validator.isEmptyString(newName)
         this.groupName = newName
     }
 }

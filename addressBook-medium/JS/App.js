@@ -18,6 +18,8 @@ const males = new Group("males")
 males.addContact(contactOne)
 males.addContact(contactTwo)
 
+console.log(males.checkIfContactExists(contactOne));
+
 const females = new Group("females")
 females.addContact(contactThree)
 females.addContact(contactFour)
@@ -37,4 +39,4 @@ addressBook.addGroup(females)
 // addressBook.changeEmail(contactOne, "Romański@roman.pl")
 // console.log(addressBook.removeGroup("1"))
 // console.log(addressBook.showAllContacts())
-console.log(addressBook.searchContact("Kamil"))
+// console.log(addressBook.searchContact("Kamil"))
