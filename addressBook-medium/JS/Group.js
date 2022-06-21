@@ -20,8 +20,10 @@ export class Group {
 
     addContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
+        console.log(this.allGroupContacts)
         this.allGroupContacts.push(contact)
-        //sprwardzic czy nie ma dubla.
+        
+        // sprwardzic czy nie ma dubla.
     }
 
     removeContact = (contact) => {

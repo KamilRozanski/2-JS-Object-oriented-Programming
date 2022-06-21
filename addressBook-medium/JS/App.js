@@ -23,17 +23,23 @@ males.addContact(contactTwo)
 const females = new Group("females")
 females.addContact(contactThree)
 females.addContact(contactFour)
+// females.addContact(contactFour)
+
+// console.log(males.showAllGroupContacts())
+// console.log(females.showAllGroupContacts())
+
 
 
 
 const addressBook = new AddressBook()
-addressBook.addContactToList(contactOne)
-addressBook.addContactToList(contactTwo)
-addressBook.addContactToList(contactThree)
-addressBook.addContactToList(contactFour)
 
-addressBook.addGroup(males)
-addressBook.addGroup(females)
+// addressBook.addContactToList(contactOne)
+// addressBook.addContactToList(contactTwo)
+// addressBook.addContactToList(contactThree)
+// addressBook.addContactToList(contactFour)
+
+// addressBook.addGroup(males)
+// addressBook.addGroup(females)
 // addressBook.changeFirstName(contactOne, "Roman")
 // addressBook.changeLastName(contactOne, "Romański")
 // addressBook.changeEmail(contactOne, "Romański@roman.pl")
