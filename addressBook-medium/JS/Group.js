@@ -1,12 +1,16 @@
 import {
     Validator
-} from "./Validator.js"
+} from "./Validator.js";
 import {
     v4 as uuidv4
 } from 'uuid';
 import {
     Contact
 } from "./Contact.js";
+import { 
+    Utilties 
+} from "./Utilities.js"
+
 
 export class Group {
     // Ma mieć: listę kontaktów oraz nazwę grupy oraz uuid
@@ -20,14 +24,14 @@ export class Group {
 
     addContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        console.log(this.allGroupContacts)
-        this.allGroupContacts.push(contact)
-        
+        Utilties.checkDuplicatesInArray(contact, this.allGroupContacts)
+            this.allGroupContacts.push(contact)
         // sprwardzic czy nie ma dubla.
     }
 
     removeContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
+
         this.allGroupContacts = this.allGroupContacts.filter(el => el.id !== contact.id)
         //sprawdzic czy kontakt intnieje
     }

@@ -9,6 +9,7 @@ import {
 } from "./AddressBook.js";
 
 
+
 const contactOne = new Contact("Kamil", "Róański", "kamil@wp.pl")
 const contactTwo = new Contact("Patryk", "Róański", "patryk@mail.com")
 const contactThree = new Contact("Dominika", "Rozanska", "dominika@mail.com")
@@ -18,15 +19,16 @@ const males = new Group("males")
 males.addContact(contactOne)
 males.addContact(contactTwo)
 
+
 // console.log(males.checkIfContactExists(contactOne));
 
 const females = new Group("females")
 females.addContact(contactThree)
 females.addContact(contactFour)
-// females.addContact(contactFour)
+females.addContact(contactThree)
 
-// console.log(males.showAllGroupContacts())
-// console.log(females.showAllGroupContacts())
+console.log(males.showAllGroupContacts())
+console.log(females.showAllGroupContacts())
 
 
 
