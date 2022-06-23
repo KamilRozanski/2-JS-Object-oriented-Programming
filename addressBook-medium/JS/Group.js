@@ -25,7 +25,7 @@ export class Group {
     addContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
         this.allGroupContacts.every(el => {
-          return  contact.id !== el.id ? true : new Error(`${value.id} already exists`)
+          return contact.id !== el.id ? true : new Error(`${value.id} already exists`)
          })
         this.allGroupContacts.push(contact)
         // sprwardzic czy nie ma dubla.
@@ -35,7 +35,7 @@ export class Group {
     removeContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
 
-        const isContactExistsInGroup = this.allGroupContacts.some(el => el.id === contact.id ? true : false)
+        const isContactExistsInGroup = this.allGroupContacts.some(el => el.id === contact.id)
         return  isContactExistsInGroup ? this.allGroupContacts = this.allGroupContacts.filter(el => el.id !== contact.id) : new Error ("Contact is not exists in Group")
         //sprawdzic czy kontakt intnieje
     }

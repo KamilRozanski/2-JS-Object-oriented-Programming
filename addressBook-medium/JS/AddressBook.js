@@ -26,7 +26,6 @@ export class AddressBook {
     removeContactFromList = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
         this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
-        //remove by ID?
         //walidacje
     }
     changeFirstName = (contact, firstName) => {
