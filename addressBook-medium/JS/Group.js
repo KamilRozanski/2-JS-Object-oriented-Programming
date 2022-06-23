@@ -24,14 +24,15 @@ export class Group {
 
     addContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        Utilties.checkDuplicatesInArray(contact, this.allGroupContacts)
-            this.allGroupContacts.push(contact)
+        Utilties.isContactExistsInGroup(contact,this.allGroupContacts)
+        this.allGroupContacts.push(contact)
         // sprwardzic czy nie ma dubla.
     }
 
+
     removeContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-
+        console.log(Utilties.isContactExistsInGroup(contact,this.allGroupContacts) === false)
         this.allGroupContacts = this.allGroupContacts.filter(el => el.id !== contact.id)
         //sprawdzic czy kontakt intnieje
     }

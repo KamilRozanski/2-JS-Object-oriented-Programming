@@ -3,12 +3,13 @@ import {
 } from "./Validator.js"
 
 export class Utilties {
-    static checkDuplicatesInArray = (value, array) => {
+    static isContactExistsInGroup = (contact, array) => {
         Validator.isArray(array)
-      array.every(el => {
-            if(value.id === el.id) {
+   return array.every(el => {
+            if(contact.id === el.id) {
                throw  new Error(`${value.id} already exists`)
              } 
+             return true
          })
     }
 }

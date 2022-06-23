@@ -18,17 +18,23 @@ const contactFour = new Contact("Weronika", "Rozanska", "weronika@mail.com")
 const males = new Group("males")
 males.addContact(contactOne)
 males.addContact(contactTwo)
+males.addContact(contactThree)
+males.addContact(contactFour)
+males.removeContact(contactThree)
+
 
 
 // console.log(males.checkIfContactExists(contactOne));
 
 const females = new Group("females")
-females.addContact(contactThree)
-females.addContact(contactFour)
-females.addContact(contactThree)
+// females.addContact(contactThree)
+// females.addContact(contactFour)
 
-console.log(males.showAllGroupContacts())
-console.log(females.showAllGroupContacts())
+
+// females.addContact(contactThree)
+
+// console.log(males.showAllGroupContacts())
+// console.log(females.showAllGroupContacts())
 
 
 
