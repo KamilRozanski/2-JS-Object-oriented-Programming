@@ -19,8 +19,8 @@ const males = new Group("males")
 males.addContact(contactOne)
 males.addContact(contactTwo)
 males.addContact(contactThree)
-males.addContact(contactFour)
-males.removeContact(contactThree)
+
+console.log(males.removeContact(contactThree))
 
 
 
@@ -33,7 +33,7 @@ const females = new Group("females")
 
 // females.addContact(contactThree)
 
-// console.log(males.showAllGroupContacts())
+console.log(males.showAllGroupContacts())
 // console.log(females.showAllGroupContacts())
 
 
