@@ -7,8 +7,8 @@ import {
 import {
     Contact
 } from "./Contact.js";
-import { 
-    Utilties 
+import {
+    Utilties
 } from "./Utilities.js"
 
 
@@ -25,21 +25,19 @@ export class Group {
     addContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
         this.allGroupContacts.every(el => {
-          return contact.id !== el.id ? true : new Error(`${value.id} already exists`)
-         })
+            console.log(contact.id)
+            console.log(el.id)
+            return contact.id !== el.id ? true : new Error(`Contact already exists`)
+        })
         this.allGroupContacts.push(contact)
         // sprwardzic czy nie ma dubla.
     }
 
-
     removeContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-
-        const isContactExistsInGroup = this.allGroupContacts.some(el => el.id === contact.id)
-        return  isContactExistsInGroup ? this.allGroupContacts = this.allGroupContacts.filter(el => el.id !== contact.id) : new Error ("Contact is not exists in Group")
+        return Utilties.isContactExists(contact, this.allGroupContacts) ? this.allGroupContacts = this.allGroupContacts.filter(el => el.id !== contact.id) : new Error("Contact not exists in Group")
         //sprawdzic czy kontakt intnieje
     }
-
 
     findContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)

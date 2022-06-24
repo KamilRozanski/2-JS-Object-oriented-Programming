@@ -7,6 +7,9 @@ import {
 import {
     Group
 } from "./Group.js";
+import {
+    Utilties
+} from "./Utilities.js";
 
 
 
@@ -15,7 +18,7 @@ export class AddressBook {
     // Ma umożliwiać: szukanie kontaktu po frazie, dodawanie/usuwanie/modyfikacje nowych kontaktów, dodawanie/usuwanie/modyfikacje nowych grup
     constructor() {
         this.allContacts = []
-        this.allGroup = []
+        this.allGroups = []
     }
 
     addContactToList = (contact) => {
@@ -23,20 +26,45 @@ export class AddressBook {
         this.allContacts.push(contact)
     }
 
+    addGroup = (group) => {
+        Validator.isInstanceOfClass(group, Group)
+        this.allGroups.push(group)
+    }
+
     removeContactFromList = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
-        //walidacje
+        if (Utilties.isContactExists(contact, this.allContacts)) {
+            this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
+        } else {
+            throw new Error("Contact not exists")
+        }
     }
+    removeGroup = (group) => {
+        //wyciągnąć ID
+        Validator.isString(group)
+        return this.allGroups = this.allGroups.filter(el => {
+            if (el.group !== group) {
+                throw new Error(`The group ID not exist`)
+            }
+        })
+    }
+
     changeFirstName = (contact, firstName) => {
         Validator.isInstanceOfClass(contact, Contact)
         Validator.isString(firstName)
         contact.changeFirstName(firstName)
     }
+
     changeLastName = (contact, lastName) => {
         Validator.isInstanceOfClass(contact, Contact)
         Validator.isString(lastName)
         contact.changeLastName(lastName)
+    }
+
+    changeGroupName = (newName, group) => {
+        Validator.isInstanceOfClass(group, Group)
+        Validator.isString(newName)
+        group.changeGroupName = newName
     }
 
     changeEmail = (contact, email) => {
@@ -62,29 +90,8 @@ export class AddressBook {
         //Why return dosen't show the this.allContacts Arr in console
         return this.allContacts
     }
-
-    addGroup = (group) => {
-        Validator.isInstanceOfClass(group, Group)
-        this.allGroup.push(group)
-    }
-    removeGroup = (groupID) => {
-        //wyciągnąć ID
-        Validator.isString(groupID)
-        return this.allGroup = this.allGroup.filter(el => {
-            if (el.groupID !== groupID) {
-                throw new Error(`The group ID not exist`)
-            }
-        })
-    }
-
-    changeGroupName = (newName, group) => {
-        Validator.isInstanceOfClass(group, Group)
-        Validator.isString(newName)
-        group.changeGroupName = newName
-    }
-
     showAllGroups = () => {
         //Why return dosent show the this.allContacts Arr in console
-        return this.allGroup
+        return this.allGroups
     }
 }

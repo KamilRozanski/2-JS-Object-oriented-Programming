@@ -4,7 +4,12 @@ export class Validator {
             throw new Error("It is not a string value")
         }
     }
-    
+    static isArray(array) {
+        if (!Array.isArray(array)) {
+            throw new Error("Input is not Array")
+        }
+    }
+
     static isInstanceOfClass(value, instance) {
         if (!value instanceof instance) {
             throw new Error("Incorrect class instance")
