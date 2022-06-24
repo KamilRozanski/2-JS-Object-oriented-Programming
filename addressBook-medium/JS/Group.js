@@ -18,19 +18,17 @@ export class Group {
     constructor(groupName) {
         Validator.isString(groupName)
         this.groupName = groupName
-        this.groupID = uuidv4()
+        this.id = uuidv4()
         this.allGroupContacts = []
     }
 
     addContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        const duplicates = this.allGroupContacts.every(el => {
-            return contact.id !== el.id
-        })
-        if (duplicates) {
-            this.allGroupContacts.push(contact)
-        } else {
+        const isDuplicates = Utilties.isContactExists(contact, this.allGroupContacts)
+        if (isDuplicates) {
             throw new Error("Contact is already existis")
+        } else {
+            this.allGroupContacts.push(contact)
         }
         // sprwardzic czy nie ma dubla.
     }

@@ -23,30 +23,41 @@ export class AddressBook {
 
     addContactToList = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        this.allContacts.push(contact)
+        const isDuplicates = Utilties.isContactExists(contact, this.allContacts)
+        if (isDuplicates) {
+            throw new Error("Contact is already existis")
+        } else {
+            this.allContacts.push(contact)
+        }
     }
 
     addGroup = (group) => {
         Validator.isInstanceOfClass(group, Group)
-        this.allGroups.push(group)
+        const isDuplicates = Utilties.isContactExists(group, this.allGroups)
+        if (isDuplicates) {
+            throw new Error("Group is already existis")
+        } else {
+            this.allGroups.push(group)
+        }
     }
 
     removeContactFromList = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        if (Utilties.isContactExists(contact, this.allContacts)) {
+        const isContactExists = Utilties.isContactExists(contact, this.allContacts)
+        if (isContactExists) {
             this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
         } else {
             throw new Error("Contact not exists")
         }
     }
     removeGroup = (group) => {
-        //wyciągnąć ID
-        Validator.isString(group)
-        return this.allGroups = this.allGroups.filter(el => {
-            if (el.group !== group) {
-                throw new Error(`The group ID not exist`)
-            }
-        })
+        Validator.isInstanceOfClass(group, Group)
+        const isGroupExists = Utilties.isContactExists(group, this.allGroups)
+        if (isGroupExists) {
+            this.allGroups = this.allGroups.filter(el => el.id !== group.id)
+        } else {
+            throw new Error("Group not exists")
+        }
     }
 
     changeFirstName = (contact, firstName) => {
