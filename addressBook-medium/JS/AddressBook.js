@@ -98,11 +98,9 @@ export class AddressBook {
     }
 
     showAllContacts = () => {
-        //Why return dosen't show the this.allContacts Arr in console
         return this.allContacts
     }
     showAllGroups = () => {
-        //Why return dosent show the this.allContacts Arr in console
         return this.allGroups
     }
 }
