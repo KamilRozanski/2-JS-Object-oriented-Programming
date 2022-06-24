@@ -17,8 +17,10 @@ const contactFour = new Contact("Weronika", "Rozanska", "weronika@mail.com")
 
 const males = new Group("males")
 males.addContact(contactOne)
-males.addContact(contactOne)
 males.addContact(contactTwo)
+males.addContact(contactThree)
+males.findContact(contactTwo)
+// console.log(males.showAllGroupContacts())
 const females = new Group("females")
 
 

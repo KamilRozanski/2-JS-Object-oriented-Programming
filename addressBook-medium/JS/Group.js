@@ -24,29 +24,34 @@ export class Group {
 
     addContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        this.allGroupContacts.every(el => {
-            console.log(contact.id)
-            console.log(el.id)
-            return contact.id !== el.id ? true : new Error(`Contact already exists`)
+        const duplicates = this.allGroupContacts.every(el => {
+            return contact.id !== el.id
         })
-        this.allGroupContacts.push(contact)
+        if (duplicates) {
+            this.allGroupContacts.push(contact)
+        } else {
+            throw new Error("Contact is already existis")
+        }
         // sprwardzic czy nie ma dubla.
     }
 
     removeContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        return Utilties.isContactExists(contact, this.allGroupContacts) ? this.allGroupContacts = this.allGroupContacts.filter(el => el.id !== contact.id) : new Error("Contact not exists in Group")
+        const isContactExists = Utilties.isContactExists(contact, this.allGroupContacts)
+        if (isContactExists) {
+            this.allGroupContacts = this.allGroupContacts.filter(el => el.id !== contact.id)
+        } else {
+            throw new Error("Contact is not exists in Group")
+        }
         //sprawdzic czy kontakt intnieje
     }
 
     findContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        // This method dosent return any value ???!!!
         return this.allGroupContacts.find(el => el.id === contact.id)
     }
 
     showAllGroupContacts = () => {
-        //Why return dosent show the this.allGroupContacts Arr in console
         return this.allGroupContacts
     }
 
