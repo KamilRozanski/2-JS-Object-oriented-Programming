@@ -21,26 +21,32 @@ export class User {
         this.emailAddress = emailAddress
         this.accessLevel = "user"
     }
+
     changeName = (firstName) => {
         Validator.isString(firstName)
         this.name = firstName
     }
+
     changeSecondName = (secondName) => {
         Validator.isString(secondName)
         this.secondName = secondName
     }
+
     changeEmail = (email) => {
         Validator.isString(email)
         Validator.checkEmailFormat(email)
         this.emailAddress = email
     }
+
     changeDateOfBirth = (dateOfBirth) => {
         this.dateOfBirth = dateOfBirth
     }
+
     changeGender = (gender) => {
         Validator.checkGender(gender)
         this.gender = gender
     }
+
     changePassword = (password) => {
         Validator.checkPasswordFormat(password)
         this.password = password;
