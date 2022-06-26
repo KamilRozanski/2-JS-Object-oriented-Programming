@@ -3,12 +3,12 @@ import {
 } from "./Switch.js"
 
 const formChecker = new Switch();
-const testValue = "Hello Word"
+const testValue = "Hel"
 
-formChecker.add(typeof testValue === "string", () => {
+formChecker.addCase(typeof testValue !== "string", () => {
     console.error("Value is not a string")
 })
-formChecker.add(testValue.length < 5, () => {
+formChecker.addCase(testValue.length < 5, () => {
     console.error("Value must have at least five characters")
 })
 

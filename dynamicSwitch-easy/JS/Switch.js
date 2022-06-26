@@ -8,7 +8,7 @@ export class Switch {
         this.cases = [];
     }
 
-    add = (condition, callback) => {
+    addCase = (condition, callback) => {
         Validator.isBoolean(condition)
         Validator.isFunction(callback)
         this.cases.push({
@@ -20,7 +20,6 @@ export class Switch {
         const resultArr = this.cases.filter(el => {
             if (el.condition) {
                 el.callback()
-                return el
             }
         })
         this.cases = []
