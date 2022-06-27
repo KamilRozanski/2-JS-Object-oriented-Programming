@@ -1,7 +1,8 @@
+`use strict`
 import {
     Validator
 } from "./Validator.js"
-`use strict`
+
 
 export class Switch {
     constructor() {
@@ -16,16 +17,16 @@ export class Switch {
             callback
         })
     }
+
     isValid() {
-        const resultArr = this.cases.filter(el => {
-            if (el.condition) {
-                el.callback()
+        const resultArr = this.cases.filter(({condition, callback}) => {
+            if (condition) {
+                callback()
             }
         })
         this.cases = []
         return resultArr.length === 0
     }
-
 
     isEmpty = () => {
         return this.cases.length === 0
