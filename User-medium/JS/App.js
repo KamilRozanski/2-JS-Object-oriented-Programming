@@ -28,25 +28,25 @@ class App {
         return newAdmin
     }
 
-    setPassword = (admin, user, newPassword) => {
+    setPassword = (user, newPassword) => {
         //sprawdzic kto zmienia haslo i komu.
-        Validator.isAdmin(admin)
+        console.log(user)
+        Validator.isAdmin(this)
         Validator.isUser(user)
-        Validator.isString(newPassword)
         Validator.checkPasswordFormat(newPassword)
         user.changePassword(newPassword)
     }
 
-    setEmail = (user, newEmail) => {
+    setEmail = (admin, user, newEmail) => {
         //Admin sam sobie powieniem miec mozliwosc zmiany email-a
+        Validator.isAdmin(admin)
         Validator.isUser(user)
-        Validator.isString(newEmail)
         Validator.checkEmailFormat(newEmail)
         user.changeEmail(newEmail)
     }
 
     setAdminAccessLevel = (newAdmin) => {
-        Validator.isUser(newAdmin)
+        // Validator.isUser(newAdmin)
         console.log(newAdmin.accessLevel)
 
 
@@ -73,6 +73,5 @@ const dominika = app.createAdmin("Dominika", "Rozanska", "11/09/1999", "Anglia15
 const patryk = app.createUser("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "Patryk1!@gmail.com")
 const krystian = app.createUser("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com")
 // console.log(dominika)
-app.setPassword(kamil, kamil, "Anglia15!!!!!")
-
+app.setPassword(kamil, patryk, "Anglia15!!!!!")
 console.log(app.showAllUsers())

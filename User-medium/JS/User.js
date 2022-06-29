@@ -48,7 +48,8 @@ export class User {
     }
 
     changePassword = (password) => {
+        Validator.isAdmin(this)
         Validator.checkPasswordFormat(password)
-        this.password = password;
+        this.password = password
     }
 }
