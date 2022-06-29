@@ -6,8 +6,8 @@ export class User {
     constructor(firstName, secondName, dateOfBirth, password, gender, emailAddress) {
         Validator.isString(firstName)
         Validator.isString(secondName)
-        Validator.firstNameProvided(firstName)
-        Validator.firstNameProvided(secondName)
+        Validator.checkFirstName(firstName)
+        Validator.checkSecondName(secondName)
         Validator.checkPasswordFormat(password)
         Validator.checkGender(gender)
         Validator.checkEmailFormat(emailAddress)
@@ -33,12 +33,12 @@ export class User {
     }
 
     changeEmail = (email) => {
-        Validator.isString(email)
         Validator.checkEmailFormat(email)
         this.emailAddress = email
     }
 
     changeDateOfBirth = (dateOfBirth) => {
+        Validator.checkDate(dateOfBirth)
         this.dateOfBirth = dateOfBirth
     }
 

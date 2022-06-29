@@ -6,12 +6,14 @@ import {
 } from "./Admin.js"
 
 export class Validator {
-    static firstNameProvided = (firstName) => {
+    static checkFirstName = (firstName) => {
+        //poprawic nazwy
         if (typeof firstName.length === 0) {
             throw new Error("Provida a first name")
         }
     }
-    static secondNameProvided = (firstName) => {
+    static checkSecondName = (firstName) => {
+        //poprawic nazwy
         if (typeof firstName.length === 0) {
             throw new Error("Provida a second name")
         }

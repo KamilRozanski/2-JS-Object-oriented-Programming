@@ -28,9 +28,11 @@ class App {
         return newAdmin
     }
 
-    setPassword = (user, newPassword) => {
-        Validator.isString(newPassword)
+    setPassword = (admin, user, newPassword) => {
+        //sprawdzic kto zmienia haslo i komu.
+        Validator.isAdmin(admin)
         Validator.isUser(user)
+        Validator.isString(newPassword)
         Validator.checkPasswordFormat(newPassword)
         user.changePassword(newPassword)
     }
@@ -45,18 +47,17 @@ class App {
 
     setAdminAccessLevel = (newAdmin) => {
         Validator.isUser(newAdmin)
-        this.users = this.users.filter(el => {
-            return el.emailAddress !== newAdmin.emailAddress
-        })
-        this.admins.push(new Admin(newAdmin.firstName, newAdmin.secondName, newAdmin.dateOfBirth, newAdmin.password, newAdmin.gender, newAdmin.emailAddress))
+        console.log(newAdmin.accessLevel)
+
+
+
+        // this.users = this.users.filter(el => {
+        //     // po id
+        //     return el.emailAddress !== newAdmin.emailAddress
+        // })
+        // this.admins.push(new Admin(newAdmin.firstName, newAdmin.secondName, newAdmin.dateOfBirth, newAdmin.newAdmin.password, newAdmin.gender, newAdmin.emailAddress))
     }
-    setUserAccessLevel = (newUser) => {
-        Validator.isAdmin(newUser)
-        this.admins = this.admins.filter(el => {
-            return el.emailAddress !== newUser.emailAddress
-        })
-        this.users.push(new User(newUser.firstName, newUser.secondName, newUser.dateOfBirth, newUser.password, newUser.gender, newUser.emailAddress))
-    }
+
 
     showAllUsers = () => {
         this.usersAndAdmins.push(this.admins, this.users)
@@ -71,3 +72,7 @@ const dominika = app.createAdmin("Dominika", "Rozanska", "11/09/1999", "Anglia15
 
 const patryk = app.createUser("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "Patryk1!@gmail.com")
 const krystian = app.createUser("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com")
+// console.log(dominika)
+app.setPassword(kamil, kamil, "Anglia15!!!!!")
+
+console.log(app.showAllUsers())
