@@ -28,17 +28,15 @@ class App {
         return newAdmin
     }
 
-    setPassword = (user, newPassword) => {
-        //sprawdzic kto zmienia haslo i komu.
-        console.log(user)
-        Validator.isAdmin(this)
+    setPassword = (admin, user, newPassword) => {
+        Validator.isAdmin(admin)
         Validator.isUser(user)
         Validator.checkPasswordFormat(newPassword)
         user.changePassword(newPassword)
     }
 
     setEmail = (admin, user, newEmail) => {
-        //Admin sam sobie powieniem miec mozliwosc zmiany email-a
+        //Admin sam sobie powieniem mieć mozliwosc zmiany email-a
         Validator.isAdmin(admin)
         Validator.isUser(user)
         Validator.checkEmailFormat(newEmail)
@@ -72,6 +70,7 @@ const dominika = app.createAdmin("Dominika", "Rozanska", "11/09/1999", "Anglia15
 
 const patryk = app.createUser("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "Patryk1!@gmail.com")
 const krystian = app.createUser("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com")
-// console.log(dominika)
-app.setPassword(kamil, patryk, "Anglia15!!!!!")
+
+kamil.changeEmail("jajoJAJO#@gmail.com")
+// app.setPassword(kamil, patryk, "AnDDgl#$ia15!!!!!")
 console.log(app.showAllUsers())
