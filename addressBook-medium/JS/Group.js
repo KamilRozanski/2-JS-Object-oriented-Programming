@@ -24,13 +24,13 @@ export class Group {
 
     addContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
+
         const isDuplicates = Utilties.isContactExists(contact, this.allGroupContacts)
-        if (isDuplicates) {
-            throw new Error("Contact is already existis")
-        } else {
-            this.allGroupContacts.push(contact)
-        }
-        // sprwardzic czy nie ma dubla.
+        if (isDuplicates) throw new Error("Contact already existis")
+
+        this.allGroupContacts.push(contact)
+
+        // sprwardzic czy nie ma dubla. Error wyniesc do validatora.
     }
 
     removeContact = (contact) => {
@@ -51,6 +51,7 @@ export class Group {
 
     showAllGroupContacts = () => {
         return this.allGroupContacts
+        //nazwa do poprawy
     }
 
     changeGroupName = (newName) => {

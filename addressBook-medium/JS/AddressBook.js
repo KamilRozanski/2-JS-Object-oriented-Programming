@@ -25,7 +25,7 @@ export class AddressBook {
         Validator.isInstanceOfClass(contact, Contact)
         const isDuplicates = Utilties.isContactExists(contact, this.allContacts)
         if (isDuplicates) {
-            throw new Error("Contact is already existis")
+            throw new Error("Contact already existis")
         } else {
             this.allContacts.push(contact)
         }
@@ -35,7 +35,7 @@ export class AddressBook {
         Validator.isInstanceOfClass(group, Group)
         const isDuplicates = Utilties.isContactExists(group, this.allGroups)
         if (isDuplicates) {
-            throw new Error("Group is already existis")
+            throw new Error("Group already existis")
         } else {
             this.allGroups.push(group)
         }
@@ -61,6 +61,7 @@ export class AddressBook {
     }
 
     changeFirstName = (contact, firstName) => {
+        //sprawdzic czy kontakt istnieje
         Validator.isInstanceOfClass(contact, Contact)
         Validator.isString(firstName)
         contact.changeFirstName(firstName)
@@ -90,11 +91,11 @@ export class AddressBook {
         return this.allContacts.filter(obj => {
             for (const el in obj) {
                 if (typeof obj[el] !== "function" && obj[el] === contactDetails) {
+                    //drugi warunek do poprawy
                     return obj[el]
                 }
             }
         })
-        // nowa klasa 
     }
 
     showAllContacts = () => {
