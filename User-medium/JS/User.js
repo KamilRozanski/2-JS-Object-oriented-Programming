@@ -1,6 +1,10 @@
 import {
     Validator
 } from "./Validator.js"
+import {
+    v4 as uuidv4
+} from 'uuid';
+uuidv4()
 
 export class User {
     constructor(firstName, secondName, dateOfBirth, password, gender, emailAddress) {
@@ -20,6 +24,7 @@ export class User {
         this.gender = gender
         this.emailAddress = emailAddress
         this.accessLevel = "user"
+        this.id = uuidv4()
     }
 
     changeName = (firstName) => {

@@ -36,26 +36,20 @@ class App {
     }
 
     setEmail = (admin, user, newEmail) => {
-        //Admin sam sobie powieniem mieć mozliwosc zmiany email-a
         Validator.isAdmin(admin)
         Validator.isUser(user)
         Validator.checkEmailFormat(newEmail)
         user.changeEmail(newEmail)
     }
 
-    setAdminAccessLevel = (newAdmin) => {
-        // Validator.isUser(newAdmin)
-        console.log(newAdmin.accessLevel)
-
-
-
-        // this.users = this.users.filter(el => {
-        //     // po id
-        //     return el.emailAddress !== newAdmin.emailAddress
-        // })
-        // this.admins.push(new Admin(newAdmin.firstName, newAdmin.secondName, newAdmin.dateOfBirth, newAdmin.newAdmin.password, newAdmin.gender, newAdmin.emailAddress))
+    setAdminAccessLevel = (admin, newAdmin) => {
+        Validator.isAdmin(admin)
+        Validator.isUser(newAdmin)
+        this.users = this.users.filter(el => {
+            return el.id !== newAdmin.id
+        })
+        this.admins.push(new Admin(newAdmin.firstName, newAdmin.secondName, newAdmin.dateOfBirth, newAdmin.password, newAdmin.gender, newAdmin.emailAddress))
     }
-
 
     showAllUsers = () => {
         this.usersAndAdmins.push(this.admins, this.users)
@@ -71,6 +65,7 @@ const dominika = app.createAdmin("Dominika", "Rozanska", "11/09/1999", "Anglia15
 const patryk = app.createUser("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "Patryk1!@gmail.com")
 const krystian = app.createUser("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com")
 
-kamil.changeEmail("jajoJAJO#@gmail.com")
-// app.setPassword(kamil, patryk, "AnDDgl#$ia15!!!!!")
+// patryk.changeEmail("jajoJAJO#@gmail.com")
+// console.log(patryk)
+app.setAdminAccessLevel(kamil, patryk)
 console.log(app.showAllUsers())
