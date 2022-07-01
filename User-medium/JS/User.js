@@ -6,8 +6,8 @@ export class User {
     constructor(firstName, secondName, dateOfBirth, password, gender, emailAddress) {
         Validator.isString(firstName)
         Validator.isString(secondName)
-        Validator.firstNameProvided(firstName)
-        Validator.firstNameProvided(secondName)
+        Validator.checkFirstName(firstName)
+        Validator.checkSecondName(secondName)
         Validator.checkPasswordFormat(password)
         Validator.checkGender(gender)
         Validator.checkEmailFormat(emailAddress)
@@ -21,28 +21,35 @@ export class User {
         this.emailAddress = emailAddress
         this.accessLevel = "user"
     }
+
     changeName = (firstName) => {
         Validator.isString(firstName)
         this.name = firstName
     }
+
     changeSecondName = (secondName) => {
         Validator.isString(secondName)
         this.secondName = secondName
     }
+
     changeEmail = (email) => {
-        Validator.isString(email)
         Validator.checkEmailFormat(email)
         this.emailAddress = email
     }
+
     changeDateOfBirth = (dateOfBirth) => {
+        Validator.checkDate(dateOfBirth)
         this.dateOfBirth = dateOfBirth
     }
+
     changeGender = (gender) => {
         Validator.checkGender(gender)
         this.gender = gender
     }
+
     changePassword = (password) => {
+        Validator.isAdmin(this)
         Validator.checkPasswordFormat(password)
-        this.password = password;
+        this.password = password
     }
 }

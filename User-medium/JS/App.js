@@ -8,8 +8,7 @@ import {
 import {
     Admin
 } from "./Admin.js"
-// - [ ] Klasa App powinna zarządzać relacjami pomiędzy użytkownikami.
-// - [ ] Zawiera listę użytkowników, pozwala tworzyć nowych użytkowników o różnych poziomach dostępu.
+
 class App {
     constructor() {
         this.usersAndAdmins = []
@@ -30,37 +29,35 @@ class App {
     }
 
     setPassword = (user, newPassword) => {
-        Validator.isString(newPassword)
+        //sprawdzic kto zmienia haslo i komu.
+        console.log(user)
+        Validator.isAdmin(this)
         Validator.isUser(user)
         Validator.checkPasswordFormat(newPassword)
         user.changePassword(newPassword)
     }
 
-    setEmail = (user, newEmail) => {
+    setEmail = (admin, user, newEmail) => {
         //Admin sam sobie powieniem miec mozliwosc zmiany email-a
-        Validator.isString(newEmail)
+        Validator.isAdmin(admin)
         Validator.isUser(user)
         Validator.checkEmailFormat(newEmail)
         user.changeEmail(newEmail)
     }
 
     setAdminAccessLevel = (newAdmin) => {
-        //check if I have to create a new Admin, or I can push to arr.admins existing Admin(newAdmin) instance
-        Validator.isUser(newAdmin)
-        this.users = this.users.filter(el => {
-            return el.emailAddress !== newAdmin.emailAddress
-        })
-        newAdmin = new Admin(newAdmin.firstName, newAdmin.secondName, newAdmin.dateOfBirth, newAdmin.password, newAdmin.gender, newAdmin.emailAddress)
-        this.admins.push(newAdmin)
+        // Validator.isUser(newAdmin)
+        console.log(newAdmin.accessLevel)
+
+
+
+        // this.users = this.users.filter(el => {
+        //     // po id
+        //     return el.emailAddress !== newAdmin.emailAddress
+        // })
+        // this.admins.push(new Admin(newAdmin.firstName, newAdmin.secondName, newAdmin.dateOfBirth, newAdmin.newAdmin.password, newAdmin.gender, newAdmin.emailAddress))
     }
-    setUserAccessLevel = (newUser) => {
-        //check if I have to create a new User, or I can push to arr.users existing  Users(newUser) instance
-        Validator.isAdmin(newUser)
-        this.admins = this.admins.filter(el => {
-            return el.emailAddress !== newUser.emailAddress
-        })
-        this.users.push(new User(newUser.firstName, newUser.secondName, newUser.dateOfBirth, newUser.password, newUser.gender, newUser.emailAddress))
-    }
+
 
     showAllUsers = () => {
         this.usersAndAdmins.push(this.admins, this.users)
@@ -75,8 +72,6 @@ const dominika = app.createAdmin("Dominika", "Rozanska", "11/09/1999", "Anglia15
 
 const patryk = app.createUser("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "Patryk1!@gmail.com")
 const krystian = app.createUser("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com")
-
-
-// app.setEmail(krystian, "testTEST123#@ole.pl")
-// console.log(krystian)
-// console.log(app.showAllUsers())
+// console.log(dominika)
+app.setPassword(kamil, patryk, "Anglia15!!!!!")
+console.log(app.showAllUsers())
