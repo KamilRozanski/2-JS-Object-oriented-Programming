@@ -15,6 +15,11 @@ export class Validator {
             throw new Error("Incorrect class instance")
         }
     }
+    static isContactExists(value) {
+        if (value) {
+            throw new Error("Contact already existis")
+        }
+    }
     static checkEmail(email) {
         const regex = /^[a-zA-Z0-9](.{4,32})+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9].{1,3})*$/g
         if (!regex.test(email)) {
