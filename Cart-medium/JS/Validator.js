@@ -9,4 +9,9 @@ export class Validator {
             throw new Error("It is not a number value")
         }
     }
+    static isInstanceOf = (item, instance) => {
+        if (item instanceof instance === false) {
+            throw new Error("Incoret class insatnce")
+        }
+    }
 }

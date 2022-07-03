@@ -3,5 +3,6 @@ import {
 } from './Cart.js';
 
 
-const phone = new CartItem("Samsung", "mobile phones", 22, "23% ")
-console.log(phone)
+const phone = new CartItem("Samsung", "mobile phones", 799, 700)
+phone.getProcentageDiscount()
+phone.addItem(phone)
