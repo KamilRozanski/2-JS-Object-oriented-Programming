@@ -15,7 +15,6 @@ export class Validator {
         }
     }
     static priceSmallerThenDiscount = (price, discount) => {
-        console.log(price, discount)
         if (price <= discount) {
             throw new Error("Discount is bigger than price")
         }
