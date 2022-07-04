@@ -21,6 +21,7 @@ export class CartItem {
         Validator.isString(category)
         Validator.isNumber(discount)
         Validator.isNumber(price)
+        Validator.priceSmallerThenDiscount(price, discount)
 
         this.name = name
         this.category = category
@@ -31,16 +32,23 @@ export class CartItem {
 
     addItem = (item) => {
         Validator.isInstanceOf(item, CartItem)
-        console.log(item)
     }
-    getProcentageDiscount = () => {
-        const result = (this.price - this.discount) / this.price * 100
-        console.log(Math.round(result))
-        // return this.price * this.discount
+    changeName = (newName) => {
+        Validator.isString(newName)
+        this.newName = newName
     }
     changePrice = (newPrice) => {
         Validator.isNumber(newPrice)
+        Validator.priceSmallerThenDiscount(this.price, this.discount)
         this.price = newPrice
+    }
+    changeDiscount = (newDiscount) => {
+        Validator.isNumber(newDiscount)
+        Validator.priceSmallerThenDiscount(this.price, this.discount)
+        this.discount = newDiscount
+    }
+    getProcentageDiscount = () => {
+        Math.round((this.discount * 100) / this.price)
     }
 
 
