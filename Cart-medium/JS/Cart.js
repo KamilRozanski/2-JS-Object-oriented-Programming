@@ -5,6 +5,9 @@ import {
     Validator
 } from './Validator.js';
 import {
+    Utilties
+} from "./Utilties.js";
+import {
     v4 as uuidv4
 } from 'uuid';
 
@@ -21,10 +24,10 @@ export class Cart {
         this.id = uuidv4()
     }
 
-    addToCart = (item) => {
+    addToCart = (item, quantity) => {
         Validator.isInstanceOf(item, CartItem)
         this.cart.push(item)
-        this.quantity++
+        item.quantity = quantity
     }
     removeFromCart = (item) => {
         Validator.isInstanceOf(item, CartItem)
@@ -32,12 +35,19 @@ export class Cart {
         this.quantity--
     }
     getCartSummary = () => {
-        return this.cart.reduce((acc, price, index) => {
+        const result = this.cart.reduce((acc, price, index) => {
             price = this.cart[index].price
-            return acc += price - this.cart[index].discount
+            const itemQuantity = this.cart[index].quantity
+            const itemDiscount = this.cart[index].discount
+            return acc += (price - itemDiscount) * itemQuantity
         }, 0)
+        return Utilties.localString(result)
     }
     setDiscoundCode = (code, amountOfDiscount) => {
 
+    }
+
+    showCart = () => {
+        console.log(this.cart)
     }
 }

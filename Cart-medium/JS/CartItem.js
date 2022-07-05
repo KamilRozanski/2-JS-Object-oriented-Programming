@@ -23,10 +23,12 @@ export class CartItem {
         Validator.isNumber(price)
         Validator.priceSmallerThenDiscount(price, discount)
 
+
         this.name = name
         this.category = category
         this.price = price
         this.discount = discount
+        this.quantity = 0
         this.id = uuidv4()
     }
 
