@@ -17,4 +17,4 @@ cart.addToCart(redmiNote5A)
 console.log(cart.getCartSummary())
 
 
-// console.log(cart)
+console.log(cart.showCart())

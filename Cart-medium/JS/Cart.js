@@ -34,10 +34,14 @@ export class Cart {
     getCartSummary = () => {
         return this.cart.reduce((acc, price, index) => {
             price = this.cart[index].price
-            return acc += price - this.cart[index].discount
+            const discount = this.cart[index].discount
+            return acc += price - discount
         }, 0)
     }
     setDiscoundCode = (code, amountOfDiscount) => {
 
+    }
+    showCart = () => {
+        return this.cart
     }
 }
