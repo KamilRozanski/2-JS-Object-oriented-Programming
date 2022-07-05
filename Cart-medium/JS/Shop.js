@@ -20,4 +20,4 @@ cart.addToCart(redmiNote5A, 2)
 console.log(cart.getCartSummary())
 
 
-// console.log(cart)
+console.log(cart.showCart())

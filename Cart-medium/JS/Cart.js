@@ -48,6 +48,6 @@ export class Cart {
     }
 
     showCart = () => {
-        console.log(this.cart)
+        return this.cart
     }
 }
