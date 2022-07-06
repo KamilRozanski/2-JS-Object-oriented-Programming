@@ -20,6 +20,17 @@ export class Validator {
             throw new Error("Incoret class insatnce")
         }
     }
+    static isArray(array) {
+        if (!Array.isArray(array)) {
+            throw new Error("Input is not Array")
+        }
+    }
+    static isItemExists = (item, array) => {
+        const result = array.some(el => item.id === el.id)
+        if (!result) {
+            throw new Error("Item not exists")
+        }
+    }
     static checkDiscountAmount = (price, discount) => {
         if (price <= discount) {
             throw new Error("Discount is bigger than price")
@@ -28,6 +39,9 @@ export class Validator {
     static checkDiscountPercentage = (percentage) => {
         if (percentage >= 100) {
             throw new Error("Discount percentage is bigger than 100%")
+        }
+        if (percentage <= 0) {
+            throw new Error("Discount percentage is smaller than 0%")
         }
     }
 }

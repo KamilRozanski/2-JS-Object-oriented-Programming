@@ -6,4 +6,6 @@ export class Utilties {
             currency: 'PLN'
         })
     }
+
+
 }
