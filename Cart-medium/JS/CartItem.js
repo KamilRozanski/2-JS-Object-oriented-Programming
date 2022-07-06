@@ -21,7 +21,7 @@ export class CartItem {
         Validator.isString(category)
         Validator.isNumber(discount)
         Validator.isNumber(price)
-        Validator.priceSmallerThenDiscount(price, discount)
+        Validator.checkDiscountAmount(price, discount)
 
 
         this.name = name
@@ -42,12 +42,12 @@ export class CartItem {
     }
     changePrice = (newPrice) => {
         Validator.isNumber(newPrice)
-        Validator.priceSmallerThenDiscount(this.price, this.discount)
+        Validator.checkDiscountAmount(this.price, this.discount)
         this.price = newPrice
     }
     changeDiscount = (newDiscount) => {
         Validator.isNumber(newDiscount)
-        Validator.priceSmallerThenDiscount(this.price, this.discount)
+        Validator.checkDiscountAmount(this.price, this.discount)
         this.discount = newDiscount
     }
     getProcentageDiscount = () => {

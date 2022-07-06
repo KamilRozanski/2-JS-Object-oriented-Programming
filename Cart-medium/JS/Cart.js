@@ -22,6 +22,7 @@ export class Cart {
         this.cart = []
         this.quantity = 0
         this.id = uuidv4()
+        this.cartTotalAmount = 0
     }
 
     addToCart = (item, quantity) => {
@@ -36,6 +37,13 @@ export class Cart {
         this.cart = this.cart.filter(el => el.id !== item.id)
         this.quantity--
     }
+
+    setPercentageCartDiscount = (value) => {
+        Validator.checkDiscountPercentage(value)
+        const cartTotalAmount = parseInt(this.cartTotalAmount)
+        const priceAfterDiscount = value / 100 * cartTotalAmount
+        this.cartTotalAmount = this.cartTotalAmount - priceAfterDiscount
+    }
     getCartSummary = () => {
         const result = this.cart.reduce((acc, price, index) => {
             price = this.cart[index].price
@@ -43,12 +51,9 @@ export class Cart {
             const itemDiscount = this.cart[index].discount
             return acc += (price - itemDiscount) * itemQuantity
         }, 0)
+        this.cartTotalAmount = result
         return Utilties.localString(result)
     }
-    setDiscoundCode = (code, amountOfDiscount) => {
-
-    }
-
     showCart = () => {
         return this.cart
     }
