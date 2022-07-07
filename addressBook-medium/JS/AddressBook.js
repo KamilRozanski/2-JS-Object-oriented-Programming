@@ -21,49 +21,36 @@ export class AddressBook {
         this.allGroups = []
     }
 
-    addContactToList = (contact) => {
+    addContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        const isDuplicates = Utilties.isContactExists(contact, this.allContacts)
-        if (isDuplicates) {
-            throw new Error("Contact already existis")
-        } else {
-            this.allContacts.push(contact)
-        }
+        this.allContacts.push(contact)
+        Validator.isContactExists(contact, this.allContacts)
     }
 
     addGroup = (group) => {
         Validator.isInstanceOfClass(group, Group)
-        const isDuplicates = Utilties.isContactExists(group, this.allGroups)
-        if (isDuplicates) {
-            throw new Error("Group already existis")
-        } else {
-            this.allGroups.push(group)
-        }
+        this.allGroups.push(group)
+        Validator.isGroupExists(group, this.allGroups)
     }
 
-    removeContactFromList = (contact) => {
+    removeContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        const isContactExists = Utilties.isContactExists(contact, this.allContacts)
-        if (isContactExists) {
-            this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
-        } else {
-            throw new Error("Contact not exists")
-        }
+        Validator.isContactExists(contact, this.allContacts)
+
+        this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
     }
     removeGroup = (group) => {
         Validator.isInstanceOfClass(group, Group)
-        const isGroupExists = Utilties.isContactExists(group, this.allGroups)
-        if (isGroupExists) {
-            this.allGroups = this.allGroups.filter(el => el.id !== group.id)
-        } else {
-            throw new Error("Group not exists")
-        }
+        Validator.isGroupExists(group, this.allGroups)
+
+        this.allGroups = this.allGroups.filter(el => el.id !== group.id)
     }
 
     changeFirstName = (contact, firstName) => {
-        //sprawdzic czy kontakt istnieje
         Validator.isInstanceOfClass(contact, Contact)
+        Validator.isContactExists(contact, this.allContacts)
         Validator.isString(firstName)
+
         contact.changeFirstName(firstName)
     }
 
