@@ -19,6 +19,10 @@ import {
 
 export class Cart {
     constructor(percentageDiscount, discountCode) {
+        Validator.isNumber(percentageDiscount)
+        Validator.checkDiscountPercentage(percentageDiscount)
+        Validator.isString(discountCode)
+
         this.cart = []
         this.quantity = 0
         this.percentageDiscount = percentageDiscount
@@ -53,6 +57,10 @@ export class Cart {
         item.changeQuantity(quantity)
     }
 
+    setDiscountCode = () => {
+        //....
+    }
+
     getCartSummary = () => {
         const totalCartAmount = this.cart.reduce((acc, price, index) => {
             price = this.cart[index].price
@@ -65,7 +73,6 @@ export class Cart {
     }
 
     showCart = () => {
-        console.log(this.quantity)
         return this.cart
     }
 }
