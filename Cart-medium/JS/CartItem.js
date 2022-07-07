@@ -50,6 +50,12 @@ export class CartItem {
         Validator.checkDiscountAmount(this.price, this.discount)
         this.discount = newDiscount
     }
+    changeQuantity = (quantity) => {
+        Validator.isNumber(quantity)
+        Validator.isQuantityBiggerThanZero(quantity)
+
+        this.quantity = quantity
+    }
     getProcentageDiscount = () => {
         return Math.round((this.discount * 100) / this.price)
     }

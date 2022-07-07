@@ -30,23 +30,34 @@ export class Cart {
         Validator.isInstanceOf(item, CartItem)
         Validator.isNumber(quantity)
         Validator.isQuantityBiggerThanZero(quantity)
+
         this.cart.push(item)
         item.quantity = quantity
     }
+
     removeFromCart = (item) => {
-        //sprawdzic jakie ilości danego przedmotu usuwamy
         Validator.isInstanceOf(item, CartItem)
         Validator.isItemExists(item, this.cart)
+
         this.cart = this.cart.filter(el => el.id !== item.id)
-        this.quantity--
+    }
+
+    changeItemQuantity = (item, quantity) => {
+        Validator.isInstanceOf(item, CartItem)
+        Validator.isNumber(quantity)
+        Validator.isQuantityBiggerThanZero(quantity)
+
+        item.changeQuantity(quantity)
     }
 
     setPercentageCartDiscount = (value) => {
         Validator.isNumber(value)
         Validator.checkDiscountPercentage(value)
+
         const totalCartAmount = this.getCartSummary()
         this.percentageDiscount = value / 100 * totalCartAmount
     }
+
     getCartSummary = () => {
         const calculeteTotalAmount = this.cart.reduce((acc, price, index) => {
             price = this.cart[index].price
@@ -56,6 +67,7 @@ export class Cart {
         }, 0)
         return Math.round(this.totalCartAmount = calculeteTotalAmount - this.percentageDiscount)
     }
+
     showCart = () => {
         return this.cart
     }
