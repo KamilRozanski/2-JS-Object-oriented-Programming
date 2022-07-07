@@ -38,10 +38,10 @@ export class Validator {
     }
     static checkDiscountPercentage = (percentage) => {
         if (percentage >= 100) {
-            throw new Error("Discount percentage is bigger than 100%")
+            throw new Error("Discount percentage is bigger or equal 100%")
         }
         if (percentage <= 0) {
-            throw new Error("Discount percentage is smaller than 0%")
+            throw new Error("Discount percentage is smaller or equal 0%")
         }
     }
 }
