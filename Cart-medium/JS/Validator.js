@@ -21,12 +21,20 @@ export class Validator {
             throw new Error("Input is not Array")
         }
     }
-    static isItemExists = (item, array) => {
+    static isItemExistsAdd = (item, array) => {
         const result = array.some(el => item.id === el.id)
-        if (!result) {
-            throw new Error("Item not exists")
+        if (result) {
+            throw new Error("Item already exists")
         }
     }
+    static isItemExistsRemove = (item, array) => {
+        const result = array.some(el => item.id === el.id)
+        if (!result) {
+            throw new Error("Item already exists")
+        }
+    }
+
+
     static checkPrice = (price) => {
         if (price <= 0) {
             throw new Error(`Price must be bigger than "
@@ -36,6 +44,11 @@ export class Validator {
     static checkDiscount = (discount) => {
         if (discount > 100) {
             throw new Error("Discount can not be bigger than 100%")
+        }
+    }
+    static checkQuantity = (quantity) => {
+        if (quantity < 0) {
+            throw new Error("Quantity can not be smaller than 0")
         }
     }
 }
