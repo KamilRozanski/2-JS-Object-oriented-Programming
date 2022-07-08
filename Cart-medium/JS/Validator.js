@@ -31,6 +31,12 @@ export class Validator {
             throw new Error("Item not exists")
         }
     }
+    static checkPrice = (price) => {
+        if (price <= 0) {
+            throw new Error(`Price must be bigger than "
+                0 "`)
+        }
+    }
     static checkDiscountAmount = (price, discount) => {
         if (price <= discount) {
             throw new Error("Discount is bigger than price")

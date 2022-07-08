@@ -16,19 +16,14 @@ import {
 // - zmianę nazwy, ceny lub rabatu
 
 export class CartItem {
-    constructor(name, category, price, discount) {
-        Validator.isString(name)
+    constructor(item, quantity = 1, category, discount) {
         Validator.isString(category)
         Validator.isNumber(discount)
-        Validator.isNumber(price)
-        Validator.checkDiscountAmount(price, discount)
 
-
-        this.name = name
+        this.item = item
         this.category = category
-        this.price = price
         this.discount = discount
-        this.quantity = 0
+        this.quantity = quantity
         this.id = uuidv4()
     }
 
