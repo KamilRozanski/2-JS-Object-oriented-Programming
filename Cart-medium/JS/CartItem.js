@@ -4,6 +4,9 @@ import {
 import {
     Validator
 } from './Validator.js';
+import {
+    Item
+} from "./Item.js";
 
 
 
@@ -12,13 +15,14 @@ import {
 // Ma umożliwiać: 
 // - modyfikować cenę przedmiotu
 // - określać jego rabat procentowy
-// - dodawać produkt do kategorii
+// - dodawać produkt do kategorii ???
 // - zmianę nazwy, ceny lub rabatu
 
 export class CartItem {
     constructor(item, quantity = 1, category, discount) {
         Validator.isString(category)
         Validator.isNumber(discount)
+        Validator.checkDiscount(discount)
 
         this.item = item
         this.category = category
@@ -28,32 +32,29 @@ export class CartItem {
     }
 
     addItemToCategory = (newCategory) => {
-        Validator.isInstanceOf(item, CartItem)
+        Validator.isInstanceOf(item, Item)
+        Validator.isString(newCategory)
         this.category = newCategory
     }
+
     changeName = (newName) => {
         Validator.isString(newName)
-        this.newName = newName
+        this.item.changeName(newName)
     }
+
     changePrice = (newPrice) => {
         Validator.isNumber(newPrice)
-        Validator.checkDiscountAmount(this.price, this.discount)
-        this.price = newPrice
+        this.item.changePrice(newPrice)
     }
-    changeDiscount = (newDiscount) => {
+
+    changeDiscountProcentage = (newDiscount) => {
         Validator.isNumber(newDiscount)
-        Validator.checkDiscountAmount(this.price, this.discount)
+        Validator.checkDiscount(newDiscount)
         this.discount = newDiscount
     }
+
     changeQuantity = (quantity) => {
         Validator.isNumber(quantity)
-        Validator.isQuantityBiggerThanZero(quantity)
-
         this.quantity = quantity
     }
-    getProcentageDiscount = () => {
-        return Math.round((this.discount * 100) / this.price)
-    }
-
-
 }

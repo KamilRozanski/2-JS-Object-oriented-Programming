@@ -1,4 +1,7 @@
 import {
+    Item
+} from "./Item.js";
+import {
     CartItem
 } from "./CartItem.js";
 import {
@@ -32,7 +35,7 @@ export class Cart {
     }
 
     addToCart = (item, quantity) => {
-        Validator.isInstanceOf(item, CartItem)
+        Validator.isInstanceOf(item, Item)
         Validator.isNumber(quantity)
         Validator.isQuantityBiggerThanZero(quantity)
 

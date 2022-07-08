@@ -15,4 +15,14 @@ export class Item {
         this.price = price
         this.id = uuidv4()
     }
+
+    changeName = (newName) => {
+        Validator.isString(newName)
+        this.name = newName
+    }
+    changePrice = (newPrice) => {
+        Validator.isNumber(newPrice)
+        Validator.checkPrice(newPrice)
+        this.price = newPrice
+    }
 }
