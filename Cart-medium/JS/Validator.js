@@ -45,6 +45,9 @@ export class Validator {
         if (discount > 100) {
             throw new Error("Discount can not be bigger than 100%")
         }
+        if (discount < 0) {
+            throw new Error("Discount can not be smaller than 0%")
+        }
     }
     static checkQuantity = (quantity) => {
         if (quantity < 0) {

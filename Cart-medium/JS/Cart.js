@@ -49,9 +49,14 @@ export class Cart {
         Validator.isNumber(quantity)
         item.changeQuantity(quantity)
     }
+    setCartDiscount = (cartDiscount) => {
+        Validator.isNumber(cartDiscount)
+        Validator.checkDiscount(cartDiscount)
+        this.cartDiscount = this.getCartSummary() / 100 * cartDiscount
+    }
 
     setDiscountCode = () => {
-        //....
+        console.log()
     }
 
     getCartSummary = () => {
@@ -61,8 +66,6 @@ export class Cart {
             const itemDiscount = (price / 100) * this.cart[index].discount
             return acc += (price - itemDiscount) * itemQuantity
         }, 0)
-        return totalCartAmount
-        // const cartDiscountAmount = Utilties.changePercentToAmount(this.percentageDiscount, totalCartAmount)
-        // return Math.round(this.totalCartAmount = totalCartAmount - cartDiscountAmount)
+        return totalCartAmount - this.cartDiscount
     }
 }

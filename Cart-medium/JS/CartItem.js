@@ -20,6 +20,7 @@ import {
 
 export class CartItem {
     constructor(item, quantity = 1, category, discount) {
+        Validator.isInstanceOf(item, Item)
         Validator.isString(category)
         Validator.isNumber(discount)
         Validator.checkDiscount(discount)
@@ -31,7 +32,7 @@ export class CartItem {
         this.id = uuidv4()
     }
 
-    addItemToCategory = (newCategory) => {
+    changeCategory = (newCategory) => {
         Validator.isInstanceOf(item, Item)
         Validator.isString(newCategory)
         this.category = newCategory
