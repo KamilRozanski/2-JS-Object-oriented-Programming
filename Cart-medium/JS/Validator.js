@@ -34,7 +34,6 @@ export class Validator {
         }
     }
 
-
     static checkPrice = (price) => {
         if (price <= 0) {
             throw new Error(`Price must be bigger than "

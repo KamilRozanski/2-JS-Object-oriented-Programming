@@ -47,3 +47,5 @@ class Cart {
     // - podliczać wartość koszyka uwzględniajac rabaty
 }
 ```
+Pytania
+1. setPercentageCartDiscount działa tylko wtedy, kiedy wywołam getCartSummary :(
