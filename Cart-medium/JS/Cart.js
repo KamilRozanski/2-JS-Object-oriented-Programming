@@ -48,7 +48,9 @@ export class Cart {
         Validator.isInstanceOf(item, CartItem)
         Validator.isNumber(quantity)
         item.changeQuantity(quantity)
+        quantity !== 0 ? item.changeQuantity(quantity) : this.removeFromCart(item)
     }
+
     setCartDiscount = (cartDiscount) => {
         Validator.isNumber(cartDiscount)
         Validator.checkDiscount(cartDiscount)
@@ -56,7 +58,7 @@ export class Cart {
     }
 
     setDiscountCode = () => {
-        console.log()
+        //...
     }
 
     getCartSummary = () => {

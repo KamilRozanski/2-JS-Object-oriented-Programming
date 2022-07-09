@@ -31,6 +31,6 @@ const cart = new Cart()
 cart.addToCart(itemOne)
 cart.addToCart(itemTwo)
 cart.addToCart(itemThree)
-console.log(cart.setCartDiscount(10))
+
 console.log(cart.getCartSummary())
-// console.log(cart)
+console.log(cart)
