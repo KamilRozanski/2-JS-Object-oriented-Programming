@@ -1,25 +1,34 @@
 import {
     Email
-} from "./Email"
+} from "./Email.js"
 
-
-class EmailBuilder {
-    constructor() {
-        this.mail = {
-            from: "",
-            to: "",
-            title: "",
-            cc: [],
-            bcc: [],
-            html: "",
-        };
+// Stwórz metody które będą zmieniać parametry from, to, title, cc, bcc, html
+export class EmailBuilder {
+    constructor(email) {
+        this.email = email
     }
 
+    changeFrom = (newFrom) => {
+        this.email.from = newFrom
+    }
 
-    setFrom = () => {
-        return this.mail.from
+    changeTo = (newTo) => {
+        this.email.to = newTo
+    }
+
+    changeTo = (newTo) => {
+        this.email.to = newTo
+    }
+
+    changeCC = (newBcc) => {
+        this.email.bcc = newBcc
+    }
+
+    changeTitle = (newTitle) => {
+        this.email.title = newTitle
+    }
+
+    changeHTML = (newHTML) => {
+        this.email.html = newHTML
     }
 }
-
-const mail = new EmailBuilder(new Email("motomc", "sender@sender"))
-console.log(mail)

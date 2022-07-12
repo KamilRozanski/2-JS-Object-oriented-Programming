@@ -13,11 +13,3 @@ export class Email {
         this.html = html
     }
 }
-
-const newEmail = new Email("motomc", "sender@sender", {
-    title: "title",
-    cc: "cc@cc",
-    bcc: "bcc@bbc",
-    html: "Hello"
-})
-console.log(newEmail)
