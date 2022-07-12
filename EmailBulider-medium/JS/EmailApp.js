@@ -7,5 +7,5 @@ import {
 } from "./EmailBulider.js"
 
 const mail = new EmailBuilder(new Email("motomc@", "sender@sender"))
-console.log(mail.changeCC("elo"))
+console.log(mail.changeHTML("elo"))
 console.log(mail)

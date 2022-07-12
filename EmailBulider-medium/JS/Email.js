@@ -1,3 +1,7 @@
+import {
+    Validator
+} from "./Validator.js"
+
 export class Email {
     constructor(from, to, {
         title,
@@ -12,4 +16,5 @@ export class Email {
         this.bcc = [bcc]
         this.html = html
     }
+
 }
