@@ -9,6 +9,8 @@ export class Email {
         bcc,
         html
     } = {}) {
+        Validator.isString(from)
+        Validator.isString(to)
         this.from = from
         this.to = to
         this.title = title
@@ -16,5 +18,4 @@ export class Email {
         this.bcc = [bcc]
         this.html = html
     }
-
 }
