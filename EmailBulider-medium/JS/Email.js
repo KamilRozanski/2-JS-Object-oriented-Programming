@@ -9,8 +9,8 @@ export class Email {
         bcc,
         html
     } = {}) {
-        Validator.isString(from)
-        Validator.isString(to)
+        Validator.checkEmail(from)
+        Validator.checkEmail(to)
         this.from = from
         this.to = to
         this.title = title
