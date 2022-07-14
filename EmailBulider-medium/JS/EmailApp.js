@@ -6,11 +6,8 @@ import {
     EmailBuilder
 } from "./EmailBulider.js"
 
-const mail = new EmailBuilder(new Email("motomc1@gmail.com", "sender@sender", {
-    title: "Kamil",
-    cc: "dominika@o2.pl",
-    bcc: "halina@wp.pl",
-    html: "hello"
-}))
-console.log(mail.bulidEmail())
-// console.log(mail)
+
+const bulidmail = new EmailBuilder("motomc1@gmail.com", "dominika@wp.pl")
+// bulidmail.changeFrom("eljdkoElo@elo.pl")
+bulidmail.setCC("setcc123@wp.pl").setHTML("hello").setTitle("title").bulidEmail()
+console.log(bulidmail)

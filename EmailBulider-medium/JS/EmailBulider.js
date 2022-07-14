@@ -7,14 +7,14 @@ import {
 
 // Stwórz metody które będą zmieniać parametry from, to, title, cc, bcc, html
 export class EmailBuilder {
-    constructor(email) {
-        Validator.isInstanceOf(email, Email)
-        this.email = email
+    constructor(from, to) {
+        this.email = new Email(from, to)
     }
+
 
     changeFrom = (newFrom) => {
         Validator.checkEmail(newFrom)
-        this.email.from = newFrom
+        this.from = newFrom
     }
 
     changeTo = (newTo) => {
@@ -22,24 +22,28 @@ export class EmailBuilder {
         this.email.to = newTo
     }
 
-    changeCC = (newCC) => {
+    setCC = (newCC) => {
         Validator.checkEmail(newCC)
         this.email.cc = newCC
+        return this
     }
 
-    changeBcc = (newBcc) => {
+    setBcc = (newBcc) => {
         Validator.checkEmail(newBcc)
         this.email.bcc = newBcc
+        return this
     }
 
-    changeTitle = (newTitle) => {
+    setTitle = (newTitle) => {
         Validator.isString(newTitle)
         this.email.title = newTitle
+        return this
     }
 
-    changeHTML = (newHTML) => {
+    setHTML = (newHTML) => {
         Validator.isString(newHTML)
         this.email.html = newHTML
+        return this
     }
 
     bulidEmail = () => {
