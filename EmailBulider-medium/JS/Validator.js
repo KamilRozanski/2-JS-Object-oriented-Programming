@@ -15,7 +15,4 @@ export class Validator {
             throw new Error(`Email address has a wrong format! Correct format is 5 to 32 characters`);
         }
     }
-    static requiredValues = (values) => {
-        //....
-    }
 }

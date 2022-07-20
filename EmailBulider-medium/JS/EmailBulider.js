@@ -11,17 +11,6 @@ export class EmailBuilder {
         this.email = new Email(from, to)
     }
 
-
-    changeFrom = (newFrom) => {
-        Validator.checkEmail(newFrom)
-        this.from = newFrom
-    }
-
-    changeTo = (newTo) => {
-        Validator.checkEmail(newTo)
-        this.email.to = newTo
-    }
-
     setCC = (newCC) => {
         Validator.checkEmail(newCC)
         this.email.cc = newCC
