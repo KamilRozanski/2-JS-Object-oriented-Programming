@@ -4,9 +4,7 @@ import {
 import {
     Cart
 } from './Cart.js';
-import {
-    Utilties
-} from "./Utilties.js";
+
 
 
 const s21Ultra = new CartItem("Samsung S21 Ultra", "mobile phones", 5000, 199)
