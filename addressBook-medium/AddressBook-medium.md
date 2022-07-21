@@ -46,3 +46,7 @@ class AddressBook {
 // Ma umożliwiać: szukanie kontaktu po frazie, dodawanie/usuwanie/modyfikacje nowych kontaktów, dodawanie/usuwanie/modyfikacje nowych grup
 }
 ```
+
+
+// Group method addContact  - jak zeobic z if-a ternary operator ?
+//  Group method findContact, showAllGroupContacts - dlaczego nie zdwaca obiekty który znalazł?

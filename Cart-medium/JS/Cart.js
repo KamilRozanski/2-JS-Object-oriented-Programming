@@ -1,4 +1,7 @@
 import {
+    Item
+} from "./Item.js";
+import {
     CartItem
 } from "./CartItem.js";
 import {
@@ -21,35 +24,50 @@ export class Cart {
     constructor() {
         this.cart = []
         this.quantity = 0
+        this.cartDiscount = 0
+        this.discountCode;
+        this.totalCartAmount;
         this.id = uuidv4()
     }
 
-    addToCart = (item, quantity) => {
+    addToCart = (item) => {
         Validator.isInstanceOf(item, CartItem)
-        Validator.isNumber(quantity)
-        Validator.isQuantityBiggerThanZero(quantity)
+        Validator.isItemExistsAdd(item, this.cart)
         this.cart.push(item)
-        item.quantity = quantity
+        this.quantity++
     }
+
     removeFromCart = (item) => {
         Validator.isInstanceOf(item, CartItem)
+        Validator.isItemExistsRemove(item, this.cart)
         this.cart = this.cart.filter(el => el.id !== item.id)
         this.quantity--
     }
+
+    changeItemsQuantity = (item, quantity) => {
+        Validator.isInstanceOf(item, CartItem)
+        Validator.isNumber(quantity)
+        item.changeQuantity(quantity)
+        quantity !== 0 ? item.changeQuantity(quantity) : this.removeFromCart(item)
+    }
+
+    setCartDiscount = (cartDiscount) => {
+        Validator.isNumber(cartDiscount)
+        Validator.checkDiscount(cartDiscount)
+        this.cartDiscount = this.getCartSummary() / 100 * cartDiscount
+    }
+
+    setDiscountCode = () => {
+        //...
+    }
+
     getCartSummary = () => {
-        const result = this.cart.reduce((acc, price, index) => {
-            price = this.cart[index].price
+        const totalCartAmount = this.cart.reduce((acc, price, index) => {
+            price = this.cart[index].item.price
             const itemQuantity = this.cart[index].quantity
-            const itemDiscount = this.cart[index].discount
+            const itemDiscount = (price / 100) * this.cart[index].discount
             return acc += (price - itemDiscount) * itemQuantity
         }, 0)
-        return Utilties.localString(result)
-    }
-    setDiscoundCode = (code, amountOfDiscount) => {
-
-    }
-
-    showCart = () => {
-        return this.cart
+        return totalCartAmount - this.cartDiscount
     }
 }

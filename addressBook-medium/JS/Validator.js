@@ -1,3 +1,7 @@
+import {
+    Contact
+} from "./Contact.js"
+
 export class Validator {
     static isString(value) {
         if (typeof value !== "string") {
@@ -15,9 +19,17 @@ export class Validator {
             throw new Error("Incorrect class instance")
         }
     }
-    static isContactExists(value) {
-        if (value) {
-            throw new Error("Contact already existis")
+
+    static isContactExists = (contact, array) => {
+        const isContactExists = array.some(el => contact.id === el.id)
+        if (!isContactExists) {
+            throw new Error("Contact not existis")
+        }
+    }
+    static isGroupExists = (group, array) => {
+        const isGroupExists = array.some(el => group.id === el.id)
+        if (!isGroupExists) {
+            throw new Error("Group not existis")
         }
     }
     static checkEmail(email) {

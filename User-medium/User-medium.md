@@ -50,7 +50,7 @@ construktor() {
  hasło
  płeć
  adres email
- poziom dostępu = "user" | "admin")
+ poziom dostępu = "user" | "admin"
 }
 
 class App{
@@ -60,3 +60,7 @@ class App{
  wszystkie metody w których admin ingeruje we właściwości innych użytkowników
 }
 ```
+
+
+Pytania
+1. W klasie App.js zmieniamy poziom dostepu dla Usera i Admina, ale tylko w scopi-e class App.js (dokładnie na tablicach w konstruktorze). Zmienne np.Kamil z global scope zostaja nie zmieniona. Czy tak powinno być ???

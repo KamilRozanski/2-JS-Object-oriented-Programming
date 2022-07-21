@@ -1,4 +1,8 @@
 import {
+    Item
+} from './Item.js';
+
+import {
     CartItem
 } from './CartItem.js';
 import {
@@ -7,15 +11,25 @@ import {
 
 
 
-const s21Ultra = new CartItem("Samsung S21 Ultra", "mobile phones", 5000, 199)
-const iPhone13ProMax = new CartItem("iPhone13 Pro Max", "mobile phones", 5500, 99)
-const redmiNote5A = new CartItem("Redmi Note 5A", "mobile phones", 150, 49)
 
-const cart = new Cart
-cart.addToCart(s21Ultra, 1)
-cart.addToCart(iPhone13ProMax, 1)
-cart.addToCart(redmiNote5A, 2)
+const s21Ultra = new Item("Samsung S21 Ultra", 200)
+const iPhone13ProMax = new Item("iPhone13 Pro Max", 200)
+const redmiNote5A = new Item("Redmi Note 5A", 100)
+const vivoX60 = new Item("Vivo X60", 100)
+
+const itemOne = new CartItem(s21Ultra, 1, "mobile Phones", 10)
+const itemTwo = new CartItem(iPhone13ProMax, 1, "mobile Phones", 10)
+const itemThree = new CartItem(redmiNote5A, 1, "mobile Phones", 10)
+const itemFour = new CartItem(vivoX60, 1, "mobile Phones", 10)
+
+const cart = new Cart()
+
+
+cart.addToCart(itemOne)
+cart.addToCart(itemTwo)
+cart.addToCart(itemThree)
+
 console.log(cart.getCartSummary())
-
-
-console.log(cart.showCart())
+cart.setCartDiscount(50)
+console.log(cart.getCartSummary())
+console.log(cart)

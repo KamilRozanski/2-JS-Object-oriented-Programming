@@ -4,6 +4,9 @@ import {
 import {
     Validator
 } from './Validator.js';
+import {
+    Item
+} from "./Item.js";
 
 
 
@@ -12,47 +15,47 @@ import {
 // Ma umożliwiać: 
 // - modyfikować cenę przedmiotu
 // - określać jego rabat procentowy
-// - dodawać produkt do kategorii
+// - dodawać produkt do kategorii ???
 // - zmianę nazwy, ceny lub rabatu
 
 export class CartItem {
-    constructor(name, category, price, discount) {
-        Validator.isString(name)
+    constructor(item, quantity = 1, category, discount) {
+        Validator.isInstanceOf(item, Item)
         Validator.isString(category)
         Validator.isNumber(discount)
-        Validator.isNumber(price)
-        Validator.priceSmallerThenDiscount(price, discount)
+        Validator.checkDiscount(discount)
 
-
-        this.name = name
+        this.item = item
         this.category = category
-        this.price = price
         this.discount = discount
-        this.quantity = 0
+        this.quantity = quantity
         this.id = uuidv4()
     }
 
-    addItemToCategory = (newCategory) => {
-        Validator.isInstanceOf(item, CartItem)
+    changeCategory = (newCategory) => {
+        Validator.isInstanceOf(item, Item)
+        Validator.isString(newCategory)
         this.category = newCategory
     }
+
     changeName = (newName) => {
         Validator.isString(newName)
-        this.newName = newName
+        this.item.changeName(newName)
     }
+
     changePrice = (newPrice) => {
         Validator.isNumber(newPrice)
-        Validator.priceSmallerThenDiscount(this.price, this.discount)
-        this.price = newPrice
+        this.item.changePrice(newPrice)
     }
-    changeDiscount = (newDiscount) => {
+
+    changeDiscountProcentage = (newDiscount) => {
         Validator.isNumber(newDiscount)
-        Validator.priceSmallerThenDiscount(this.price, this.discount)
+        Validator.checkDiscount(newDiscount)
         this.discount = newDiscount
     }
-    getProcentageDiscount = () => {
-        return Math.round((this.discount * 100) / this.price)
+
+    changeQuantity = (quantity) => {
+        Validator.isNumber(quantity)
+        this.quantity = quantity
     }
-
-
 }
