@@ -17,6 +17,7 @@ const contactFour = new Contact("Weronika", "Rozanska", "weronika@mail.com")
 
 const males = new Group("males")
 const females = new Group("females")
+const animals = new Group("females")
 
 // males.addContact(contactOne)
 // males.addContact(contactTwo)
@@ -32,7 +33,7 @@ addressBook.addContact(contactTwo)
 
 addressBook.addGroup(males)
 addressBook.addGroup(females)
-addressBook.changeFirstName(contactFour, "Eryk")
+addressBook.changeEmail(animals, "eloElo123@wp.pl")
 // console.log(addressBook.changeFirstName(contactTwo, "koles"))
 // console.log(addressBook.showAllContacts())
 

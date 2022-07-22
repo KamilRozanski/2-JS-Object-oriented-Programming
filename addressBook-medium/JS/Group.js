@@ -32,7 +32,7 @@ export class Group {
 
     removeContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.canRemoveValue(!Utilties.isExistsBoolien(contact, this.allGroupContacts))
+        Validator.canRemoveValue(Utilties.isExistsBoolien(contact, this.allGroupContacts))
 
         this.allGroupContacts = this.allGroupContacts.filter(el => el.id !== contact.id)
         //sprawdzic czy kontakt intnieje

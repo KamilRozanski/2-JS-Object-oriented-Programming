@@ -20,18 +20,18 @@ export class Validator {
         }
     }
 
-    static canRemoveValue = (boolien) => {
-        if (boolien) {
+    static canRemoveValue(boolien) {
+        if (!boolien) {
             throw new Error("Value does't exists ")
         }
     }
-    static canAddValue = (boolien) => {
+    static canAddValue(boolien) {
         if (boolien) {
             throw new Error("Value already exists")
         }
     }
 
-    static isGroupExists = (group, array) => {
+    static isGroupExists(group, array) {
         const isGroupExists = array.some(el => group.id === el.id)
         if (isGroupExists) {
             throw new Error("Group already existis")
