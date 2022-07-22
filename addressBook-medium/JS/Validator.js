@@ -22,14 +22,14 @@ export class Validator {
 
     static isContactExists = (contact, array) => {
         const isContactExists = array.some(el => contact.id === el.id)
-        if (!isContactExists) {
-            throw new Error("Contact not existis")
+        if (isContactExists) {
+            throw new Error("Contact already exists existis")
         }
     }
     static isGroupExists = (group, array) => {
         const isGroupExists = array.some(el => group.id === el.id)
-        if (!isGroupExists) {
-            throw new Error("Group not existis")
+        if (isGroupExists) {
+            throw new Error("Group already existis")
         }
     }
     static checkEmail(email) {

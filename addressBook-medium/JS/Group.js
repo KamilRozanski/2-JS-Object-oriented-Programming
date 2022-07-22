@@ -24,7 +24,7 @@ export class Group {
 
     addContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.isContactExists(Utilties.isContactExists(contact, this.allGroupContacts))
+        Validator.isContactExists(contact, this.allGroupContacts)
 
         this.allGroupContacts.push(contact)
         // sprwardzic czy nie ma dubla. Error wyniesc do validatora.

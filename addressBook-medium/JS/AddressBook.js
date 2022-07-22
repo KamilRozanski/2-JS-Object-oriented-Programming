@@ -23,14 +23,14 @@ export class AddressBook {
 
     addContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        this.allContacts.push(contact)
         Validator.isContactExists(contact, this.allContacts)
+        this.allContacts.push(contact)
     }
 
     addGroup = (group) => {
         Validator.isInstanceOfClass(group, Group)
-        this.allGroups.push(group)
         Validator.isGroupExists(group, this.allGroups)
+        this.allGroups.push(group)
     }
 
     removeContact = (contact) => {
