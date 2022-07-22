@@ -18,12 +18,22 @@ const contactFour = new Contact("Weronika", "Rozanska", "weronika@mail.com")
 const males = new Group("males")
 const females = new Group("females")
 
+// males.addContact(contactOne)
+// males.addContact(contactTwo)
+// males.removeContact(contactTwo)
+// console.log(males)
+
+
 
 const addressBook = new AddressBook()
 addressBook.addContact(contactOne)
 addressBook.addContact(contactTwo)
+// addressBook.removeContact(contactOne)
+
 addressBook.addGroup(males)
 addressBook.addGroup(females)
-addressBook.addGroup(females)
+addressBook.changeFirstName(contactFour, "Eryk")
 // console.log(addressBook.changeFirstName(contactTwo, "koles"))
 // console.log(addressBook.showAllContacts())
+
+console.log(addressBook)

@@ -23,32 +23,31 @@ export class AddressBook {
 
     addContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.isContactExists(contact, this.allContacts)
+        Validator.canAddValue(Utilties.isExistsBoolien(contact, this.allContacts))
         this.allContacts.push(contact)
     }
 
     addGroup = (group) => {
         Validator.isInstanceOfClass(group, Group)
-        Validator.isGroupExists(group, this.allGroups)
+        Validator.canAddValue(Utilties.isExistsBoolien(group, this.allGroups))
         this.allGroups.push(group)
     }
 
     removeContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.isContactExists(contact, this.allContacts)
+        Validator.canRemoveValue(!Utilties.isExistsBoolien(contact, this.allContacts))
 
         this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
     }
     removeGroup = (group) => {
         Validator.isInstanceOfClass(group, Group)
-        Validator.isGroupExists(group, this.allGroups)
+        Validator.canRemoveValue(!Utilties.isExistsBoolien(group, this.allGroups))
 
         this.allGroups = this.allGroups.filter(el => el.id !== group.id)
     }
 
     changeFirstName = (contact, firstName) => {
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.isContactExists(contact, this.allContacts)
         Validator.isString(firstName)
 
         contact.changeFirstName(firstName)
