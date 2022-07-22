@@ -26,7 +26,7 @@ export class Cart {
         this.quantity = 0
         this.cartDiscount = 0
         this.discountCode;
-        this.totalCartAmount = 0
+        this.totalCartAmount;
         this.id = uuidv4()
     }
 

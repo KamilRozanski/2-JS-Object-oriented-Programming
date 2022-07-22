@@ -7,11 +7,8 @@ import {
 } from './CartItem.js';
 import {
     Cart
-} from './cart.js';
+} from './Cart.js';
 
-// import {
-//     Cart
-// } from './CartItem.js';
 
 
 
@@ -32,5 +29,7 @@ cart.addToCart(itemOne)
 cart.addToCart(itemTwo)
 cart.addToCart(itemThree)
 
+console.log(cart.getCartSummary())
+cart.setCartDiscount(50)
 console.log(cart.getCartSummary())
 console.log(cart)
