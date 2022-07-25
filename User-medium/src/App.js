@@ -22,7 +22,6 @@ class App {
     }
 
     createUser = (firstName, secondName, dateOfBirth, password, gender, emailAddress) => {
-        //dodac oddzielna klasee dla pushowania Usera
         const newUser = new User(firstName, secondName, dateOfBirth, password, gender, emailAddress)
         Utilities.pushToArray(newUser, this.users)
         return newUser
@@ -35,7 +34,6 @@ class App {
     }
 
     changePassword = (admin, user, newPassword) => {
-        //z set-a na change
         Validator.isAdmin(admin)
         Validator.isUser(user)
         Validator.checkPasswordFormat(newPassword)
@@ -49,11 +47,9 @@ class App {
         user.changeEmail(newEmail)
     }
 
-    showAllUsers = () => {
+    showAllUsersAndAdmins = () => {
         this.usersAndAdmins.push(this.admins, this.users)
-        return this.usersAndAdmins.flat()
-        // return [...this.users, ...this.admins];
-        // poprawic nazwe metody
+        return [...this.users, ...this.admins]
     }
 }
 
@@ -66,4 +62,4 @@ const patryk = app.createUser("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "
 const krystian = app.createUser("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com")
 
 const user = new User("kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
-console.log(user)
+console.log(app.showAllUsersAndAdmins())

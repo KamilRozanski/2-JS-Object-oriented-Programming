@@ -1,10 +1,3 @@
-import {
-    User
-} from "./User.js"
-import {
-    Admin
-} from "./Admin.js"
-
 export class Validator {
     static isFirstNameProvided = (firstName) => {
         // poprawić walidację
@@ -12,6 +5,7 @@ export class Validator {
             throw new Error("Provide a first name")
         }
     }
+
     static isSecondNameProvided = (secondName) => {
         if (!secondName) {
             throw new Error("Provide a second name")
@@ -21,6 +15,30 @@ export class Validator {
     static isArray = (array) => {
         if (!Array.isArray(array)) {
             throw new Error("It is not an array")
+        }
+    }
+
+    static isUser = (user) => {
+        if (user.accessLevel !== "user") {
+            throw new Error(`Access level is not a "User"`)
+        }
+    }
+
+    static isAdmin = (admin) => {
+        if (admin.accessLevel !== "admin") {
+            throw new Error(`Access level is not an "Admin"`)
+        }
+    }
+
+    static isString(value) {
+        if (typeof value !== "string") {
+            throw new Error("it is not a string value")
+        }
+    }
+
+    static canPushValueToArray = (value) => {
+        if (!value) {
+            throw new Error(`Can't push type of "null", "undefined, "NaN", "", "false", "0"`)
         }
     }
 
@@ -49,24 +67,6 @@ export class Validator {
         const correctDate = regex.test(value)
         if (!correctDate) {
             throw new Error("Incorrect date format. Correct one is MM/DD/YYYY")
-        }
-    }
-
-    static isUser = (user) => {
-        if (user.accessLevel !== "user") {
-            throw new Error(`Access level is not a "User"`)
-        }
-    }
-
-    static isAdmin = (admin) => {
-        if (admin.accessLevel !== "admin") {
-            throw new Error(`Access level is not an "Admin"`)
-        }
-    }
-
-    static isString(value) {
-        if (typeof value !== "string") {
-            throw new Error("it is not a string value")
         }
     }
 }
