@@ -7,15 +7,13 @@ import {
 
 export class Validator {
     static checkFirstName = (firstName) => {
-        //poprawic nazwy
         if (typeof firstName.length === 0) {
-            throw new Error("Provida a first name")
+            throw new Error("Provide a first name")
         }
     }
-    static checkSecondName = (firstName) => {
-        //poprawic nazwy
-        if (typeof firstName.length === 0) {
-            throw new Error("Provida a second name")
+    static checkSecondName = (secondName) => {
+        if (typeof secondName.length === 0) {
+            throw new Error("Provide a second name")
         }
     }
 
