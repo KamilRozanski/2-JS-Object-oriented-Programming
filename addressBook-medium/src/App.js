@@ -19,15 +19,19 @@ const males = new Group("males")
 const females = new Group("females")
 const animals = new Group("females")
 
-males.addContact(contactOne)
-males.addContact(contactOne)
+// males.addContact(contactOne)
+// males.removeContact(contactFour)
 
 
 
 const addressBook = new AddressBook()
 addressBook.addContact(contactOne)
-addressBook.addContact(contactTwo)
+addressBook.addContact(contactFour)
+// addressBook.removeContact(contactOne)
 
 
 addressBook.addGroup(males)
 addressBook.addGroup(females)
+addressBook.changeGroupName(males, "elo")
+
+console.log(addressBook)

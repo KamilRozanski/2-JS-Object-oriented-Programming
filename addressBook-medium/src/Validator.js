@@ -20,11 +20,6 @@ export class Validator {
         }
     }
 
-    static canRemoveValue(boolean) {
-        if (!boolean) {
-            throw new Error("Value does't exists ")
-        }
-    }
     static isContactExists(contact, array) {
         const result = array.some(el => el.id === contact.id)
         if (result) {
@@ -32,12 +27,35 @@ export class Validator {
         }
     }
 
-    static isGroupExists(group, array) {
-        const isGroupExists = array.some(el => group.id === el.id)
-        if (isGroupExists) {
-            throw new Error("Group already existis")
+    static isChangedConatctExists(contact, array) {
+        const result = array.some(el => el.id === contact.id)
+        if (!result) {
+            throw new Error("Contact not exists")
         }
     }
+
+
+    static isGroupExists(group, array) {
+        const result = array.some(el => el.id === group.id)
+        if (result) {
+            throw new Error("Group already exists")
+        }
+    }
+
+    static isChangedGroupExists(group, array) {
+        const result = array.some(el => el.id === group.id)
+        if (!result) {
+            throw new Error("Group not exists")
+        }
+    }
+
+    static isRemovedValueExists(contact, array) {
+        const result = array.some(el => el.id === contact.id)
+        if (!result) {
+            throw new Error("Value not exists")
+        }
+    }
+
     static checkEmail(email) {
         const regex = /^[a-zA-Z0-9](.{4,32})+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9].{1,3})*$/g
         if (!regex.test(email)) {
