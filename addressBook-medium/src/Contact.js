@@ -17,21 +17,20 @@ export class Contact {
         this.name = name
         this.lastName = lastName
         this.email = email
-        this.dateOfcreate = new Date()
+        this.dateOfCreate = new Date()
         this.dateOfModification = new Date()
         this.id = uuidv4()
     }
 
-    changeFirstName = (name) => {
-        Validator.isString(name)
-        this.name = name
+    changeFirstName = (firstName) => {
+        Validator.isString(firstName)
+        this.name = firstName
         this.dateOfModification = new Date()
     }
 
-    changeLastName = (name) => {
-        //poprawic na last name
-        Validator.isString(name)
-        this.lastName = name
+    changeLastName = (lastName) => {
+        Validator.isString(lastName)
+        this.lastName = lastName
         this.dateOfModification = new Date()
     }
     changeEmail = (email) => {
@@ -42,7 +41,7 @@ export class Contact {
 
 
     getDateOfCreate = () => {
-        return this.dateOfcreate
+        return this.dateOfCreate
     }
 
     getDateOfLastModification = () => {

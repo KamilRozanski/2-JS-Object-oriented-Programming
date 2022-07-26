@@ -24,15 +24,14 @@ export class Group {
 
     addContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.canAddValue(Utilties.isExists(contact, this.allGroupContacts))
-
+        Validator.isContactExists(contact, this.allGroupContacts)
         this.allGroupContacts.push(contact)
         // sprwardzic czy nie ma dubla. Error wyniesc do validatora.
     }
 
     removeContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.canRemoveValue(Utilties.isExistsBoolien(contact, this.allGroupContacts))
+        Validator.isContactExists(contact, this.allGroupContacts)
 
         this.allGroupContacts = this.allGroupContacts.filter(el => el.id !== contact.id)
         //sprawdzic czy kontakt intnieje

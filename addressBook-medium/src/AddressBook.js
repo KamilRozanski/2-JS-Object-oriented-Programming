@@ -23,31 +23,31 @@ export class AddressBook {
 
     addContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.canAddValue(Utilties.isExistsBoolien(contact, this.allContacts))
+        // Validator.canAddValue(Utilties.isExistsBoolien(contact, this.allContacts))
         this.allContacts.push(contact)
     }
 
     addGroup = (group) => {
         Validator.isInstanceOfClass(group, Group)
-        Validator.canAddValue(Utilties.isExistsBoolien(group, this.allGroups))
+        // Validator.canAddValue(Utilties.isExistsBoolien(group, this.allGroups))
         this.allGroups.push(group)
     }
 
     removeContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.canRemoveValue(!Utilties.isExistsBoolien(contact, this.allContacts))
+        // Validator.canRemoveValue(!Utilties.isExistsBoolien(contact, this.allContacts))
 
         this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
     }
     removeGroup = (group) => {
         Validator.isInstanceOfClass(group, Group)
-        Validator.canRemoveValue(Utilties.isExistsBoolien(group, this.allGroups))
+        // Validator.canRemoveValue(Utilties.isExistsBoolien(group, this.allGroups))
 
         this.allGroups = this.allGroups.filter(el => el.id !== group.id)
     }
 
     changeFirstName = (contact, firstName) => {
-        Validator.canRemoveValue(Utilties.isExistsBoolien(contact, this.allContacts))
+        // Validator.canRemoveValue(Utilties.isExistsBoolien(contact, this.allContacts))
         Validator.isInstanceOfClass(contact, Contact)
         Validator.isString(firstName)
 
@@ -57,13 +57,13 @@ export class AddressBook {
     changeLastName = (contact, lastName) => {
 
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.canRemoveValue(Utilties.isExistsBoolien(contact, this.allContacts))
+        // Validator.canRemoveValue(Utilties.isExistsBoolien(contact, this.allContacts))
         Validator.isString(lastName)
         contact.changeLastName(lastName)
     }
 
     changeGroupName = (newName, group) => {
-        Validator.canRemoveValue(Utilties.isExistsBoolien(group, this.allGroups))
+        // Validator.canRemoveValue(Utilties.isExistsBoolien(group, this.allGroups))
         Validator.isInstanceOfClass(group, Group)
         Validator.isString(newName)
         group.changeGroupName = newName
@@ -71,7 +71,7 @@ export class AddressBook {
 
     changeEmail = (contact, email) => {
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.canRemoveValue(Utilties.isExistsBoolien(contact, this.allContacts))
+        // Validator.canRemoveValue(Utilties.isExistsBoolien(contact, this.allContacts))
         Validator.checkEmail(email)
         contact.changeEmail(email)
     }

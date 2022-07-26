@@ -19,7 +19,8 @@ const males = new Group("males")
 const females = new Group("females")
 const animals = new Group("females")
 
-
+males.addContact(contactOne)
+males.addContact(contactOne)
 
 
 

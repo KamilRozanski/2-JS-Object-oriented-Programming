@@ -25,9 +25,10 @@ export class Validator {
             throw new Error("Value does't exists ")
         }
     }
-    static canAddValue(boolien) {
-        if (boolien) {
-            throw new Error("Value already exists")
+    static isContactExists(contact, array) {
+        const result = array.some(el => el.id === contact.id)
+        if (result) {
+            throw new Error("Contact already exists")
         }
     }
 
