@@ -10,7 +10,7 @@ export class Item {
     constructor(name, price) {
         Validator.isString(name)
         Validator.isNumber(price)
-        Validator.checkPrice(price)
+        Validator.isPriceIsBiggerThanZero(price)
         this.name = name
         this.price = price
         this.id = uuidv4()
@@ -22,7 +22,7 @@ export class Item {
     }
     changePrice = (newPrice) => {
         Validator.isNumber(newPrice)
-        Validator.checkPrice(newPrice)
+        Validator.isPriceIsBiggerThanZero(newPrice)
         this.price = newPrice
     }
 }

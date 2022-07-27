@@ -22,6 +22,8 @@ const itemTwo = new CartItem(iPhone13ProMax, 1, "mobile Phones", 10)
 const itemThree = new CartItem(redmiNote5A, 1, "mobile Phones", 10)
 const itemFour = new CartItem(vivoX60, 1, "mobile Phones", 10)
 
+itemOne.changeQuantity(1)
+console.log(itemOne)
 const cart = new Cart()
 
 

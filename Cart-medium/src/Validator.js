@@ -34,7 +34,7 @@ export class Validator {
         }
     }
 
-    static checkPrice = (price) => {
+    static isPriceIsBiggerThanZero = (price) => {
         if (price <= 0) {
             throw new Error(`Price must be bigger than "
                 0 "`)
@@ -48,6 +48,7 @@ export class Validator {
             throw new Error("Discount can not be smaller than 0%")
         }
     }
+
     static checkQuantity = (quantity) => {
         if (quantity < 0) {
             throw new Error("Quantity can not be smaller than 0")

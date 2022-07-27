@@ -56,6 +56,7 @@ export class CartItem {
 
     changeQuantity = (quantity) => {
         Validator.isNumber(quantity)
+        Validator.checkQuantity(quantity)
         this.quantity = quantity
     }
 }
