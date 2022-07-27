@@ -41,7 +41,7 @@ export class Contact {
 
     searchPhrase = (phrase) => {
         Validator.isString(phrase)
-        return [this.firstName, this.lastName, this.email].find(conatctPhrase => phrase === conatctPhrase)
+        return [this.firstName, this.lastName, this.email, this.id].find(conatctPhrase => phrase === conatctPhrase)
     }
 
     getDateOfCreate = () => {
