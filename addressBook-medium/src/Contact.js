@@ -8,13 +8,13 @@ import {
 export class Contact {
     // Ma mieć: Imie, Nazwisko, adres-emial, datę modyfikacji i utworzenia, uuid
     // Ma umożliwiać: aktualizację datę modyfikacji, pozwalac na modyfikację imienia, nazwiska oraz adresu email
-    constructor(name, lastName, email) {
-        Validator.isString(name)
+    constructor(firstName, lastName, email) {
+        Validator.isString(firstName)
         Validator.isString(lastName)
         Validator.isString(email)
         Validator.checkEmail(email)
 
-        this.name = name
+        this.firstName = firstName
         this.lastName = lastName
         this.email = email
         this.dateOfCreate = new Date()
@@ -39,6 +39,10 @@ export class Contact {
         this.dateOfModification = new Date()
     }
 
+    searchPhrase = (phrase) => {
+        Validator.isString(phrase)
+        return [this.firstName, this.lastName, this.email].find(conatctPhrase => phrase === conatctPhrase)
+    }
 
     getDateOfCreate = () => {
         return this.dateOfCreate

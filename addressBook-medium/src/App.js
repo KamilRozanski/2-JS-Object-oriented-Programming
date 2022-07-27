@@ -32,6 +32,6 @@ addressBook.addContact(contactFour)
 
 addressBook.addGroup(males)
 addressBook.addGroup(females)
-addressBook.changeGroupName(males, "elo")
+console.log(addressBook.searchContact("Kamil"))
 
-console.log(addressBook)
+// console.log(addressBook)

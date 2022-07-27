@@ -31,6 +31,7 @@ export class AddressBook {
     addGroup = (group) => {
         Validator.isInstanceOfClass(group, Group)
         Validator.isGroupExists(group, this.allGroups)
+
         this.allGroups.push(group)
     }
 
@@ -40,6 +41,7 @@ export class AddressBook {
 
         this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
     }
+
     removeGroup = (group) => {
         Validator.isInstanceOfClass(group, Group)
         Validator.isRemovedValueExists(group, this.allGroups)
@@ -81,15 +83,9 @@ export class AddressBook {
 
     searchContact = (contactDetails) => {
         Validator.isString(contactDetails)
-        return this.allContacts.filter(obj => {
-            for (const el in obj) {
-                if (typeof obj[el] !== "function" && obj[el] === contactDetails) {
-                    //drugi warunek do poprawy
-                    return obj[el]
-                }
-            }
+        return this.allContacts.filter(contact => {
+            return contact.searchPhrase(contactDetails)
         })
-        // return this.allContacts.filter(contact => contact.searchPhrase(phrase))
     }
 
     showAllContacts = () => {
