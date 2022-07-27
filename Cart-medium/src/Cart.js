@@ -32,14 +32,18 @@ export class Cart {
 
     addToCart = (item) => {
         Validator.isInstanceOf(item, CartItem)
+        //nazewnictwo isItemExistsAdd ??
         Validator.isItemExistsAdd(item, this.cart)
+
         this.cart.push(item)
         this.quantity++
     }
 
     removeFromCart = (item) => {
         Validator.isInstanceOf(item, CartItem)
+        //nazewnictwo isItemExistsAdd ??
         Validator.isItemExistsRemove(item, this.cart)
+
         this.cart = this.cart.filter(el => el.id !== item.id)
         this.quantity--
     }
@@ -47,6 +51,7 @@ export class Cart {
     changeItemsQuantity = (item, quantity) => {
         Validator.isInstanceOf(item, CartItem)
         Validator.isNumber(quantity)
+
         item.changeQuantity(quantity)
         quantity !== 0 ? item.changeQuantity(quantity) : this.removeFromCart(item)
     }
@@ -54,6 +59,7 @@ export class Cart {
     setCartDiscount = (cartDiscount) => {
         Validator.isNumber(cartDiscount)
         Validator.checkDiscount(cartDiscount)
+
         this.cartDiscount = this.getCartSummary() / 100 * cartDiscount
     }
 
