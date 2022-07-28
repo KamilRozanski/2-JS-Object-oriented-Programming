@@ -1,44 +1,33 @@
 export class Validator {
-    static isFirstNameProvided = (firstName) => {
-        // poprawić walidację
-        if (!firstName) {
-            throw new Error("Provide a first name")
-        }
-    }
-
-    static isSecondNameProvided = (secondName) => {
-        if (!secondName) {
-            throw new Error("Provide a second name")
-        }
-    }
-
     static isArray = (array) => {
         if (!Array.isArray(array)) {
-            throw new Error("It is not an array")
+            //walidacja w innej formie
+            throw new Error("Value should be an array")
         }
     }
 
     static isUser = (user) => {
         if (user.accessLevel !== "user") {
-            throw new Error(`Access level is not a "User"`)
+            throw new Error(`Access level should be a "User"`)
         }
     }
 
     static isAdmin = (admin) => {
         if (admin.accessLevel !== "admin") {
-            throw new Error(`Access level is not an "Admin"`)
+            throw new Error(`Access level is should be "Admin"`)
         }
     }
 
-    static isString(value) {
+    static isString = (value) => {
         if (typeof value !== "string") {
-            throw new Error("it is not a string value")
+            throw new Error("Value should be a string")
         }
     }
 
-    static canPushValueToArray = (value) => {
-        if (!value) {
-            throw new Error(`Can't push type of "null", "undefined, "NaN", "", "false", "0"`)
+    static isInstanceOfClass(value, instance) {
+        console.log(value instanceof instance)
+        if (!value instanceof instance) {
+            throw new Error("Incorrect class instance")
         }
     }
 

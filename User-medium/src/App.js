@@ -9,6 +9,7 @@ import {
 import {
     User
 } from "./User.js"
+
 import {
     Admin
 } from "./Admin.js"
@@ -21,16 +22,14 @@ class App {
         this.admins = []
     }
 
-    createUser = (firstName, secondName, dateOfBirth, password, gender, emailAddress) => {
-        const newUser = new User(firstName, secondName, dateOfBirth, password, gender, emailAddress)
-        Utilities.pushToArray(newUser, this.users)
-        return newUser
+    addUser = (user) => {
+        Validator.isInstanceOfClass(user, User)
+        this.users.push(user)
     }
 
-    createAdmin = (firstName, secondName, dateOfBirth, password, gender, emailAddress) => {
-        const newAdmin = new Admin(firstName, secondName, dateOfBirth, password, gender, emailAddress)
-        Utilities.pushToArray(newAdmin, this.admins)
-        return newAdmin
+    addAdmin = (admin) => {
+        // Validator.isInstanceOfClass(admin, Admin)
+        this.admins.push(admin)
     }
 
     changePassword = (admin, user, newPassword) => {
@@ -47,6 +46,14 @@ class App {
         user.changeEmail(newEmail)
     }
 
+    showAllUsers = () => {
+        return this.users
+    }
+
+    showAllAdmins = () => {
+        return this.admins
+    }
+
     showAllUsersAndAdmins = () => {
         this.usersAndAdmins.push(this.admins, this.users)
         return [...this.users, ...this.admins]
@@ -55,11 +62,12 @@ class App {
 
 const app = new App()
 
-const kamil = app.createAdmin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
-const dominika = app.createAdmin("Dominika", "Rozanska", "11/09/1999", "Anglia15!", "female", "dominika!@gmail.com")
+const kamil = new Admin("Kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
+const dominika = new Admin("Dominika", "Rozanska", "11/09/1999", "Anglia15!", "female", "dominika!@gmail.com")
 
-const patryk = app.createUser("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "Patryk1!@gmail.com")
-const krystian = app.createUser("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com")
+const patryk = new User("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "Patryk1!@gmail.com")
+const krystian = new User("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com")
 
-const user = new User("kamil", "Rozanski", "27/02/1989", "Anglia15!", "male", "motomc1M!@gmail.com")
+app.addUser(kamil)
+
 console.log(app.showAllUsersAndAdmins())

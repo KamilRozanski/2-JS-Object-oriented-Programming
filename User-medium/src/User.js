@@ -10,8 +10,6 @@ export class User {
     constructor(firstName, secondName, dateOfBirth, password, gender, emailAddress) {
         Validator.isString(firstName)
         Validator.isString(secondName)
-        Validator.isFirstNameProvided(firstName)
-        Validator.isSecondNameProvided(secondName)
         Validator.checkPasswordFormat(password)
         Validator.checkGender(gender)
         Validator.checkEmailFormat(emailAddress)
