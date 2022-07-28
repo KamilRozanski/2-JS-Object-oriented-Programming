@@ -29,6 +29,7 @@ export class Group {
 
     removeContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
+        //poprawic nazewnictwo validatora
         Validator.isRemovedValueExists(contact, this.allGroupContacts)
 
         this.allGroupContacts = this.allGroupContacts.filter(el => el.id !== contact.id)

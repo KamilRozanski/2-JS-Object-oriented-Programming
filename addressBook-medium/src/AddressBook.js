@@ -68,6 +68,7 @@ export class AddressBook {
         Validator.isInstanceOfClass(group, Group)
         Validator.isString(newName)
 
+        /// !!!!!!!!!!!!!!
         group.changeGroupName = newName
     }
 
@@ -81,9 +82,7 @@ export class AddressBook {
 
     searchContact = (contactDetails) => {
         Validator.isString(contactDetails)
-        return this.allContacts.filter(contact => {
-            return contact.searchPhrase(contactDetails)
-        })
+        return this.allContacts.filter(contact => contact.searchPhrase(contactDetails))
     }
 
     showAllContacts = () => {

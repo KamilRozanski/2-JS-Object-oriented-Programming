@@ -11,7 +11,6 @@ export class Contact {
     constructor(firstName, lastName, email) {
         Validator.isString(firstName)
         Validator.isString(lastName)
-        Validator.isString(email)
         Validator.checkEmail(email)
 
         this.firstName = firstName
@@ -41,6 +40,7 @@ export class Contact {
 
     searchPhrase = (phrase) => {
         Validator.isString(phrase)
+        // Object.values(this)
         return [this.firstName, this.lastName, this.email, this.id].find(conatctPhrase => phrase === conatctPhrase)
     }
 
