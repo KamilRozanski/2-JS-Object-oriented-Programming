@@ -21,6 +21,13 @@ export class Validator {
         }
     }
 
+    static isStringHasAtLeastTwoLetters(string) {
+        const regex = /^[a-z](.{1,})/gi
+        if (!regex.test(string)) {
+            throw Error("First name and last name must have, at least two letters. No numbers or special characters")
+        }
+    }
+
     static isContactExists(contact, array) {
         const result = array.some(el => el.id === contact.id)
         if (result) {
