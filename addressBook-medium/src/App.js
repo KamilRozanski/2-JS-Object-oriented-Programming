@@ -25,4 +25,4 @@ addressBook.addContact(contactFour)
 
 addressBook.addGroup(males)
 addressBook.addGroup(females)
-console.log(addressBook.searchContact("Kamil"))
+console.log(addressBook.searchContact("Kam"))

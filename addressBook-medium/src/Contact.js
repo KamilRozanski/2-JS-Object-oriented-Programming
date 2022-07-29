@@ -40,8 +40,10 @@ export class Contact {
 
     searchPhrase = (phrase) => {
         Validator.isString(phrase)
-        // Object.values(this)
-        return [this.firstName, this.lastName, this.email, this.id].find(conatctPhrase => phrase === conatctPhrase)
+        const regex = /Kamil/g
+        console.log(regex,phrase)
+        console.log(regex.test(phrase))
+        return Object.values(this).find(conatctPhrase => phrase === conatctPhrase)
     }
 
     getDateOfCreate = () => {

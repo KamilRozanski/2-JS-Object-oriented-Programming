@@ -6,12 +6,12 @@ export class Validator {
     static isString(value) {
         if (typeof value !== "string") {
             //poprawic komunikaty errorow
-            throw new Error("It is not a string value")
+            throw new Error("It should be a string value")
         }
     }
     static isArray(array) {
         if (!Array.isArray(array)) {
-            throw new Error("Input is not Array")
+            throw new Error("Input should be an Array")
         }
     }
 
