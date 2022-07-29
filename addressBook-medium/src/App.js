@@ -10,8 +10,8 @@ import {
 
 
 
-const contactOne = new Contact("Kamil", "Róański", "kamil@wp.pl")
-const contactTwo = new Contact("Patryk", "Róański", "patryk@mail.com")
+const contactOne = new Contact("Kamil", "Rózański", "kamil@wp.pl")
+const contactTwo = new Contact("Patryk", "Rózański", "patryk@mail.com")
 const contactThree = new Contact("Dominika", "Rozanska", "dominika@mail.com")
 const contactFour = new Contact("Weronika", "Rozanska", "weronika@mail.com")
 
@@ -21,9 +21,11 @@ const animals = new Group("females")
 
 const addressBook = new AddressBook()
 addressBook.addContact(contactOne)
+addressBook.addContact(contactTwo)
 addressBook.addContact(contactFour)
 
 addressBook.addGroup(males)
 addressBook.addGroup(females)
-console.log(contactOne.searchPhrase("Kamil"))
-console.log(contactOne)
+// console.log(addressBook.searchContact("Rozanski"))
+// console.log(contactOne.searchPhrase("am"))
+// console.log(contactOne)
