@@ -1,7 +1,7 @@
 export class Validator {
     static isArray = (array) => {
         if (!Array.isArray(array)) {
-            //walidacja w innej formie
+            //Poprawic komunikaty walidatora
             throw new Error("Value should be an array")
         }
     }
@@ -14,20 +14,13 @@ export class Validator {
 
     static isAdmin = (admin) => {
         if (admin.accessLevel !== "admin") {
-            throw new Error(`Access level is should be "Admin"`)
+            throw new Error(`Access level is should be an "Admin"`)
         }
     }
 
     static isString = (value) => {
         if (typeof value !== "string") {
             throw new Error("Value should be a string")
-        }
-    }
-
-    static isInstanceOfClass(value, instance) {
-        console.log(value instanceof instance)
-        if (!value instanceof instance) {
-            throw new Error("Incorrect class instance")
         }
     }
 

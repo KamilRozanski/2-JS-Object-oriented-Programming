@@ -67,7 +67,7 @@ const dominika = new Admin("Dominika", "Rozanska", "11/09/1999", "Anglia15!", "f
 
 const patryk = new User("Patryk", "Rozanski", "27/02/1989", "Anglia15!", "male", "Patryk1!@gmail.com")
 const krystian = new User("Krystian", "Rozanski", "27/02/1989", "Anglia15!", "male", "jajoJAJO#@gmail.com")
-
+app.addAdmin(kamil)
 app.addUser(patryk)
 
-console.log(app.showAllUsersAndAdmins())
+console.log(app.showAllAdmins())
