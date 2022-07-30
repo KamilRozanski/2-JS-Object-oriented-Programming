@@ -24,7 +24,7 @@ export class Validator {
     static isStrinHasRequiredCharacters(string) {
         const regex = /^[a-z](.{1,})/gi
         if (!regex.test(string)) {
-            throw Error("First name and last name must have, at least two letters. No numbers or special characters")
+            throw Error("The first name and the last name must have, at least two letters. No numbers or special characters")
         }
     }
 
@@ -35,32 +35,38 @@ export class Validator {
         }
     }
 
-    static isChangedConatctExists(contact, array) {
+    static throwErrorIfChangedContatNotExists(contact, array) {
         const result = array.some(el => el.id === contact.id)
         if (!result) {
             throw new Error("Contact not exists")
         }
     }
+    static throwErrorIfChangedEmailNotExists(contact, array) {
+        const result = array.some(el => el.id === contact.id)
+        if (!result) {
+            throw new Error("Email not exists")
+        }
+    }
 
 
-    static isGroupExists(group, array) {
+    static throwErrorIfGroupExists(group, array) {
         const result = array.some(el => el.id === group.id)
         if (result) {
             throw new Error("Group already exists")
         }
     }
 
-    static isChangedGroupExists(group, array) {
+    static throwErrorIfGroupNotExists(group, array) {
         const result = array.some(el => el.id === group.id)
         if (!result) {
             throw new Error("Group not exists")
         }
     }
 
-    static isRemovedValueExists(contact, array) {
+    static throwErrorIfContactNotExists(contact, array) {
         const result = array.some(el => el.id === contact.id)
         if (!result) {
-            throw new Error("Value not exists")
+            throw new Error("Contact not exists")
         }
     }
 

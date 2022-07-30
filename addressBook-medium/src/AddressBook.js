@@ -28,14 +28,14 @@ export class AddressBook {
 
     addGroup = (group) => {
         Validator.isInstanceOfClass(group, Group)
-        Validator.isGroupExists(group, this.allGroups)
+        Validator.throwErrorIfGroupExists(group, this.allGroups)
 
         this.allGroups.push(group)
     }
 
     removeContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.isRemovedValueExists(contact, this.allContacts)
+        Validator.throwErrorIfContactNotExists(contact, this.allContacts)
 
         this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
     }
@@ -48,17 +48,15 @@ export class AddressBook {
     }
 
     changeFirstName = (contact, firstName) => {
-        Validator.isChangedConatctExists(contact, this.allContacts)
+        Validator.throwErrorIfChangedContatNotExists(contact, this.allContacts)
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.isString(firstName)
 
         contact.changeFirstName(firstName)
     }
 
     changeLastName = (contact, lastName) => {
-        Validator.isChangedConatctExists(contact, this.allContacts)
+        Validator.throwErrorIfChangedContatNotExists(contact, this.allContacts)
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.isString(lastName)
 
         contact.changeLastName(lastName)
     }
@@ -66,17 +64,14 @@ export class AddressBook {
     changeGroupName = (group, newName) => {
         Validator.isChangedGroupExists(group, this.allGroups)
         Validator.isInstanceOfClass(group, Group)
-        Validator.isString(newName)
 
-        /// !!!!!!!!!!!!!!
-        group.changeGroupName = newName
+        group.changeGroupName(newName)
     }
 
     changeEmail = (contact, email) => {
-        Validator.isChangedConatctExists(contact, this.allContacts)
+        Validator.throwErrorIfChangedEmailNotExists(contact, this.allContacts)
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.checkEmail(email)
-
+        //robic walidacje na email? I tak jest ona wykonywana w contact.changeEmail
         contact.changeEmail(email)
     }
 

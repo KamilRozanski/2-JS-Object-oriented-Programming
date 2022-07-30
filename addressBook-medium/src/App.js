@@ -26,6 +26,6 @@ addressBook.addContact(contactFour)
 
 addressBook.addGroup(males)
 addressBook.addGroup(females)
-// console.log(addressBook.searchContact("Rozanski"))
+console.log(addressBook.changeEmail(contactOne, 235))
 // console.log(contactOne.searchPhrase("am"))
-// console.log(contactOne)
+console.log(contactOne)
