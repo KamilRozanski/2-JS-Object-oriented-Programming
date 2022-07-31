@@ -42,36 +42,36 @@ export class AddressBook {
 
     removeGroup = (group) => {
         Validator.isInstanceOfClass(group, Group)
-        Validator.isRemovedValueExists(group, this.allGroups)
+        Validator.throwErrorIfGroupNotExists(group, this.allGroups)
 
         this.allGroups = this.allGroups.filter(el => el.id !== group.id)
     }
 
     changeFirstName = (contact, firstName) => {
-        Validator.throwErrorIfChangedContatNotExists(contact, this.allContacts)
         Validator.isInstanceOfClass(contact, Contact)
-
+        Validator.throwErrorIfChangedContatNotExists(contact, this.allContacts)
+        //robic walidacje na first? I tak jest ona wykonywana w contact.changeFirstName()
         contact.changeFirstName(firstName)
     }
 
     changeLastName = (contact, lastName) => {
-        Validator.throwErrorIfChangedContatNotExists(contact, this.allContacts)
         Validator.isInstanceOfClass(contact, Contact)
+        Validator.throwErrorIfChangedContatNotExists(contact, this.allContacts)
 
         contact.changeLastName(lastName)
     }
 
     changeGroupName = (group, newName) => {
-        Validator.isChangedGroupExists(group, this.allGroups)
         Validator.isInstanceOfClass(group, Group)
+        Validator.isChangedGroupExists(group, this.allGroups)
 
         group.changeGroupName(newName)
     }
 
     changeEmail = (contact, email) => {
-        Validator.throwErrorIfChangedEmailNotExists(contact, this.allContacts)
         Validator.isInstanceOfClass(contact, Contact)
-        //robic walidacje na email? I tak jest ona wykonywana w contact.changeEmail
+        Validator.throwErrorIfChangedEmailNotExists(contact, this.allContacts)
+
         contact.changeEmail(email)
     }
 
