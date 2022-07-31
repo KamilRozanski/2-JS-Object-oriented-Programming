@@ -49,14 +49,14 @@ export class AddressBook {
 
     changeFirstName = (contact, firstName) => {
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.throwErrorIfChangedContatNotExists(contact, this.allContacts)
+        Validator.throwErrorIfContactNotExists(contact, this.allContacts)
         //robic walidacje na first? I tak jest ona wykonywana w contact.changeFirstName()
         contact.changeFirstName(firstName)
     }
 
     changeLastName = (contact, lastName) => {
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.throwErrorIfChangedContatNotExists(contact, this.allContacts)
+        Validator.throwErrorIfContactNotExists(contact, this.allContacts)
 
         contact.changeLastName(lastName)
     }

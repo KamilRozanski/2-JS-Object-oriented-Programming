@@ -58,12 +58,6 @@ export class Validator {
         }
     }
 
-    static throwErrorIfContactNotExists(contact, array) {
-        const result = array.some(el => el.id === contact.id)
-        if (!result) {
-            throw new Error("Contact not exists")
-        }
-    }
 
     static checkEmailFormat(email) {
         const regex = /^[a-zA-Z0-9](.{4,32})+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9].{1,3})*$/g
