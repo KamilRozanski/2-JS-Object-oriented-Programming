@@ -26,11 +26,12 @@ export class Cart {
         this.quantity = 0
         this.cartDiscount = 0
         this.discountCode;
-        this.totalCartAmount;
+        this.totalCartAmount = 0;
         this.id = uuidv4()
     }
 
     addToCart = (item) => {
+        //quantity ti oiorawy
         Validator.isInstanceOf(item, CartItem)
         //nazewnictwo isItemExistsAdd ??
         Validator.isItemExistsAdd(item, this.cart)
@@ -63,9 +64,10 @@ export class Cart {
         this.cartDiscount = this.getCartSummary() / 100 * cartDiscount
     }
 
-
     getCartSummary = () => {
+        //do poprawy
         const totalCartAmount = this.cart.reduce((acc, price, index) => {
+            // const {price} = item;
             price = this.cart[index].item.price
             const itemQuantity = this.cart[index].quantity
             const itemDiscount = (price / 100) * this.cart[index].discount

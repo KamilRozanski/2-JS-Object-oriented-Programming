@@ -23,7 +23,7 @@ export class CartItem {
         Validator.isInstanceOf(item, Item)
         Validator.isString(category)
         Validator.isNumber(discount)
-        Validator.checkDiscount(discount)
+        Validator.checkDiscountValue(discount)
 
         this.item = item
         this.category = category
@@ -36,16 +36,6 @@ export class CartItem {
         Validator.isInstanceOf(item, Item)
         Validator.isString(newCategory)
         this.category = newCategory
-    }
-
-    changeName = (newName) => {
-        Validator.isString(newName)
-        this.item.changeName(newName)
-    }
-
-    changePrice = (newPrice) => {
-        Validator.isNumber(newPrice)
-        this.item.changePrice(newPrice)
     }
 
     changeDiscountProcentage = (newDiscount) => {

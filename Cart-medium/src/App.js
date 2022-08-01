@@ -9,9 +9,6 @@ import {
     Cart
 } from './Cart.js';
 
-
-
-
 const s21Ultra = new Item("Samsung S21 Ultra", 200)
 const iPhone13ProMax = new Item("iPhone13 Pro Max", 200)
 const redmiNote5A = new Item("Redmi Note 5A", 100)
@@ -23,13 +20,13 @@ const itemThree = new CartItem(redmiNote5A, 1, "mobile Phones", 10)
 const itemFour = new CartItem(vivoX60, 1, "mobile Phones", 10)
 
 
-console.log(itemOne)
+
 const cart = new Cart()
-
-
-cart.addToCart(itemOne)
-cart.addToCart(itemTwo)
-cart.addToCart(itemThree)
-cart.changeItemsQuantity(itemOne, -1)
-console.log(cart.getCartSummary())
-console.log(cart)
+console.log(s21Ultra.getPrice())
+// console.log(s21Ultra)
+// cart.addToCart(itemOne)
+// cart.addToCart(itemTwo)
+// cart.addToCart(itemThree)
+// cart.changeItemsQuantity(itemOne, -1)
+// console.log(cart.getCartSummary())
+// console.log(cart)
