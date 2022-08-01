@@ -25,7 +25,7 @@ export class Cart {
         this.cart = []
         this.quantity = 0
         this.cartDiscount = 0
-        this.discountCode;
+        this.discountCode = ""
         this.totalCartAmount = 0;
         this.id = uuidv4()
     }
@@ -33,7 +33,6 @@ export class Cart {
     addToCart = (item) => {
         //quantity ti oiorawy
         Validator.isInstanceOf(item, CartItem)
-        //nazewnictwo isItemExistsAdd ??
         Validator.isItemExistsAdd(item, this.cart)
 
         this.cart.push(item)

@@ -57,9 +57,9 @@ export class Validator {
         }
     }
 
-    static checkQuantity = (quantity) => {
+    static isQuantitySmallerThanZero = (quantity) => {
         if (quantity < 0) {
-            throw new Error("Quantity can not be smaller than 0")
+            throw new Error("Quantity must be gigger than 0")
         }
     }
 }
