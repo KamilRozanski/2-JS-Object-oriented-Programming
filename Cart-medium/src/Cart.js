@@ -25,7 +25,6 @@ export class Cart {
         this.cart = []
         this.quantity = 0
         this.discountPercent = 0
-        this.discountAmount = 0
         this.discountCode = ""
         this.totalCartAmount = 0;
         this.id = uuidv4()
@@ -63,7 +62,7 @@ export class Cart {
         // this.cartDiscount = this.getCartSummary() / 100 * cartDiscount
     }
     getDiscountAmount = () => {
-        this.discountAmount = this.getAmountSummary() * this.discountPercent / 100
+        return this.getAmountSummary() * this.discountPercent / 100
     }
 
     getDiscountPercent = () => {
