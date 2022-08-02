@@ -10,7 +10,7 @@ import {
 } from './Cart.js';
 
 const s21Ultra = new Item("Samsung S21 Ultra", 200)
-const iPhone13ProMax = new Item("iPhone13 Pro Max", 200)
+const iPhone13ProMax = new Item("iPhone13 Pro Max", 220)
 const redmiNote5A = new Item("Redmi Note 5A", 100)
 const vivoX60 = new Item("Vivo X60", 100)
 
@@ -23,6 +23,8 @@ const itemFour = new CartItem(vivoX60, 1, "mobile Phones", 10)
 
 
 const cart = new Cart()
+// cart.setCartDiscountPercent(50)
 cart.addItem(itemOne)
 cart.addItem(itemTwo)
-console.log(cart.getCartSummary())
+// console.log(cart.getDiscountAmount())
+// console.log(cart.getAmountSummary())

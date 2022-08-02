@@ -24,7 +24,8 @@ export class Cart {
     constructor() {
         this.cart = []
         this.quantity = 0
-        this.cartDiscount = 0
+        this.discountPercent = 0
+        this.discountAmount = 0
         this.discountCode = ""
         this.totalCartAmount = 0;
         this.id = uuidv4()
@@ -54,22 +55,29 @@ export class Cart {
         quantity !== 0 ? item.changeQuantity(quantity) : this.removeItem(item)
     }
 
-    setCartDiscount = (cartDiscount) => {
+    setCartDiscountPercent = (cartDiscount) => {
         Validator.isNumber(cartDiscount)
         Validator.checkDiscountValue(cartDiscount)
 
-        this.cartDiscount = cartDiscount
+        this.discountPercent = cartDiscount
         // this.cartDiscount = this.getCartSummary() / 100 * cartDiscount
     }
-
-    getCartSummary = () => {
-
-        this.cart.forEach(cartItem => {
-
-            console.log(cartItem.getAmountSummary())
-        })
-
+    getDiscountAmount = () => {
+        this.discountAmount = this.getAmountSummary() * this.discountPercent / 100
     }
+
+    getDiscountPercent = () => {
+        return this.discountPercent
+    }
+
+    getAmountSummary = () => {
+        const total = this.cart.reduce((acc, cartItem) => {
+            return (acc + cartItem.getAmountSummary())
+        }, 0)
+        return total
+    }
+
+
 
 
 }
