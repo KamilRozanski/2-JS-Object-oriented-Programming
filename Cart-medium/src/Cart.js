@@ -30,48 +30,64 @@ export class Cart {
         this.id = uuidv4()
     }
 
-    addToCart = (item) => {
-        //quantity ti oiorawy
+    addItem = (item) => {
         Validator.isInstanceOf(item, CartItem)
-        Validator.isItemExistsAdd(item, this.cart)
+        Validator.throwErrorIfItemExists(item, this.cart)
 
         this.cart.push(item)
         this.quantity++
     }
 
-    removeFromCart = (item) => {
+    removeItem = (item) => {
         Validator.isInstanceOf(item, CartItem)
-        //nazewnictwo isItemExistsAdd ??
-        Validator.isItemExistsRemove(item, this.cart)
+        Validator.throwErrorIfItemNotExists(item, this.cart)
 
         this.cart = this.cart.filter(el => el.id !== item.id)
         this.quantity--
     }
 
-    changeItemsQuantity = (item, quantity) => {
+    changeItemQuantity = (item, quantity) => {
         Validator.isInstanceOf(item, CartItem)
         Validator.isNumber(quantity)
+        Validator.isQuantitySmallerThanZero(quantity)
 
-        item.changeQuantity(quantity)
-        quantity !== 0 ? item.changeQuantity(quantity) : this.removeFromCart(item)
+        quantity !== 0 ? item.changeQuantity(quantity) : this.removeItem(item)
     }
 
     setCartDiscount = (cartDiscount) => {
         Validator.isNumber(cartDiscount)
-        Validator.checkDiscount(cartDiscount)
+        Validator.checkDiscountValue(cartDiscount)
 
-        this.cartDiscount = this.getCartSummary() / 100 * cartDiscount
+        this.cartDiscount = cartDiscount
+        // this.cartDiscount = this.getCartSummary() / 100 * cartDiscount
     }
 
     getCartSummary = () => {
-        //do poprawy
-        const totalCartAmount = this.cart.reduce((acc, price, index) => {
-            // const {price} = item;
-            price = this.cart[index].item.price
-            const itemQuantity = this.cart[index].quantity
-            const itemDiscount = (price / 100) * this.cart[index].discount
-            return acc += (price - itemDiscount) * itemQuantity
-        }, 0)
-        return totalCartAmount - this.cartDiscount
+
+        this.cart.forEach(cartItem => {
+
+            console.log(cartItem.getAmountSummary())
+        })
+
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+// //do poprawy
+// const totalCartAmount = this.cart.reduce((acc, price, index) => {
+//     // const {price} = item;
+//     price = this.cart[index].item.price
+//     const itemQuantity = this.cart[index].quantity
+//     const itemDiscount = (price / 100) * this.cart[index].discount
+//     return acc += (price - itemDiscount) * itemQuantity
+// }, 0)
+// return totalCartAmount - this.cartDiscount

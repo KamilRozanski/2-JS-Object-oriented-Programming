@@ -30,17 +30,17 @@ export class Validator {
         }
     }
 
-    static isItemExistsAdd = (item, array) => {
+    static throwErrorIfItemExists = (item, array) => {
         const result = array.some(el => item.id === el.id)
         if (result) {
             throw new Error("Item already exists")
         }
     }
 
-    static isItemExistsRemove = (item, array) => {
+    static throwErrorIfItemNotExists = (item, array) => {
         const result = array.some(el => item.id === el.id)
         if (!result) {
-            throw new Error("Item already exists")
+            throw new Error("Item not exists")
         }
     }
 
