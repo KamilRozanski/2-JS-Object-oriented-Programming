@@ -40,7 +40,7 @@ export class Contact {
 
     searchPhrase = (phrase) => {
         Validator.isString(phrase)
-        const regex = /Kamil/g
+        const regex = /w/g
         console.log(regex,phrase)
         console.log(regex.test(phrase))
         return Object.values(this).find(conatctPhrase => phrase === conatctPhrase)
