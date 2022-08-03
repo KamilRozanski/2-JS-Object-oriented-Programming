@@ -70,17 +70,12 @@ export class Cart {
     }
 
     getAmountSummary = () => {
-        let summaryResult = 0
         this.totalCartAmount = this.cart.reduce((acc, cartItem) => {
             return (acc + cartItem.getAmountSummary())
         }, 0)
-         summaryResult = this.totalCartAmount - this.getDiscountAmount()
-         return Math.round(summaryResult)
+        this.totalCartAmount = this.totalCartAmount - this.getDiscountAmount()
+         return Math.round(this.totalCartAmount)
     }
-
-
-
-
 }
 
 
