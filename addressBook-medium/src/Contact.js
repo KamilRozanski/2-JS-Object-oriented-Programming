@@ -9,9 +9,9 @@ export class Contact {
     // Ma mieć: Imie, Nazwisko, adres-emial, datę modyfikacji i utworzenia, uuid
     // Ma umożliwiać: aktualizację datę modyfikacji, pozwalac na modyfikację imienia, nazwiska oraz adresu email
     constructor(firstName, lastName, email) {
-        Validator.isString(firstName)
-        Validator.isString(lastName)
-        Validator.checkEmail(email)
+        Validator.isStringHasRequiredCharacters(firstName)
+        Validator.isStringHasRequiredCharacters(lastName)
+        Validator.checkEmailFormat(email)
 
         this.firstName = firstName
         this.lastName = lastName
@@ -22,28 +22,35 @@ export class Contact {
     }
 
     changeFirstName = (firstName) => {
-        Validator.isString(firstName)
-        this.name = firstName
+        Validator.isStringHasRequiredCharacters(firstName)
+        this.firstName = firstName
         this.dateOfModification = new Date()
     }
 
     changeLastName = (lastName) => {
-        Validator.isString(lastName)
+        Validator.isStringHasRequiredCharacters(lastName)
         this.lastName = lastName
         this.dateOfModification = new Date()
     }
     changeEmail = (email) => {
-        Validator.checkEmail(email)
+        Validator.checkEmailFormat(email)
         this.email = email
         this.dateOfModification = new Date()
     }
 
     searchPhrase = (phrase) => {
         Validator.isString(phrase)
+<<<<<<< HEAD
         const regex = /w/g
         console.log(regex,phrase)
         console.log(regex.test(phrase))
         return Object.values(this).find(conatctPhrase => phrase === conatctPhrase)
+=======
+        const regex = new RegExp(phrase, "gi");
+        if (regex.test(Object.values(this))) {
+            return this
+        }
+>>>>>>> e73b93369db6727a524e6bd337a2aa933e3703fd
     }
 
     getDateOfCreate = () => {

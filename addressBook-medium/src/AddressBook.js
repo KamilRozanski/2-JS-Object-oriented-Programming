@@ -28,54 +28,49 @@ export class AddressBook {
 
     addGroup = (group) => {
         Validator.isInstanceOfClass(group, Group)
-        Validator.isGroupExists(group, this.allGroups)
+        Validator.throwErrorIfGroupExists(group, this.allGroups)
 
         this.allGroups.push(group)
     }
 
     removeContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.isRemovedValueExists(contact, this.allContacts)
+        Validator.throwErrorIfContactNotExists(contact, this.allContacts)
 
         this.allContacts = this.allContacts.filter(el => el.id !== contact.id)
     }
 
     removeGroup = (group) => {
         Validator.isInstanceOfClass(group, Group)
-        Validator.isRemovedValueExists(group, this.allGroups)
+        Validator.throwErrorIfGroupNotExists(group, this.allGroups)
 
         this.allGroups = this.allGroups.filter(el => el.id !== group.id)
     }
 
     changeFirstName = (contact, firstName) => {
-        Validator.isChangedConatctExists(contact, this.allContacts)
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.isString(firstName)
-
+        Validator.throwErrorIfContactNotExists(contact, this.allContacts)
+        //robic walidacje na first? I tak jest ona wykonywana w contact.changeFirstName()
         contact.changeFirstName(firstName)
     }
 
     changeLastName = (contact, lastName) => {
-        Validator.isChangedConatctExists(contact, this.allContacts)
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.isString(lastName)
+        Validator.throwErrorIfContactNotExists(contact, this.allContacts)
 
         contact.changeLastName(lastName)
     }
 
     changeGroupName = (group, newName) => {
-        Validator.isChangedGroupExists(group, this.allGroups)
         Validator.isInstanceOfClass(group, Group)
-        Validator.isString(newName)
+        Validator.isChangedGroupExists(group, this.allGroups)
 
-        /// !!!!!!!!!!!!!!
-        group.changeGroupName = newName
+        group.changeGroupName(newName)
     }
 
     changeEmail = (contact, email) => {
-        Validator.isChangedConatctExists(contact, this.allContacts)
         Validator.isInstanceOfClass(contact, Contact)
-        Validator.checkEmail(email)
+        Validator.throwErrorIfChangedEmailNotExists(contact, this.allContacts)
 
         contact.changeEmail(email)
     }

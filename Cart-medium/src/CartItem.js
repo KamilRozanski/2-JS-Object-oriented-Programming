@@ -19,15 +19,15 @@ import {
 // - zmianę nazwy, ceny lub rabatu
 
 export class CartItem {
-    constructor(item, quantity = 1, category, discount) {
+    constructor(item, quantity = 1, category, discountPercent) {
         Validator.isInstanceOf(item, Item)
         Validator.isString(category)
-        Validator.isNumber(discount)
-        Validator.checkDiscount(discount)
+        Validator.isNumber(discountPercent)
+        Validator.checkDiscountValue(discountPercent)
 
         this.item = item
         this.category = category
-        this.discount = discount
+        this.discountPercent = discountPercent
         this.quantity = quantity
         this.id = uuidv4()
     }
@@ -38,25 +38,33 @@ export class CartItem {
         this.category = newCategory
     }
 
-    changeName = (newName) => {
-        Validator.isString(newName)
-        this.item.changeName(newName)
-    }
-
-    changePrice = (newPrice) => {
-        Validator.isNumber(newPrice)
-        this.item.changePrice(newPrice)
-    }
-
-    changeDiscountProcentage = (newDiscount) => {
+    changeDiscountPercente = (newDiscount) => {
         Validator.isNumber(newDiscount)
-        Validator.checkDiscount(newDiscount)
-        this.discount = newDiscount
+        Validator.checkDiscountValue(newDiscount)
+        this.discountPercent = discount
     }
+
 
     changeQuantity = (quantity) => {
         Validator.isNumber(quantity)
-        Validator.checkQuantity(quantity)
+        Validator.isQuantitySmallerThanZero(quantity)
         this.quantity = quantity
+    }
+
+    setQuantity = (quantity) => {
+        Validator.isNumber(quantity)
+        this.quantity = this.item
+    }
+
+    getDiscountAmount = () => {
+        return this.item.getPrice() * this.discountPercent / 100
+    }
+
+    getQuantity = () => {
+        return this.quantity
+    }
+
+    getAmountSummary = () => {
+        return (this.item.getPrice() - this.getDiscountAmount()) * this.quantity
     }
 }

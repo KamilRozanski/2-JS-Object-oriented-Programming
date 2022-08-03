@@ -24,53 +24,79 @@ export class Cart {
     constructor() {
         this.cart = []
         this.quantity = 0
-        this.cartDiscount = 0
-        this.discountCode;
-        this.totalCartAmount;
+        this.discountPercent = 0
+        this.discountCode = ""
+        this.totalCartAmount = 0;
         this.id = uuidv4()
     }
 
-    addToCart = (item) => {
+    addItem = (item) => {
         Validator.isInstanceOf(item, CartItem)
-        //nazewnictwo isItemExistsAdd ??
-        Validator.isItemExistsAdd(item, this.cart)
+        Validator.throwErrorIfItemExists(item, this.cart)
 
         this.cart.push(item)
         this.quantity++
     }
 
-    removeFromCart = (item) => {
+    removeItem = (item) => {
         Validator.isInstanceOf(item, CartItem)
-        //nazewnictwo isItemExistsAdd ??
-        Validator.isItemExistsRemove(item, this.cart)
+        Validator.throwErrorIfItemNotExists(item, this.cart)
 
         this.cart = this.cart.filter(el => el.id !== item.id)
         this.quantity--
     }
 
-    changeItemsQuantity = (item, quantity) => {
+    changeItemQuantity = (item, quantity) => {
         Validator.isInstanceOf(item, CartItem)
         Validator.isNumber(quantity)
+        Validator.isQuantitySmallerThanZero(quantity)
 
-        item.changeQuantity(quantity)
-        quantity !== 0 ? item.changeQuantity(quantity) : this.removeFromCart(item)
+        quantity !== 0 ? item.changeQuantity(quantity) : this.removeItem(item)
     }
 
-    setCartDiscount = (cartDiscount) => {
+    setCartDiscountPercent = (cartDiscount) => {
         Validator.isNumber(cartDiscount)
-        Validator.checkDiscount(cartDiscount)
+        Validator.checkDiscountValue(cartDiscount)
 
-        this.cartDiscount = this.getCartSummary() / 100 * cartDiscount
+        this.discountPercent = cartDiscount
+        // this.cartDiscount = this.getCartSummary() / 100 * cartDiscount
+    }
+    getDiscountAmount = () => {
+        return this.totalCartAmount * this.discountPercent / 100
     }
 
+    getDiscountPercent = () => {
+        return this.discountPercent
+    }
 
-    getCartSummary = () => {
-        const totalCartAmount = this.cart.reduce((acc, price, index) => {
-            price = this.cart[index].item.price
-            const itemQuantity = this.cart[index].quantity
-            const itemDiscount = (price / 100) * this.cart[index].discount
-            return acc += (price - itemDiscount) * itemQuantity
+    getAmountSummary = () => {
+        let summaryResult = 0
+        this.totalCartAmount = this.cart.reduce((acc, cartItem) => {
+            return (acc + cartItem.getAmountSummary())
         }, 0)
-        return totalCartAmount - this.cartDiscount
+         summaryResult = this.totalCartAmount - this.getDiscountAmount()
+         return Math.round(summaryResult)
     }
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+// //do poprawy
+// const totalCartAmount = this.cart.reduce((acc, price, index) => {
+//     // const {price} = item;
+//     price = this.cart[index].item.price
+//     const itemQuantity = this.cart[index].quantity
+//     const itemDiscount = (price / 100) * this.cart[index].discount
+//     return acc += (price - itemDiscount) * itemQuantity
+// }, 0)
+// return totalCartAmount - this.cartDiscount

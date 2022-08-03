@@ -13,7 +13,8 @@ export class Utilties {
     static changePercentToAmount = (percentageDiscount, amount) => {
         Validator.isNumber(percentageDiscount)
         Validator.isNumber(amount)
-        Validator.checkDiscountPercentage(percentageDiscount)
+        //checkDiscountPercentage nie
+        // Validator.checkDiscountPercentage(percentageDiscount)
 
         return percentageDiscount / 100 * amount
     }

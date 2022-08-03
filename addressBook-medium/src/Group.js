@@ -29,8 +29,7 @@ export class Group {
 
     removeContact = (contact) => {
         Validator.isInstanceOfClass(contact, Contact)
-        //poprawic nazewnictwo validatora
-        Validator.isRemovedValueExists(contact, this.allGroupContacts)
+        Validator.throwErrorIfContactNotExists(contact, this.allGroupContacts)
 
         this.allGroupContacts = this.allGroupContacts.filter(el => el.id !== contact.id)
     }
@@ -40,12 +39,14 @@ export class Group {
         return this.allGroupContacts.find(el => el.id === contact.id)
     }
 
-    getAllGroupContacts = () => {
-        return this.allGroupContacts
-    }
-
     changeGroupName = (newName) => {
         Validator.isString(newName)
         this.groupName = newName
     }
+
+    getAllGroupContacts = () => {
+        return this.allGroupContacts
+    }
+
+
 }
