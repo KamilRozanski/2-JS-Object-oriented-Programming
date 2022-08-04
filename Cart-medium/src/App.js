@@ -26,6 +26,7 @@ const cart = new Cart()
 cart.setCartDiscountPercent(10)
 cart.addItem(itemOne, 20)
 cart.addItem(itemTwo,5)
+cart.changeItemQuantity(itemOne, 1,5)
 
 console.log(cart.getAmountSummary())
 console.log(cart.getDiscountAmount())
