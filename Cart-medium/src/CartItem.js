@@ -19,7 +19,7 @@ import {
 // - zmianę nazwy, ceny lub rabatu
 
 export class CartItem {
-    constructor(item, quantity = 1, category, discountPercent) {
+    constructor(item, category, discountPercent) {
         Validator.isInstanceOf(item, Item)
         Validator.isString(category)
         Validator.isNumber(discountPercent)
@@ -28,7 +28,7 @@ export class CartItem {
         this.item = item
         this.category = category
         this.discountPercent = discountPercent
-        this.quantity = quantity
+        this.quantity = 1
         this.id = uuidv4()
     }
 
@@ -45,10 +45,9 @@ export class CartItem {
     }
 
 
-    changeQuantity = (quantity) => {
-        Validator.isNumber(quantity)
-        Validator.isQuantitySmallerThanZero(quantity)
-        this.quantity = quantity
+    changeQuantity = (newQuantity) => {
+        Validator.isQuantitySmallerThanZero(newQuantity)
+        this.quantity = newQuantity
     }
 
     setQuantity = (quantity) => {

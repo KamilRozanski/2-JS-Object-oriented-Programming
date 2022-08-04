@@ -58,6 +58,7 @@ export class Validator {
     }
 
     static isQuantitySmallerThanZero = (quantity) => {
+        //poprawic na liczby calkowite
         if (quantity < 0) {
             throw new Error("Quantity must be gigger than 0")
         }

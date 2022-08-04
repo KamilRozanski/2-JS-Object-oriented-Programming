@@ -30,11 +30,12 @@ export class Cart {
         this.id = uuidv4()
     }
 
-    addItem = (item) => {
+    addItem = (item, quantity = 1) => {
         Validator.isInstanceOf(item, CartItem)
         Validator.throwErrorIfItemExists(item, this.cart)
 
         this.cart.push(item)
+        item.changeQuantity(quantity)
         this.quantity++
     }
 
@@ -59,7 +60,6 @@ export class Cart {
         Validator.checkDiscountValue(cartDiscount)
 
         this.discountPercent = cartDiscount
-        // this.cartDiscount = this.getCartSummary() / 100 * cartDiscount
     }
     getDiscountAmount = () => {
         return this.totalCartAmount * this.discountPercent / 100
