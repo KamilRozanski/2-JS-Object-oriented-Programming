@@ -7,9 +7,7 @@ import {
 import {
     Validator
 } from './Validator.js';
-import {
-    Utilties
-} from "./Utilties.js";
+
 import {
     v4 as uuidv4
 } from 'uuid';
@@ -35,7 +33,7 @@ export class Cart {
         Validator.throwErrorIfItemExists(cartItem, this.cart)
 
         this.cart.push(cartItem)
-        cartItem.changeQuantity(quantity)
+        cartItem.changeQuantity(quantity) //Czy towrzyc do tego oddzielną metode ??
         this.quantity++
     }
 
@@ -61,6 +59,23 @@ export class Cart {
 
         this.discountPercent = cartDiscount
     }
+
+    setDiscountCode = (code, discountAmount) => {
+        this.discountCode = {
+            code,
+            discountAmount
+        }
+    }
+
+    applayDiscountCode = (code) => {
+        //Validator.isCodeExists
+        if ((this.discountCode.code === code)) {
+            console.log(this.getAmountSummary() - this.discountCode.discountAmount)
+            this.getAmountSummary() - this.discountCode.discountAmount
+        }
+
+    }
+
     getDiscountAmount = () => {
         return this.totalCartAmount * this.discountPercent / 100
     }
@@ -71,6 +86,6 @@ export class Cart {
             return (acc + cartItem.getAmountSummary())
         }, 0)
         this.totalCartAmount = this.totalCartAmount - this.getDiscountAmount()
-         return Math.round(this.totalCartAmount)
+        return Math.round(this.totalCartAmount)
     }
 }
