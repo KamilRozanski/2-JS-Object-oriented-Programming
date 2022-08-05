@@ -23,13 +23,11 @@ const itemFour = new CartItem(vivoX60, "mobile Phones", 10)
 
 
 const cart = new Cart()
-cart.setCartDiscountPercent(10)
-cart.addCartItem(itemOne, 20)
+cart.addCartItem(itemOne,2)
 cart.addCartItem(itemTwo,5)
-cart.changeCartItemQuantity(itemOne, 8)
 
-// console.log(cart.getAmountSummary())
+cart.setCartDiscountPercent(5)
+
+console.log(cart.getAmountSummary())
 // console.log(cart.getDiscountAmount())
-
-console.log(itemOne.changeQuantity(20))
-console.log(itemOne)
+console.log(cart)

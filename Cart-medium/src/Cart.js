@@ -65,9 +65,6 @@ export class Cart {
         return this.totalCartAmount * this.discountPercent / 100
     }
 
-    getDiscountPercent = () => {
-        return this.discountPercent
-    }
 
     getAmountSummary = () => {
         this.totalCartAmount = this.cart.reduce((acc, cartItem) => {
