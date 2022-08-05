@@ -30,29 +30,29 @@ export class Cart {
         this.id = uuidv4()
     }
 
-    addItem = (item, quantity = 1) => {
-        Validator.isInstanceOf(item, CartItem)
-        Validator.throwErrorIfItemExists(item, this.cart)
+    addCartItem = (cartItem, quantity = 1) => {
+        Validator.isInstanceOf(cartItem, CartItem)
+        Validator.throwErrorIfItemExists(cartItem, this.cart)
 
-        this.cart.push(item)
-        item.changeQuantity(quantity)
+        this.cart.push(cartItem)
+        cartItem.changeQuantity(quantity)
         this.quantity++
     }
 
-    removeItem = (item) => {
-        Validator.isInstanceOf(item, CartItem)
-        Validator.throwErrorIfItemNotExists(item, this.cart)
+    removeCartItem = (cartItem) => {
+        Validator.isInstanceOf(cartItem, CartItem)
+        Validator.throwErrorIfItemNotExists(cartItem, this.cart)
 
-        this.cart = this.cart.filter(el => el.id !== item.id)
+        this.cart = this.cart.filter(el => el.id !== cartItem.id)
         this.quantity--
     }
 
-    changeItemQuantity = (item, quantity) => {
-        Validator.isInstanceOf(item, CartItem)
+    changeCartItemQuantity = (cartItem, quantity) => {
+        Validator.isInstanceOf(cartItem, CartItem)
         Validator.isNumber(quantity)
         Validator.isQuantitySmallerThanZero(quantity)
 
-        quantity !== 0 ? item.changeQuantity(quantity) : this.removeItem(item)
+        quantity !== 0 ? cartItem.changeQuantity(quantity) : this.removeItem(cartItem)
     }
 
     setCartDiscountPercent = (cartDiscount) => {
@@ -77,21 +77,3 @@ export class Cart {
          return Math.round(this.totalCartAmount)
     }
 }
-
-
-
-
-
-
-
-
-
-// //do poprawy
-// const totalCartAmount = this.cart.reduce((acc, price, index) => {
-//     // const {price} = item;
-//     price = this.cart[index].item.price
-//     const itemQuantity = this.cart[index].quantity
-//     const itemDiscount = (price / 100) * this.cart[index].discount
-//     return acc += (price - itemDiscount) * itemQuantity
-// }, 0)
-// return totalCartAmount - this.cartDiscount
