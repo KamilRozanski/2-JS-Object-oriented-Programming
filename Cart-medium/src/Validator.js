@@ -14,7 +14,7 @@ export class Validator {
 
     static isNumber = (value) => {
         if (typeof value !== "number" || isNaN(value)) {
-            throw new Error("It is not a number value")
+            throw new Error("It should be a number value")
         }
     }
 

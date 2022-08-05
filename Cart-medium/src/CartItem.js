@@ -46,21 +46,14 @@ export class CartItem {
 
 
     changeQuantity = (newQuantity) => {
+        Validator.isNumber(newQuantity)
         Validator.isQuantitySmallerThanZero(newQuantity)
         this.quantity = newQuantity
     }
 
-    setQuantity = (quantity) => {
-        Validator.isNumber(quantity)
-        this.quantity = this.item
-    }
 
     getDiscountAmount = () => {
         return this.item.getPrice() * this.discountPercent / 100
-    }
-
-    getQuantity = () => {
-        return this.quantity
     }
 
     getAmountSummary = () => {

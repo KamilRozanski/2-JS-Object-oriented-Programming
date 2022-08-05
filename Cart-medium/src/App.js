@@ -28,7 +28,8 @@ cart.addCartItem(itemOne, 20)
 cart.addCartItem(itemTwo,5)
 cart.changeCartItemQuantity(itemOne, 8)
 
-console.log(cart.getAmountSummary())
-console.log(cart.getDiscountAmount())
+// console.log(cart.getAmountSummary())
+// console.log(cart.getDiscountAmount())
 
-console.log(cart)
+console.log(itemOne.changeQuantity(20))
+console.log(itemOne)
