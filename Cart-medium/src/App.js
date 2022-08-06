@@ -28,7 +28,7 @@ cart.addCartItem(itemTwo, 5)
 
 cart.setDiscountCode("summer", 100)
 cart.setDiscountCode("winter", 500)
-cart.applayDiscountCode("winter")
+cart.applayDiscountCode("summer")
 
 
 

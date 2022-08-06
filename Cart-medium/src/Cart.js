@@ -24,7 +24,6 @@ export class Cart {
         this.quantity = 0
         this.discountPercent = 0
         this.discountCode = []
-        this.discountCodeAmount = 0
         this.totalCartAmount = 0;
         this.id = uuidv4()
     }
@@ -64,19 +63,15 @@ export class Cart {
     setDiscountCode = (code, discountAmount) => {
         Validator.isString(code)
         Validator.checkDiscountCodeAmount(discountAmount, this.getAmountSummary())
-        this.discountCode.push({
-            code,
-            discountAmount
-        })
+        this.discountCode.push(...[code, discountAmount])
     }
 
     applayDiscountCode = (code) => {
         Validator.isString(code)
         Validator.throwErrorIfDiscountCodeNotExists(code, this.discountCode)
-        this.discountCode.find(element => {
-            if (element.code === code) {
-                this.discountCodeAmount = element.discountAmount
-            }
+
+        this.discountCode.find(el => {
+            console.log(el === code)
         })
     }
 

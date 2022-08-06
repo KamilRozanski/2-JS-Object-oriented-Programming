@@ -31,12 +31,9 @@ export class Validator {
     }
 
     static throwErrorIfDiscountCodeNotExists(code, array) {
-        console.log(array)
-        array.some((element) => {
-            if (!Object.values(element).includes(code)) {
-                // throw new Error("Code not exists")
-            }
-        })
+        if (!array.includes(code)) {
+            throw new Error("Code not exists")
+        }
     }
 
     static throwErrorIfItemExists = (item, array) => {
@@ -45,9 +42,6 @@ export class Validator {
             throw new Error("Item already exists")
         }
     }
-    // static throwErrorIfDiscountCodeNotExists = (code) => {
-    //     if(code)
-    // }
 
     static throwErrorIfItemNotExists = (item, array) => {
         const result = array.some(el => item.id === el.id)
