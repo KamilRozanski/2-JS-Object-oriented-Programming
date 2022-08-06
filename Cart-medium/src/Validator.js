@@ -30,12 +30,24 @@ export class Validator {
         }
     }
 
+    static throwErrorIfDiscountCodeNotExists(code, array) {
+        console.log(array)
+        array.some((element) => {
+            if (!Object.values(element).includes(code)) {
+                // throw new Error("Code not exists")
+            }
+        })
+    }
+
     static throwErrorIfItemExists = (item, array) => {
         const result = array.some(el => item.id === el.id)
         if (result) {
             throw new Error("Item already exists")
         }
     }
+    // static throwErrorIfDiscountCodeNotExists = (code) => {
+    //     if(code)
+    // }
 
     static throwErrorIfItemNotExists = (item, array) => {
         const result = array.some(el => item.id === el.id)
@@ -56,6 +68,15 @@ export class Validator {
             throw new Error("Acceptable discount is between 0% and 100%")
         }
     }
+
+    static checkDiscountCodeAmount = (discount, totalCartAmount) => {
+        if ((discount < 0) || (discount > totalCartAmount)) {
+            throw new Error("Acceptable discount is between 0 and total cart amount ")
+        }
+    }
+
+
+
 
     static isQuantitySmallerThanZero = (quantity) => {
         //poprawic na liczby calkowite

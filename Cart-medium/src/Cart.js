@@ -23,7 +23,8 @@ export class Cart {
         this.cart = []
         this.quantity = 0
         this.discountPercent = 0
-        this.discountCode = "summer"
+        this.discountCode = []
+        this.discountCodeAmount = 0
         this.totalCartAmount = 0;
         this.id = uuidv4()
     }
@@ -61,22 +62,28 @@ export class Cart {
     }
 
     setDiscountCode = (code, discountAmount) => {
-        this.discountCode = {
+        Validator.isString(code)
+        Validator.checkDiscountCodeAmount(discountAmount, this.getAmountSummary())
+        this.discountCode.push({
             code,
             discountAmount
-        }
+        })
     }
 
     applayDiscountCode = (code) => {
-        //Validator.isCodeExists
-        if ((this.discountCode.code === code)) {
-            console.log(this.getAmountSummary() - this.discountCode.discountAmount)
-            this.getAmountSummary() - this.discountCode.discountAmount
-        }
-
+        Validator.isString(code)
+        Validator.throwErrorIfDiscountCodeNotExists(code, this.discountCode)
+        this.discountCode.find(element => {
+            if (element.code === code) {
+                this.discountCodeAmount = element.discountAmount
+            }
+        })
     }
 
     getDiscountAmount = () => {
+        return this.totalCartAmount * this.discountPercent / 100
+    }
+    getDiscountCodeAmount = () => {
         return this.totalCartAmount * this.discountPercent / 100
     }
 
@@ -85,7 +92,7 @@ export class Cart {
         this.totalCartAmount = this.cart.reduce((acc, cartItem) => {
             return (acc + cartItem.getAmountSummary())
         }, 0)
-        this.totalCartAmount = this.totalCartAmount - this.getDiscountAmount()
+        this.totalCartAmount = this.totalCartAmount - this.getDiscountAmount() - this.discountCodeAmount
         return Math.round(this.totalCartAmount)
     }
 }
