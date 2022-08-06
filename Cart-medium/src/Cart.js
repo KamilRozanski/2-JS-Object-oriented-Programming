@@ -23,7 +23,7 @@ export class Cart {
         this.cart = []
         this.quantity = 0
         this.discountPercent = 0
-        this.discountCode = ""
+        this.discountCode = "summer"
         this.totalCartAmount = 0;
         this.id = uuidv4()
     }
