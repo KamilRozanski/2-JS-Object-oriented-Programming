@@ -31,7 +31,13 @@ export class Validator {
     }
 
     static throwErrorIfDiscountCodeNotExists(code, array) {
-        if (!array.includes(code)) {
+        const allCodes = []
+        array.filter(({
+            code,
+        }) => {
+            allCodes.push(code)
+        })
+        if (!allCodes.includes(code)) {
             throw new Error("Code not exists")
         }
     }
