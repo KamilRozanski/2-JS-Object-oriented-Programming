@@ -5,13 +5,6 @@ export class Validator {
         }
     }
 
-    static checkStringCharacters = (string) => {
-        const regex = /^\w+(\s+\w+)*$/gi;
-        if (!regex.test(string)) {
-            throw new Error(`You should provide between 2-20 characters. No special characters`)
-        }
-    }
-
     static isNumber = (value) => {
         if (typeof value !== "number" || isNaN(value)) {
             throw new Error("It should be a number value")
@@ -27,6 +20,19 @@ export class Validator {
     static isArray(array) {
         if (!Array.isArray(array)) {
             throw new Error("Input is not Array")
+        }
+    }
+
+    static isPriceBiggerThanZero = (price) => {
+        if (price <= 0) {
+            throw new Error(`Price must be bigger than  "
+                0 "`)
+        }
+    }
+
+    static isQuantitySmallerThanZero = (quantity) => {
+        if ((quantity <= 0) && (Number.isInteger(quantity))) {
+            throw new Error("Quantity must be bigger than 0, and must be a integer number")
         }
     }
 
@@ -56,13 +62,6 @@ export class Validator {
         }
     }
 
-    static isPriceBiggerThanZero = (price) => {
-        if (price <= 0) {
-            throw new Error(`Price must be bigger than  "
-                0 "`)
-        }
-    }
-
     static checkDiscountValue = (discount) => {
         if ((discount < 0) || (discount > 100)) {
             throw new Error("Acceptable discount is between 0% and 100%")
@@ -71,17 +70,14 @@ export class Validator {
 
     static checkDiscountCodeAmount = (discount, totalCartAmount) => {
         if ((discount < 0) || (discount > totalCartAmount)) {
-            throw new Error("Acceptable discount is between 0 and total cart amount ")
+            throw new Error(`Acceptable discount is between 0 and total cart amount `)
         }
     }
 
-
-
-
-    static isQuantitySmallerThanZero = (quantity) => {
-        //poprawic na liczby calkowite
-        if ((quantity <= 0) && (Number.isInteger(quantity))) {
-            throw new Error("Quantity must be gigger than 0, and must be a integer number")
+    static checkStringCharacters = (string) => {
+        const regex = /^\w+(\s+\w+)*$/gi;
+        if (!regex.test(string)) {
+            throw new Error(`You should provide between 2-20 characters. No special characters`)
         }
     }
 }

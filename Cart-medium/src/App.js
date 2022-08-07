@@ -19,7 +19,6 @@ const itemTwo = new CartItem(iPhone13ProMax, "mobile Phones", 10)
 const itemThree = new CartItem(redmiNote5A, "mobile Phones", 10)
 const itemFour = new CartItem(vivoX60, "mobile Phones", 10)
 
-// console.log(itemOne.getAmountSummary())
 
 
 const cart = new Cart()
@@ -28,9 +27,7 @@ cart.addCartItem(itemTwo, 5)
 
 cart.setDiscountCode("summer", 100)
 cart.setDiscountCode("winter", 500)
-cart.applayDiscountCode("summer")
-
-
+cart.applayDiscountCode("winter")
 
 console.log(cart.getAmountSummary())
 

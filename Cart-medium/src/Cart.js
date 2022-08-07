@@ -64,7 +64,7 @@ export class Cart {
     setDiscountCode = (code, discountCodeAmount) => {
         Validator.isString(code)
         Validator.isNumber(discountCodeAmount)
-        // Validator.checkDiscountCodeAmount(discountAmount, this.getAmountSummary())
+        Validator.checkDiscountCodeAmount(discountCodeAmount, this.getAmountSummary())
         this.discountCode.push({
             code,
             discountCodeAmount
@@ -84,19 +84,15 @@ export class Cart {
         })
     }
 
-    getDiscountAmount = () => {
+    getDiscountPercentAmount = () => {
         return this.totalCartAmount * this.discountPercent / 100
     }
-    getDiscountCodeAmount = () => {
-        return this.totalCartAmount * this.discountPercent / 100
-    }
-
 
     getAmountSummary = () => {
         this.totalCartAmount = this.cart.reduce((acc, cartItem) => {
             return (acc + cartItem.getAmountSummary())
         }, 0)
-        this.totalCartAmount = this.totalCartAmount - this.getDiscountAmount() - this.discountCodeAmount
+        this.totalCartAmount = this.totalCartAmount - this.getDiscountPercentAmount() - this.discountCodeAmount
         return Math.round(this.totalCartAmount)
     }
 }
