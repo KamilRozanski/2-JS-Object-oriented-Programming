@@ -30,6 +30,8 @@ export class Cart {
     }
 
     addCartItem = (cartItem, quantity = 1) => {
+
+        //w cart produkt pokazuje jako tablice[item]??
         Validator.isInstanceOf(cartItem, CartItem)
         Validator.throwErrorIfItemExists(cartItem, this.cart)
 
