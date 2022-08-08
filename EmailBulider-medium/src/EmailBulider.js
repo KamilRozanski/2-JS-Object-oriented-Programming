@@ -39,13 +39,33 @@ export class EmailBuilder {
     }
 
     bulidEmail = () => {
-        const email = this.email
+        const resultEmail = this.email
         this.reset()
-        return email
+        return resultEmail
     }
 
     reset = () => {
+        //dodac metode reset
         this.email = new Email(this.from, this.to)
     }
-    //dodac metoda reset
+}
+
+
+
+
+
+export class EmailBuilderTwo {
+    constructor(from, to, {
+        cc,
+        bcc,
+        title,
+        HTML
+    } = {}) {
+        this.from = from
+        this.to = to
+        this.cc = cc
+        this.bcc = bcc
+        this.title = title
+        this.HTML = HTML
+    }
 }
