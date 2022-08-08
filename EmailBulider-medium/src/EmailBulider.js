@@ -8,8 +8,11 @@ import {
 // Stwórz metody które będą zmieniać parametry from, to, title, cc, bcc, html
 export class EmailBuilder {
     constructor(from, to) {
-        this.email = new Email(from, to)
+        this.from = from
+        this.to = to
+        this.email = new Email(this.from, this.to)
     }
+
 
     setCC = (newCC) => {
         Validator.checkEmail(newCC)
@@ -36,7 +39,13 @@ export class EmailBuilder {
     }
 
     bulidEmail = () => {
-        return this.email
+        const email = this.email
+        this.reset()
+        return email
+    }
+
+    reset = () => {
+        this.email = new Email(this.from, this.to)
     }
     //dodac metoda reset
 }
