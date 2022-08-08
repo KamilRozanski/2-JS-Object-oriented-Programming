@@ -4,10 +4,8 @@ import {
 
 export class Email {
     constructor(from, to) {
-        Validator.requiredValue(from)
-        Validator.requiredValue(to)
-        Validator.checkEmail(from)
-        Validator.checkEmail(to)
+        Validator.checkEmailFormat(from)
+        Validator.checkEmailFormat(to)
         this.from = from
         this.to = to
     }

@@ -9,9 +9,7 @@ import {
 } from "./Director.js"
 
 const kamilEmail = new EmailBuilder("motomc1@gmail.com", "dominika@wp.pl").setCC("setcc123@wp.pl").setTitle("title").setHTML("hello000").bulidEmail()
-
-const director = new Director(new EmailBuilder("motomc1@gmail.com", "dominika@wp.pl"))
-console.log(director.basicEmail())
+console.log(kamilEmail)
 
 
 
@@ -33,6 +31,12 @@ console.log(director.basicEmail())
 
 
 
+
+
+
+
+// const director = new Director(new EmailBuilder())
+// console.log(director.basicEmail())
 
 // const kamilEmailTwo = new EmailBuilderTwo("motomc1@gmail.com", "dominika@wp.pl", {
 //     cc: "dupa"

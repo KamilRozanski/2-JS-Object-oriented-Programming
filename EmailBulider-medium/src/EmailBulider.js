@@ -8,6 +8,8 @@ import {
 // Stwórz metody które będą zmieniać parametry from, to, title, cc, bcc, html
 export class EmailBuilder {
     constructor(from, to) {
+        Validator.checkEmailFormat(from)
+        Validator.checkEmailFormat(to)
         this.from = from
         this.to = to
         this.email = new Email(this.from, this.to)
@@ -15,13 +17,13 @@ export class EmailBuilder {
 
 
     setCC = (newCC) => {
-        Validator.checkEmail(newCC)
+        Validator.checkEmailFormat(newCC)
         this.email.cc = newCC
         return this
     }
 
     setBcc = (newBcc) => {
-        Validator.checkEmail(newBcc)
+        Validator.checkEmailFormat(newBcc)
         this.email.bcc = newBcc
         return this
     }
