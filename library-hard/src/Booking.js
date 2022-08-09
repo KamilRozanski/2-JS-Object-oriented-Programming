@@ -34,8 +34,9 @@ export class Booking {
         this.borrowedBooks.push(book)
     }
     returnBook = (book) => {
-        Validator.isInstanceOfClass(user, Book)
-        this.borrowedBooks.push(book)
+        Validator.isInstanceOfClass(book, Book)
+
+        this.borrowedBooks = this.borrowedBooks.filter(el => el.id !== book.id)
     }
 
 }
