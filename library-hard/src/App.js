@@ -1,7 +1,20 @@
 import {
     User
 } from "./User.js";
+import {
+    Book
+} from "./Book.js";
+import {
+    Booking
+} from "./Booking.js";
 
 
 const user = new User("Kamil", "Rózański")
-console.log(user)
+const bookOne = new Book("title", "author", "photoOfTheBook", "description")
+const borrowing = new Booking(user)
+
+
+
+// console.log(user)
+borrowing.borrowBook(bookOne)
+console.log(borrowing)
