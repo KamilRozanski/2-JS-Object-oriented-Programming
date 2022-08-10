@@ -30,33 +30,40 @@ export class Booking {
         this.borrowedBooks = []
         this.penalty = 0
     }
+
     borrowBook = (book) => {
         Validator.isInstanceOfClass(book, Book)
 
         this.borrowedBooks.push(book)
-        this.borrowedBookDate = new Date("August 01, 2022")
+        this.borrowedBookDate = new Date("August 02, 2022") // Przykładowa data
         this.howLongInDaysBookWasBorrowed()
     }
+
     returnBook = (book) => {
         Validator.isInstanceOfClass(book, Book)
 
         this.borrowedBooks = this.borrowedBooks.filter(el => el.id !== book.id)
-        this.returnBookDate = Date.now()
-        this.isPenaltyRequired()
-    }
-
-    howLongInDaysBookWasBorrowed = () => {
-        const time = (this.returnBookDate - this.borrowedBookDate) / 1000 / 60 / 60 / 24
-        return Math.round(time)
-    }
-
-    setPenalty = (penalty) => {
-        this.penalty = penalty
-    }
-    isPenaltyRequired = () => {
-        if (this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed) {
-            this.setPenalty(10)
+        this.returnBookDate = Date.now() // Date.now() Jaka to róznica??
+        if (this.isPenaltyRequired()) {
+            this.changePenalty(1)
+            this.getPenalty()
         }
     }
 
+    howLongInDaysBookWasBorrowed = () => {
+        return Math.round((this.returnBookDate - this.borrowedBookDate) / 1000 / 60 / 60 / 24)
+    }
+
+    changePenalty = (newPenalty) => {
+        Validator.isNumber(newPenalty)
+        this.penalty = newPenalty
+    }
+
+    isPenaltyRequired = () => {
+        return this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed
+    }
+
+    getPenalty = () => {
+        this.penalty = this.howLongInDaysBookWasBorrowed() * this.penalty
+    }
 }
