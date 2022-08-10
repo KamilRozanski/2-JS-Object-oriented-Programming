@@ -25,18 +25,38 @@ export class Booking {
         Validator.isInstanceOfClass(user, User)
         this.user = user
         this.borrowedBookDate = new Date()
-        this.returnBookDate = new Date() // + 7 days
+        this.returnBookDate = new Date()
+        this.forHowManyDaysBookCanBeBorrowed = 7
         this.borrowedBooks = []
         this.penalty = 0
     }
     borrowBook = (book) => {
         Validator.isInstanceOfClass(book, Book)
+
         this.borrowedBooks.push(book)
+        this.borrowedBookDate = new Date("August 01, 2022")
+        this.howLongInDaysBookWasBorrowed()
     }
     returnBook = (book) => {
         Validator.isInstanceOfClass(book, Book)
 
         this.borrowedBooks = this.borrowedBooks.filter(el => el.id !== book.id)
+        this.returnBookDate = Date.now()
+        this.isPenaltyRequired()
+    }
+
+    howLongInDaysBookWasBorrowed = () => {
+        const time = (this.returnBookDate - this.borrowedBookDate) / 1000 / 60 / 60 / 24
+        return Math.round(time)
+    }
+
+    setPenalty = (penalty) => {
+        this.penalty = penalty
+    }
+    isPenaltyRequired = () => {
+        if (this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed) {
+            this.setPenalty(10)
+        }
     }
 
 }

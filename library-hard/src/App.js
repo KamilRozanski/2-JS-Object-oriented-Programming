@@ -18,7 +18,7 @@ const borrowing = new Booking(user)
 
 // console.log(user)
 borrowing.borrowBook(bookOne)
-borrowing.borrowBook(bookTwo)
+// borrowing.borrowBook(bookTwo)
 borrowing.returnBook(bookOne)
 
 console.log(borrowing)
