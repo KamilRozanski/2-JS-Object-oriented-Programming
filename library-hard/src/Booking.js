@@ -35,7 +35,7 @@ export class Booking {
         Validator.isInstanceOfClass(book, Book)
 
         this.borrowedBooks.push(book)
-        this.borrowedBookDate = new Date("August 02, 2022") // Przykładowa data
+        this.borrowedBookDate = new Date("August 2, 2022") // Przykładowa data
         this.howLongInDaysBookWasBorrowed()
     }
 
@@ -46,8 +46,13 @@ export class Booking {
         this.returnBookDate = Date.now() // Date.now() Jaka to róznica??
         if (this.isPenaltyRequired()) {
             this.changePenalty(1)
-            this.getPenalty()
+            this.getPenaltyAmount()
         }
+    }
+
+    changeForHowManyDaysBookCanBeBorrowed = (days) => {
+        Validator.isNumber(days)
+        this.forHowManyDaysBookCanBeBorrowed = days
     }
 
     howLongInDaysBookWasBorrowed = () => {
@@ -63,7 +68,7 @@ export class Booking {
         return this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed
     }
 
-    getPenalty = () => {
-        this.penalty = this.howLongInDaysBookWasBorrowed() * this.penalty
+    getPenaltyAmount = () => {
+        this.penalty = (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.penalty
     }
 }
