@@ -31,20 +31,20 @@ export class Booking {
         this.penalty = 0
     }
 
-    borrowBook = (book) => {
-        Validator.isInstanceOfClass(book, Book)
+    borrowBook = (...book) => {
+        //sprawdzenie czy ksiazka jest w magazynie
+        // Validator.isInstanceOfClass(book, Book)
 
-        this.borrowedBooks.push(book)
+        this.borrowedBooks.push(...book)
         this.borrowedBookDate = new Date("August 2, 2022") // Przykładowa data
-        this.howLongInDaysBookWasBorrowed()
     }
 
     returnBook = (book) => {
         Validator.isInstanceOfClass(book, Book)
 
         this.borrowedBooks = this.borrowedBooks.filter(el => el.id !== book.id)
-        this.returnBookDate = Date.now() // Date.now() Jaka to róznica??
-        if (this.isPenaltyRequired()) {
+        this.returnBookDate = new Date() // Date.now() Jaka to róznica??
+        if (this.isPenaltyRequired()) { // Łamie solid??
             this.changePenalty(1)
             this.getPenaltyAmount()
         }
@@ -70,5 +70,9 @@ export class Booking {
 
     getPenaltyAmount = () => {
         this.penalty = (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.penalty
+    }
+
+    getBorrowedBooks = () => {
+        return this.borrowedBooks
     }
 }

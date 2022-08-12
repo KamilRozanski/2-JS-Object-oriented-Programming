@@ -7,10 +7,25 @@
 // - wypożyczanie książki dla usera X
 // - oddanie wypożyczania książki
 export class Library {
-    constructor(...books) {
-        this.allBooks = books
+    constructor(booking) {
+        this.allBooks = booking
+        this.allUsers = []
         this.allAvaiableBooks = []
         this.allBorrowedBooks = []
-        this.allUsers = []
     }
+
+
+
+    getAvaiableBooks = () => {
+        console.log(this.allBorrowedBooks)
+    }
+
+    getAllBorrowedBooks = () => {
+        return this.borrowing.getBorrowedBooks()
+    }
+
+    getAllBooks = () => {
+        return this.allBooks
+    }
+
 }

@@ -19,5 +19,4 @@ export class Book {
         this.description = description
         this.id = uuidv4()
     }
-
 }

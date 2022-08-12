@@ -1,11 +1,10 @@
-// import {
-//     Book
-// } from "./Book.js";
+import {
+    Book
+} from "./Book.js";
 
 
-// export class booksWarehouse {
-//     constructor() {
-//         this.allBooks = Book.addBookToWarehouse()
-//     }
-
-// }
+export class BooksWarehouse {
+    constructor(...book) {
+        this.allBooks = book
+    }
+}
