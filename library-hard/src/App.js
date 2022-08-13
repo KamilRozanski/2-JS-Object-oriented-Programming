@@ -7,7 +7,7 @@ import {
 
 import {
     BooksWarehouse
-} from "./BooksWarehouse.js";
+} from "./BooksStorage.js";
 
 import {
     Booking
@@ -20,11 +20,11 @@ import {
 
 const kamil = new User("Kamil", "Rózański")
 const dominika = new User("Dominika", "Rózańska")
-const bookOne = new Book("title", "author", "photoOfTheBook", "description")
+const bookOne = new Book("title One", "author One", "photoOfTheBook One", "description One")
 const bookTwo = new Book("title Two", "author Two", "photoOfTheBook Two", "description Two")
 const bookThree = new Book("title Three", "author Three", "photoOfTheBook Three", "description Three")
 
-const booksWarehouse = new BooksWarehouse(bookOne, bookTwo, bookThree)
+const booksStorage = new BooksWarehouse(bookOne, bookTwo, bookThree)
 
 const bookingKamil = new Booking(kamil)
 const bookingDominika = new Booking(dominika)
@@ -35,4 +35,4 @@ bookingDominika.borrowBook(bookThree)
 // bookingKamil.returnBook(bookOne)
 
 const library = new Library(bookingKamil)
-console.log(library)
+console.log(booksStorage)
