@@ -16,4 +16,10 @@ export class Validator {
             throw new Error("Incorrect class instance")
         }
     }
+
+    static throwErrorIfBookNotExists = (book, array) => {
+        if (!array.includes(book)) {
+            throw new Error("Book not exists")
+        }
+    }
 }

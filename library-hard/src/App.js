@@ -24,12 +24,14 @@ const bookOne = new Book("title One", "author One", "photoOfTheBook One", "descr
 const bookTwo = new Book("title Two", "author Two", "photoOfTheBook Two", "description Two")
 const bookThree = new Book("title Three", "author Three", "photoOfTheBook Three", "description Three")
 
-const bookingKamil = new Booking(kamil)
-const bookingDominika = new Booking(dominika)
-// console.log(booksWarehouse)
 
-bookingKamil.borrowBook(bookOne, bookTwo)
-bookingDominika.borrowBook(bookThree)
+// const bookingKamil = new Booking(kamil)
+// const bookingDominika = new Booking(dominika)
+
+
+// bookingKamil.borrowBook(bookOne)
+// bookingKamil.borrowBook(bookTwo)
+// bookingDominika.borrowBook(bookThree)
 // bookingKamil.returnBook(bookOne)
 
 
@@ -37,5 +39,10 @@ const library = new Library()
 library.addBook(bookOne)
 library.addBook(bookTwo)
 library.addBook(bookThree)
-library.getAvaiableBooks()
-console.log(library.getAvaiableBooks())
+
+library.addUser(kamil)
+library.addUser(dominika)
+
+
+library.borrowBook(kamil, bookOne)
+console.log(library)

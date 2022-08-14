@@ -5,6 +5,9 @@ import {
     User
 } from "./User.js"
 import {
+    Booking
+} from "./Booking.js";
+import {
     Book
 } from "./Book.js"
 
@@ -18,7 +21,6 @@ import {
 // - oddanie wypożyczania książki
 export class Library {
     constructor() {
-        // this.booksStorage = booksStorage
         this.allUsers = []
         this.allBooks = []
         this.allAvaiableBooks = []
@@ -37,10 +39,15 @@ export class Library {
         this.allBooks.push(book)
     }
 
-    
+    borrowBook = (user, book) => {
+        const test = new Booking(user)
+        test.borrowBook(book)
+        this.allBorrowedBooks.push(book)
+    }
+
     getAvaiableBooks = () => {
         this.allAvaiableBooks = this.allBooks
-        console.log(this.allBooks)
+        // console.log(this.allBooks)
     }
 
     getAllBorrowedBooks = () => {
@@ -48,7 +55,6 @@ export class Library {
     }
 
     getAllBooks = () => {
-        return this.allBooks
+        return this.booksStorage
     }
-
 }

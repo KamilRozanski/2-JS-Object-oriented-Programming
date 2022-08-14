@@ -25,17 +25,16 @@ export class Booking {
         Validator.isInstanceOfClass(user, User)
         this.user = user
         this.borrowedBookDate = new Date()
-        this.returnBookDate = new Date()
+        this.returnBookDate = ""
         this.forHowManyDaysBookCanBeBorrowed = 7
         this.borrowedBooks = []
         this.penalty = 0
     }
 
-    borrowBook = (...book) => {
-        //sprawdzenie czy ksiazka jest w magazynie
-        // Validator.isInstanceOfClass(book, Book)
-
-        this.borrowedBooks.push(...book)
+    borrowBook = (book) => {
+        Validator.isInstanceOfClass(book, Book)
+        // Validator.throwErrorIfBookNotExists(book, this.bookStorage)
+        this.borrowedBooks.push(book)
         this.borrowedBookDate = new Date("August 2, 2022") // Przykładowa data
     }
 

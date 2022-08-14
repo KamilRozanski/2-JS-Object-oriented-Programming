@@ -5,6 +5,6 @@ import {
 
 export class BooksStorage {
     constructor(...book) {
-        this.allBooks = book
+        this.allBooks = Object.values(book)
     }
 }
