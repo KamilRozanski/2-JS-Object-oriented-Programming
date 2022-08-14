@@ -1,3 +1,13 @@
+import {
+    Validator
+} from "./Validator.js"
+import {
+    User
+} from "./User.js"
+import {
+    Book
+} from "./Book.js"
+
 // Ma miec: listę książek, listę książek dostępnych (które nie zostały wypożyczone),
 // lista wyporzyczeń, lista użytkowników
 
@@ -7,17 +17,30 @@
 // - wypożyczanie książki dla usera X
 // - oddanie wypożyczania książki
 export class Library {
-    constructor(booking) {
-        this.allBooks = booking
+    constructor() {
+        // this.booksStorage = booksStorage
         this.allUsers = []
+        this.allBooks = []
         this.allAvaiableBooks = []
         this.allBorrowedBooks = []
     }
 
+    addUser = (user) => {
+        Validator.isInstanceOfClass(user, User)
 
+        this.allUsers.push(user)
+    }
 
+    addBook = (book) => {
+        Validator.isInstanceOfClass(book, Book)
+
+        this.allBooks.push(book)
+    }
+
+    
     getAvaiableBooks = () => {
-        console.log(this.allBorrowedBooks)
+        this.allAvaiableBooks = this.allBooks
+        console.log(this.allBooks)
     }
 
     getAllBorrowedBooks = () => {

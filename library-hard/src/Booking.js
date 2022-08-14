@@ -41,7 +41,7 @@ export class Booking {
 
     returnBook = (book) => {
         Validator.isInstanceOfClass(book, Book)
-
+        //Po zwrocie ksiazek po terminie kara jest naliczana tylko za jedna ksiazke.
         this.borrowedBooks = this.borrowedBooks.filter(el => el.id !== book.id)
         this.returnBookDate = new Date() // Date.now() Jaka to róznica??
         if (this.isPenaltyRequired()) { // Łamie solid??

@@ -3,7 +3,7 @@ import {
 } from "./Book.js";
 
 
-export class BooksWarehouse {
+export class BooksStorage {
     constructor(...book) {
         this.allBooks = book
     }
