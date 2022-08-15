@@ -23,8 +23,10 @@ export class Library {
     constructor() {
         this.allUsers = []
         this.allBooks = []
+        this.allBookings = []
         this.allAvaiableBooks = []
         this.allBorrowedBooks = []
+
     }
 
     addUser = (user) => {
@@ -39,11 +41,16 @@ export class Library {
         this.allBooks.push(book)
     }
 
-    borrowBook = (user, book) => {
-        const test = new Booking(user)
-        test.borrowBook(book)
-        this.allBorrowedBooks.push(book)
+    removeBook = (book) => {
+        //...
     }
+
+    addBooking = (booking) => {
+        Validator.isInstanceOfClass(booking, Booking)
+
+        this.allBookings.push(booking)
+    }
+
 
     getAvaiableBooks = () => {
         this.allAvaiableBooks = this.allBooks
