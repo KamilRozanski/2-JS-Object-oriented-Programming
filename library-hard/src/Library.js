@@ -19,6 +19,7 @@ import {
 // - usuwanie książek z listy
 // - wypożyczanie książki dla usera X
 // - oddanie wypożyczania książki
+
 export class Library {
     constructor() {
         this.allUsers = []
@@ -26,13 +27,15 @@ export class Library {
         this.allBookings = []
         this.allAvaiableBooks = []
         this.allBorrowedBooks = []
-
     }
 
     addUser = (user) => {
         Validator.isInstanceOfClass(user, User)
 
         this.allUsers.push(user)
+    }
+    removeUser = (user) => {
+        //..
     }
 
     addBook = (book) => {
@@ -41,8 +44,10 @@ export class Library {
         this.allBooks.push(book)
     }
 
-    removeBook = (book) => {
-        //...
+    removeBook = (removeBook) => {
+        Validator.isInstanceOfClass(removeBook, Book)
+
+        this.allBooks = this.allBooks.filter(book => book.id !== removeBook.id)
     }
 
     addBooking = (booking) => {
@@ -51,6 +56,10 @@ export class Library {
         this.allBookings.push(booking)
     }
 
+
+    returnBook = (returnBook) => {
+
+    }
 
     getAvaiableBooks = () => {
         this.allAvaiableBooks = this.allBooks

@@ -28,20 +28,28 @@ const bookThree = new Book("title Three", "author Three", "photoOfTheBook Three"
 const bookingKamil = new Booking(kamil)
 // const bookingDominika = new Booking(dominika)
 
+bookingKamil.addBookToBookingList(bookOne)
+bookingKamil.addBookToBookingList(bookTwo)
+// console.log(bookingKamil)
+// bookingKamil.removeBookFromBookingList(bookOne)
 
 
 
 
 const library = new Library()
-library.addBook(bookOne)
-library.addBook(bookTwo)
-library.addBook(bookThree)
 
 library.addUser(kamil)
 library.addUser(dominika)
 
+library.addBook(bookOne)
+library.addBook(bookTwo)
+library.addBook(bookThree)
 
-library.addBooking(bookingKamil)
-bookingKamil.addBookToBookingList(bookOne)
-// bookingKamil.removeBookFromBookingList(bookOne)
-console.log(bookingKamil)
+
+
+
+
+
+// library.addBooking(bookingKamil)
+
+console.log(library)
