@@ -12,12 +12,6 @@ import {
     v4 as uuidv4
 } from 'uuid';
 
-// Ma mieć: uuid, listę wybranych przedmiotów, rabat % na koszyk, kod rabatowy
-// Ma umożliwiać: 
-// - dodawanie/usuwanie przedmiotów do/z koszyka
-// - zmianę ilości produktu w koszyku
-// - podliczać wartość koszyka uwzględniajac rabaty
-
 export class Cart {
     constructor() {
         this.cart = []
@@ -67,7 +61,7 @@ export class Cart {
     setDiscountCode = (code, discountCodeAmount) => {
         Validator.isString(code)
         Validator.isNumber(discountCodeAmount)
-        Validator.checkDiscountCodeAmount(discountCodeAmount, this.getAmountSummary())
+        Validator.throwErrorIfDiscountCodeValueIsIncorrect(discountCodeAmount, this.getAmountSummary())
         this.discountCode.push({
             code,
             discountCodeAmount
@@ -93,7 +87,7 @@ export class Cart {
     }
 
     getAmountSummary = () => {
-        //poprawiz nazwewniectwo
+        //poprawiz nazw
         this.totalCartAmount = this.cart.reduce((acc, cartItem) => {
             return (acc + cartItem.getAmountSummary())
         }, 0)

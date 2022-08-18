@@ -62,20 +62,20 @@ export class Validator {
         }
     }
 
-    static checkDiscountValue = (discount) => {
+    static throwErrorIfDiscountValueIsIncorrect = (discount) => {
         //poprawic nazwe
         if ((discount < 0) || (discount > 100)) {
             throw new Error("Acceptable discount is between 0% and 100%")
         }
     }
 
-    static checkDiscountCodeAmount = (discount, totalCartAmount) => {
+    static throwErrorIfDiscountCodeValueIsIncorrect = (discount, totalCartAmount) => {
         if ((discount < 0) || (discount > totalCartAmount)) {
             throw new Error(`Acceptable discount is between 0 and total cart amount `)
         }
     }
 
-    static checkStringCharacters = (string) => {
+    static throwErrorIfStringCharactersAreIncorrect = (string) => {
         const regex = /^\w+(\s+\w+)*$/gi;
         if (!regex.test(string)) {
             throw new Error(`You should provide between 2-20 characters. No special characters`)
