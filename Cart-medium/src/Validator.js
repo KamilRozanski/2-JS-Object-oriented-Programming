@@ -31,7 +31,7 @@ export class Validator {
     }
 
     static isQuantitySmallerThanZero = (quantity) => {
-        if ((quantity <= 0) && (Number.isInteger(quantity))) {
+        if (quantity <= 0 && Number.isInteger(quantity)) {
             throw new Error("Quantity must be bigger than 0, and must be a integer number")
         }
     }
@@ -63,6 +63,7 @@ export class Validator {
     }
 
     static checkDiscountValue = (discount) => {
+        //poprawic nazwe
         if ((discount < 0) || (discount > 100)) {
             throw new Error("Acceptable discount is between 0% and 100%")
         }

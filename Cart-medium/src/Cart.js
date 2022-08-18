@@ -21,7 +21,7 @@ import {
 export class Cart {
     constructor() {
         this.cart = []
-        this.quantity = 0
+        this.quantity = 0 // poprawic nazwe
         this.discountPercent = 0
         this.discountCode = []
         this.discountCodeAmount = 0
@@ -49,6 +49,7 @@ export class Cart {
     }
 
     changeCartItemQuantity = (cartItem, quantity) => {
+        //poprawic quantity
         Validator.isInstanceOf(cartItem, CartItem)
         Validator.isNumber(quantity)
         Validator.isQuantitySmallerThanZero(quantity)
@@ -76,6 +77,7 @@ export class Cart {
     applayDiscountCode = (providedCode) => {
         Validator.isString(providedCode)
         Validator.throwErrorIfDiscountCodeNotExists(providedCode, this.discountCode)
+        //Object.entres
         this.discountCode.find(({
             code,
             discountCodeAmount
@@ -91,6 +93,7 @@ export class Cart {
     }
 
     getAmountSummary = () => {
+        //poprawiz nazwewniectwo
         this.totalCartAmount = this.cart.reduce((acc, cartItem) => {
             return (acc + cartItem.getAmountSummary())
         }, 0)
@@ -98,3 +101,12 @@ export class Cart {
         return Math.round(this.totalCartAmount)
     }
 }
+
+// telefon, 5
+// telefon, 2
+// telefon, 3
+
+// koszyk: 
+// telefon: 5,
+// telefon: 2,
+// telefon: 3,

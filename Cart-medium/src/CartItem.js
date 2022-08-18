@@ -27,6 +27,7 @@ export class CartItem {
 
         this.item = item
         this.category = category
+        //kategoria powinna byc w item
         this.discountPercent = discountPercent
         this.quantity = 1
         this.id = uuidv4()
@@ -39,6 +40,7 @@ export class CartItem {
     }
 
     changeDiscountPercente = (newDiscount) => {
+        // dodac domyslna wartosc 
         Validator.isNumber(newDiscount)
         Validator.checkDiscountValue(newDiscount)
         this.discountPercent = discount
@@ -57,6 +59,7 @@ export class CartItem {
     }
 
     getAmountSummary = () => {
+        //poprawic nazwenictwo
         return (this.item.getPrice() - this.getDiscountAmount()) * this.quantity
     }
 }

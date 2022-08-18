@@ -23,7 +23,7 @@ const itemFour = new CartItem(vivoX60, "mobile Phones", 10)
 
 const cart = new Cart()
 cart.addCartItem(itemOne, 2)
-cart.addCartItem(itemTwo, 5)
+cart.addCartItem(itemOne, 5)
 
 cart.setDiscountCode("summer", 100)
 cart.setDiscountCode("winter", 500)
@@ -33,4 +33,4 @@ cart.applayDiscountCode("summer")
 // console.log(cart.getAmountSummary())
 
 
-console.log(cart)
+console.log(cart.cart)
