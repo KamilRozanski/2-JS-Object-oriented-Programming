@@ -15,7 +15,7 @@ import {
 export class Cart {
     constructor() {
         this.cart = []
-        this.quantity = 0 // poprawic nazwe
+        this.positionsInCart = 0 // poprawic nazwe
         this.discountPercent = 0
         this.discountCode = []
         this.discountCodeAmount = 0
@@ -24,14 +24,17 @@ export class Cart {
     }
 
     addCartItem = (cartItem, quantity = 1) => {
-
         //w cart produkt pokazuje jako tablice[item]??
         Validator.isInstanceOf(cartItem, CartItem)
-        Validator.throwErrorIfItemExists(cartItem, this.cart)
+        // Validator.isItemAlreadyExists(cartItem, this.cart)
+        console.log(cartItem.id)
+
+
 
         this.cart.push(cartItem)
-        cartItem.changeQuantity(quantity) //Czy towrzyc do tego oddzielną metode ??
-        this.quantity++
+        cartItem.changeQuantity(quantity)
+
+        //Czy towrzyc do tego oddzielną metode ??
     }
 
     removeCartItem = (cartItem) => {
@@ -39,7 +42,6 @@ export class Cart {
         Validator.throwErrorIfItemNotExists(cartItem, this.cart)
 
         this.cart = this.cart.filter(el => el.id !== cartItem.id)
-        this.quantity--
     }
 
     changeCartItemQuantity = (cartItem, quantity) => {
@@ -95,12 +97,3 @@ export class Cart {
         return Math.round(this.totalCartAmount)
     }
 }
-
-// telefon, 5
-// telefon, 2
-// telefon, 3
-
-// koszyk: 
-// telefon: 5,
-// telefon: 2,
-// telefon: 3,

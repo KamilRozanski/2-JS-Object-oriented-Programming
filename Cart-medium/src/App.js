@@ -20,11 +20,12 @@ const itemThree = new CartItem(redmiNote5A, 10)
 const itemFour = new CartItem(vivoX60, 10)
 
 
-console.log(itemOne.getDiscountAmount())
-
 const cart = new Cart()
-// cart.addCartItem(itemOne, 2)
-// cart.addCartItem(itemOne, 5)
+cart.addCartItem(itemOne)
+cart.addCartItem(itemOne, 6)
+cart.addCartItem(itemTwo, 3)
+cart.addCartItem(itemOne, 2)
+
 
 // cart.setDiscountCode("summer", 100)
 // cart.setDiscountCode("winter", 500)
@@ -34,4 +35,4 @@ const cart = new Cart()
 // console.log(cart.getAmountSummary())
 
 
-// console.log(cart.cart)
+// console.log(cart)

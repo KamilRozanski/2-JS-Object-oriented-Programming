@@ -44,7 +44,7 @@ export class CartItem {
         Validator.isNumber(newQuantity)
         Validator.isQuantitySmallerThanZero(newQuantity)
 
-        this.quantity = newQuantity
+        return this.quantity = newQuantity
     }
 
 
@@ -52,7 +52,7 @@ export class CartItem {
         return this.item.getPrice() * this.discountPercent / 100
     }
 
-    getTotalAmount = () => {
+    getTotal = () => {
         //poprawic nazwenictwo
         return (this.item.getPrice() - this.getDiscountAmount()) * this.quantity
     }
