@@ -22,9 +22,9 @@ const itemFour = new CartItem(vivoX60, 10)
 
 const cart = new Cart()
 cart.addCartItem(itemOne)
-cart.addCartItem(itemOne, 6)
-cart.addCartItem(itemTwo, 3)
 cart.addCartItem(itemOne, 2)
+cart.addCartItem(itemTwo, 3)
+cart.addCartItem(itemOne, 4)
 
 
 // cart.setDiscountCode("summer", 100)

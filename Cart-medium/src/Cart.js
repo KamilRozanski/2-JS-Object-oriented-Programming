@@ -27,14 +27,9 @@ export class Cart {
         //w cart produkt pokazuje jako tablice[item]??
         Validator.isInstanceOf(cartItem, CartItem)
         // Validator.isItemAlreadyExists(cartItem, this.cart)
-        console.log(cartItem.id)
-
-
 
         this.cart.push(cartItem)
         cartItem.changeQuantity(quantity)
-
-        //Czy towrzyc do tego oddzielną metode ??
     }
 
     removeCartItem = (cartItem) => {
