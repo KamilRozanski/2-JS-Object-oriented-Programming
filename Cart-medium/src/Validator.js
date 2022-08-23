@@ -36,8 +36,6 @@ export class Validator {
         }
     }
 
-
-
     static throwErrorIfDiscountCodeNotExists(code, array) {
         const allCodes = []
         array.filter(({
@@ -51,7 +49,6 @@ export class Validator {
     }
 
     static isItemAlreadyExists = (item, array) => {
-
         const result = array.some(el => item.id === el.id)
         if (result) {
             throw new Error("Item already exists")

@@ -27,7 +27,20 @@ export class Cart {
         //w cart produkt pokazuje jako tablice[item]??
         Validator.isInstanceOf(cartItem, CartItem)
         // Validator.isItemAlreadyExists(cartItem, this.cart)
+        let quantityTest = 0
+        this.cart = this.cart.filter(el => {
+            // console.log(cartItem.id === el.id)
+            // console.log(cartItem.id, el.id)
+            // console.log(cartItem, el)
+            if (cartItem.id === el.id) {
+                console.log(quantity)
+                // this.cart.push(cartItem)
+                el.changeQuantity(quantity)
+            }
+        })
 
+        // console.log(cartItem.id)
+        // console.log(this.cart)
         this.cart.push(cartItem)
         cartItem.changeQuantity(quantity)
     }

@@ -18,6 +18,7 @@ const itemOne = new CartItem(s21Ultra, 10)
 const itemTwo = new CartItem(iPhone13ProMax, 10)
 const itemThree = new CartItem(redmiNote5A, 10)
 const itemFour = new CartItem(vivoX60, 10)
+const itemFive = new CartItem(s21Ultra, 10)
 
 
 const cart = new Cart()
@@ -35,4 +36,4 @@ cart.addCartItem(itemOne, 4)
 // console.log(cart.getAmountSummary())
 
 
-// console.log(cart)
+console.log(cart)
