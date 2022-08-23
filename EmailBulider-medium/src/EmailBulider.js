@@ -15,6 +15,10 @@ export class EmailBuilder {
         this.email = new Email(this.from, this.to)
     }
 
+    reset = () => {
+        // wyczyscic bulidera do zera
+        this.email = new Email("", "")
+    }
 
     setCC = (newCC) => {
         Validator.checkEmailFormat(newCC)
@@ -44,30 +48,5 @@ export class EmailBuilder {
         const resultEmail = this.email
         this.reset()
         return resultEmail
-    }
-
-    reset = () => {
-        //dodac metode reset
-        this.email = new Email(this.from, this.to)
-    }
-}
-
-
-
-
-
-export class EmailBuilderTwo {
-    constructor(from, to, {
-        cc,
-        bcc,
-        title,
-        HTML
-    } = {}) {
-        this.from = from
-        this.to = to
-        this.cc = cc
-        this.bcc = bcc
-        this.title = title
-        this.HTML = HTML
     }
 }

@@ -9,7 +9,6 @@ export class Director {
     }
 
     basicEmail = () => {
-        console.log(this.builder)
         return this.builder
     }
     fullEmail = () => {
