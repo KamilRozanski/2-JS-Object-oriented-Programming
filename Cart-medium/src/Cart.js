@@ -26,16 +26,15 @@ export class Cart {
     addCartItem = (cartItem, quantity = 1) => {
         //w cart produkt pokazuje jako tablice[item]??
         Validator.isInstanceOf(cartItem, CartItem)
-        // Validator.isItemAlreadyExists(cartItem, this.cart)
-        const isExists = this.cart.find(el => {
-            if (el.id === cartItem.id) {
-                let updatedQuantity = el.quantity += quantity
-                el.changeQuantity(updatedQuantity)
+        const isCartItemAlreadyExists = this.cart.find(cartItemInCart => {
+            if (cartItemInCart.id === cartItem.id) {
+                let updatedQuantity = cartItemInCart.quantity += quantity
+                cartItemInCart.changeQuantity(updatedQuantity)
                 return true
             }
             return false
         })
-        if (!isExists) {
+        if (!isCartItemAlreadyExists) {
             this.cart.push(cartItem)
             cartItem.changeQuantity(quantity)
         }

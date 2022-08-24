@@ -7,7 +7,18 @@ export class Validator {
 
     static isNumber = (value) => {
         if (typeof value !== "number" || isNaN(value)) {
-            throw new Error("It should be a number value")
+            throw new Error("The value must be and number")
+        }
+    }
+
+    static isIntegerNumber = (value) => {
+        if (!Number.isInteger(value)) {
+            throw new Error("The value must be an integer value")
+        }
+    }
+    static isPositiveNumber = (value) => {
+        if (value < 0) {
+            throw new Error("The number must be bigger than zero")
         }
     }
 
@@ -20,13 +31,6 @@ export class Validator {
     static isArray(array) {
         if (!Array.isArray(array)) {
             throw new Error("Input is not Array")
-        }
-    }
-
-    static isPriceBiggerThanZero = (price) => {
-        if (price <= 0) {
-            throw new Error(`Price must be bigger than  "
-                0 "`)
         }
     }
 
@@ -62,7 +66,7 @@ export class Validator {
         }
     }
 
-    static throwErrorIfDiscountValueIsIncorrect = (discount) => {
+    static throwErrorIfDiscountIsNotAcceptable = (discount) => {
         //poprawic nazwe
         if ((discount < 0) || (discount > 100)) {
             throw new Error("Acceptable discount is between 0% and 100%")

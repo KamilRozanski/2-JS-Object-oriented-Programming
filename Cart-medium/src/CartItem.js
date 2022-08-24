@@ -22,7 +22,7 @@ export class CartItem {
     constructor(item, discountPercent = 0) {
         Validator.isInstanceOf(item, Item)
         Validator.isNumber(discountPercent)
-        Validator.throwErrorIfDiscountValueIsIncorrect(discountPercent)
+        Validator.throwErrorIfDiscountIsNotAcceptable(discountPercent)
 
         this.item = item
         //kategoria powinna byc w item
@@ -42,7 +42,7 @@ export class CartItem {
 
     changeQuantity = (newQuantity) => {
         Validator.isNumber(newQuantity)
-        Validator.isQuantitySmallerThanZero(newQuantity)
+        Validator.isPositiveNumber(newQuantity)
 
         return this.quantity = newQuantity
     }

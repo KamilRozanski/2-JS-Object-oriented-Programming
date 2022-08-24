@@ -10,7 +10,7 @@ export class Item {
     constructor(name, category, price) {
         Validator.throwErrorIfStringCharactersAreIncorrect(name)
         Validator.isNumber(price)
-        Validator.isPriceBiggerThanZero(price)
+        Validator.isPositiveNumber(price)
         Validator.isString(category)
 
         this.name = name
@@ -27,7 +27,7 @@ export class Item {
 
     changePrice = (newPrice) => {
         Validator.isNumber(newPrice)
-        Validator.isPriceBiggerThanZero(newPrice)
+        Validator.isPositiveNumber(newPrice)
 
         this.price = newPrice
     }
