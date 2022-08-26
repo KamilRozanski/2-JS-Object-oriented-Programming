@@ -23,20 +23,21 @@ export class Cart {
         this.id = uuidv4()
     }
 
-    addCartItem = (cartItem, quantity = 1) => {
+    addCartItem = (newCartItem, quantity = 1) => {
         //w cart produkt pokazuje jako tablice[item]??
-        Validator.isInstanceOf(cartItem, CartItem)
-        const isCartItemAlreadyExists = this.cart.find(cartItemInCart => {
-            if (cartItemInCart.id === cartItem.id) {
-                let updatedQuantity = cartItemInCart.quantity += quantity
-                cartItemInCart.changeQuantity(updatedQuantity)
+        Validator.isInstanceOf(newCartItem, CartItem)
+
+        const isCartItemAlreadyExists = this.cart.find(existingCartItem => {
+            if (existingCartItem.id === newCartItem.id) {
+                let updatedQuantity = existingCartItem.quantity += quantity
+                existingCartItem.changeQuantity(updatedQuantity)
                 return true
             }
             return false
         })
         if (!isCartItemAlreadyExists) {
-            this.cart.push(cartItem)
-            cartItem.changeQuantity(quantity)
+            this.cart.push(newCartItem)
+            newCartItem.changeQuantity(quantity)
         }
     }
 
