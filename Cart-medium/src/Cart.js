@@ -26,7 +26,6 @@ export class Cart {
     addCartItem = (newCartItem, quantity = 1) => {
         //w cart produkt pokazuje jako tablice[item]??
         Validator.isInstanceOf(newCartItem, CartItem)
-        Validator.isPositiveNumber(quantity)
 
         const isCartItemAlreadyExists = this.cart.find(existingCartItem => {
             if (existingCartItem.id === newCartItem.id) {
@@ -46,11 +45,11 @@ export class Cart {
     removeCartItem = (removedCartItem, quantity) => {
         Validator.isInstanceOf(removedCartItem, CartItem)
         Validator.throwErrorIfItemNotExists(removedCartItem, this.cart)
-        Validator.isPositiveNumber(quantity)
 
-        if (quantity === undefined) {
-            return this.cart = this.cart.filter(el => el.id !== removedCartItem.id)
+        if (quantity === undefined || removedCartItem.quantity - quantity <= 0) {
+            return this.cart = this.cart.filter(cartItem => cartItem.id !== removedCartItem.id)
         }
+
         this.cart.find(existingCartItem => {
             if (existingCartItem.id === removedCartItem.id) {
                 let updatedQuantity = existingCartItem.quantity -= quantity

@@ -42,7 +42,7 @@ export class CartItem {
 
     changeQuantity = (newQuantity) => {
         Validator.isNumber(newQuantity)
-        Validator.isPositiveNumber(newQuantity)
+        // Validator.throwErrorIfQuantitySmallerThanZero(newQuantity)
 
         return this.quantity = newQuantity
     }

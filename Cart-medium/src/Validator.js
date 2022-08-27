@@ -21,6 +21,11 @@ export class Validator {
             throw new Error("The number must be bigger than zero")
         }
     }
+    static isQuantityPositiveNumber = (value) => {
+        if (value < 0) {
+            throw new Error("Quantity can not be smaller than zero")
+        }
+    }
 
     static isInstanceOf = (item, instance) => {
         if (!item instanceof instance) {
@@ -34,7 +39,7 @@ export class Validator {
         }
     }
 
-    static isQuantitySmallerThanZero = (quantity) => {
+    static throwErrorIfQuantitySmallerThanZero = (quantity) => {
         if (quantity <= 0 && Number.isInteger(quantity)) {
             throw new Error("Quantity must be bigger than 0, and must be a integer number")
         }
