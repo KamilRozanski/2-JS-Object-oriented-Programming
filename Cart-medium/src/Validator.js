@@ -85,4 +85,5 @@ export class Validator {
             throw new Error(`You should provide between 2-20 characters. No special characters`)
         }
     }
+
 }
