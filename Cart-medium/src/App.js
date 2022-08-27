@@ -28,7 +28,7 @@ cart.addCartItem(itemTwo, 3)
 cart.addCartItem(itemTwo, 10)
 cart.addCartItem(itemOne, 2)
 cart.removeCartItem(itemOne, 2)
-cart.removeCartItem(itemOne, 2)
+cart.removeCartItem(itemOne, 5)
 
 
 
@@ -39,6 +39,7 @@ cart.removeCartItem(itemOne, 2)
 // cart.applayDiscountCode("summer")
 
 // console.log(cart.getAmountSummary())
-
-
-console.log(cart)
+cart.setDiscountCode("kamil", 220)
+cart.applayDiscountCode("kamil")
+cart.getTotalAmaunt()
+// console.log(cart)

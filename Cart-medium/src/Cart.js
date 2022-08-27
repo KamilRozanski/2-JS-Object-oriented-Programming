@@ -59,12 +59,9 @@ export class Cart {
     }
 
     changeCartItemQuantity = (cartItem, quantity) => {
-        //poprawic quantity
         Validator.isInstanceOf(cartItem, CartItem)
-        Validator.isNumber(quantity)
-        Validator.isQuantitySmallerThanZero(quantity)
 
-        quantity !== 0 ? cartItem.changeQuantity(quantity) : this.removeItem(cartItem)
+        cartItem.changeQuantity(quantity)
     }
 
     setCartDiscountPercent = (cartDiscount) => {
@@ -77,7 +74,7 @@ export class Cart {
     setDiscountCode = (code, discountCodeAmount) => {
         Validator.isString(code)
         Validator.isNumber(discountCodeAmount)
-        Validator.throwErrorIfDiscountCodeValueIsIncorrect(discountCodeAmount, this.getAmountSummary())
+        Validator.throwErrorIfDiscountCodeValueIsIncorrect(discountCodeAmount, this.getTotalAmaunt())
         this.discountCode.push({
             code,
             discountCodeAmount
@@ -88,12 +85,14 @@ export class Cart {
         Validator.isString(providedCode)
         Validator.throwErrorIfDiscountCodeNotExists(providedCode, this.discountCode)
         //Object.entres
-        this.discountCode.find(({
-            code,
-            discountCodeAmount
-        }) => {
-            if (code === providedCode) {
-                this.discountCodeAmount = discountCodeAmount
+        this.discountCode.find(obj => {
+            for (const [key, value] of Object.entries(obj)) {
+                // console.log(`${key} ${providedCode}: ${value}`);
+
+                if (value === providedCode) {
+                    console.log(`${key} ${providedCode}: ${value}`);
+                    this.discountCodeAmount = value
+                }
             }
         })
     }
@@ -102,10 +101,10 @@ export class Cart {
         return this.totalCartAmount * this.discountPercent / 100
     }
 
-    getAmountSummary = () => {
-        //poprawiz nazw
+    getTotalAmaunt = () => {
+        //poprawic nazwe metody
         this.totalCartAmount = this.cart.reduce((acc, cartItem) => {
-            return (acc + cartItem.getAmountSummary())
+            return (acc + cartItem.getTotalAmount())
         }, 0)
         this.totalCartAmount = this.totalCartAmount - this.getDiscountPercentAmount() - this.discountCodeAmount
         return Math.round(this.totalCartAmount)
