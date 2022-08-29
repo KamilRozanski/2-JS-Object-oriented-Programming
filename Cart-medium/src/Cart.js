@@ -66,7 +66,7 @@ export class Cart {
 
     setCartDiscountPercent = (cartDiscount) => {
         Validator.isNumber(cartDiscount)
-        Validator.checkDiscountValue(cartDiscount)
+        Validator.throwErrorIfDiscountIsNotBetweenZeroToOneHundred(cartDiscount)
 
         this.discountPercent = cartDiscount
     }
@@ -85,25 +85,22 @@ export class Cart {
         Validator.isString(providedCode)
         Validator.throwErrorIfDiscountCodeNotExists(providedCode, this.discountCodes)
 
-        this.discountCodes.find((obj, index) => {
-            const test = Object.entries(obj)
-            for (const [key, value] of test) {
-                if (value === providedCode) {
-                    console.log(value)
-                }
-            }
-        })
+        // this.discountCodes.find((obj, index) => {
+        //     const test = Object.entries(obj)
+        //     for (const [key, value] of test) {
+        //         console.log(key, value)
+        //     }
+        // })
         //Object.entries
 
-        // this.discountCodes.find(({
-        //     code,
-        //     discountCodeAmount
-        // }) => {
-        //     if (code === providedCode) {
-        //         this.discountCodeAmount = discountCodeAmount
-        //     }
-
-        // })
+        this.discountCodes.find(({
+            code,
+            discountCodeAmount
+        }) => {
+            if (code === providedCode) {
+                this.discountCodeAmount = discountCodeAmount
+            }
+        })
     }
 
     getDiscountPercentAmount = () => {
@@ -112,10 +109,18 @@ export class Cart {
 
     getTotalAmaunt = () => {
         //poprawic nazwe metody
+        // Jak dam 100 % rabatu na caly koszyk, plus rabat na produkt totalAmount jeest na miusiee :(
+        // Math.round(this.totalCartAmount) nie zaokrągla ???
         this.totalCartAmount = this.cart.reduce((acc, cartItem) => {
             return (acc + cartItem.getTotalAmount())
         }, 0)
+
         this.totalCartAmount = this.totalCartAmount - this.getDiscountPercentAmount() - this.discountCodeAmount
+
+        if (this.totalCartAmount < 0) {
+            return this.totalCartAmount = 0
+        }
+
         return Math.round(this.totalCartAmount)
     }
 }

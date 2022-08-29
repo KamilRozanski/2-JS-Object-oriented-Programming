@@ -22,7 +22,7 @@ export class CartItem {
     constructor(item, discountPercent = 0) {
         Validator.isInstanceOf(item, Item)
         Validator.isNumber(discountPercent)
-        Validator.throwErrorIfDiscountIsNotAcceptable(discountPercent)
+        Validator.throwErrorIfDiscountIsNotBetweenZeroToOneHundred(discountPercent)
 
         this.item = item
         //kategoria powinna byc w item

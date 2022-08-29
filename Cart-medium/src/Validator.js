@@ -21,11 +21,6 @@ export class Validator {
             throw new Error("The number must be bigger than zero")
         }
     }
-    static isQuantityPositiveNumber = (value) => {
-        if (value < 0) {
-            throw new Error("Quantity can not be smaller than zero")
-        }
-    }
 
     static isInstanceOf = (item, instance) => {
         if (!item instanceof instance) {
@@ -71,7 +66,7 @@ export class Validator {
         }
     }
 
-    static throwErrorIfDiscountIsNotAcceptable = (discount) => {
+    static throwErrorIfDiscountIsNotBetweenZeroToOneHundred = (discount) => {
         //poprawic nazwe
         if ((discount < 0) || (discount > 100)) {
             throw new Error("Acceptable discount is between 0% and 100%")
