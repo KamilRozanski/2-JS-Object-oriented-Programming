@@ -62,6 +62,12 @@ export class Library {
         this.allBookings.push(createdBooking)
     }
 
+    removeBooking = (booking) => {
+        // Validator.isBookExists
+        // Validator.isUserExists
+        console.log(this.allBookings)
+    }
+
     returnBook = (user, returnBook) => {
         // Validator.isBookExists
         // Validator.isUserExists

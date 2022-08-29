@@ -36,21 +36,17 @@ bookingKamil.addBookToBookingList(bookTwo)
 // bookingKamil.removeBookFromBookingList(bookOne)
 
 
-
-
 const library = new Library()
 
 library.addUser(kamil)
 library.addUser(dominika)
-// library.removeUser(krystian)
 
 library.addBook(bookOne)
 library.addBook(bookTwo)
 library.addBook(bookThree)
 
+library.createBooking(kamil, bookOne)
+library.removeBooking(kamil, bookOne)
 
-// library.createBooking(kamil, bookOne)
-// library.createBooking(dominika, bookTwo)
-// library.returnBook(kamil, bookThree)
 
 console.log(library)
