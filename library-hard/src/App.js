@@ -20,6 +20,8 @@ import {
 
 const kamil = new User("Kamil", "Rózański")
 const dominika = new User("Dominika", "Rózańska")
+const krystian = new User("Krystian", "Rózański")
+
 const bookOne = new Book("title One", "author One", "photoOfTheBook One", "description One")
 const bookTwo = new Book("title Two", "author Two", "photoOfTheBook Two", "description Two")
 const bookThree = new Book("title Three", "author Three", "photoOfTheBook Three", "description Three")
@@ -40,16 +42,15 @@ const library = new Library()
 
 library.addUser(kamil)
 library.addUser(dominika)
+// library.removeUser(krystian)
 
 library.addBook(bookOne)
 library.addBook(bookTwo)
 library.addBook(bookThree)
 
 
-
-
-
-
-// library.addBooking(bookingKamil)
+// library.createBooking(kamil, bookOne)
+// library.createBooking(dominika, bookTwo)
+// library.returnBook(kamil, bookThree)
 
 console.log(library)

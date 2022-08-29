@@ -31,11 +31,14 @@ export class Library {
 
     addUser = (user) => {
         Validator.isInstanceOfClass(user, User)
-
+        Validator.throwErrorIfUserAlreadyExists(user, this.allUsers)
         this.allUsers.push(user)
     }
     removeUser = (user) => {
-        //..
+        Validator.throwErrorIfUserNotExists(user, this.allUsers)
+        this.allUsers.filter(existUser => {
+            existUser.id !== user.id
+        })
     }
 
     addBook = (book) => {
@@ -50,15 +53,21 @@ export class Library {
         this.allBooks = this.allBooks.filter(book => book.id !== removeBook.id)
     }
 
-    addBooking = (booking) => {
-        Validator.isInstanceOfClass(booking, Booking)
+    createBooking = (user, book) => {
+        // Validator.isBookExists
+        // Validator.isUserExists
 
-        this.allBookings.push(booking)
+        const createdBooking = new Booking(user)
+        createdBooking.addBookToBookingList(book)
+        this.allBookings.push(createdBooking)
     }
 
+    returnBook = (user, returnBook) => {
+        // Validator.isBookExists
+        // Validator.isUserExists
 
-    returnBook = (returnBook) => {
-
+        // console.log(booking.returnBook(returnBook))
+        // console.log(booking)
     }
 
     getAvaiableBooks = () => {
