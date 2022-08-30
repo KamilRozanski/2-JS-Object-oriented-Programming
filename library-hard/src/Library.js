@@ -35,6 +35,7 @@ export class Library {
         this.allUsers.push(user)
     }
     removeUser = (user) => {
+        Validator.isInstanceOfClass(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
         this.allUsers.filter(existUser => {
             existUser.id !== user.id
@@ -60,9 +61,10 @@ export class Library {
         const createdBooking = new Booking(user)
         createdBooking.addBookToBookingList(book)
         this.allBookings.push(createdBooking)
+        // console.log(createdBooking)
     }
 
-    removeBooking = (booking) => {
+    removeBooking = (user, book) => {
         // Validator.isBookExists
         // Validator.isUserExists
         console.log(this.allBookings)

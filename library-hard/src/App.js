@@ -28,7 +28,7 @@ const bookThree = new Book("title Three", "author Three", "photoOfTheBook Three"
 
 
 const bookingKamil = new Booking(kamil)
-// const bookingDominika = new Booking(dominika)
+const bookingDominika = new Booking(dominika)
 
 bookingKamil.addBookToBookingList(bookOne)
 bookingKamil.addBookToBookingList(bookTwo)
@@ -46,7 +46,9 @@ library.addBook(bookTwo)
 library.addBook(bookThree)
 
 library.createBooking(kamil, bookOne)
+library.createBooking(kamil, bookTwo)
+library.createBooking(dominika, bookThree)
 library.removeBooking(kamil, bookOne)
 
 
-console.log(library)
+// console.log(library)

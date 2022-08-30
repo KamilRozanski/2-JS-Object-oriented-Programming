@@ -9,9 +9,6 @@ import {
 import {
     Book
 } from "./Book.js";
-import {
-    v4 as uuidv4
-} from 'uuid';
 
 // Booking dostaje użytkownika w constructorze
 
@@ -32,8 +29,6 @@ export class Booking {
         this.forHowManyDaysBookCanBeBorrowed = 7
         this.borrowedBooks = []
         this.penalty = 0
-        this.id = uuidv4()
-
     }
 
     addBookToBookingList = (addBook) => {
