@@ -9,28 +9,38 @@ import {
     Cart
 } from './Cart.js';
 
-const s21Ultra = new Item("Samsung S21 Ultra", 200)
-const iPhone13ProMax = new Item("iPhone13 Pro Max", 220)
-const redmiNote5A = new Item("Redmi Note 5A", 100)
-const vivoX60 = new Item("Vivo X60", 100)
+const s21Ultra = new Item("Samsung S21 Ultra", "mobile Phones", 200)
+const iPhone13ProMax = new Item("iPhone13 Pro Max", "mobile Phones", 220)
+const redmiNote5A = new Item("Redmi Note 5A", "mobile Phones", 100)
+const vivoX60 = new Item("Vivo X60", "mobile Phones", 100)
 
-const itemOne = new CartItem(s21Ultra, "mobile Phones", 10)
-const itemTwo = new CartItem(iPhone13ProMax, "mobile Phones", 10)
-const itemThree = new CartItem(redmiNote5A, "mobile Phones", 10)
-const itemFour = new CartItem(vivoX60, "mobile Phones", 10)
-
+const itemOne = new CartItem(s21Ultra, 10)
+const itemTwo = new CartItem(iPhone13ProMax, 10)
+const itemThree = new CartItem(redmiNote5A, 10)
+const itemFour = new CartItem(vivoX60, 10)
+const itemFive = new CartItem(s21Ultra, 10)
 
 
 const cart = new Cart()
+cart.addCartItem(itemOne)
 cart.addCartItem(itemOne, 2)
-cart.addCartItem(itemTwo, 5)
+cart.addCartItem(itemTwo, 3)
+cart.addCartItem(itemTwo, 10)
+cart.addCartItem(itemOne, 2)
+cart.removeCartItem(itemOne, 2)
+cart.removeCartItem(itemOne, 5)
 
-cart.setDiscountCode("summer", 100)
-cart.setDiscountCode("winter", 500)
 
-cart.applayDiscountCode("summer")
+
+
+// cart.setDiscountCode("summer", 100)
+// cart.setDiscountCode("winter", 500)
+
+// cart.applayDiscountCode("summer")
 
 // console.log(cart.getAmountSummary())
-
-
+cart.setDiscountCode("kamil", 220)
+cart.applayDiscountCode("kamil")
+cart.setCartDiscountPercent(100)
+cart.getTotalAmaunt()
 console.log(cart)

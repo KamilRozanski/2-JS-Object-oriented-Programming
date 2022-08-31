@@ -33,23 +33,24 @@ export class Booking {
 
     addBookToBookingList = (addBook) => {
         Validator.isInstanceOfClass(addBook, Book)
-        // Validator.throwErrorIfBookNotExists(book, this.bookStorage)
+        // Validator.throwErrorIfBookAlreadyExists(book, this.bookStorage)
         this.borrowedBooks.push(addBook)
         this.borrowedBookDate = new Date("August 2, 2022") // Przykładowa data
     }
 
     removeBookFromBookingList = (removeBook) => {
         Validator.isInstanceOfClass(removeBook, Book)
+        // Validator.throwErrorIfBookNotExists(book, this.bookStorage)
 
         this.borrowedBooks = this.borrowedBooks.filter(book => book.id !== removeBook.id)
     }
 
-    returnBook = (book) => {
-        Validator.isInstanceOfClass(book, Book)
+    returnBook = (returnBook) => {
+        Validator.isInstanceOfClass(returnBook, Book)
         //Po zwrocie ksiazek po terminie kara jest naliczana tylko za jedną ksiazke.
-        this.borrowedBooks = this.borrowedBooks.filter(el => el.id !== book.id)
+        this.borrowedBooks = this.borrowedBooks.filter(el => el.id !== returnBook.id)
         this.returnBookDate = new Date() // Date.now() Jaka to róznica??
-        if (this.isPenaltyRequired()) { // Łamie solid??
+        if (this.isPenaltyRequired()) { // Łamie solid
             this.changePenalty(1)
             this.getPenaltyAmount()
         }
@@ -57,6 +58,7 @@ export class Booking {
 
     changeForHowManyDaysBookCanBeBorrowed = (days) => {
         Validator.isNumber(days)
+
         this.forHowManyDaysBookCanBeBorrowed = days
     }
 

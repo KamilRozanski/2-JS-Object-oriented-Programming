@@ -17,6 +17,20 @@ export class Validator {
         }
     }
 
+    static throwErrorIfUserAlreadyExists = (newUser, usersArray) => {
+        const result = usersArray.some(existUser => newUser.id === existUser.id)
+        if (result) {
+            throw new Error("User does not exists")
+        }
+    }
+
+    static throwErrorIfUserNotExists = (user, usersArray) => {
+        const result = usersArray.some(existUser => user.id === existUser.id)
+        if (!result) {
+            throw new Error("User does not exists")
+        }
+    }
+
     static throwErrorIfBookNotExists = (book, array) => {
         if (!array.includes(book)) {
             throw new Error("Book not exists")

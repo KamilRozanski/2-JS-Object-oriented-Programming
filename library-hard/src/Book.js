@@ -12,6 +12,7 @@ export class Book {
     constructor(title, author, photoOfTheBook, description) {
         Validator.isString(title)
         Validator.isString(author)
+        Validator.isString(photoOfTheBook)
         Validator.isString(description)
         this.title = title
         this.author = author

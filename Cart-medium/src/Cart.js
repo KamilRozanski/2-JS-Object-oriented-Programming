@@ -12,53 +12,61 @@ import {
     v4 as uuidv4
 } from 'uuid';
 
-// Ma mieć: uuid, listę wybranych przedmiotów, rabat % na koszyk, kod rabatowy
-// Ma umożliwiać: 
-// - dodawanie/usuwanie przedmiotów do/z koszyka
-// - zmianę ilości produktu w koszyku
-// - podliczać wartość koszyka uwzględniajac rabaty
-
 export class Cart {
     constructor() {
         this.cart = []
-        this.quantity = 0
+        this.positionsInCart = 0 // poprawic nazwe
         this.discountPercent = 0
-        this.discountCode = []
+        this.discountCodes = []
         this.discountCodeAmount = 0
         this.totalCartAmount = 0;
         this.id = uuidv4()
     }
 
-    addCartItem = (cartItem, quantity = 1) => {
-
+    addCartItem = (newCartItem, quantity = 1) => {
         //w cart produkt pokazuje jako tablice[item]??
-        Validator.isInstanceOf(cartItem, CartItem)
-        Validator.throwErrorIfItemExists(cartItem, this.cart)
+        Validator.isInstanceOf(newCartItem, CartItem)
 
-        this.cart.push(cartItem)
-        cartItem.changeQuantity(quantity) //Czy towrzyc do tego oddzielną metode ??
-        this.quantity++
+        const isCartItemAlreadyExists = this.cart.find(existingCartItem => {
+            if (existingCartItem.id === newCartItem.id) {
+                let updatedQuantity = existingCartItem.quantity += quantity
+                existingCartItem.changeQuantity(updatedQuantity)
+                return true
+            }
+            return false
+        })
+
+        if (!isCartItemAlreadyExists) {
+            this.cart.push(newCartItem)
+            newCartItem.changeQuantity(quantity)
+        }
     }
 
-    removeCartItem = (cartItem) => {
-        Validator.isInstanceOf(cartItem, CartItem)
-        Validator.throwErrorIfItemNotExists(cartItem, this.cart)
+    removeCartItem = (removedCartItem, quantity) => {
+        Validator.isInstanceOf(removedCartItem, CartItem)
+        Validator.throwErrorIfItemNotExists(removedCartItem, this.cart)
 
-        this.cart = this.cart.filter(el => el.id !== cartItem.id)
-        this.quantity--
+        if (quantity === undefined || removedCartItem.quantity - quantity <= 0) {
+            return this.cart = this.cart.filter(cartItem => cartItem.id !== removedCartItem.id)
+        }
+
+        this.cart.find(existingCartItem => {
+            if (existingCartItem.id === removedCartItem.id) {
+                let updatedQuantity = existingCartItem.quantity -= quantity
+                existingCartItem.changeQuantity(updatedQuantity)
+            }
+        })
     }
 
     changeCartItemQuantity = (cartItem, quantity) => {
         Validator.isInstanceOf(cartItem, CartItem)
-        Validator.isNumber(quantity)
-        Validator.isQuantitySmallerThanZero(quantity)
 
-        quantity !== 0 ? cartItem.changeQuantity(quantity) : this.removeItem(cartItem)
+        cartItem.changeQuantity(quantity)
     }
 
     setCartDiscountPercent = (cartDiscount) => {
         Validator.isNumber(cartDiscount)
-        Validator.checkDiscountValue(cartDiscount)
+        Validator.throwErrorIfDiscountIsNotBetweenZeroToOneHundred(cartDiscount)
 
         this.discountPercent = cartDiscount
     }
@@ -66,8 +74,8 @@ export class Cart {
     setDiscountCode = (code, discountCodeAmount) => {
         Validator.isString(code)
         Validator.isNumber(discountCodeAmount)
-        Validator.checkDiscountCodeAmount(discountCodeAmount, this.getAmountSummary())
-        this.discountCode.push({
+        Validator.throwErrorIfDiscountCodeValueIsIncorrect(discountCodeAmount, this.getTotalAmaunt())
+        this.discountCodes.push({
             code,
             discountCodeAmount
         })
@@ -75,8 +83,17 @@ export class Cart {
 
     applayDiscountCode = (providedCode) => {
         Validator.isString(providedCode)
-        Validator.throwErrorIfDiscountCodeNotExists(providedCode, this.discountCode)
-        this.discountCode.find(({
+        Validator.throwErrorIfDiscountCodeNotExists(providedCode, this.discountCodes)
+
+        // this.discountCodes.find((obj, index) => {
+        //     const test = Object.entries(obj)
+        //     for (const [key, value] of test) {
+        //         console.log(key, value)
+        //     }
+        // })
+        //Object.entries
+
+        this.discountCodes.find(({
             code,
             discountCodeAmount
         }) => {
@@ -90,11 +107,20 @@ export class Cart {
         return this.totalCartAmount * this.discountPercent / 100
     }
 
-    getAmountSummary = () => {
+    getTotalAmaunt = () => {
+        //poprawic nazwe metody
+        // Jak dam 100 % rabatu na caly koszyk, plus rabat na produkt totalAmount jeest na miusiee :(
+        // Math.round(this.totalCartAmount) nie zaokrągla ???
         this.totalCartAmount = this.cart.reduce((acc, cartItem) => {
-            return (acc + cartItem.getAmountSummary())
+            return (acc + cartItem.getTotalAmount())
         }, 0)
+
         this.totalCartAmount = this.totalCartAmount - this.getDiscountPercentAmount() - this.discountCodeAmount
+
+        if (this.totalCartAmount < 0) {
+            return this.totalCartAmount = 0
+        }
+
         return Math.round(this.totalCartAmount)
     }
 }

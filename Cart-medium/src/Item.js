@@ -7,23 +7,35 @@ import {
 
 
 export class Item {
-    constructor(name, price) {
-        Validator.checkStringCharacters(name)
+    constructor(name, category, price) {
+        Validator.throwErrorIfStringCharactersAreIncorrect(name)
         Validator.isNumber(price)
-        Validator.isPriceBiggerThanZero(price)
+        Validator.isPositiveNumber(price)
+        Validator.isString(category)
+
         this.name = name
         this.price = price
+        this.category = category
         this.id = uuidv4()
     }
 
     changeName = (newName) => {
-        Validator.checkStringCharacters(newName)
+        Validator.throwErrorIfStringCharactersAreIncorrect(newName)
+
         this.name = newName
     }
+
     changePrice = (newPrice) => {
         Validator.isNumber(newPrice)
-        Validator.isPriceBiggerThanZero(newPrice)
+        Validator.isPositiveNumber(newPrice)
+
         this.price = newPrice
+    }
+
+    changeCategory = (newCategory) => {
+        Validator.isString(newCategory)
+
+        this.category = newCategory
     }
 
     getPrice = () => {

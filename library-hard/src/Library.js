@@ -19,6 +19,7 @@ import {
 // - usuwanie książek z listy
 // - wypożyczanie książki dla usera X
 // - oddanie wypożyczania książki
+
 export class Library {
     constructor() {
         this.allUsers = []
@@ -26,13 +27,19 @@ export class Library {
         this.allBookings = []
         this.allAvaiableBooks = []
         this.allBorrowedBooks = []
-
     }
 
     addUser = (user) => {
         Validator.isInstanceOfClass(user, User)
-
+        Validator.throwErrorIfUserAlreadyExists(user, this.allUsers)
         this.allUsers.push(user)
+    }
+    removeUser = (user) => {
+        Validator.isInstanceOfClass(user, User)
+        Validator.throwErrorIfUserNotExists(user, this.allUsers)
+        this.allUsers.filter(existUser => {
+            existUser.id !== user.id
+        })
     }
 
     addBook = (book) => {
@@ -41,17 +48,43 @@ export class Library {
         this.allBooks.push(book)
     }
 
-    removeBook = (book) => {
-        //...
+    removeBook = (removeBook) => {
+        Validator.isInstanceOfClass(removeBook, Book)
+
+        this.allBooks = this.allBooks.filter(book => book.id !== removeBook.id)
     }
 
+<<<<<<< HEAD
     borrowBook = (user, book) => {
         const bookingBook = new Booking(user)
         console.log(bookingBook)
 
         
+=======
+    createBooking = (user, book) => {
+        // Validator.isBookExists
+        // Validator.isUserExists
+
+        const createdBooking = new Booking(user)
+        createdBooking.addBookToBookingList(book)
+        this.allBookings.push(createdBooking)
+        // console.log(createdBooking)
+>>>>>>> 673ef6c808a1f61bfa7cd242381aed4ab600bc40
     }
 
+    removeBooking = (user, book) => {
+        // Validator.isBookExists
+        // Validator.isUserExists
+        console.log(this.allBookings)
+    }
+
+    returnBook = (user, returnBook) => {
+        // Validator.isBookExists
+        // Validator.isUserExists
+
+        // console.log(booking.returnBook(returnBook))
+        // console.log(booking)
+    }
 
     getAvaiableBooks = () => {
         this.allAvaiableBooks = this.allBooks
