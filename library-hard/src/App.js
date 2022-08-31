@@ -41,7 +41,8 @@ library.addUser(kamil)
 library.addUser(dominika)
 
 
-library.addBooking(bookingKamil)
+library.borrowBook(kamil, bookOne)
+
 bookingKamil.addBookToBookingList(bookOne)
 // bookingKamil.removeBookFromBookingList(bookOne)
 console.log(bookingKamil)

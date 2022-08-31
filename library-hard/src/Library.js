@@ -45,10 +45,11 @@ export class Library {
         //...
     }
 
-    addBooking = (booking) => {
-        Validator.isInstanceOfClass(booking, Booking)
+    borrowBook = (user, book) => {
+        const bookingBook = new Booking(user)
+        console.log(bookingBook)
 
-        this.allBookings.push(booking)
+        
     }
 
 
