@@ -54,13 +54,6 @@ export class Library {
         this.allBooks = this.allBooks.filter(book => book.id !== removeBook.id)
     }
 
-<<<<<<< HEAD
-    borrowBook = (user, book) => {
-        const bookingBook = new Booking(user)
-        console.log(bookingBook)
-
-        
-=======
     createBooking = (user, book) => {
         // Validator.isBookExists
         // Validator.isUserExists
@@ -69,7 +62,6 @@ export class Library {
         createdBooking.addBookToBookingList(book)
         this.allBookings.push(createdBooking)
         // console.log(createdBooking)
->>>>>>> 673ef6c808a1f61bfa7cd242381aed4ab600bc40
     }
 
     removeBooking = (user, book) => {

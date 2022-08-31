@@ -42,9 +42,6 @@ library.addBook(bookTwo)
 library.addBook(bookThree)
 
 
-library.borrowBook(kamil, bookOne)
-
-
 library.createBooking(kamil, bookOne)
 library.createBooking(kamil, bookTwo)
 library.createBooking(dominika, bookThree)
