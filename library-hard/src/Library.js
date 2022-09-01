@@ -61,13 +61,17 @@ export class Library {
         const createdBooking = new Booking(user)
         createdBooking.addBookToBookingList(book)
         this.allBookings.push(createdBooking)
-        // console.log(createdBooking)
+        // console.log(this.allBookings)
     }
 
     removeBooking = (user, book) => {
         // Validator.isBookExists
         // Validator.isUserExists
-        console.log(this.allBookings)
+        this.allBookings.filter(booking => {
+            if(booking.user.id === user.id){
+                console.log(booking)
+            }
+        })
     }
 
     returnBook = (user, returnBook) => {
