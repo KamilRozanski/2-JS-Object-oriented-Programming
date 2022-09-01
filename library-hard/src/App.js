@@ -48,5 +48,5 @@ library.createBooking(dominika, bookThree)
 library.removeBooking(kamil, bookOne)
 
 
-// console.log(library)
+console.log(library)
 

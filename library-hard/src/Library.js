@@ -69,7 +69,9 @@ export class Library {
         // Validator.isUserExists
         this.allBookings.filter(booking => {
             if(booking.user.id === user.id){
-                console.log(booking)
+               
+                console.log(booking.removeBookFromBookingList(book))
+                // console.log(booking.getBorrowedBooks())
             }
         })
     }
