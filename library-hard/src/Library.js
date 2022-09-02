@@ -68,7 +68,7 @@ export class Library {
             return false
         })
 
-        if (!isBookingAlreadyExists) {
+        if (!isBookingAlreadyExists) { 
             const createdBooking = new Booking(user)
             createdBooking.addBookToBookingList(book)
             this.allBookings.push(createdBooking)
