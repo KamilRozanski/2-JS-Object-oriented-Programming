@@ -3,6 +3,10 @@ import {
 } from "./Validator.js";
 
 import {
+    v4 as uuidv4
+} from 'uuid';
+
+import {
     User
 } from "./User.js";
 
@@ -29,18 +33,20 @@ export class Booking {
         this.forHowManyDaysBookCanBeBorrowed = 7
         this.borrowedBooks = []
         this.penalty = 0
+        this.id = uuidv4()
     }
 
     addBookToBookingList = (addBook) => {
         Validator.isInstanceOfClass(addBook, Book)
-        // Validator.throwErrorIfBookAlreadyExists(book, this.bookStorage)
+        // Validator.throwErrorIfBookAlreadyExists(addBook, this.borrowedBooks)
+
         this.borrowedBooks.push(addBook)
         this.borrowedBookDate = new Date("August 2, 2022") // Przykładowa data
     }
 
     removeBookFromBookingList = (removeBook) => {
         Validator.isInstanceOfClass(removeBook, Book)
-        // Validator.throwErrorIfBookNotExists(book, this.bookStorage)
+        Validator.throwErrorIfBookNotExists(removeBook, this.borrowedBooks)
 
         this.borrowedBooks = this.borrowedBooks.filter(book => book.id !== removeBook.id)
     }
