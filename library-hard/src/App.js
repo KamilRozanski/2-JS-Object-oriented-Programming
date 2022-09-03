@@ -46,10 +46,10 @@ library.createBooking(kamil, bookOne)
 library.createBooking(kamil, bookTwo)
 library.createBooking(dominika, bookThree)
 
-// library.removeBooking(kamil, bookTwo)
+library.removeBooking(kamil, bookTwo)
 
 
 
 // console.log(library.getAllBookings())
 
-console.log(library)
+console.log(library.getAllBookings())

@@ -41,10 +41,8 @@ export class Validator {
     }
 
     static throwErrorIfBookAlreadyExists = (book, array) => {
+        // przepuszcza duble
         const result = array.some(bookInArray => {
-
-            console.log(bookInArray.id)
-            console.log(book.id)
             bookInArray.id === book.id
         })
     }
