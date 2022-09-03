@@ -6,10 +6,6 @@ import {
 } from "./Book.js";
 
 import {
-    BooksStorage
-} from "./BooksStorage.js";
-
-import {
     Booking
 } from "./Booking.js";
 
@@ -45,6 +41,7 @@ library.addBook(bookOne)
 library.addBook(bookTwo)
 library.addBook(bookThree)
 
+
 library.createBooking(kamil, bookOne)
 library.createBooking(kamil, bookTwo)
 library.createBooking(dominika, bookThree)
@@ -52,4 +49,7 @@ library.createBooking(dominika, bookThree)
 // library.removeBooking(kamil, bookTwo)
 
 
+
 // console.log(library.getAllBookings())
+
+console.log(library)

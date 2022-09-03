@@ -68,25 +68,14 @@ export class Library {
             return false
         })
 
-        if (!isBookingAlreadyExists) { 
+        if (!isBookingAlreadyExists) {
             const createdBooking = new Booking(user)
             createdBooking.addBookToBookingList(book)
             this.allBookings.push(createdBooking)
         }
     }
 
-    removeBooking = (user, book) => {
-
-        this.allBookings.filter(booking => {
-
-            if (booking.user.id === user.id) {
-                console.log(booking.user.id === user.id)
-                booking.removeBookFromBookingList(book)
-                // console.log(booking)
-                // console.log(booking.getBorrowedBooks())
-            }
-        })
-    }
+    removeBooking = (user, book) => {}
 
     returnBook = (user, returnBook) => {
         // Validator.isBookExists
