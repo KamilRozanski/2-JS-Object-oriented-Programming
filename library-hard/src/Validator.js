@@ -36,7 +36,7 @@ export class Validator {
     static throwErrorIfBookNotExists = (book, booksArray) => {
         const result = booksArray.some(borrowedBook => borrowedBook.id === book.id)
         if (!result) {
-            throw new Error("Book not exists in library")
+            throw new Error("The book not exists")
         }
     }
 
