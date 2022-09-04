@@ -98,11 +98,17 @@ export class Library {
     }
 
     returnBook = (user, returnBook) => {
-        // Validator.isBookExists
-        // Validator.isUserExists
+        Validator.isInstanceOfClass(user, User)
+        Validator.isInstanceOfClass(returnBook, Book)
+        Validator.throwErrorIfBookNotExists(returnBook, this.allBooks)
 
-        // console.log(booking.returnBook(returnBook))
-        // console.log(booking)
+
+        this.allBookings.find(booking => {
+            if (booking.user.id === user.id) {
+                console.log(booking)
+                booking.returnBook(returnBook)
+            }
+        })
     }
 
     getAllBookings = () => {

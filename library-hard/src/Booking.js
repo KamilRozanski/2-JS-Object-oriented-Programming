@@ -54,8 +54,9 @@ export class Booking {
 
     returnBook = (returnBook) => {
         Validator.isInstanceOfClass(returnBook, Book)
+        Validator.throwErrorIfBookNotExists(returnBook, this.borrowedBooks)
         //Po zwrocie ksiazek po terminie kara jest naliczana tylko za jedną ksiazke.
-        this.borrowedBooks = this.borrowedBooks.filter(el => el.id !== returnBook.id)
+        this.borrowedBooks = this.borrowedBooks.filter(borroweedBook => borroweedBook.id !== returnBook.id)
         this.returnBookDate = new Date() // Date.now() Jaka to róznica??
         if (this.isPenaltyRequired()) { // Łamie solid
             this.changePenalty(1)
