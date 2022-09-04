@@ -42,8 +42,6 @@ export class Booking {
 
         this.borrowedBooks.push(addBook)
         // console.log(this.borrowedBooks)
-
-
         this.borrowedBookDate = new Date("August 2, 2022") // Przykładowa data
     }
 

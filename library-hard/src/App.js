@@ -46,8 +46,9 @@ library.createBooking(kamil, bookOne)
 library.createBooking(kamil, bookTwo)
 library.createBooking(dominika, bookThree)
 
-// library.removeBooking(dominika, bookThree)
-library.removeBooking(kamil)
+// library.removeBooking(dominika)
+library.removeBookFromBooking(kamil, bookOne)
+
 
 
 

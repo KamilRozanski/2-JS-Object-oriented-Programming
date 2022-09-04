@@ -46,4 +46,11 @@ export class Validator {
             bookInArray.id === book.id
         })
     }
+
+    static throwErrorIfBookingNotExists = (user, bookingsArray) => {
+        const result = bookingsArray.some(bookingInArray => bookingInArray.user.id === user.id)
+        if (!result) {
+            throw new Error("The booking not exists")
+        }
+    }
 }

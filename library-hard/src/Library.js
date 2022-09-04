@@ -78,6 +78,7 @@ export class Library {
     removeBooking = (user) => {
         Validator.isInstanceOfClass(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
+        Validator.throwErrorIfBookingNotExists(user, this.allBookings)
 
         this.allBookings = this.allBookings.filter(booking => booking.user.id !== user.id)
     }
@@ -85,6 +86,7 @@ export class Library {
     removeBookFromBooking = (user, book) => {
         Validator.isInstanceOfClass(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
+        Validator.throwErrorIfBookingNotExists(user, this.allBookings)
         Validator.isInstanceOfClass(book, Book)
         Validator.throwErrorIfBookNotExists(book, this.allBooks)
 
