@@ -38,6 +38,7 @@ library.addUser(kamil)
 library.addUser(dominika)
 
 library.addBook(bookOne)
+// library.addBook(bookOne)
 library.addBook(bookTwo)
 library.addBook(bookThree)
 
@@ -48,11 +49,9 @@ library.createBooking(dominika, bookThree)
 
 // library.removeBooking(dominika)
 // library.removeBookFromBooking(kamil, bookOne)
-library.returnBook(dominika, bookThree)
+library.returnBook(kamil, bookTwo)
 
 
 
-
-// console.log(library.getAllBookings())
 
 console.log(library.getAllBookings())

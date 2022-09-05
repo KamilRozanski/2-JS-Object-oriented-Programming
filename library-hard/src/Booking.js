@@ -41,7 +41,6 @@ export class Booking {
         Validator.throwErrorIfBookAlreadyExists(addBook, this.borrowedBooks)
 
         this.borrowedBooks.push(addBook)
-        // console.log(this.borrowedBooks)
         this.borrowedBookDate = new Date("August 2, 2022") // Przykładowa data
     }
 
@@ -58,10 +57,9 @@ export class Booking {
         //Po zwrocie ksiazek po terminie kara jest naliczana tylko za jedną ksiazke.
         this.borrowedBooks = this.borrowedBooks.filter(borroweedBook => borroweedBook.id !== returnBook.id)
         this.returnBookDate = new Date() // Date.now() Jaka to róznica??
-        if (this.isPenaltyRequired()) { // Łamie solid
-            this.changePenalty(1)
-            this.getPenaltyAmount()
-        }
+
+        this.calculatePenalty() // Łamie solid?
+        this.getPenaltyAmount()
     }
 
     changeForHowManyDaysBookCanBeBorrowed = (days) => {
@@ -74,17 +72,27 @@ export class Booking {
         return Math.round((this.returnBookDate - this.borrowedBookDate) / 1000 / 60 / 60 / 24)
     }
 
+    setPenatly = (penalty) => {
+        Validator.isNumber(penalty)
+
+        return this.penalty = penalty
+    }
+
     changePenalty = (newPenalty) => {
         Validator.isNumber(newPenalty)
         this.penalty = newPenalty
     }
 
-    isPenaltyRequired = () => {
-        return this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed
+    calculatePenalty = () => {
+        this.doYouHaveToPayPenalty = this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed
+
+        if (this.doYouHaveToPayPenalty) {
+            this.penalty = (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.setPenatly(5)
+        }
     }
 
     getPenaltyAmount = () => {
-        this.penalty = (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.penalty
+        return this.penalty
     }
 
     getBorrowedBooks = () => {

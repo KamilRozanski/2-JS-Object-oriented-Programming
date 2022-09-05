@@ -105,7 +105,6 @@ export class Library {
 
         this.allBookings.find(booking => {
             if (booking.user.id === user.id) {
-                console.log(booking)
                 booking.returnBook(returnBook)
             }
         })
@@ -116,7 +115,6 @@ export class Library {
     }
     getAvaiableBooks = () => {
         this.allAvaiableBooks = this.allBooks
-        // console.log(this.allBooks)
     }
 
     getAllBorrowedBooks = () => {
