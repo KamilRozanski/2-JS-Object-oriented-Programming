@@ -53,4 +53,10 @@ export class Validator {
             throw new Error("The booking not exists")
         }
     }
+
+    static throwErrorIfQuantityIsSmallerThanZero = (quantity) => {
+        if (quantity < 0)
+            throw new Error(`Quantity is smaller than zero`)
+
+    }
 }

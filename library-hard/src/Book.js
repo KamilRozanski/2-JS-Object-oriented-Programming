@@ -9,7 +9,7 @@ import {
 
 // Ma miec: Tytuł, Autora, uuid, losowe zdjęcie oraz krótki opis
 export class Book {
-    constructor(title, author, photoOfTheBook, description) {
+    constructor(title, author, photoOfTheBook, description, quantity = 1) {
         Validator.isString(title)
         Validator.isString(author)
         Validator.isString(photoOfTheBook)
@@ -18,6 +18,14 @@ export class Book {
         this.author = author
         this.photoOfTheBook = photoOfTheBook
         this.description = description
+        this.quantity = quantity
         this.id = uuidv4()
     }
+
+    changeQuantity = (newQuantity => {
+        Validator.isNumber(newQuantity)
+        Validator.throwErrorIfQuantityIsSmallerThanZero(newQuantity)
+
+        this.quantity = newQuantity
+    })
 }

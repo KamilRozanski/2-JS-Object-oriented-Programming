@@ -42,16 +42,44 @@ export class Library {
         this.allUsers = this.allUsers.filter(existUser => existUser.id !== user.id)
     }
 
-    addBook = (book) => {
+    addBook = (book, quantity = 1) => {
         Validator.isInstanceOfClass(book, Book)
+        Validator.isNumber(quantity)
+        Validator.throwErrorIfQuantityIsSmallerThanZero(quantity)
 
-        this.allBooks.push(book)
+        const isbookAlreadyExists = this.allBooks.find(bookingInArray => {
+            if (bookingInArray.id === book.id) {
+                let totalQuantity = bookingInArray.quantity + quantity
+                bookingInArray.changeQuantity(totalQuantity)
+                return true
+            }
+            return false
+        })
+
+        if (!isbookAlreadyExists) {
+            this.allBooks.push(book)
+        }
+
     }
 
-    removeBook = (removeBook) => {
+    removeBook = (removeBook, quantity = 1) => {
         Validator.isInstanceOfClass(removeBook, Book)
+        Validator.isNumber(quantity)
+        Validator.throwErrorIfQuantityIsSmallerThanZero(quantity)
 
-        this.allBooks = this.allBooks.filter(book => book.id !== removeBook.id)
+        const isbookAlreadyExists = this.allBooks.find(bookingInArray => {
+            if (bookingInArray.id === removeBook.id) {
+                let totalQuantity = bookingInArray.quantity - quantity
+                bookingInArray.changeQuantity(totalQuantity)
+                return true
+            }
+            return false
+        })
+
+        if (!isbookAlreadyExists) {
+            this.allBooks = this.allBooks.filter(book => book.id !== removeBook.id)
+        }
+
     }
 
     createBooking = (user, book) => {
@@ -126,6 +154,6 @@ export class Library {
     }
 
     getAllBooks = () => {
-        return this.booksStorage
+        return this.allBooks
     }
 }
