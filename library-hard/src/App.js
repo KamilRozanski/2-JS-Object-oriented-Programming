@@ -50,8 +50,10 @@ library.createBooking(dominika, bookThree)
 // library.removeBooking(dominika)
 // library.removeBookFromBooking(kamil, bookOne)
 library.returnBook(kamil, bookTwo)
+library.removeUser(kamil)
 
 
 
 
-console.log(library.getAllBookings())
+// console.log(library.getAllBookings())
+console.log(library.getAllUsers())

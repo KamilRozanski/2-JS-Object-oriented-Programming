@@ -21,7 +21,7 @@ export class Validator {
     static throwErrorIfUserAlreadyExists = (newUser, usersArray) => {
         const result = usersArray.some(existUser => newUser.id === existUser.id)
         if (result) {
-            throw new Error("User does not exists")
+            throw new Error("User already not exists")
         }
     }
 

@@ -72,7 +72,7 @@ export class Booking {
         return Math.round((this.returnBookDate - this.borrowedBookDate) / 1000 / 60 / 60 / 24)
     }
 
-    setPenatly = (penalty) => {
+    setPenatlyAmount = (penalty) => {
         Validator.isNumber(penalty)
 
         return this.penalty = penalty
@@ -80,14 +80,13 @@ export class Booking {
 
     changePenalty = (newPenalty) => {
         Validator.isNumber(newPenalty)
+
         this.penalty = newPenalty
     }
 
     calculatePenalty = () => {
-        this.doYouHaveToPayPenalty = this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed
-
-        if (this.doYouHaveToPayPenalty) {
-            this.penalty = (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.setPenatly(5)
+        if (this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed) {
+            this.penalty = (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.setPenatlyAmount(5)
         }
     }
 
