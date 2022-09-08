@@ -44,7 +44,6 @@ export class Validator {
         // przepuszcza duble
 
         const result = array.some(bookInArray => {
-            // console.log(bookInArray.id, book.id)
             return bookInArray.id === book.id
         })
 
@@ -59,13 +58,36 @@ export class Validator {
             throw new Error("The booking not exists")
         }
     }
-
-    static throwErrorIfQuantityIsSmallerThanOne = (quantity) => {
-        console.log(quantity)
-
-        if (quantity < 0) {
-            throw new Error(`You are not able to remove more books, than library has, and quantity must be bigger than One`)
+    static throwErrorIfBookingAlreadyExists = (user, book, bookingsArray) => {
+        const result = bookingsArray.some(bookingInArray => {
+            if (bookingInArray.user.id === user.id) {
+                console.log(bookingInArray)
+            }
+        })
+        if (result) {
+            throw new Error("The booking already exists")
         }
+    }
 
+    static throwErrorIfProvidedQuantityIsSmallerThanZero = (quantity) => {
+        if (quantity < 0) {
+            throw new Error(`Quantity must be a positive number`)
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+// static throwErrorIfBooksHasEnd = (quantity) => {
+//     if (quantity < 0) {
+//         throw new Error(`Quantity must be a positive number`)
+//     }
+// }

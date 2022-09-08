@@ -18,19 +18,10 @@ const kamil = new User("Kamil", "Rózański")
 const dominika = new User("Dominika", "Rózańska")
 const krystian = new User("Krystian", "Rózański")
 
-const bookOne = new Book("title One", "author One", "photoOfTheBook One", "description One", 5)
-const bookTwo = new Book("title Two", "author Two", "photoOfTheBook Two", "description Two", 3)
-const bookThree = new Book("title Three", "author Three", "photoOfTheBook Three", "description Three", 2)
-const bookFour = new Book("title Four", "author TFourhree", "photoOfTheBook Four", "description Four", 2)
-
-
-// const bookingKamil = new Booking(kamil)
-// const bookingDominika = new Booking(dominika)
-
-// bookingKamil.addBookToBookingList(bookOne)
-// bookingKamil.addBookToBookingList(bookTwo)
-// console.log(bookingKamil)
-// bookingKamil.removeBookFromBookingList(bookOne)
+const bookOne = new Book("title One", "author One", "photoOfTheBook One", "description One", 10)
+const bookTwo = new Book("title Two", "author Two", "photoOfTheBook Two", "description Two", 10)
+const bookThree = new Book("title Three", "author Three", "photoOfTheBook Three", "description Three", 10)
+const bookFour = new Book("title Four", "author TFourhree", "photoOfTheBook Four", "description Four", 10)
 
 
 const library = new Library()
@@ -39,18 +30,17 @@ library.addUser(kamil)
 library.addUser(dominika)
 
 library.addBook(bookOne)
-// library.addBook(bookOne)
 library.addBook(bookTwo)
 library.addBook(bookThree)
 
-library.createBooking(kamil, bookOne, 2)
-// library.createBooking(kamil, bookOne)
+library.createBooking(kamil, bookOne)
+library.createBooking(kamil, bookOne)
 library.createBooking(kamil, bookTwo)
 library.createBooking(dominika, bookThree)
 
 // library.removeBooking(dominika)
 // library.removeBookFromBooking(kamil, bookOne)
-// library.removeBook(bookOne, 3)
+// library.removeBook(bookOne, 10)
 
 
-console.log(library.getAllBooks())
+// console.log(library.getAllBookings())

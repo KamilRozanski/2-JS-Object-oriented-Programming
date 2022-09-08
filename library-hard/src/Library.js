@@ -53,7 +53,7 @@ export class Library {
         Validator.isInstanceOfClass(removeBook, Book)
         Validator.throwErrorIfBookNotExists(removeBook, this.allBooks)
         Validator.isNumber(quantity)
-        Validator.throwErrorIfQuantityIsSmallerThanOne(quantity)
+        Validator.throwErrorIfProvidedQuantityIsSmallerThanZero(quantity)
 
         return this.allBooks.find(bookInArray => {
             if (bookInArray.id === removeBook.id) {
@@ -68,13 +68,11 @@ export class Library {
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
         Validator.isInstanceOfClass(book, Book)
         Validator.throwErrorIfBookNotExists(book, this.allBooks)
-        Validator.throwErrorIfQuantityIsSmallerThanOne(bookQuantity)
+        Validator.throwErrorIfBookingAlreadyExists(user, book, this.allBookings)
+        Validator.throwErrorIfProvidedQuantityIsSmallerThanZero(bookQuantity)
 
         const isBookingAlreadyExists = this.allBookings.find(bookingsArray => {
             if (bookingsArray.user.id === user.id) {
-                // let updatedQuantity = book.quantity - bookQuantity
-                // book.changeQuantity(updatedQuantity)
-                // console.log(book)
                 bookingsArray.addBookToBookingList(book) // przepuszcza duble
                 return true
             }
@@ -126,7 +124,7 @@ export class Library {
 
     updateBookQuantity = (book, quantity) => {
         Validator.isInstanceOfClass(book, Book)
-        Validator.throwErrorIfQuantityIsSmallerThanOne(quantity)
+        Validator.throwErrorIfProvidedQuantityIsSmallerThanZero(quantity)
 
         const updatedBookQuantity = book.quantity - quantity
         book.changeQuantity(updatedBookQuantity)
