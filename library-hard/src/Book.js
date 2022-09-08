@@ -22,10 +22,10 @@ export class Book {
         this.id = uuidv4()
     }
 
-    changeQuantity = (newQuantity => {
+    changeQuantity = (newQuantity) => {
         Validator.isNumber(newQuantity)
         Validator.throwErrorIfQuantityIsSmallerThanZero(newQuantity)
 
         this.quantity = newQuantity
-    })
+    }
 }

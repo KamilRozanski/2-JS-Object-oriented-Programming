@@ -42,44 +42,25 @@ export class Library {
         this.allUsers = this.allUsers.filter(existUser => existUser.id !== user.id)
     }
 
-    addBook = (book, quantity = 1) => {
+    addBook = (book) => {
         Validator.isInstanceOfClass(book, Book)
-        Validator.isNumber(quantity)
-        Validator.throwErrorIfQuantityIsSmallerThanZero(quantity)
+        Validator.throwErrorIfBookAlreadyExists(book, this.allBooks)
 
-        const isbookAlreadyExists = this.allBooks.find(bookingInArray => {
-            if (bookingInArray.id === book.id) {
-                let totalQuantity = bookingInArray.quantity + quantity
-                bookingInArray.changeQuantity(totalQuantity)
-                return true
-            }
-            return false
-        })
-
-        if (!isbookAlreadyExists) {
-            this.allBooks.push(book)
-        }
-
+        this.allBooks.push(book)
     }
 
     removeBook = (removeBook, quantity = 1) => {
+        Validator.throwErrorIfBookNotExists(removeBook, this.allBooks)
         Validator.isInstanceOfClass(removeBook, Book)
         Validator.isNumber(quantity)
         Validator.throwErrorIfQuantityIsSmallerThanZero(quantity)
 
-        const isbookAlreadyExists = this.allBooks.find(bookingInArray => {
-            if (bookingInArray.id === removeBook.id) {
-                let totalQuantity = bookingInArray.quantity - quantity
-                bookingInArray.changeQuantity(totalQuantity)
-                return true
+        return this.allBooks.find(bookInArray => {
+            if (bookInArray.id === removeBook.id) {
+                let updatedQuantity = bookInArray.quantity - quantity
+                bookInArray.changeQuantity(updatedQuantity)
             }
-            return false
         })
-
-        if (!isbookAlreadyExists) {
-            this.allBooks = this.allBooks.filter(book => book.id !== removeBook.id)
-        }
-
     }
 
     createBooking = (user, book) => {

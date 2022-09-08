@@ -42,9 +42,15 @@ export class Validator {
 
     static throwErrorIfBookAlreadyExists = (book, array) => {
         // przepuszcza duble
+
         const result = array.some(bookInArray => {
-            bookInArray.id === book.id
+            // console.log(bookInArray.id, book.id)
+            return bookInArray.id === book.id
         })
+
+        if (result) {
+            throw new Error("The book already exists")
+        }
     }
 
     static throwErrorIfBookingNotExists = (user, bookingsArray) => {
@@ -56,7 +62,7 @@ export class Validator {
 
     static throwErrorIfQuantityIsSmallerThanZero = (quantity) => {
         if (quantity < 0)
-            throw new Error(`Quantity is smaller than zero`)
+            throw new Error(`You are not able to remove more books, than library has`)
 
     }
 }

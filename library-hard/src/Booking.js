@@ -38,7 +38,7 @@ export class Booking {
 
     addBookToBookingList = (addBook) => {
         Validator.isInstanceOfClass(addBook, Book)
-        Validator.throwErrorIfBookAlreadyExists(addBook, this.borrowedBooks)
+        // Validator.throwErrorIfBookAlreadyExists(addBook, this.borrowedBooks)
 
         this.borrowedBooks.push(addBook)
         this.borrowedBookDate = new Date("August 2, 2022") // Przykładowa data

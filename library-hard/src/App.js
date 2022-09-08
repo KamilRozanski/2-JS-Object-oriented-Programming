@@ -18,9 +18,10 @@ const kamil = new User("Kamil", "Rózański")
 const dominika = new User("Dominika", "Rózańska")
 const krystian = new User("Krystian", "Rózański")
 
-const bookOne = new Book("title One", "author One", "photoOfTheBook One", "description One")
-const bookTwo = new Book("title Two", "author Two", "photoOfTheBook Two", "description Two")
-const bookThree = new Book("title Three", "author Three", "photoOfTheBook Three", "description Three")
+const bookOne = new Book("title One", "author One", "photoOfTheBook One", "description One", 5)
+const bookTwo = new Book("title Two", "author Two", "photoOfTheBook Two", "description Two", 3)
+const bookThree = new Book("title Three", "author Three", "photoOfTheBook Three", "description Three", 2)
+const bookFour = new Book("title Four", "author TFourhree", "photoOfTheBook Four", "description Four", 2)
 
 
 // const bookingKamil = new Booking(kamil)
@@ -38,12 +39,9 @@ library.addUser(kamil)
 library.addUser(dominika)
 
 library.addBook(bookOne)
-library.addBook(bookOne, 5)
+// library.addBook(bookOne)
 library.addBook(bookTwo)
 library.addBook(bookThree)
-
-library.removeBook(bookOne, 5)
-
 
 library.createBooking(kamil, bookOne)
 library.createBooking(kamil, bookOne)
@@ -52,10 +50,6 @@ library.createBooking(dominika, bookThree)
 
 // library.removeBooking(dominika)
 // library.removeBookFromBooking(kamil, bookOne)
-// library.returnBook(kamil, bookTwo)
-
-
-
-
+library.removeBook(bookOne, 3)
 
 console.log(library.getAllBooks())
