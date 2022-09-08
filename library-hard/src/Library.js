@@ -50,10 +50,10 @@ export class Library {
     }
 
     removeBook = (removeBook, quantity = 1) => {
-        Validator.throwErrorIfBookNotExists(removeBook, this.allBooks)
         Validator.isInstanceOfClass(removeBook, Book)
+        Validator.throwErrorIfBookNotExists(removeBook, this.allBooks)
         Validator.isNumber(quantity)
-        Validator.throwErrorIfQuantityIsSmallerThanZero(quantity)
+        Validator.throwErrorIfQuantityIsSmallerThanOne(quantity)
 
         return this.allBooks.find(bookInArray => {
             if (bookInArray.id === removeBook.id) {
@@ -63,14 +63,18 @@ export class Library {
         })
     }
 
-    createBooking = (user, book) => {
+    createBooking = (user, book, bookQuantity = 1) => {
         Validator.isInstanceOfClass(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
         Validator.isInstanceOfClass(book, Book)
         Validator.throwErrorIfBookNotExists(book, this.allBooks)
+        Validator.throwErrorIfQuantityIsSmallerThanOne(bookQuantity)
 
         const isBookingAlreadyExists = this.allBookings.find(bookingsArray => {
             if (bookingsArray.user.id === user.id) {
+                // let updatedQuantity = book.quantity - bookQuantity
+                // book.changeQuantity(updatedQuantity)
+                // console.log(book)
                 bookingsArray.addBookToBookingList(book) // przepuszcza duble
                 return true
             }
@@ -82,6 +86,7 @@ export class Library {
             createdBooking.addBookToBookingList(book)
             this.allBookings.push(createdBooking)
         }
+        this.updateBookQuantity(book, bookQuantity)
     }
 
     removeBooking = (user) => {
@@ -118,6 +123,15 @@ export class Library {
             }
         })
     }
+
+    updateBookQuantity = (book, quantity) => {
+        Validator.isInstanceOfClass(book, Book)
+        Validator.throwErrorIfQuantityIsSmallerThanOne(quantity)
+
+        const updatedBookQuantity = book.quantity - quantity
+        book.changeQuantity(updatedBookQuantity)
+    }
+
     getAllUsers = () => {
         return this.allUsers
     }

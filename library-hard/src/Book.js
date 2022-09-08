@@ -24,7 +24,7 @@ export class Book {
 
     changeQuantity = (newQuantity) => {
         Validator.isNumber(newQuantity)
-        Validator.throwErrorIfQuantityIsSmallerThanZero(newQuantity)
+        Validator.throwErrorIfQuantityIsSmallerThanOne(newQuantity)
 
         this.quantity = newQuantity
     }

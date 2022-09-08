@@ -60,9 +60,12 @@ export class Validator {
         }
     }
 
-    static throwErrorIfQuantityIsSmallerThanZero = (quantity) => {
-        if (quantity < 0)
-            throw new Error(`You are not able to remove more books, than library has`)
+    static throwErrorIfQuantityIsSmallerThanOne = (quantity) => {
+        console.log(quantity)
+
+        if (quantity < 0) {
+            throw new Error(`You are not able to remove more books, than library has, and quantity must be bigger than One`)
+        }
 
     }
 }
