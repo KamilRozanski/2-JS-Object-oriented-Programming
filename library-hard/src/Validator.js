@@ -61,7 +61,7 @@ export class Validator {
     static throwErrorIfBookingAlreadyExists = (user, book, bookingsArray) => {
         const result = bookingsArray.some(bookingInArray => {
             if (bookingInArray.user.id === user.id) {
-                console.log(bookingInArray)
+                console.log(bookingInArray.getBorrowedBooks())
             }
         })
         if (result) {

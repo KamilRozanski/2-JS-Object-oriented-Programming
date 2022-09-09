@@ -57,8 +57,7 @@ export class Library {
 
         return this.allBooks.find(bookInArray => {
             if (bookInArray.id === removeBook.id) {
-                let updatedQuantity = bookInArray.quantity - quantity
-                bookInArray.changeQuantity(updatedQuantity)
+                this.updateBooksQuantity(removeBook, quantity)
             }
         })
     }
@@ -68,7 +67,6 @@ export class Library {
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
         Validator.isInstanceOfClass(book, Book)
         Validator.throwErrorIfBookNotExists(book, this.allBooks)
-        Validator.throwErrorIfBookingAlreadyExists(user, book, this.allBookings)
         Validator.throwErrorIfProvidedQuantityIsSmallerThanZero(bookQuantity)
 
         const isBookingAlreadyExists = this.allBookings.find(bookingsArray => {
@@ -84,7 +82,7 @@ export class Library {
             createdBooking.addBookToBookingList(book)
             this.allBookings.push(createdBooking)
         }
-        this.updateBookQuantity(book, bookQuantity)
+        this.updateBooksQuantity(book, bookQuantity)
     }
 
     removeBooking = (user) => {
@@ -92,7 +90,10 @@ export class Library {
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
         Validator.throwErrorIfBookingNotExists(user, this.allBookings)
 
-        this.allBookings = this.allBookings.filter(booking => booking.user.id !== user.id)
+        this.allBookings = this.allBookings.filter(booking => {
+            console.log(booking)
+            return booking.user.id !== user.id
+        })
     }
 
     removeBookFromBooking = (user, book) => {
@@ -122,7 +123,7 @@ export class Library {
         })
     }
 
-    updateBookQuantity = (book, quantity) => {
+    updateBooksQuantity = (book, quantity) => {
         Validator.isInstanceOfClass(book, Book)
         Validator.throwErrorIfProvidedQuantityIsSmallerThanZero(quantity)
 
@@ -150,3 +151,12 @@ export class Library {
         return this.allBooks
     }
 }
+
+
+
+
+
+
+
+// Problemy
+//removeBookFromBooking - metoda usuwa wszytskie ksiazki z tym samym ID. 
