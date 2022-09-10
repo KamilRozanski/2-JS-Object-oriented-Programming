@@ -36,15 +36,16 @@ export class Booking {
         this.id = uuidv4()
     }
 
-    addBookToBookingList = (addBook) => {
+    addBookToBookingList = (addBook, quantity) => {
         Validator.isInstanceOfClass(addBook, Book)
-        // Validator.throwErrorIfBookAlreadyExists(addBook, this.borrowedBooks)
-
+        Validator.throwErrorIfBookAlreadyExists(addBook, this.borrowedBooks)
+        // const updatedQuantity = addBook.quantity - quantity
+        // addBook.changeQuantity(updatedQuantity)
         this.borrowedBooks.push(addBook)
         this.borrowedBookDate = new Date("August 2, 2022") // Przykładowa data
     }
 
-    removeBookFromBookingList = (removeBook) => {
+    removeBookFromBookingList = (removeBook, quantity) => {
         Validator.isInstanceOfClass(removeBook, Book)
         Validator.throwErrorIfBookNotExists(removeBook, this.borrowedBooks)
 
@@ -54,12 +55,11 @@ export class Booking {
     returnBook = (returnBook) => {
         Validator.isInstanceOfClass(returnBook, Book)
         Validator.throwErrorIfBookNotExists(returnBook, this.borrowedBooks)
-        //Po zwrocie ksiazek po terminie kara jest naliczana tylko za jedną ksiazke.
+
         this.borrowedBooks = this.borrowedBooks.filter(borroweedBook => borroweedBook.id !== returnBook.id)
         this.returnBookDate = new Date() // Date.now() Jaka to róznica??
 
         this.calculatePenalty() // Łamie solid?
-        this.getPenaltyAmount()
     }
 
     changeForHowManyDaysBookCanBeBorrowed = (days) => {
@@ -86,7 +86,7 @@ export class Booking {
 
     calculatePenalty = () => {
         if (this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed) {
-            this.penalty = (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.setPenatlyAmount(5)
+            this.penalty += (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.setPenatlyAmount(5)
         }
     }
 

@@ -33,14 +33,16 @@ library.addBook(bookOne)
 library.addBook(bookTwo)
 library.addBook(bookThree)
 
+library.createBooking(kamil, bookOne)
 // library.createBooking(kamil, bookOne)
-// library.createBooking(kamil, bookOne)
-// library.createBooking(kamil, bookTwo)
-// library.createBooking(dominika, bookThree)
+library.createBooking(kamil, bookTwo)
+library.createBooking(dominika, bookThree)
+
 
 // library.removeBookFromBooking(kamil, bookTwo)
-library.removeBook(bookOne, 1)
-// library.removeBook(bookOne, 10)
+// library.removeBooking(kamil)
+library.returnBook(kamil, bookOne)
+library.returnBook(kamil, bookTwo)
 
 
 console.log(library.getAllBooks())
