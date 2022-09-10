@@ -146,10 +146,11 @@ export class Library {
     }
 
     getAllBorrowedBooks = () => {
-
+        for (const booking of this.allBookings) {
+            this.allBorrowedBooks.push(booking.getBorrowedBooks())
+        }
+        return this.allBorrowedBooks
     }
-
-
 }
 
 

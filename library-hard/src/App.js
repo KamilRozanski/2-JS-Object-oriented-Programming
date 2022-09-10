@@ -41,8 +41,8 @@ library.createBooking(dominika, bookThree)
 
 // library.removeBookFromBooking(kamil, bookTwo)
 // library.removeBooking(kamil)
-library.returnBook(kamil, bookOne)
-library.returnBook(kamil, bookTwo)
+// library.returnBook(kamil, bookOne)
+// library.returnBook(kamil, bookTwo)
 
 
-console.log(library.getAllBooks())
+console.log(library.getAllBorrowedBooks())
