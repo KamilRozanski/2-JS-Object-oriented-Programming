@@ -142,7 +142,7 @@ export class Library {
 
     getAvaiableBooks = () => {
         //zle
-        this.allAvaiableBooks = this.allBooks
+       this.allBooks
     }
 
     getAllBorrowedBooks = () => {
