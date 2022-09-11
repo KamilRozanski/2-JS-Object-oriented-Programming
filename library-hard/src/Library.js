@@ -25,7 +25,7 @@ export class Library {
         this.allUsers = []
         this.allBooks = []
         this.allBookings = []
-        this.allAvaiableBooks = []
+        // this.allAvaiableBooks = []
         this.allBorrowedBooks = []
     }
 
@@ -82,7 +82,7 @@ export class Library {
             createdBooking.addBookToBookingList(book, bookQuantity)
             this.allBookings.push(createdBooking)
         }
-        // this.updateBooksQuantity(book, bookQuantity)
+        this.updateBooksList(book)
     }
 
     removeBooking = (user) => {
@@ -128,6 +128,12 @@ export class Library {
     //     book.changeQuantity(updatedBookQuantity)
     // }
 
+    updateBooksList = (book) => {
+        this.allBooks = this.allBooks.filter(avaiableBook => {
+            return avaiableBook.id !== book.id
+        })
+    }
+
     getAllUsers = () => {
         return this.allUsers
     }
@@ -141,8 +147,7 @@ export class Library {
     }
 
     getAvaiableBooks = () => {
-        //zle
-       this.allBooks
+        return this.allBooks
     }
 
     getAllBorrowedBooks = () => {

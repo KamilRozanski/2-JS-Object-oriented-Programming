@@ -45,4 +45,4 @@ library.createBooking(dominika, bookThree)
 // library.returnBook(kamil, bookTwo)
 
 
-console.log(library.getAllBorrowedBooks())
+console.log(library.getAvaiableBooks())
