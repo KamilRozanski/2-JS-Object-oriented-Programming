@@ -39,10 +39,12 @@ library.createBooking(kamil, bookTwo)
 library.createBooking(dominika, bookThree)
 
 
+
 // library.removeBookFromBooking(kamil, bookTwo)
 // library.removeBooking(kamil)
-// library.returnBook(kamil, bookOne)
+// library.removeBook(bookOne)
 // library.returnBook(kamil, bookTwo)
 
 
-console.log(library.getAvaiableBooks())
+console.log(library.returnBook(kamil, bookOne))
+console.log(library.getAllBookings())

@@ -25,7 +25,7 @@ export class Library {
         this.allUsers = []
         this.allBooks = []
         this.allBookings = []
-        // this.allAvaiableBooks = []
+        this.allAvaiableBooks = this.allBooks
         this.allBorrowedBooks = []
     }
 
@@ -55,23 +55,19 @@ export class Library {
         // Validator.isNumber(quantity)
         // Validator.throwErrorIfProvidedQuantityIsSmallerThanZero(quantity)
 
-        return this.allBooks.find(bookInArray => {
-            if (bookInArray.id === removeBook.id) {
-                // this.updateBooksQuantity(removeBook, quantity)
-            }
-        })
+        this.allBooks = this.allBooks.filter(bookInArray => bookInArray.id !== removeBook.id)
     }
 
-    createBooking = (user, book, bookQuantity = 1) => {
+    createBooking = (user, book) => {
         Validator.isInstanceOfClass(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
         Validator.isInstanceOfClass(book, Book)
         Validator.throwErrorIfBookNotExists(book, this.allBooks)
-        Validator.throwErrorIfProvidedQuantityIsSmallerThanZero(bookQuantity)
+        // Validator.throwErrorIfProvidedQuantityIsSmallerThanZero(bookQuantity)
 
-        const isBookingAlreadyExists = this.allBookings.find(bookingsArray => {
-            if (bookingsArray.user.id === user.id) {
-                bookingsArray.addBookToBookingList(book, bookQuantity) // przepuszcza duble
+        const isBookingAlreadyExists = this.allBookings.find(booking => {
+            if (booking.user.id === user.id) {
+                booking.addBookToBookingList(book)
                 return true
             }
             return false
@@ -79,10 +75,9 @@ export class Library {
 
         if (!isBookingAlreadyExists) {
             const createdBooking = new Booking(user)
-            createdBooking.addBookToBookingList(book, bookQuantity)
+            createdBooking.addBookToBookingList(book)
             this.allBookings.push(createdBooking)
         }
-        this.updateBooksList(book)
     }
 
     removeBooking = (user) => {
@@ -129,7 +124,7 @@ export class Library {
     // }
 
     updateBooksList = (book) => {
-        this.allBooks = this.allBooks.filter(avaiableBook => {
+        this.allAvaiableBooks = this.allAvaiableBooks.filter(avaiableBook => {
             return avaiableBook.id !== book.id
         })
     }
@@ -147,7 +142,7 @@ export class Library {
     }
 
     getAvaiableBooks = () => {
-        return this.allBooks
+        return this.allAvaiableBooks
     }
 
     getAllBorrowedBooks = () => {
