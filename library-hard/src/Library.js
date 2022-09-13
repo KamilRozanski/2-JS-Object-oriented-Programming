@@ -49,11 +49,9 @@ export class Library {
         this.allBooks.push(book)
     }
 
-    removeBook = (removeBook, quantity = 1) => {
+    removeBook = (removeBook) => {
         Validator.isInstanceOfClass(removeBook, Book)
         Validator.throwErrorIfBookNotExists(removeBook, this.allBooks)
-        // Validator.isNumber(quantity)
-        // Validator.throwErrorIfProvidedQuantityIsSmallerThanZero(quantity)
 
         this.allBooks = this.allBooks.filter(bookInArray => bookInArray.id !== removeBook.id)
     }
@@ -63,7 +61,6 @@ export class Library {
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
         Validator.isInstanceOfClass(book, Book)
         Validator.throwErrorIfBookNotExists(book, this.allBooks)
-        // Validator.throwErrorIfProvidedQuantityIsSmallerThanZero(bookQuantity)
 
         const isBookingAlreadyExists = this.allBookings.find(booking => {
             if (booking.user.id === user.id) {
@@ -103,6 +100,7 @@ export class Library {
     }
 
     returnBook = (user, returnBook) => {
+        // returnBook nazwa do poprawy
         Validator.isInstanceOfClass(user, User)
         Validator.isInstanceOfClass(returnBook, Book)
         Validator.throwErrorIfBookNotExists(returnBook, this.allBooks)

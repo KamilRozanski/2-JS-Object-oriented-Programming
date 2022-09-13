@@ -30,17 +30,16 @@ export class Booking {
         this.user = user
         this.borrowedBookDate = new Date()
         this.returnBookDate = ""
+        //nadpisujee daty wypo ksiazek
         this.forHowManyDaysBookCanBeBorrowed = 7
         this.borrowedBooks = []
         this.penalty = 0
         this.id = uuidv4()
     }
 
-    addBookToBookingList = (addBook, quantity) => {
+    addBookToBookingList = (addBook) => {
         Validator.isInstanceOfClass(addBook, Book)
         Validator.throwErrorIfBookAlreadyExists(addBook, this.borrowedBooks)
-        // const updatedQuantity = addBook.quantity - quantity
-        // addBook.changeQuantity(updatedQuantity)
         this.borrowedBooks.push(addBook)
         this.borrowedBookDate = new Date("August 2, 2022") // Przykładowa data
     }
