@@ -16,6 +16,13 @@ export class Validator {
             throw new Error("Incorrect class instance")
         }
     }
+    static isInstanceOfClassMultipleArguments = (value, instance) => {
+        value.forEach(el => {
+            if (!(el instanceof instance)) {
+                throw new Error("Incorrect class instance")
+            }
+        });
+    }
 
 
     static throwErrorIfUserAlreadyExists = (newUser, usersArray) => {
@@ -41,8 +48,6 @@ export class Validator {
     }
 
     static throwErrorIfBookAlreadyExists = (book, array) => {
-        // przepuszcza duble
-
         const result = array.some(bookInArray => {
             return bookInArray.id === book.id
         })
@@ -51,6 +56,22 @@ export class Validator {
             throw new Error("The book already exists")
         }
     }
+
+    static throwErrorIfBookAlreadyExistsMultipleArguments = (books) => {
+        let allBooksId = []
+        books.forEach(book => {
+            allBooksId.push(book.id)
+        })
+        // console.log(allBooksId)
+        const anyDoublesBooks = allBooksId.some(book => {
+            // console.log(book.id)
+            console.log(books[0])
+
+        });
+
+    }
+
+
 
     static throwErrorIfBookingNotExists = (user, bookingsArray) => {
         const result = bookingsArray.some(bookingInArray => bookingInArray.user.id === user.id)

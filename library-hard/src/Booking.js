@@ -28,7 +28,7 @@ export class Booking {
     constructor(user) {
         Validator.isInstanceOfClass(user, User)
         this.user = user
-        this.borrowedBookDate = new Date()
+        this.borrowedBookDate = ""
         this.returnBookDate = ""
         //nadpisujee daty wypo ksiazek
         this.forHowManyDaysBookCanBeBorrowed = 7
@@ -37,10 +37,12 @@ export class Booking {
         this.id = uuidv4()
     }
 
-    addBookToBookingList = (addBook) => {
-        Validator.isInstanceOfClass(addBook, Book)
-        Validator.throwErrorIfBookAlreadyExists(addBook, this.borrowedBooks)
-        this.borrowedBooks.push(addBook)
+    addBookToBookingList = (...addBook) => {
+        Validator.isInstanceOfClassMultipleArguments(addBook, Book)
+        Validator.throwErrorIfBookAlreadyExistsMultipleArguments(addBook)
+        // console.log(...addBook)
+        this.borrowedBooks.push(...addBook)
+
         this.borrowedBookDate = new Date("August 2, 2022") // Przykładowa data
     }
 

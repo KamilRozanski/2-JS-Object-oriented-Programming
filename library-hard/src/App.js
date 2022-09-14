@@ -23,6 +23,9 @@ const bookTwo = new Book("title Two", "author Two", "photoOfTheBook Two", "descr
 const bookThree = new Book("title Three", "author Three", "photoOfTheBook Three", "description Three", 10)
 const bookFour = new Book("title Four", "author Fourhree", "photoOfTheBook Four", "description Four", 10)
 
+const bookingKamil = new Booking(kamil)
+bookingKamil.addBookToBookingList(bookOne, bookOne, bookTwo)
+// console.log(bookingKamil)
 
 const library = new Library()
 
@@ -33,10 +36,10 @@ library.addBook(bookOne)
 library.addBook(bookTwo)
 library.addBook(bookThree)
 
-library.createBooking(kamil, bookOne)
 // library.createBooking(kamil, bookOne)
-library.createBooking(kamil, bookTwo)
-library.createBooking(dominika, bookThree)
+// library.createBooking(kamil, bookOne)
+// library.createBooking(kamil, bookTwo)
+// library.createBooking(dominika, bookThree)
 
 
 
