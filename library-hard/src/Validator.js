@@ -58,17 +58,14 @@ export class Validator {
     }
 
     static throwErrorIfBookAlreadyExistsMultipleArguments = (books) => {
-        let allBooksId = []
-        books.forEach(book => {
-            allBooksId.push(book.id)
-        })
-        // console.log(allBooksId)
-        const anyDoublesBooks = allBooksId.some(book => {
-            // console.log(book.id)
-            console.log(books[0])
-
+        let allProvidedBooksId = []
+        books.some(book => {
+            let anyDoublesBooksProvided = allProvidedBooksId.includes(book.id)
+            if (anyDoublesBooksProvided) {
+                throw new Error("The book already exists on your list")
+            }
+            allProvidedBooksId.push(book.id)
         });
-
     }
 
 
