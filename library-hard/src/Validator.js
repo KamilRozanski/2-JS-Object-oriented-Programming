@@ -39,12 +39,21 @@ export class Validator {
         }
     }
 
-
     static throwErrorIfBookNotExists = (book, booksArray) => {
         const result = booksArray.some(borrowedBook => borrowedBook.id === book.id)
         if (!result) {
             throw new Error("The book not exists")
         }
+    }
+
+    static throwErrorIfBookNotExistsMultipleArguments = (book, booksArray) => {
+        const result = booksArray.find((borrowedBook, index) => {
+            // borrowedBook.id === book[index].id
+            console.log(book[0].id, index)
+        })
+        // if (!result) {
+        //     throw new Error("The book not exists")
+        // }
     }
 
     static throwErrorIfBookAlreadyExists = (book, array) => {

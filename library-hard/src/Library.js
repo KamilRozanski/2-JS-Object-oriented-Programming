@@ -25,7 +25,7 @@ export class Library {
         this.allUsers = []
         this.allBooks = []
         this.allBookings = []
-        this.allAvaiableBooks = this.allBooks
+        this.allAvaiableBooks = []
         this.allBorrowedBooks = []
     }
 
@@ -56,25 +56,15 @@ export class Library {
         this.allBooks = this.allBooks.filter(bookInArray => bookInArray.id !== removeBook.id)
     }
 
-    createBooking = (user, book) => {
+    createBooking = (user, ...books) => {
         Validator.isInstanceOfClass(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
-        Validator.isInstanceOfClass(book, Book)
-        Validator.throwErrorIfBookNotExists(book, this.allBooks)
+        Validator.isInstanceOfClassMultipleArguments(books, Book)
+        Validator.throwErrorIfBookNotExistsMultipleArguments(books, this.allBooks)
 
-        const isBookingAlreadyExists = this.allBookings.find(booking => {
-            if (booking.user.id === user.id) {
-                booking.addBookToBookingList(book)
-                return true
-            }
-            return false
-        })
-
-        if (!isBookingAlreadyExists) {
-            const createdBooking = new Booking(user)
-            createdBooking.addBookToBookingList(book)
-            this.allBookings.push(createdBooking)
-        }
+        const createdBooking = new Booking(user)
+        createdBooking.addBookToBookingList(...books)
+        this.allBookings.push(createdBooking)
     }
 
     removeBooking = (user) => {

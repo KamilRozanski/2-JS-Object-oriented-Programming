@@ -30,7 +30,7 @@ export class Booking {
         this.user = user
         this.borrowedBookDate = ""
         this.returnBookDate = ""
-        //nadpisujee daty wypo ksiazek
+        //nadpisujee daty wypozyczonych ksiazek
         this.forHowManyDaysBookCanBeBorrowed = 7
         this.borrowedBooks = []
         this.penalty = 0
@@ -40,13 +40,12 @@ export class Booking {
     addBookToBookingList = (...addBook) => {
         Validator.isInstanceOfClassMultipleArguments(addBook, Book)
         Validator.throwErrorIfBookAlreadyExistsMultipleArguments(addBook)
-        // console.log(...addBook)
-        this.borrowedBooks.push(...addBook)
 
-        this.borrowedBookDate = new Date("August 2, 2022") // Przykładowa data
+        this.borrowedBooks.push(...addBook)
+        this.borrowedBookDate = new Date()
     }
 
-    removeBookFromBookingList = (removeBook, quantity) => {
+    removeBookFromBookingList = (removeBook) => {
         Validator.isInstanceOfClass(removeBook, Book)
         Validator.throwErrorIfBookNotExists(removeBook, this.borrowedBooks)
 
@@ -58,7 +57,7 @@ export class Booking {
         Validator.throwErrorIfBookNotExists(returnBook, this.borrowedBooks)
 
         this.borrowedBooks = this.borrowedBooks.filter(borroweedBook => borroweedBook.id !== returnBook.id)
-        this.returnBookDate = new Date() // Date.now() Jaka to róznica??
+        this.returnBookDate = new Date()
 
         this.calculatePenalty() // Łamie solid?
     }
