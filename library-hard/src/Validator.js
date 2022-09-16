@@ -16,6 +16,7 @@ export class Validator {
             throw new Error("Incorrect class instance")
         }
     }
+
     static isInstanceOfClassMultipleArguments = (value, instance) => {
         value.forEach(el => {
             if (!(el instanceof instance)) {
@@ -46,14 +47,15 @@ export class Validator {
         }
     }
 
-    static throwErrorIfBookNotExistsMultipleArguments = (book, booksArray) => {
-        const result = booksArray.find((borrowedBook, index) => {
-            // borrowedBook.id === book[index].id
-            console.log(book[0].id, index)
+    static throwErrorIfBookNotExistsMultipleArguments = (books, allBorrowedBooksArray) => {
+        const allBorrowedBooksId = []
+
+        allBorrowedBooksArray.forEach(book => {
+            allBorrowedBooksId.push(book.id)
         })
-        // if (!result) {
-        //     throw new Error("The book not exists")
-        // }
+
+        let isBookExists = books.every(removedBook => allBorrowedBooksId.includes(removedBook.id));
+        console.log(isBookExists)
     }
 
     static throwErrorIfBookAlreadyExists = (book, array) => {
@@ -66,11 +68,11 @@ export class Validator {
         }
     }
 
-    static throwErrorIfBookAlreadyExistsMultipleArguments = (books) => {
+    static throwErrorIfBookAlreadyExists = (books) => {
         let allProvidedBooksId = []
         books.some(book => {
-            let anyDoublesBooksProvided = allProvidedBooksId.includes(book.id)
-            if (anyDoublesBooksProvided) {
+            let isBookAlreadyHasBeenAdded = allProvidedBooksId.includes(book.id)
+            if (isBookAlreadyHasBeenAdded) {
                 throw new Error("The book already exists on your list")
             }
             allProvidedBooksId.push(book.id)

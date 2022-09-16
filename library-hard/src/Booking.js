@@ -39,15 +39,15 @@ export class Booking {
 
     addBookToBookingList = (...addBook) => {
         Validator.isInstanceOfClassMultipleArguments(addBook, Book)
-        Validator.throwErrorIfBookAlreadyExistsMultipleArguments(addBook)
+        Validator.throwErrorIfBookAlreadyExists(addBook)
 
         this.borrowedBooks.push(...addBook)
         this.borrowedBookDate = new Date()
     }
 
-    removeBookFromBookingList = (removeBook) => {
-        Validator.isInstanceOfClass(removeBook, Book)
-        Validator.throwErrorIfBookNotExists(removeBook, this.borrowedBooks)
+    removeBookFromBookingList = (...removeBook) => {
+        Validator.isInstanceOfClassMultipleArguments(removeBook, Book)
+        Validator.throwErrorIfBookNotExistsMultipleArguments(removeBook, this.borrowedBooks)
 
         this.borrowedBooks = this.borrowedBooks.filter(book => book.id !== removeBook.id)
     }
