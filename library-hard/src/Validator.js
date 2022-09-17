@@ -48,14 +48,22 @@ export class Validator {
     }
 
     static throwErrorIfBookNotExistsMultipleArguments = (books, allBorrowedBooksArray) => {
+        // console.log(books)
         const allBorrowedBooksId = []
-
         allBorrowedBooksArray.forEach(book => {
             allBorrowedBooksId.push(book.id)
         })
+        books.every(removedBook => {
+            console.log(removedBook.id)
 
-        let isBookExists = books.every(removedBook => allBorrowedBooksId.includes(removedBook.id));
-        console.log(isBookExists)
+        });
+        // books.every(removedBook => {
+        //     console.log(removedBook)
+        //     // console.log(!allBorrowedBooksId.includes(removedBook.id))
+        //     // if (!allBorrowedBooksId.includes(removedBook.id)) {
+        //     //     throw new Error(`${removedBook.title} is not on the borrowed book list`)
+        //     // }
+        // });
     }
 
     static throwErrorIfBookAlreadyExists = (book, array) => {
@@ -68,7 +76,7 @@ export class Validator {
         }
     }
 
-    static throwErrorIfBookAlreadyExists = (books) => {
+    static throwErrorIfBookAlreadyExistsMultipleArguments = (books) => {
         let allProvidedBooksId = []
         books.some(book => {
             let isBookAlreadyHasBeenAdded = allProvidedBooksId.includes(book.id)

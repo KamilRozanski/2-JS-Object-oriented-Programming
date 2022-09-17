@@ -29,11 +29,12 @@ const bookingDominika = new Booking(dominika)
 bookingKamil.addBookToBookingList(bookOne, bookTwo, bookThree)
 bookingDominika.addBookToBookingList(bookThree)
 
+
 bookingKamil.removeBookFromBookingList(bookOne, bookTwo)
 
 // console.log(bookingKamil.getBorrowedBooks())
 
-
+console.log(bookingKamil)
 
 
 
