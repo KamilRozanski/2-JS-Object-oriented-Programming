@@ -46,8 +46,8 @@ export class Booking {
     }
 
     removeBookFromBookingList = (...removedBook) => {
-        // Validator.isInstanceOfClassMultipleArguments(removeBook, Book)
-        // Validator.throwErrorIfBookNotExistsMultipleArguments(removeBook, this.borrowedBooks)
+        Validator.isInstanceOfClassMultipleArguments(removedBook, Book)
+        Validator.throwErrorIfBookNotExistsMultipleArguments(removedBook, this.borrowedBooks)
 
         return this.borrowedBooks = this.borrowedBooks.filter(({
             id: borrowedBookID
