@@ -31,10 +31,10 @@ bookingDominika.addBookToBookingList(bookThree)
 
 
 bookingKamil.removeBookFromBookingList(bookOne, bookTwo)
+// bookingKamil.returnBook(bookThree)
+console.log(bookingKamil.getBorrowedBooks())
 
-// console.log(bookingKamil.getBorrowedBooks())
-
-console.log(bookingKamil)
+// console.log(bookingKamil)
 
 
 
