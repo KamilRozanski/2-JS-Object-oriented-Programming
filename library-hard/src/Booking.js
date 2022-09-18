@@ -30,7 +30,7 @@ export class Booking {
         this.user = user
         this.borrowedBookDate = ""
         this.returnBookDate = ""
-        //nadpisujee daty wypozyczonych ksiazek
+        //nadpisuje daty wypozyczonych ksiazek
         this.forHowManyDaysBookCanBeBorrowed = 7
         this.borrowedBooks = []
         this.penalty = 0
@@ -42,7 +42,7 @@ export class Booking {
         Validator.throwErrorIfBookAlreadyExistsMultipleArguments(addBook)
 
         this.borrowedBooks.push(...addBook)
-        this.borrowedBookDate = new Date()
+        this.borrowedBookDate = new Date(2022, 8, 1)
     }
 
     removeBookFromBookingList = (...removedBook) => {

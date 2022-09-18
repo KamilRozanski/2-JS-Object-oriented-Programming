@@ -67,53 +67,40 @@ export class Library {
         this.allBookings.push(createdBooking)
     }
 
-    removeBooking = (user) => {
+    removeBookFromBooking = (user, book) => {
         Validator.isInstanceOfClass(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
         Validator.throwErrorIfBookingNotExists(user, this.allBookings)
-
-        this.allBookings = this.allBookings.filter(booking => booking.user.id !== user.id)
-    }
-
-    // removeBookFromBooking = (user, book) => {
-    //     Validator.isInstanceOfClass(user, User)
-    //     Validator.throwErrorIfUserNotExists(user, this.allUsers)
-    //     Validator.throwErrorIfBookingNotExists(user, this.allBookings)
-    //     Validator.isInstanceOfClass(book, Book)
-    //     Validator.throwErrorIfBookNotExists(book, this.allBooks)
-
-    //     this.allBookings.find(booking => {
-    //         if (booking.user.id === user.id) {
-    //             booking.removeBookFromBookingList(book)
-    //         }
-    //     })
-    // }
-
-    returnBook = (user, returnBook) => {
-        // returnBook nazwa do poprawy
-        Validator.isInstanceOfClass(user, User)
-        Validator.isInstanceOfClass(returnBook, Book)
-        Validator.throwErrorIfBookNotExists(returnBook, this.allBooks)
-
+        Validator.isInstanceOfClass(book, Book)
+        Validator.throwErrorIfBookNotExists(book, this.allBooks)
 
         this.allBookings.find(booking => {
             if (booking.user.id === user.id) {
-                booking.returnBook(returnBook)
+                booking.removeBookFromBookingList(book)
             }
         })
     }
 
-    // updateBooksQuantity = (book, quantity) => {
-    //     Validator.isInstanceOfClass(book, Book)
-    //     Validator.throwErrorIfProvidedQuantityIsSmallerThanZero(quantity)
+    removeUserFromBooking = (user) => {
+        Validator.isInstanceOfClass(user, User)
+        // Validator.throwErrorIfBookingNotExists(booking, this.allBookings)
+        // console.log(booking)
+        this.allBookings = this.allBookings.filter(booking => booking.user.id !== user.id)
+    }
 
-    //     const updatedBookQuantity = book.quantity - quantity
-    //     book.changeQuantity(updatedBookQuantity)
-    // }
 
-    updateBooksList = (book) => {
-        this.allAvaiableBooks = this.allAvaiableBooks.filter(avaiableBook => {
-            return avaiableBook.id !== book.id
+
+    returnBook = (user, returnedBook) => {
+        // returnBook nazwa do poprawy
+        Validator.isInstanceOfClass(user, User)
+        Validator.isInstanceOfClass(returnedBook, Book)
+        Validator.throwErrorIfBookNotExists(returnedBook, this.allBooks)
+
+
+        this.allBookings.find(booking => {
+            if (booking.user.id === user.id) {
+                booking.returnBook(returnedBook)
+            }
         })
     }
 
