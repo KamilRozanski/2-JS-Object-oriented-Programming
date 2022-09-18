@@ -26,7 +26,6 @@ export class Library {
         this.allBooks = []
         this.allBookings = []
         this.allAvaiableBooks = []
-        this.allBorrowedBooks = []
     }
 
     addUser = (user) => {
@@ -49,11 +48,11 @@ export class Library {
         this.allBooks.push(book)
     }
 
-    removeBook = (removeBook) => {
-        Validator.isInstanceOfClass(removeBook, Book)
-        Validator.throwErrorIfBookNotExists(removeBook, this.allBooks)
+    removeBook = (bookToRemove) => {
+        Validator.isInstanceOfClass(bookToRemove, Book)
+        Validator.throwErrorIfBookNotExists(bookToRemove, this.allBooks)
 
-        this.allBooks = this.allBooks.filter(bookInArray => bookInArray.id !== removeBook.id)
+        this.allBooks = this.allBooks.filter(bookInArray => bookInArray.id !== bookToRemove.id)
     }
 
     borrowBooks = (user, ...books) => {
@@ -67,39 +66,28 @@ export class Library {
         this.allBookings.push(createdBooking)
     }
 
-    removeBookFromBooking = (user, book) => {
+    removeBookFromList = (user, book) => {
         Validator.isInstanceOfClass(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
-        Validator.throwErrorIfBookingNotExists(user, this.allBookings)
         Validator.isInstanceOfClass(book, Book)
         Validator.throwErrorIfBookNotExists(book, this.allBooks)
 
         this.allBookings.find(booking => {
             if (booking.user.id === user.id) {
+                //usówam booking tylko z tablicy bookingów.
                 booking.removeBookFromBookingList(book)
             }
         })
     }
 
-    removeUserFromBooking = (user) => {
+    returnBook = (user, bookToReturn) => {
         Validator.isInstanceOfClass(user, User)
-        // Validator.throwErrorIfBookingNotExists(booking, this.allBookings)
-        // console.log(booking)
-        this.allBookings = this.allBookings.filter(booking => booking.user.id !== user.id)
-    }
-
-
-
-    returnBook = (user, returnedBook) => {
-        // returnBook nazwa do poprawy
-        Validator.isInstanceOfClass(user, User)
-        Validator.isInstanceOfClass(returnedBook, Book)
-        Validator.throwErrorIfBookNotExists(returnedBook, this.allBooks)
-
+        Validator.isInstanceOfClass(bookToReturn, Book)
+        Validator.throwErrorIfBookNotExists(bookToReturn, this.allBooks)
 
         this.allBookings.find(booking => {
             if (booking.user.id === user.id) {
-                booking.returnBook(returnedBook)
+                booking.returnBook(bookToReturn)
             }
         })
     }

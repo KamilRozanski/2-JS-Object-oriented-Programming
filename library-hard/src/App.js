@@ -53,9 +53,9 @@ library.borrowBooks(dominika, bookTwo)
 // library.createBooking(dominika, bookThree)
 
 
-library.removeUserFromBooking(kamil, bookOne)
+// library.removeBookFromList(kamil, bookOne)
 // library.removeUserFromBookings(kamil)
 // library.removeBook(bookOne)
-// library.returnBook(kamil, bookTwo)
+// library.returnBook(kamil, bookOne)
 
 console.log(library.getAllBookings())

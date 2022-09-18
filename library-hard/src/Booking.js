@@ -45,15 +45,15 @@ export class Booking {
         this.borrowedBookDate = new Date(2022, 8, 1)
     }
 
-    removeBookFromBookingList = (...removedBook) => {
-        Validator.isInstanceOfClassMultipleArguments(removedBook, Book)
-        Validator.throwErrorIfBookNotExistsMultipleArguments(removedBook, this.borrowedBooks)
+    removeBookFromBookingList = (...booksToRemove) => {
+        Validator.isInstanceOfClassMultipleArguments(booksToRemove, Book)
+        Validator.throwErrorIfBookNotExistsMultipleArguments(booksToRemove, this.borrowedBooks)
 
         return this.borrowedBooks = this.borrowedBooks.filter(({
             id: borrowedBookID
-        }) => !removedBook.some(({
-            id: removedBookID
-        }) => removedBookID === borrowedBookID));
+        }) => !booksToRemove.some(({
+            id: bookToRemoveID
+        }) => bookToRemoveID === borrowedBookID));
     }
 
     returnBook = (returnBook) => {
