@@ -25,7 +25,7 @@ export class Library {
         this.allUsers = []
         this.allBooks = []
         this.allBookings = []
-        this.allAvaiableBooks = []
+        this.allAvaiableBooks = this.allBooks
     }
 
     addUser = (user) => {
@@ -64,13 +64,15 @@ export class Library {
         const createdBooking = new Booking(user)
         createdBooking.addBookToBookingList(...books)
         this.allBookings.push(createdBooking)
+
+        this.upDateAllAvaiableBooks(books)
     }
 
-    removeBookFromList = (user, book) => {
+    removeBookFromUserBooking = (user, book) => {
         Validator.isInstanceOfClass(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
         Validator.isInstanceOfClass(book, Book)
-        Validator.throwErrorIfBookNotExists(book, this.allBooks)
+        // Validator.throwErrorIfBookNotExists(book, this.allBookings)
 
         this.allBookings.find(booking => {
             if (booking.user.id === user.id) {
@@ -92,6 +94,18 @@ export class Library {
         })
     }
 
+    upDateAllAvaiableBooks = (booksToUpDate) => {
+        // w kazdej nowej instancji library wszytskie ksiazki sa dostepne.
+        return this.allBooks = this.allBooks.filter(({
+            id: allBooksID
+        }) => !booksToUpDate.some(({
+            id: booksToUpDateID
+        }) => {
+            return allBooksID === booksToUpDateID
+
+        }));
+    }
+
     getAllUsers = () => {
         return this.allUsers
     }
@@ -105,14 +119,7 @@ export class Library {
     }
 
     getAvaiableBooks = () => {
-        return this.allAvaiableBooks
-    }
-
-    getAllBorrowedBooks = () => {
-        for (const booking of this.allBookings) {
-            this.allBorrowedBooks.push(booking.getBorrowedBooks())
-        }
-        return this.allBorrowedBooks
+        return this.allBooks
     }
 }
 

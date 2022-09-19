@@ -55,7 +55,7 @@ export class Validator {
 
         books.forEach(removedBook => {
             if (!allBorrowedBooksId.includes(removedBook.id)) {
-                throw new Error(`${removedBook.title} is not on the borrowed book list`)
+                throw new Error(`This book is not avaiable`)
             }
         });
     }
