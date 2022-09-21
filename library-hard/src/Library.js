@@ -65,14 +65,13 @@ export class Library {
         createdBooking.addBookToBookingList(...books)
         this.allBookings.push(createdBooking)
 
-        this.upDateAllAvaiableBooks(books)
+        // this.upDateAllAvaiableBooks(books)
     }
 
     removeBookFromUserBooking = (user, book) => {
         Validator.isInstanceOfClass(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
         Validator.isInstanceOfClass(book, Book)
-        // Validator.throwErrorIfBookNotExists(book, this.allBookings)
 
         this.allBookings.find(booking => {
             if (booking.user.id === user.id) {
@@ -85,8 +84,8 @@ export class Library {
     returnBook = (user, bookToReturn) => {
         Validator.isInstanceOfClass(user, User)
         Validator.isInstanceOfClass(bookToReturn, Book)
-        Validator.throwErrorIfBookNotExists(bookToReturn, this.allBooks)
-
+        // Validator.throwErrorIfBookNotExists(bookToReturn, this.allBooks)
+        console.log(user)
         this.allBookings.find(booking => {
             if (booking.user.id === user.id) {
                 booking.returnBook(bookToReturn)
@@ -95,7 +94,6 @@ export class Library {
     }
 
     upDateAllAvaiableBooks = (booksToUpDate) => {
-        // w kazdej nowej instancji library wszytskie ksiazki sa dostepne.
         return this.allBooks = this.allBooks.filter(({
             id: allBooksID
         }) => !booksToUpDate.some(({
