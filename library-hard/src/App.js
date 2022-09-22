@@ -26,7 +26,7 @@ const bookFour = new Book("title Four", "author Fourhree", "photoOfTheBook Four"
 // const bookingKamil = new Booking(kamil)
 // const bookingDominika = new Booking(dominika)
 
-// bookingKamil.addBookToBookingList(bookOne, bookTwo, bookThree)
+// bookingKamil.addBookToBookingList(bookOne, bookTwo)
 // bookingDominika.addBookToBookingList(bookThree)
 
 // bookingKamil.removeBookFromBookingList(bookOne, bookTwo)

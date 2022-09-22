@@ -121,11 +121,3 @@ export class Library {
     }
 }
 
-
-
-
-
-
-
-// Problemy
-//removeBookFromBooking - metoda usuwa wszytskie ksiazki z tym samym ID. 
