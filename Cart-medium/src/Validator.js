@@ -5,11 +5,14 @@ export class Validator {
         }
     }
 
-    static throwErrorIfStringCharactersAreNotALetters = (string) => {
+    static throwErrorIfStringHasOnlyWhiteCharacters = (string) => {
         //nazwa do poprawy
-        const regex = /^[a-zA-Z\s]*$/gi;
-        if (!regex.test(string)) {
-            throw new Error(`You should provide only letters.  No special characters ect`)
+        //if do poprawy
+        const regex = /.*\S.*/g;
+        // console.log(string)
+        // console.log(regex.test(string))
+        if (regex.test(string)) {
+            throw new Error(`You should provide only letters, numbers or special characters`)
         }
     }
 

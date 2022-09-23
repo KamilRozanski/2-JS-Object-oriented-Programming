@@ -9,9 +9,10 @@ import {
 export class Item {
     constructor(name, category, price) {
         Validator.throwErrorIfValueIsNotAString(name)
-        Validator.throwErrorIfStringCharactersAreNotALetters(name)
+        Validator.throwErrorIfStringHasOnlyWhiteCharacters(name)
         Validator.throwErrorIfValueisNotAPositiveNumber(price)
         Validator.throwErrorIfValueIsNotAString(category)
+        Validator.throwErrorIfStringHasOnlyWhiteCharacters(category)
 
         this.name = name
         this.price = price
@@ -21,7 +22,7 @@ export class Item {
 
     changeName = (newName) => {
         Validator.throwErrorIfValueIsNotAString(newName)
-        Validator.throwErrorIfStringCharactersAreNotALetters(newName)
+        Validator.throwErrorIfStringHasOnlyWhiteCharacters(newName)
 
         this.name = newName
     }
@@ -34,6 +35,7 @@ export class Item {
 
     changeCategory = (newCategory) => {
         Validator.throwErrorIfValueIsNotAString(newCategory)
+        Validator.throwErrorIfStringHasOnlyWhiteCharacters(newCategory)
 
         this.category = newCategory
     }

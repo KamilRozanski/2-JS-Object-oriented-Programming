@@ -79,6 +79,7 @@ export class Cart {
 
     setDiscountCode = (code, discountPercentage) => {
         Validator.throwErrorIfValueIsNotAString(code)
+        Validator.throwErrorIfStringHasOnlyWhiteCharacters(code)
         Validator.throwErrorIfValueisNotAPositiveNumber(discountPercentage)
         Validator.throwErrorIfDiscountPercentageIsNotBetweenZeroToOneHundred(discountPercentage)
         //discount code already exists
@@ -91,6 +92,7 @@ export class Cart {
 
     applyDiscountCode = (providedCode) => {
         Validator.throwErrorIfValueIsNotAString(providedCode)
+        Validator.throwErrorIfStringHasOnlyWhiteCharacters(providedCode)
         Validator.throwErrorIfDiscountCodeNotExists(providedCode, this.discountCodes)
 
         // this.discountCodes.find((obj, index) => {

@@ -21,6 +21,7 @@ const itemFour = new CartItem(vivoX60, 10)
 const itemFive = new CartItem(s21Ultra, 10)
 
 
+
 const cart = new Cart()
 cart.addCartItem(itemOne)
 cart.addCartItem(itemOne, 2)
@@ -39,9 +40,9 @@ cart.removeCartItem(itemOne, 5)
 // cart.applayDiscountCode("summer")
 
 // console.log(cart.getAmountSummary())
-cart.setDiscountCode("kamil", 99)
-cart.setDiscountCode("patryk", 50)
-cart.applyDiscountCode("kamil")
+// cart.setDiscountCode("kamil", 99)
+// cart.setDiscountCode("patryk", 50)
+// cart.applyDiscountCode("kamil")
 // cart.setCartDiscountPercent(100)
 // cart.getTotalAmaunt()
 // console.log(cart)
