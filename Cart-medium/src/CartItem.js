@@ -40,14 +40,14 @@ export class CartItem {
 
     changeQuantity = (newQuantity) => {
         Validator.throwErrorIfValueisNotAPositiveNumber(newQuantity)
-        Validator.throwErrorIfQuantitySmallerThanZeroAndIsNotAIntegerNumber(newQuantity)
+        Validator.throwErrorIfValueIsNotAInteger(newQuantity)
 
         return this.quantity = newQuantity
     }
 
 
     getDiscountAmount = () => {
-        return this.item.getPrice() * this.discountPercent / 100
+        return this.item.getPrice() * this.discountPercentage / 100
     }
 
     getTotalAmount = () => {

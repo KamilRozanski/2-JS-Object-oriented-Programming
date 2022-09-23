@@ -21,15 +21,13 @@ const itemFour = new CartItem(vivoX60, 10)
 const itemFive = new CartItem(s21Ultra, 10)
 
 
-
 const cart = new Cart()
-cart.addCartItem(itemOne)
 cart.addCartItem(itemOne, 2)
-cart.addCartItem(itemTwo, 3)
-cart.addCartItem(itemTwo, 10)
-cart.addCartItem(itemOne, 2)
-cart.removeCartItem(itemOne, 2)
-cart.removeCartItem(itemOne, 5)
+cart.addCartItem(itemOne, 5)
+cart.addCartItem(itemTwo, 2)
+cart.addCartItem(itemTwo, 5)
+// cart.removeCartItem(itemOne, 2)
+// cart.removeCartItem(itemTwo, 5)
 
 
 
@@ -45,4 +43,4 @@ cart.removeCartItem(itemOne, 5)
 // cart.applyDiscountCode("kamil")
 // cart.setCartDiscountPercent(100)
 // cart.getTotalAmaunt()
-// console.log(cart)
+console.log(cart)

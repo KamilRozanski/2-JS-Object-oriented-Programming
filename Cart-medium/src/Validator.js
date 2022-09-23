@@ -11,9 +11,9 @@ export class Validator {
         const regex = /.*\S.*/g;
         // console.log(string)
         // console.log(regex.test(string))
-        if (regex.test(string)) {
-            throw new Error(`You should provide only letters, numbers or special characters`)
-        }
+        // if (regex.test(string)) {
+        //     throw new Error(`You should provide letters, numbers or special characters`)
+        // }
     }
 
     static throwErrorIfValueIsNotAInteger = (value) => {
@@ -39,12 +39,6 @@ export class Validator {
     //         throw new Error("Input is not Array")
     //     }
     // }
-
-    static throwErrorIfQuantitySmallerThanZeroAndIsNotAIntegerNumber = (quantity) => {
-        if (quantity <= 0 && Number.isInteger(quantity)) {
-            throw new Error("Quantity must be bigger than 0, and must be a integer number")
-        }
-    }
 
     static throwErrorIfDiscountCodeNotExists(providedCode, array) {
         array.every(({

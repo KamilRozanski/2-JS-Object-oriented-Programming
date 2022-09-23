@@ -14,7 +14,7 @@ import {
 
 export class Cart {
     constructor() {
-        this.cart = [] // poprawic nazwe
+        this.cartOfItems = [] // name to corrert
         this.positionsInCart = 0
         this.discountPercentage = 0
         this.discountCodes = []
@@ -24,39 +24,37 @@ export class Cart {
     }
 
     addCartItem = (newCartItem, quantity = 1) => {
-        //w cart produkt pokazuje jako tablice[item]??
+        //cart items shows item like array[item]??
         Validator.throwErrorIfValueHasIncorrectInstance(newCartItem, CartItem)
+        Validator.throwErrorIfValueisNotAPositiveNumber(quantity)
+        Validator.throwErrorIfValueIsNotAInteger(quantity)
 
-        const isCartItemAlreadyExists = this.cart.find(existingCartItem => {
-            if (existingCartItem.id === newCartItem.id) {
-                let updatedQuantity = existingCartItem.quantity += quantity
-                existingCartItem.changeQuantity(updatedQuantity)
-                return true
-            }
-            return false
-        })
+        const isCartExist = this.cartOfItems.some(existingCartItem => newCartItem.id === existingCartItem.id)
 
-        if (!isCartItemAlreadyExists) {
-            this.cart.push(newCartItem)
+        if (!isCartExist) {
             newCartItem.changeQuantity(quantity)
+            this.cartOfItems.push(newCartItem)
         }
 
-
-        // isCartExist = true / false
-
-        // if true = dodaje quantit
-        // if false = dodaej element
+        if (isCartExist) {
+            this.cartOfItems.find(existingCartItem => {
+                if (existingCartItem.id === newCartItem.id) {
+                    const updatedQuantity = existingCartItem.quantity += quantity
+                    existingCartItem.changeQuantity(updatedQuantity)
+                }
+            })
+        }
     }
 
     removeCartItem = (removedCartItem, quantity) => {
         Validator.throwErrorIfValueHasIncorrectInstance(removedCartItem, CartItem)
-        Validator.throwErrorIfItemNotExists(removedCartItem, this.cart)
+        Validator.throwErrorIfItemNotExists(removedCartItem, this.cartOfItems)
 
         if (!quantity || removedCartItem.quantity - quantity <= 0) {
-            return this.cart = this.cart.filter(cartItem => cartItem.id !== removedCartItem.id)
+            return this.cartOfItems = this.cartOfItems.filter(cartItem => cartItem.id !== removedCartItem.id)
         }
 
-        this.cart.find(existingCartItem => {
+        this.cartOfItems.find(existingCartItem => {
             if (existingCartItem.id === removedCartItem.id) {
                 const updatedQuantity = existingCartItem.quantity -= quantity
                 existingCartItem.changeQuantity(updatedQuantity)
@@ -95,14 +93,6 @@ export class Cart {
         Validator.throwErrorIfStringHasOnlyWhiteCharacters(providedCode)
         Validator.throwErrorIfDiscountCodeNotExists(providedCode, this.discountCodes)
 
-        // this.discountCodes.find((obj, index) => {
-        //     const test = Object.entries(obj)
-        //     for (const [key, value] of test) {
-        //         console.log(key, value)
-        //     }
-        // })
-        //Object.entries
-
         this.discountCodes.find(({
             code,
             discountPercentage
@@ -120,7 +110,7 @@ export class Cart {
     getTotalAmount = () => {
         //poprawic nazwe metody
         // Math.round(this.totalCartAmount) nie zaokrągla ???
-        this.totalCartAmount = this.cart.reduce((acc, cartItem) => {
+        this.totalCartAmount = this.cartOfItems.reduce((acc, cartItem) => {
             return (acc + cartItem.getTotalAmount())
         }, 0)
 
