@@ -14,18 +14,18 @@ import {
 
 export class Cart {
     constructor() {
-        this.cart = []
-        this.positionsInCart = 0 // poprawic nazwe
-        this.discountPercent = 0
+        this.cart = [] // poprawic nazwe
+        this.positionsInCart = 0
+        this.discountPercentage = 0
         this.discountCodes = []
-        this.discountCodeAmount = 0
+        // this.discountCodeAmount = 0
         this.totalCartAmount = 0;
         this.id = uuidv4()
     }
 
     addCartItem = (newCartItem, quantity = 1) => {
         //w cart produkt pokazuje jako tablice[item]??
-        Validator.isInstanceOf(newCartItem, CartItem)
+        Validator.throwErrorIfValueHasIncorrectInstance(newCartItem, CartItem)
 
         const isCartItemAlreadyExists = this.cart.find(existingCartItem => {
             if (existingCartItem.id === newCartItem.id) {
@@ -40,49 +40,55 @@ export class Cart {
             this.cart.push(newCartItem)
             newCartItem.changeQuantity(quantity)
         }
+
+
+        // isCartExist = true / false
+
+        // if true = dodaje quantit
+        // if false = dodaej element
     }
 
     removeCartItem = (removedCartItem, quantity) => {
-        Validator.isInstanceOf(removedCartItem, CartItem)
+        Validator.throwErrorIfValueHasIncorrectInstance(removedCartItem, CartItem)
         Validator.throwErrorIfItemNotExists(removedCartItem, this.cart)
 
-        if (quantity === undefined || removedCartItem.quantity - quantity <= 0) {
+        if (!quantity || removedCartItem.quantity - quantity <= 0) {
             return this.cart = this.cart.filter(cartItem => cartItem.id !== removedCartItem.id)
         }
 
         this.cart.find(existingCartItem => {
             if (existingCartItem.id === removedCartItem.id) {
-                let updatedQuantity = existingCartItem.quantity -= quantity
+                const updatedQuantity = existingCartItem.quantity -= quantity
                 existingCartItem.changeQuantity(updatedQuantity)
             }
         })
     }
 
     changeCartItemQuantity = (cartItem, quantity) => {
-        Validator.isInstanceOf(cartItem, CartItem)
+        Validator.throwErrorIfValueHasIncorrectInstance(cartItem, CartItem)
 
         cartItem.changeQuantity(quantity)
     }
 
-    setCartDiscountPercent = (cartDiscount) => {
-        Validator.isNumber(cartDiscount)
-        Validator.throwErrorIfDiscountIsNotBetweenZeroToOneHundred(cartDiscount)
+    setCartDiscountPercentage = (cartDiscountPercentage) => {
+        Validator.throwErrorIfValueisNotAPositiveNumber(cartDiscountPercentage)
+        Validator.throwErrorIfDiscountIsNotBetweenZeroToOneHundred(cartDiscountPercentage)
 
-        this.discountPercent = cartDiscount
+        this.discountPercentage = cartDiscountage
     }
 
-    setDiscountCode = (code, discountCodeAmount) => {
-        Validator.isString(code)
-        Validator.isNumber(discountCodeAmount)
-        Validator.throwErrorIfDiscountCodeValueIsIncorrect(discountCodeAmount, this.getTotalAmaunt())
+    setDiscountCode = (code, discountCodePercentage) => {
+        Validator.throwErrorIfValueIsNotAString(code)
+        Validator.throwErrorIfValueisNotAPositiveNumber(discountCodePercentage)
+        Validator.throwErrorIfDiscountCodeValueIsIncorrect(discountCodePercentage, this.getTotalAmount())
         this.discountCodes.push({
             code,
-            discountCodeAmount
+            discountCodePercentage
         })
     }
 
-    applayDiscountCode = (providedCode) => {
-        Validator.isString(providedCode)
+    applyDiscountCode = (providedCode) => {
+        Validator.throwErrorIfValueIsNotAString(providedCode)
         Validator.throwErrorIfDiscountCodeNotExists(providedCode, this.discountCodes)
 
         // this.discountCodes.find((obj, index) => {
@@ -107,9 +113,8 @@ export class Cart {
         return this.totalCartAmount * this.discountPercent / 100
     }
 
-    getTotalAmaunt = () => {
+    getTotalAmount = () => {
         //poprawic nazwe metody
-        // Jak dam 100 % rabatu na caly koszyk, plus rabat na produkt totalAmount jeest na miusiee :(
         // Math.round(this.totalCartAmount) nie zaokrągla ???
         this.totalCartAmount = this.cart.reduce((acc, cartItem) => {
             return (acc + cartItem.getTotalAmount())

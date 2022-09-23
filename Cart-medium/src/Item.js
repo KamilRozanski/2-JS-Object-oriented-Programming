@@ -9,9 +9,8 @@ import {
 export class Item {
     constructor(name, category, price) {
         Validator.throwErrorIfStringCharactersAreIncorrect(name)
-        Validator.isNumber(price)
-        Validator.isPositiveNumber(price)
-        Validator.isString(category)
+        Validator.throwErrorIfValueisNotAPositiveNumber(price)
+        Validator.throwErrorIfValueIsNotAString(category)
 
         this.name = name
         this.price = price
@@ -26,14 +25,13 @@ export class Item {
     }
 
     changePrice = (newPrice) => {
-        Validator.isNumber(newPrice)
-        Validator.isPositiveNumber(newPrice)
+        Validator.throwErrorIfValueisNotAPositiveNumber(newPrice)
 
         this.price = newPrice
     }
 
     changeCategory = (newCategory) => {
-        Validator.isString(newCategory)
+        Validator.throwErrorIfValueIsNotAString(newCategory)
 
         this.category = newCategory
     }

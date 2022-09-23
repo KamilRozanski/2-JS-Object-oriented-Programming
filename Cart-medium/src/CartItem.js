@@ -19,21 +19,20 @@ import {
 // - zmianę nazwy, ceny lub rabatu
 
 export class CartItem {
-    constructor(item, discountPercent = 0) {
-        Validator.isInstanceOf(item, Item)
-        Validator.isNumber(discountPercent)
-        Validator.throwErrorIfDiscountIsNotBetweenZeroToOneHundred(discountPercent)
+    constructor(item, discountPercentage = 0) {
+        Validator.throwErrorIfValueHasIncorrectInstance(item, Item)
+        Validator.throwErrorIfValueisNotAPositiveNumber(discountPercentage)
+        Validator.throwErrorIfDiscountPercentageIsNotBetweenZeroToOneHundred(discountPercentage)
 
         this.item = item
-        //kategoria powinna byc w item
-        this.discountPercent = discountPercent
+        this.discountPercentage = discountPercentage
         this.quantity = 1
         this.id = uuidv4()
     }
 
     changeDiscountPercente = (newDiscount) => {
         // dodac domyslna wartosc 
-        Validator.isNumber(newDiscount)
+        Validator.throwErrorIfValueisNotAPositiveNumber(newDiscount)
         Validator.throwErrorIfDiscountValueIsIncorrect(newDiscount)
 
         this.discountPercent = discount
@@ -41,8 +40,8 @@ export class CartItem {
 
 
     changeQuantity = (newQuantity) => {
-        Validator.isNumber(newQuantity)
-        Validator.throwErrorIfQuantitySmallerThanZero(newQuantity)
+        Validator.throwErrorIfValueisNotAPositiveNumber(newQuantity)
+        Validator.throwErrorIfQuantitySmallerThanZeroAndIsNotAIntegerNumber(newQuantity)
 
         return this.quantity = newQuantity
     }
