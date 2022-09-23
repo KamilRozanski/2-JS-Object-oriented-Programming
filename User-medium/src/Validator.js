@@ -1,7 +1,6 @@
 export class Validator {
     static isArray = (array) => {
         if (!Array.isArray(array)) {
-            //Poprawic komunikaty walidatora
             throw new Error("Value should be an array")
         }
     }

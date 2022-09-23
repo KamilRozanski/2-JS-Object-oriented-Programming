@@ -27,31 +27,37 @@ export class User {
 
     changeName = (firstName) => {
         Validator.isString(firstName)
+
         this.name = firstName
     }
 
     changeSecondName = (secondName) => {
         Validator.isString(secondName)
+
         this.secondName = secondName
     }
 
     changeEmail = (email) => {
         Validator.checkEmailFormat(email)
+
         this.emailAddress = email
     }
 
     changeDateOfBirth = (dateOfBirth) => {
         Validator.checkDate(dateOfBirth)
+
         this.dateOfBirth = dateOfBirth
     }
 
     changeGender = (gender) => {
         Validator.checkGender(gender)
+
         this.gender = gender
     }
 
     changePassword = (password) => {
         Validator.checkPasswordFormat(password)
+
         this.password = password
     }
 }
