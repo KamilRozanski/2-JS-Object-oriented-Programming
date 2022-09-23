@@ -5,6 +5,14 @@ export class Validator {
         }
     }
 
+    static throwErrorIfStringCharactersAreNotALetters = (string) => {
+        //nazwa do poprawy
+        const regex = /^[a-zA-Z\s]*$/gi;
+        if (!regex.test(string)) {
+            throw new Error(`You should provide only letters.  No special characters ect`)
+        }
+    }
+
     static throwErrorIfValueIsNotAInteger = (value) => {
         if (!Number.isInteger(value)) {
             throw new Error("The value must be an integer value")
@@ -62,8 +70,8 @@ export class Validator {
     }
 
     static throwErrorIfDiscountPercentageIsNotBetweenZeroToOneHundred = (discount) => {
-        //correct the method name
-        //resp. We are able to set a percentage in CartItem constructor
+        //method name to correct
+        //resp. We are able to set a percentage in CartItem constructor.
         if ((discount < 0) || (discount > 100)) {
             throw new Error("Acceptable discount is between 0% and 100%")
         }
@@ -77,14 +85,5 @@ export class Validator {
     }
     // dziwny walidator
 
-    static throwErrorIfStringCharactersAreIncorrect = (string) => {
-        //nazwa do poprawy
-        const regex = /^\w+(\s+\w+)*$/gi;
-        if (!regex.test(string)) {
-            throw new Error(`You should provide between 2-20 characters. No special characters`)
-        }
-    }
 
 }
-
-//poprawic nazwy validator z is

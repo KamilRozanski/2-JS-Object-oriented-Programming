@@ -77,13 +77,15 @@ export class Cart {
         this.discountPercentage = cartDiscountage
     }
 
-    setDiscountCode = (code, discountCodePercentage) => {
+    setDiscountCode = (code, discountPercentage) => {
         Validator.throwErrorIfValueIsNotAString(code)
-        Validator.throwErrorIfValueisNotAPositiveNumber(discountCodePercentage)
-        Validator.throwErrorIfDiscountCodeValueIsIncorrect(discountCodePercentage, this.getTotalAmount())
+        Validator.throwErrorIfValueisNotAPositiveNumber(discountPercentage)
+        Validator.throwErrorIfDiscountPercentageIsNotBetweenZeroToOneHundred(discountPercentage)
+        //discount code already exists
+
         this.discountCodes.push({
             code,
-            discountCodePercentage
+            discountPercentage
         })
     }
 
@@ -101,10 +103,10 @@ export class Cart {
 
         this.discountCodes.find(({
             code,
-            discountCodeAmount
+            discountPercentage
         }) => {
             if (code === providedCode) {
-                this.discountCodeAmount = discountCodeAmount
+                this.discountCodeAmount = discountPercentage
             }
         })
     }

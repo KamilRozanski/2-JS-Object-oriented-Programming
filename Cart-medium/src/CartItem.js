@@ -30,12 +30,11 @@ export class CartItem {
         this.id = uuidv4()
     }
 
-    changeDiscountPercente = (newDiscount) => {
-        // dodac domyslna wartosc 
+    changeDiscountPercentage = (newDiscount) => {
         Validator.throwErrorIfValueisNotAPositiveNumber(newDiscount)
         Validator.throwErrorIfDiscountValueIsIncorrect(newDiscount)
 
-        this.discountPercent = discount
+        this.discountPercentage = newDiscount
     }
 
 
@@ -52,7 +51,6 @@ export class CartItem {
     }
 
     getTotalAmount = () => {
-        //poprawic nazwenictwo
         return (this.item.getPrice() - this.getDiscountAmount()) * this.quantity
     }
 }
