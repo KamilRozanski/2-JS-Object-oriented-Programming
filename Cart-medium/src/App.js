@@ -26,8 +26,8 @@ cart.addCartItem(itemOne, 2)
 cart.addCartItem(itemOne, 5)
 cart.addCartItem(itemTwo, 2)
 cart.addCartItem(itemTwo, 5)
-// cart.removeCartItem(itemOne, 2)
-// cart.removeCartItem(itemTwo, 5)
+cart.removeCartItem(itemOne, 1)
+cart.removeCartItem(itemTwo, 5)
 
 
 
@@ -39,8 +39,12 @@ cart.addCartItem(itemTwo, 5)
 
 // console.log(cart.getAmountSummary())
 // cart.setDiscountCode("kamil", 99)
-// cart.setDiscountCode("patryk", 50)
+cart.setDiscountCode("patryk", 20)
 // cart.applyDiscountCode("kamil")
-// cart.setCartDiscountPercent(100)
-// cart.getTotalAmaunt()
-console.log(cart)
+cart.applyDiscountCode("patryk")
+
+// cart.setCartDiscountPercentage(50)
+
+
+cart.getTotalAmount()
+// console.log(cart)

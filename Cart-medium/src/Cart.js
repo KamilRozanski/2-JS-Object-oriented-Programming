@@ -1,7 +1,4 @@
 import {
-    Item
-} from "./Item.js";
-import {
     CartItem
 } from "./CartItem.js";
 import {
@@ -15,10 +12,8 @@ import {
 export class Cart {
     constructor() {
         this.cartOfItems = [] // name to corrert
-        this.positionsInCart = 0
         this.discountPercentage = 0
         this.discountCodes = []
-        // this.discountCodeAmount = 0
         this.totalCartAmount = 0;
         this.id = uuidv4()
     }
@@ -50,11 +45,11 @@ export class Cart {
         Validator.throwErrorIfValueHasIncorrectInstance(removedCartItem, CartItem)
         Validator.throwErrorIfItemNotExists(removedCartItem, this.cartOfItems)
 
-        if (!quantity || removedCartItem.quantity - quantity <= 0) {
+        if (quantity === undefined || removedCartItem.quantity - quantity <= 0) {
             return this.cartOfItems = this.cartOfItems.filter(cartItem => cartItem.id !== removedCartItem.id)
         }
 
-        this.cartOfItems.find(existingCartItem => {
+        this.cartOfItems.forEach(existingCartItem => {
             if (existingCartItem.id === removedCartItem.id) {
                 const updatedQuantity = existingCartItem.quantity -= quantity
                 existingCartItem.changeQuantity(updatedQuantity)
@@ -64,57 +59,63 @@ export class Cart {
 
     changeCartItemQuantity = (cartItem, quantity) => {
         Validator.throwErrorIfValueHasIncorrectInstance(cartItem, CartItem)
+        Validator.throwErrorIfValueisNotAPositiveNumber(quantity)
+        Validator.throwErrorIfValueIsNotAInteger(quantity)
 
         cartItem.changeQuantity(quantity)
     }
 
     setCartDiscountPercentage = (cartDiscountPercentage) => {
         Validator.throwErrorIfValueisNotAPositiveNumber(cartDiscountPercentage)
-        Validator.throwErrorIfDiscountIsNotBetweenZeroToOneHundred(cartDiscountPercentage)
+        Validator.throwErrorIfDiscountPercentageIsNotBetweenZeroToOneHundred(cartDiscountPercentage)
 
-        this.discountPercentage = cartDiscountage
+        this.discountPercentage = cartDiscountPercentage
     }
 
-    setDiscountCode = (code, discountPercentage) => {
+    getCartDiscountPercentageAmount = () => {
+        return this.totalCartAmount * this.discountPercentage / 100
+    }
+
+    setDiscountCode = (code, discountCodePercentage) => {
         Validator.throwErrorIfValueIsNotAString(code)
         Validator.throwErrorIfStringHasOnlyWhiteCharacters(code)
-        Validator.throwErrorIfValueisNotAPositiveNumber(discountPercentage)
-        Validator.throwErrorIfDiscountPercentageIsNotBetweenZeroToOneHundred(discountPercentage)
+        Validator.throwErrorIfValueisNotAPositiveNumber(discountCodePercentage)
+        Validator.throwErrorIfDiscountPercentageIsNotBetweenZeroToOneHundred(discountCodePercentage)
         //discount code already exists
 
         this.discountCodes.push({
             code,
-            discountPercentage
+            discountCodePercentage
         })
     }
 
     applyDiscountCode = (providedCode) => {
-        Validator.throwErrorIfValueIsNotAString(providedCode)
+        // Validator.throwErrorIfValueIsNotAString(providedCode)
         Validator.throwErrorIfStringHasOnlyWhiteCharacters(providedCode)
         Validator.throwErrorIfDiscountCodeNotExists(providedCode, this.discountCodes)
 
         this.discountCodes.find(({
             code,
-            discountPercentage
+            discountCodePercentage
         }) => {
+
             if (code === providedCode) {
-                this.discountCodeAmount = discountPercentage
+                return discountCodePercentage
             }
         })
     }
 
-    getDiscountPercentAmount = () => {
-        return this.totalCartAmount * this.discountPercent / 100
+    getDiscountCodePercentageAmount = () => {
+        return this.totalCartAmount * this.applyDiscountCode() / 100
     }
 
     getTotalAmount = () => {
-        //poprawic nazwe metody
         // Math.round(this.totalCartAmount) nie zaokrągla ???
         this.totalCartAmount = this.cartOfItems.reduce((acc, cartItem) => {
             return (acc + cartItem.getTotalAmount())
         }, 0)
-
-        this.totalCartAmount = this.totalCartAmount - this.getDiscountPercentAmount() - this.discountCodeAmount
+        console.log(this.getDiscountCodePercentageAmount(), this.getCartDiscountPercentageAmount())
+        this.totalCartAmount = this.totalCartAmount - this.getDiscountCodePercentageAmount() - this.getCartDiscountPercentageAmount()
 
         if (this.totalCartAmount < 0) {
             return this.totalCartAmount = 0
