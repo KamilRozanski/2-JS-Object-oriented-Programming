@@ -30,21 +30,13 @@ cart.removeCartItem(itemOne, 1)
 cart.removeCartItem(itemTwo, 5)
 
 
+cart.setCartDiscountPercentage(20)
+cart.setDiscountCode("summer", 30)
+cart.setDiscountCode("winter", 10)
+console.log(cart.applyDiscountCode("summer") + " suma rabatu w procentach")
+console.log(cart.getDiscountCodeAmount() + " rabat kwotowy")
 
 
-// cart.setDiscountCode("summer", 100)
-// cart.setDiscountCode("winter", 500)
-
-// cart.applayDiscountCode("summer")
-
-// console.log(cart.getAmountSummary())
-// cart.setDiscountCode("kamil", 99)
-cart.setDiscountCode("patryk", 20)
-// cart.applyDiscountCode("kamil")
-cart.applyDiscountCode("patryk")
-
-// cart.setCartDiscountPercentage(50)
-
-
-cart.getTotalAmount()
+// cart.setCartDiscountPercentage(20)
+console.log(cart.getTotalAmount())
 // console.log(cart)

@@ -72,7 +72,7 @@ export class Cart {
         this.discountPercentage = cartDiscountPercentage
     }
 
-    getCartDiscountPercentageAmount = () => {
+    getCartDiscountAmount = () => {
         return this.totalCartAmount * this.discountPercentage / 100
     }
 
@@ -92,30 +92,30 @@ export class Cart {
     applyDiscountCode = (providedCode) => {
         // Validator.throwErrorIfValueIsNotAString(providedCode)
         Validator.throwErrorIfStringHasOnlyWhiteCharacters(providedCode)
-        Validator.throwErrorIfDiscountCodeNotExists(providedCode, this.discountCodes)
-
+        // Validator.throwErrorIfDiscountCodeNotExists(providedCode, this.discountCodes)
+        let discountCodePercentageToApplay = ""
         this.discountCodes.find(({
             code,
             discountCodePercentage
         }) => {
-
             if (code === providedCode) {
-                return discountCodePercentage
+                discountCodePercentageToApplay = discountCodePercentage
             }
         })
+        return discountCodePercentageToApplay
     }
 
-    getDiscountCodePercentageAmount = () => {
+    getDiscountCodeAmount = () => {
+        console.log(this.totalCartAmount, 20 / 100)
         return this.totalCartAmount * this.applyDiscountCode() / 100
     }
 
     getTotalAmount = () => {
-        // Math.round(this.totalCartAmount) nie zaokrągla ???
         this.totalCartAmount = this.cartOfItems.reduce((acc, cartItem) => {
             return (acc + cartItem.getTotalAmount())
         }, 0)
-        console.log(this.getDiscountCodePercentageAmount(), this.getCartDiscountPercentageAmount())
-        this.totalCartAmount = this.totalCartAmount - this.getDiscountCodePercentageAmount() - this.getCartDiscountPercentageAmount()
+        // console.log(this.getDiscountCodeAmount(), this.getCartDiscountAmount())
+        this.totalCartAmount = this.totalCartAmount - this.getDiscountCodeAmount() - this.getCartDiscountAmount()
 
         if (this.totalCartAmount < 0) {
             return this.totalCartAmount = 0
