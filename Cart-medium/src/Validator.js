@@ -5,7 +5,7 @@ export class Validator {
         }
     }
 
- static throwErrorIfStringHasOnlyWhiteCharacters = (string) => {
+    static throwErrorIfStringHasOnlyWhiteCharacters = (string) => {
         //nazwa do poprawy
         //if do poprawy
         const regex = /.*\S.*/g;
@@ -15,7 +15,7 @@ export class Validator {
         // if (regex.test(string)) {
         //     throw new Error(`You should provide letters, numbers or special characters`)
         // }
-    }   
+    }
 
     static throwErrorIfValueIsNotAInteger = (value) => {
         if (!Number.isInteger(value)) {
@@ -36,14 +36,11 @@ export class Validator {
     }
 
     static throwErrorIfDiscountCodeNotExists(providedCode, array) {
-        array.every(({
-            code,
-        }) => {
-            if (code !== providedCode) {
-                // how can I read providedCode in new Error
-                throw new Error(`${providedCode} code not exists`)
-            }
-        })
+        array.forEach(element => {
+            Object.values(element).includes(providedCode)
+            console.log(Object.values(element))
+        });
+
     }
 
     static throwErrorIfItemNotExists = (item, array) => {

@@ -29,8 +29,7 @@ cart.addCartItem(itemTwo, 5)
 // cart.removeCartItem(itemOne, 1)
 // cart.removeCartItem(itemTwo, 5)
 
+console.log(cart.applyDiscountCode("winter"))
+cart.getTotalAmount()
 
-
-// cart.setCartDiscountPercentage(20)
-// console.log(cart.getTotalAmount())
-console.log(cart)
+// console.log(cart)

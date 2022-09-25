@@ -46,6 +46,6 @@ export class CartItem {
     }
 
     getTotalAmount = () => {
-        return (this.item.getPrice() - this.getDiscountAmount()) * this.quantity
+        return (this.item.getPrice()) * this.quantity
     }
 }

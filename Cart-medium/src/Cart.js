@@ -11,9 +11,15 @@ import {
 
 export class Cart {
     constructor() {
-        this.productsInCart = [] // name to corrert
+        this.productsInCart = []
         this.discountPercentage = 0
-        this.discountCodes = []
+        this.discountsCodes = [{
+            code: "spring",
+            discount: 20
+        }, {
+            code: "winter",
+            discount: 10
+        }]
         this.totalCartAmount = 0;
         this.id = uuidv4()
     }
@@ -24,18 +30,17 @@ export class Cart {
         Validator.throwErrorIfValueisNotAPositiveNumber(quantity)
         Validator.throwErrorIfValueIsNotAInteger(quantity)
 
-        const isCartItemExist = this.productsInCart.some(existingCartItem => newCartItem.id === existingCartItem.id)
-        //[poprawic nazwe]
-        if (!isCartItemExist) {
+        const isCartItemExists = this.productsInCart.some(existingCartItem => newCartItem.id === existingCartItem.id)
+
+        if (!isCartItemExists) {
             newCartItem.changeQuantity(quantity)
             this.productsInCart.push(newCartItem)
         }
 
-        if (isCartItemExist) {
+        if (isCartItemExists) {
             const existingCartItem = this.productsInCart.find(existingCartItem => existingCartItem.id === newCartItem.id)
 
-            const updatedQuantity = existingCartItem.quantity += quantity
-            existingCartItem.changeQuantity(updatedQuantity)
+            existingCartItem.changeQuantity(existingCartItem.quantity += quantity)
         }
     }
 
@@ -49,8 +54,7 @@ export class Cart {
 
         this.productsInCart.forEach(existingCartItem => {
             if (existingCartItem.id === removedCartItem.id) {
-                const updatedQuantity = existingCartItem.quantity -= quantity
-                existingCartItem.changeQuantity(updatedQuantity)
+                existingCartItem.changeQuantity(existingCartItem.quantity -= quantity)
             }
         })
     }
@@ -63,55 +67,37 @@ export class Cart {
         cartItem.changeQuantity(quantity)
     }
 
-    setCartDiscountPercentage = (cartDiscountPercentage) => {
-        Validator.throwErrorIfValueisNotAPositiveNumber(cartDiscountPercentage)
-        Validator.throwErrorIfIncorrectDiscountPercentage(cartDiscountPercentage)
+    // setCartDiscountPercentage = (cartDiscountPercentage) => {
+    //     Validator.throwErrorIfValueisNotAPositiveNumber(cartDiscountPercentage)
+    //     Validator.throwErrorIfIncorrectDiscountPercentage(cartDiscountPercentage)
 
-        this.discountPercentage = cartDiscountPercentage
-    }
+    //     this.discountPercentage = cartDiscountPercentage
+    // }
 
-    getCartDiscountAmount = () => {
-        return this.totalCartAmount * this.discountPercentage / 100
-    }
-
-    // setDiscountCode = (code, discountCodePercentage) => {
-    //     Validator.throwErrorIfValueIsNotAString(code)
-    //     Validator.throwErrorIfStringHasOnlyWhiteCharacters(code)
-    //     Validator.throwErrorIfValueisNotAPositiveNumber(discountCodePercentage)
-    //     Validator.throwErrorIfIncorrectDiscountPercentage(discountCodePercentage)
-
-    //     this.discountCodes.push({
-    //         code,
-    //         discountCodePercentage
-    //     })
+    // getCartDiscountAmount = () => {
+    //     return this.totalCartAmount * this.discountPercentage / 100
     // }
 
     applyDiscountCode = (providedCode) => {
         Validator.throwErrorIfValueIsNotAString(providedCode)
         Validator.throwErrorIfStringHasOnlyWhiteCharacters(providedCode)
-        Validator.throwErrorIfDiscountCodeNotExists(providedCode, this.discountCodes)
+        Validator.throwErrorIfDiscountCodeNotExists(providedCode, this.discountsCodes)
 
-        this.discountCodes.find(({
-            code,
-            discountCodePercentage
-        }) => {
-            if (code === providedCode) {
-                // console.log(discountCodePercentage)
-
+        this.discountsCodes.forEach(discountCode => {
+            for (const [key, value] of Object.entries(discountCode)) {
+                if (value === providedCode) {
+                    this.discountPercentage = discountCode.discount
+                }
             }
         })
-    }
-
-    getDiscountCodeAmount = () => {
-        //...
     }
 
     getTotalAmount = () => {
         this.totalCartAmount = this.productsInCart.reduce((acc, cartItem) => {
             return (acc + cartItem.getTotalAmount())
         }, 0)
+        this.totalCartAmount = this.totalCartAmount - (this.totalCartAmount * this.discountPercentage / 100)
 
-        this.totalCartAmount = this.totalCartAmount - this.getDiscountCodeAmount() - this.getCartDiscountAmount()
 
         if (this.totalCartAmount < 0) {
             return this.totalCartAmount = 0
