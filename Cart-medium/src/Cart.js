@@ -11,7 +11,7 @@ import {
 
 export class Cart {
     constructor() {
-        this.cartOfItems = [] // name to corrert
+        this.productsInCart = [] // name to corrert
         this.discountPercentage = 0
         this.discountCodes = []
         this.totalCartAmount = 0;
@@ -24,32 +24,35 @@ export class Cart {
         Validator.throwErrorIfValueisNotAPositiveNumber(quantity)
         Validator.throwErrorIfValueIsNotAInteger(quantity)
 
-        const isCartExist = this.cartOfItems.some(existingCartItem => newCartItem.id === existingCartItem.id)
+        const isCartExist = this.productsInCart.some(existingCartItem => newCartItem.id === existingCartItem.id)
+        //[poprawic nazwe]
 
         if (!isCartExist) {
             newCartItem.changeQuantity(quantity)
-            this.cartOfItems.push(newCartItem)
+            this.productsInCart.push(newCartItem)
         }
 
         if (isCartExist) {
-            this.cartOfItems.find(existingCartItem => {
-                if (existingCartItem.id === newCartItem.id) {
-                    const updatedQuantity = existingCartItem.quantity += quantity
-                    existingCartItem.changeQuantity(updatedQuantity)
-                }
+            const elem = this.productsInCart.find(existingCartItem => {
+                existingCartItem.id === newCartItem.id
+
             })
+
+            const updatedQuantity = existingCartItem.quantity += quantity
+            existingCartItem.changeQuantity(updatedQuantity)
+            // item.changeQuantity
         }
     }
 
     removeCartItem = (removedCartItem, quantity) => {
         Validator.throwErrorIfValueHasIncorrectInstance(removedCartItem, CartItem)
-        Validator.throwErrorIfItemNotExists(removedCartItem, this.cartOfItems)
+        Validator.throwErrorIfItemNotExists(removedCartItem, this.productsInCart)
 
-        if (quantity === undefined || removedCartItem.quantity - quantity <= 0) {
-            return this.cartOfItems = this.cartOfItems.filter(cartItem => cartItem.id !== removedCartItem.id)
+        if (!quantity || removedCartItem.quantity - quantity <= 0) {
+            return this.productsInCart = this.productsInCart.filter(cartItem => cartItem.id !== removedCartItem.id)
         }
 
-        this.cartOfItems.forEach(existingCartItem => {
+        this.productsInCart.forEach(existingCartItem => {
             if (existingCartItem.id === removedCartItem.id) {
                 const updatedQuantity = existingCartItem.quantity -= quantity
                 existingCartItem.changeQuantity(updatedQuantity)
@@ -67,7 +70,7 @@ export class Cart {
 
     setCartDiscountPercentage = (cartDiscountPercentage) => {
         Validator.throwErrorIfValueisNotAPositiveNumber(cartDiscountPercentage)
-        Validator.throwErrorIfDiscountPercentageIsNotBetweenZeroToOneHundred(cartDiscountPercentage)
+        Validator.throwErrorIfIncorrectDiscountPercentage(cartDiscountPercentage)
 
         this.discountPercentage = cartDiscountPercentage
     }
@@ -76,45 +79,43 @@ export class Cart {
         return this.totalCartAmount * this.discountPercentage / 100
     }
 
-    setDiscountCode = (code, discountCodePercentage) => {
-        Validator.throwErrorIfValueIsNotAString(code)
-        Validator.throwErrorIfStringHasOnlyWhiteCharacters(code)
-        Validator.throwErrorIfValueisNotAPositiveNumber(discountCodePercentage)
-        Validator.throwErrorIfDiscountPercentageIsNotBetweenZeroToOneHundred(discountCodePercentage)
-        //discount code already exists
+    // setDiscountCode = (code, discountCodePercentage) => {
+    //     Validator.throwErrorIfValueIsNotAString(code)
+    //     Validator.throwErrorIfStringHasOnlyWhiteCharacters(code)
+    //     Validator.throwErrorIfValueisNotAPositiveNumber(discountCodePercentage)
+    //     Validator.throwErrorIfIncorrectDiscountPercentage(discountCodePercentage)
 
-        this.discountCodes.push({
-            code,
-            discountCodePercentage
-        })
-    }
+    //     this.discountCodes.push({
+    //         code,
+    //         discountCodePercentage
+    //     })
+    // }
 
     applyDiscountCode = (providedCode) => {
-        // Validator.throwErrorIfValueIsNotAString(providedCode)
+        Validator.throwErrorIfValueIsNotAString(providedCode)
         Validator.throwErrorIfStringHasOnlyWhiteCharacters(providedCode)
-        // Validator.throwErrorIfDiscountCodeNotExists(providedCode, this.discountCodes)
-        let discountCodePercentageToApplay = ""
+        Validator.throwErrorIfDiscountCodeNotExists(providedCode, this.discountCodes)
+
         this.discountCodes.find(({
             code,
             discountCodePercentage
         }) => {
             if (code === providedCode) {
-                discountCodePercentageToApplay = discountCodePercentage
+                // console.log(discountCodePercentage)
+
             }
         })
-        return discountCodePercentageToApplay
     }
 
     getDiscountCodeAmount = () => {
-        console.log(this.totalCartAmount, 20 / 100)
-        return this.totalCartAmount * this.applyDiscountCode() / 100
+        //...
     }
 
     getTotalAmount = () => {
-        this.totalCartAmount = this.cartOfItems.reduce((acc, cartItem) => {
+        this.totalCartAmount = this.productsInCart.reduce((acc, cartItem) => {
             return (acc + cartItem.getTotalAmount())
         }, 0)
-        // console.log(this.getDiscountCodeAmount(), this.getCartDiscountAmount())
+
         this.totalCartAmount = this.totalCartAmount - this.getDiscountCodeAmount() - this.getCartDiscountAmount()
 
         if (this.totalCartAmount < 0) {

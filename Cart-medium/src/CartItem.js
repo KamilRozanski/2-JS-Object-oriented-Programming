@@ -22,7 +22,7 @@ export class CartItem {
     constructor(item, discountPercentage = 0) {
         Validator.throwErrorIfValueHasIncorrectInstance(item, Item)
         Validator.throwErrorIfValueisNotAPositiveNumber(discountPercentage)
-        Validator.throwErrorIfDiscountPercentageIsNotBetweenZeroToOneHundred(discountPercentage)
+        Validator.throwErrorIfIncorrectDiscountPercentage(discountPercentage)
 
         this.item = item
         this.discountPercentage = discountPercentage
@@ -43,11 +43,6 @@ export class CartItem {
         Validator.throwErrorIfValueIsNotAInteger(newQuantity)
 
         return this.quantity = newQuantity
-    }
-
-
-    getDiscountAmount = () => {
-        return this.item.getPrice() * this.discountPercentage / 100
     }
 
     getTotalAmount = () => {
