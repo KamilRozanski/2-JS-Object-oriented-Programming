@@ -9,8 +9,8 @@ import {
     Cart
 } from './Cart.js';
 
-const s21Ultra = new Item("Samsung S21 Ultra", "mobile Phones", 200)
-const iPhone13ProMax = new Item("iPhone13 Pro Max", "mobile Phones", 220)
+const s21Ultra = new Item("Samsung S21 Ultra", "mobile Phones", 100)
+const iPhone13ProMax = new Item("iPhone13 Pro Max", "mobile Phones", 100)
 const redmiNote5A = new Item("Redmi Note 5A", "mobile Phones", 100)
 const vivoX60 = new Item("Vivo X60", "mobile Phones", 100)
 
@@ -29,7 +29,7 @@ cart.addCartItem(itemTwo, 5)
 // cart.removeCartItem(itemOne, 1)
 // cart.removeCartItem(itemTwo, 5)
 
-console.log(cart.applyDiscountCode("winter"))
-cart.getTotalAmount()
+// cart.applyDiscountCode("winter")
+cart.calculateTotalAmount()
 
-// console.log(cart)
+console.log(cart)

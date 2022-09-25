@@ -6,15 +6,9 @@ export class Validator {
     }
 
     static throwErrorIfStringHasOnlyWhiteCharacters = (string) => {
-        //nazwa do poprawy
-        //if do poprawy
-        const regex = /.*\S.*/g;
-        // jest metoda do ucinanaia spacji
-        // console.log(string)
-        // console.log(regex.test(string))
-        // if (regex.test(string)) {
-        //     throw new Error(`You should provide letters, numbers or special characters`)
-        // }
+        if (string.trim().length === 0) {
+            throw new Error("You should provide a letters, numbers or special characters")
+        }
     }
 
     static throwErrorIfValueIsNotAInteger = (value) => {
@@ -50,8 +44,6 @@ export class Validator {
     }
 
     static throwErrorIfIncorrectDiscountPercentage = (discount) => {
-        //method name to correct
-        //resp. We are able to set a percentage in CartItem constructor.
         if ((discount < 0) || (discount > 100)) {
             throw new Error("Acceptable discount is between 0% and 100%")
         }

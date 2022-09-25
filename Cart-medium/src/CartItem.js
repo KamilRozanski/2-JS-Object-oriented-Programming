@@ -45,7 +45,15 @@ export class CartItem {
         return this.quantity = newQuantity
     }
 
+    calculateTotalAmount = () => {
+        if (this.discountPercentage > 0) {
+            const discountAmount = (this.item.getPrice() * this.quantity) * this.discountPercentage / 100
+            return this.item.getPrice() * this.quantity - discountAmount
+        }
+        return this.item.getPrice() * this.quantity
+    }
+
     getTotalAmount = () => {
-        return (this.item.getPrice()) * this.quantity
+        return this.calculateTotalAmount()
     }
 }

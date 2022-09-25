@@ -67,17 +67,6 @@ export class Cart {
         cartItem.changeQuantity(quantity)
     }
 
-    // setCartDiscountPercentage = (cartDiscountPercentage) => {
-    //     Validator.throwErrorIfValueisNotAPositiveNumber(cartDiscountPercentage)
-    //     Validator.throwErrorIfIncorrectDiscountPercentage(cartDiscountPercentage)
-
-    //     this.discountPercentage = cartDiscountPercentage
-    // }
-
-    // getCartDiscountAmount = () => {
-    //     return this.totalCartAmount * this.discountPercentage / 100
-    // }
-
     applyDiscountCode = (providedCode) => {
         Validator.throwErrorIfValueIsNotAString(providedCode)
         Validator.throwErrorIfStringHasOnlyWhiteCharacters(providedCode)
@@ -92,17 +81,19 @@ export class Cart {
         })
     }
 
-    getTotalAmount = () => {
+    calculateTotalAmount = () => {
         this.totalCartAmount = this.productsInCart.reduce((acc, cartItem) => {
             return (acc + cartItem.getTotalAmount())
         }, 0)
-        this.totalCartAmount = this.totalCartAmount - (this.totalCartAmount * this.discountPercentage / 100)
 
-
-        if (this.totalCartAmount < 0) {
-            return this.totalCartAmount = 0
+        if (this.discountPercentage > 0) {
+            this.totalCartAmount = this.totalCartAmount - (this.totalCartAmount * this.discountPercentage / 100)
         }
 
-        return Math.round(this.totalCartAmount)
+        if (this.totalCartAmount < 0) {
+            this.totalCartAmount = 0
+        }
+
+        return this.totalCartAmount = this.totalCartAmount.toFixed(2)
     }
 }
