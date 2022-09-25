@@ -26,15 +26,9 @@ cart.addCartItem(itemOne, 2)
 cart.addCartItem(itemOne, 5)
 cart.addCartItem(itemTwo, 2)
 cart.addCartItem(itemTwo, 5)
-cart.removeCartItem(itemOne, 1)
-cart.removeCartItem(itemTwo, 5)
+// cart.removeCartItem(itemOne, 1)
+// cart.removeCartItem(itemTwo, 5)
 
-
-cart.setCartDiscountPercentage(20)
-cart.setDiscountCode("summer", 30)
-cart.setDiscountCode("winter", 10)
-// console.log(cart.applyDiscountCode("summer"), +" suma rabatu w procentach")
-// console.log(cart.getDiscountCodeAmount() + " rabat kwotowy")
 
 
 // cart.setCartDiscountPercentage(20)

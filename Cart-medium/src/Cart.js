@@ -24,23 +24,18 @@ export class Cart {
         Validator.throwErrorIfValueisNotAPositiveNumber(quantity)
         Validator.throwErrorIfValueIsNotAInteger(quantity)
 
-        const isCartExist = this.productsInCart.some(existingCartItem => newCartItem.id === existingCartItem.id)
+        const isCartItemExist = this.productsInCart.some(existingCartItem => newCartItem.id === existingCartItem.id)
         //[poprawic nazwe]
-
-        if (!isCartExist) {
+        if (!isCartItemExist) {
             newCartItem.changeQuantity(quantity)
             this.productsInCart.push(newCartItem)
         }
 
-        if (isCartExist) {
-            const elem = this.productsInCart.find(existingCartItem => {
-                existingCartItem.id === newCartItem.id
-
-            })
+        if (isCartItemExist) {
+            const existingCartItem = this.productsInCart.find(existingCartItem => existingCartItem.id === newCartItem.id)
 
             const updatedQuantity = existingCartItem.quantity += quantity
             existingCartItem.changeQuantity(updatedQuantity)
-            // item.changeQuantity
         }
     }
 
