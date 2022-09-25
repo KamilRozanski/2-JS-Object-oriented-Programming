@@ -36,11 +36,10 @@ export class Validator {
     }
 
     static throwErrorIfDiscountCodeNotExists(providedCode, array) {
-        array.forEach(element => {
-            Object.values(element).includes(providedCode)
-            console.log(Object.values(element))
-        });
-
+        const checkCodes = obj => Object.values(obj).includes(providedCode)
+        if (!array.some(checkCodes)) {
+            throw new Error("Discount code not exists")
+        }
     }
 
     static throwErrorIfItemNotExists = (item, array) => {
