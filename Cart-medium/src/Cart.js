@@ -26,6 +26,7 @@ export class Cart {
 
     addCartItem = (newCartItem, quantity = 1) => {
         //cart items shows item like array[item]??
+
         Validator.throwErrorIfValueHasIncorrectInstance(newCartItem, CartItem)
         Validator.throwErrorIfValueisNotAPositiveNumber(quantity)
         Validator.throwErrorIfValueIsNotAInteger(quantity)
@@ -94,6 +95,6 @@ export class Cart {
             this.totalCartAmount = 0
         }
 
-        return this.totalCartAmount = this.totalCartAmount.toFixed(2)
+        this.totalCartAmount = this.totalCartAmount.toFixed(2)
     }
 }

@@ -36,16 +36,16 @@ export class Validator {
         }
     }
 
+    static throwErrorIfIncorrectDiscountPercentage = (discount) => {
+        if ((discount < 0) || (discount > 100)) {
+            throw new Error("Acceptable discount is between 0% and 100%")
+        }
+    }
+
     static throwErrorIfItemNotExists = (item, array) => {
         const result = array.some(el => item.id === el.id)
         if (!result) {
             throw new Error("Item not exists")
-        }
-    }
-
-    static throwErrorIfIncorrectDiscountPercentage = (discount) => {
-        if ((discount < 0) || (discount > 100)) {
-            throw new Error("Acceptable discount is between 0% and 100%")
         }
     }
 }
