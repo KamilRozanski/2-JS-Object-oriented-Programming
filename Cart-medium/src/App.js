@@ -27,7 +27,7 @@ cart.addCartItem(itemOne, 5)
 cart.addCartItem(itemTwo, 2)
 cart.addCartItem(itemTwo, 5)
 
-
+// cart.changeCartItemQuantity(itemOne, 20)
 cart.applyDiscountCode("winter")
 cart.calculateTotalAmount()
 

@@ -6,6 +6,11 @@ import {
 } from './Validator.js';
 
 import {
+    discount10,
+    discount20
+} from "./data.js";
+
+import {
     v4 as uuidv4
 } from 'uuid';
 
@@ -13,25 +18,20 @@ export class Cart {
     constructor() {
         this.productsInCart = []
         this.discountPercentage = 0
-        this.discountsCodes = [{
-            code: "spring",
-            discount: 20
-        }, {
-            code: "winter",
-            discount: 10
-        }]
+        this.discountsCodes = [discount10, discount20]
         this.totalCartAmount = 0;
         this.id = uuidv4()
     }
 
     addCartItem = (newCartItem, quantity = 1) => {
         //cart items shows item like array[item]??
-
         Validator.throwErrorIfValueHasIncorrectInstance(newCartItem, CartItem)
         Validator.throwErrorIfValueisNotAPositiveNumber(quantity)
         Validator.throwErrorIfValueIsNotAInteger(quantity)
 
         const isCartItemExists = this.productsInCart.some(existingCartItem => newCartItem.id === existingCartItem.id)
+
+        // useMethod = (array, method, item) => array.method(existingCartItem => item.id === existingCartItem.id)
 
         if (!isCartItemExists) {
             newCartItem.changeQuantity(quantity)
@@ -76,6 +76,7 @@ export class Cart {
         this.discountsCodes.forEach(discountCode => {
             for (const [key, value] of Object.entries(discountCode)) {
                 if (value === providedCode) {
+                    console.log(discountCode)
                     this.discountPercentage = discountCode.discount
                 }
             }

@@ -42,7 +42,7 @@ export class CartItem {
         Validator.throwErrorIfValueisNotAPositiveNumber(newQuantity)
         Validator.throwErrorIfValueIsNotAInteger(newQuantity)
 
-        return this.quantity = newQuantity
+        this.quantity = newQuantity
     }
 
     calculateTotalAmount = () => {
@@ -50,7 +50,7 @@ export class CartItem {
             const discountAmount = (this.item.getPrice() * this.quantity) * this.discountPercentage / 100
             return this.item.getPrice() * this.quantity - discountAmount
         }
-        return this.item.getPrice() * this.quantity
+        this.item.getPrice() * this.quantity
     }
 
     getTotalAmount = () => {
