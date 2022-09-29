@@ -67,7 +67,7 @@ export class Booking {
     }
 
     changeForHowManyDaysBookCanBeBorrowed = (days) => {
-        Validator.throwErrorIfValueIsNotANumber(days)
+        Validator.throwErrorIfValueIsNotAPositiveNumber(days)
 
         this.forHowManyDaysBookCanBeBorrowed = days
     }
@@ -77,13 +77,13 @@ export class Booking {
     }
 
     setPenatlyAmount = (penalty) => {
-        Validator.throwErrorIfValueIsNotANumber(penalty)
+        Validator.throwErrorIfValueIsNotAPositiveNumber(penalty)
 
         return this.penalty = penalty
     }
 
     changePenalty = (newPenalty) => {
-        Validator.throwErrorIfValueIsNotANumber(newPenalty)
+        Validator.throwErrorIfValueIsNotAPositiveNumber(newPenalty)
 
         this.penalty = newPenalty
     }

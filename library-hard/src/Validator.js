@@ -5,9 +5,9 @@ export class Validator {
         }
     }
 
-    static throwErrorIfValueIsNotANumber = (value) => {
-        if ((typeof value !== "number") || (isNaN(value))) {
-            throw new Error("Input should be a number value")
+    static throwErrorIfValueIsNotAPositiveNumber = (value) => {
+        if (typeof value !== "number" || isNaN(value) || value < 0) {
+            throw new Error("Input should be a  positive number value")
         }
     }
 
@@ -25,7 +25,6 @@ export class Validator {
             }
         });
     }
-
 
     static throwErrorIfUserAlreadyExists = (newUser, usersArray) => {
         const result = usersArray.some(existUser => newUser.id === existUser.id)
@@ -96,12 +95,6 @@ export class Validator {
         })
         if (result) {
             throw new Error("The booking already exists")
-        }
-    }
-
-    static throwErrorIfProvidedQuantityIsSmallerThanZero = (quantity) => {
-        if (quantity < 0) {
-            throw new Error(`Quantity must be a positive number`)
         }
     }
 }

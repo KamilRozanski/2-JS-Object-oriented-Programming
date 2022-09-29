@@ -14,6 +14,8 @@ export class Book {
         Validator.throwErrorIfValueIsNotAString(author)
         Validator.throwErrorIfValueIsNotAString(photoOfTheBook)
         Validator.throwErrorIfValueIsNotAString(description)
+        Validator.throwErrorIfValueIsNotAPositiveNumber(quantity)
+
         this.title = title
         this.author = author
         this.photoOfTheBook = photoOfTheBook
@@ -23,8 +25,7 @@ export class Book {
     }
 
     changeQuantity = (newQuantity) => {
-        Validator.throwErrorIfValueIsNotANumber(newQuantity)
-        Validator.throwErrorIfProvidedQuantityIsSmallerThanZero(newQuantity)
+        Validator.throwErrorIfValueIsNotAPositiveNumber(newQuantity)
 
         this.quantity = newQuantity
     }
