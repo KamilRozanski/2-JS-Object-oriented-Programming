@@ -29,34 +29,34 @@ export class Library {
     }
 
     addUser = (user) => {
-        Validator.isInstanceOfClass(user, User)
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
         Validator.throwErrorIfUserAlreadyExists(user, this.allUsers)
         this.allUsers.push(user)
     }
 
     removeUser = (user) => {
-        Validator.isInstanceOfClass(user, User)
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
 
         this.allUsers = this.allUsers.filter(existUser => existUser.id !== user.id)
     }
 
     addBook = (book) => {
-        Validator.isInstanceOfClass(book, Book)
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(book, Book)
         Validator.throwErrorIfBookAlreadyExists(book, this.allBooks)
 
         this.allBooks.push(book)
     }
 
     removeBook = (bookToRemove) => {
-        Validator.isInstanceOfClass(bookToRemove, Book)
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(bookToRemove, Book)
         Validator.throwErrorIfBookNotExists(bookToRemove, this.allBooks)
 
         this.allBooks = this.allBooks.filter(bookInArray => bookInArray.id !== bookToRemove.id)
     }
 
     borrowBooks = (user, ...books) => {
-        Validator.isInstanceOfClass(user, User)
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
         Validator.isInstanceOfClassMultipleArguments(books, Book)
         Validator.throwErrorIfBookNotExistsMultipleArguments(books, this.allBooks)
@@ -69,9 +69,9 @@ export class Library {
     }
 
     removeBookFromUserBooking = (user, book) => {
-        Validator.isInstanceOfClass(user, User)
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
-        Validator.isInstanceOfClass(book, Book)
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(book, Book)
 
         this.allBookings.find(booking => {
             if (booking.user.id === user.id) {
@@ -82,8 +82,8 @@ export class Library {
     }
 
     returnBook = (user, bookToReturn) => {
-        Validator.isInstanceOfClass(user, User)
-        Validator.isInstanceOfClass(bookToReturn, Book)
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(bookToReturn, Book)
         // Validator.throwErrorIfBookNotExists(bookToReturn, this.allBooks)
         console.log(user)
         this.allBookings.find(booking => {
@@ -120,4 +120,3 @@ export class Library {
         return this.allBooks
     }
 }
-

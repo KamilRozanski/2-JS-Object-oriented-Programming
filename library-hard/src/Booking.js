@@ -26,7 +26,7 @@ import {
 
 export class Booking {
     constructor(user) {
-        Validator.isInstanceOfClass(user, User)
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
         this.user = user
         this.borrowedBookDate = ""
         this.returnBookDate = ""
@@ -57,7 +57,7 @@ export class Booking {
     }
 
     returnBook = (returnBook) => {
-        Validator.isInstanceOfClass(returnBook, Book)
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(returnBook, Book)
         Validator.throwErrorIfBookNotExists(returnBook, this.borrowedBooks)
 
         this.borrowedBooks = this.borrowedBooks.filter(borroweedBook => borroweedBook.id !== returnBook.id)
@@ -67,7 +67,7 @@ export class Booking {
     }
 
     changeForHowManyDaysBookCanBeBorrowed = (days) => {
-        Validator.isNumber(days)
+        Validator.throwErrorIfValueIsNotANumber(days)
 
         this.forHowManyDaysBookCanBeBorrowed = days
     }
@@ -77,13 +77,13 @@ export class Booking {
     }
 
     setPenatlyAmount = (penalty) => {
-        Validator.isNumber(penalty)
+        Validator.throwErrorIfValueIsNotANumber(penalty)
 
         return this.penalty = penalty
     }
 
     changePenalty = (newPenalty) => {
-        Validator.isNumber(newPenalty)
+        Validator.throwErrorIfValueIsNotANumber(newPenalty)
 
         this.penalty = newPenalty
     }

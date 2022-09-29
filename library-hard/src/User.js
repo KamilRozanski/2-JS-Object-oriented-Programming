@@ -8,8 +8,8 @@ import {
 
 export class User {
     constructor(firstName, secondName) {
-        Validator.isString(firstName)
-        Validator.isString(secondName)
+        Validator.throwErrorIfValueIsNotAString(firstName)
+        Validator.throwErrorIfValueIsNotAString(secondName)
         this.firstName = firstName
         this.secondName = secondName
         this.id = uuidv4()

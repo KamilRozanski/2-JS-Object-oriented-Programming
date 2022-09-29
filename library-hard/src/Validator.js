@@ -1,23 +1,24 @@
 export class Validator {
-    static isString = (value) => {
+    static throwErrorIfValueIsNotAString = (value) => {
         if (typeof value !== "string") {
             throw new Error("Input should be a string value")
         }
     }
 
-    static isNumber = (value) => {
+    static throwErrorIfValueIsNotANumber = (value) => {
         if ((typeof value !== "number") || (isNaN(value))) {
             throw new Error("Input should be a number value")
         }
     }
 
-    static isInstanceOfClass = (value, instance) => {
+    static throwErrorIfInstanceOfClassIsIncorrect = (value, instance) => {
         if (!(value instanceof instance)) {
             throw new Error("Incorrect class instance")
         }
     }
 
     static isInstanceOfClassMultipleArguments = (value, instance) => {
+        //nazwa do poprawy
         value.forEach(el => {
             if (!(el instanceof instance)) {
                 throw new Error("Incorrect class instance")
@@ -80,8 +81,6 @@ export class Validator {
             allProvidedBooksId.push(book.id)
         });
     }
-
-
 
     static throwErrorIfBookingNotExists = (user, bookingsArray) => {
         const result = bookingsArray.some(bookingInArray => bookingInArray.user.id === user.id)
