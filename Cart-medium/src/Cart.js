@@ -6,8 +6,7 @@ import {
 } from './Validator.js';
 
 import {
-    discount10,
-    discount20
+    discountCodes
 } from "./data.js";
 
 import {
@@ -18,20 +17,16 @@ export class Cart {
     constructor() {
         this.productsInCart = []
         this.discountPercentage = 0
-        this.discountsCodes = [discount10, discount20]
         this.totalCartAmount = 0;
         this.id = uuidv4()
     }
 
     addCartItem = (newCartItem, quantity = 1) => {
-        //cart items shows item like array[item]??
         Validator.throwErrorIfValueHasIncorrectInstance(newCartItem, CartItem)
         Validator.throwErrorIfValueisNotAPositiveNumber(quantity)
         Validator.throwErrorIfValueIsNotAInteger(quantity)
 
         const isCartItemExists = this.productsInCart.some(existingCartItem => newCartItem.id === existingCartItem.id)
-
-        // useMethod = (array, method, item) => array.method(existingCartItem => item.id === existingCartItem.id)
 
         if (!isCartItemExists) {
             newCartItem.changeQuantity(quantity)
@@ -44,6 +39,7 @@ export class Cart {
             existingCartItem.changeQuantity(existingCartItem.quantity += quantity)
         }
     }
+
 
     removeCartItem = (removedCartItem, quantity) => {
         Validator.throwErrorIfValueHasIncorrectInstance(removedCartItem, CartItem)
@@ -71,16 +67,13 @@ export class Cart {
     applyDiscountCode = (providedCode) => {
         Validator.throwErrorIfValueIsNotAString(providedCode)
         Validator.throwErrorIfStringHasOnlyWhiteCharacters(providedCode)
-        Validator.throwErrorIfDiscountCodeNotExists(providedCode, this.discountsCodes)
+        Validator.throwErrorIfDiscountCodeNotExists(providedCode, discountCodes)
 
-        this.discountsCodes.forEach(discountCode => {
-            for (const [key, value] of Object.entries(discountCode)) {
-                if (value === providedCode) {
-                    console.log(discountCode)
-                    this.discountPercentage = discountCode.discount
-                }
+        for (const [key, value] of Object.entries(discountCodes)) {
+            if (key === providedCode) {
+                this.discountPercentage = value
             }
-        })
+        }
     }
 
     calculateTotalAmount = () => {

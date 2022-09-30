@@ -29,9 +29,8 @@ export class Validator {
         }
     }
 
-    static throwErrorIfDiscountCodeNotExists(providedCode, array) {
-        const checkCodes = obj => Object.values(obj).includes(providedCode)
-        if (!array.some(checkCodes)) {
+    static throwErrorIfDiscountCodeNotExists(providedCode, obj) {
+        if (!Object.keys(obj).includes(providedCode)) {
             throw new Error("Discount code not exists")
         }
     }
