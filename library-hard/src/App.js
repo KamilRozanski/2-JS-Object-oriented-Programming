@@ -23,41 +23,29 @@ const bookTwo = new Book("title Two", "author Two", "photoOfTheBook Two", "descr
 const bookThree = new Book("title Three", "author Three", "photoOfTheBook Three", "description Three", 10)
 const bookFour = new Book("title Four", "author Fourhree", "photoOfTheBook Four", "description Four", 10)
 
-// const bookingKamil = new Booking(kamil)
-// const bookingDominika = new Booking(dominika)
+const bookingKamil = new Booking(kamil)
+const bookingDominika = new Booking(dominika)
 
-// bookingKamil.addBookToBookingList(bookOne, bookTwo)
-// bookingDominika.addBookToBookingList(bookThree)
+bookingKamil.addBooksToBookingList(bookOne, bookTwo)
+bookingDominika.addBooksToBookingList(bookThree)
 
-// bookingKamil.removeBookFromBookingList(bookOne, bookTwo)
+bookingKamil.removeBooksFromBookingList(bookOne, bookTwo)
 // bookingKamil.returnBook(bookOne)
 // bookingKamil.returnBook(bookTwo)
 // console.log(bookingKamil.getBorrowedBooks())
 
+console.log(bookingKamil)
 
 
 
 
+// const library = new Library()
 
-const library = new Library()
+// library.addUser(kamil)
+// library.addUser(dominika)
 
-library.addUser(kamil)
-library.addUser(dominika)
+// library.addBook(bookOne)
+// library.addBook(bookTwo)
+// library.addBook(bookThree)
 
-library.addBook(bookOne)
-library.addBook(bookTwo)
-library.addBook(bookThree)
-
-library.borrowBooks(kamil, bookOne, bookTwo)
-library.borrowBooks(kamil, bookOne)
-library.borrowBooks(dominika, bookThree)
-
-
-
-// library.removeBookFromUserBooking(kamil, bookOne)
-// library.removeUserFromBookings(kamil)
-// library.removeBook(bookOne)
-// library.returnBook(kamil, bookTwo)
-library.returnBook(kamil, bookOne)
-
-// console.log(library.getAllBookings())
+// library.borrowBooks(kamil, bookOne, bookTwo)

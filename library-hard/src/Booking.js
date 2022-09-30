@@ -27,17 +27,17 @@ import {
 export class Booking {
     constructor(user) {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
+
         this.user = user
         this.borrowedBookDate = ""
         this.returnBookDate = ""
-        //nadpisuje daty wypozyczonych ksiazek
         this.forHowManyDaysBookCanBeBorrowed = 7
         this.borrowedBooks = []
-        this.penalty = 0
+        this.penalty = 10
         this.id = uuidv4()
     }
 
-    addBookToBookingList = (...addBook) => {
+    addBooksToBookingList = (...addBook) => {
         Validator.isInstanceOfClassMultipleArguments(addBook, Book)
         Validator.throwErrorIfBookAlreadyExistsMultipleArguments(addBook)
 
@@ -45,7 +45,7 @@ export class Booking {
         this.borrowedBookDate = new Date(2022, 8, 1)
     }
 
-    removeBookFromBookingList = (...booksToRemove) => {
+    removeBooksFromBookingList = (...booksToRemove) => {
         Validator.isInstanceOfClassMultipleArguments(booksToRemove, Book)
         Validator.throwErrorIfBookNotExistsMultipleArguments(booksToRemove, this.borrowedBooks)
 
@@ -56,15 +56,15 @@ export class Booking {
         }) => bookToRemoveID === borrowedBookID));
     }
 
-    returnBook = (returnBook) => {
-        Validator.throwErrorIfInstanceOfClassIsIncorrect(returnBook, Book)
-        Validator.throwErrorIfBookNotExists(returnBook, this.borrowedBooks)
+    // returnBook = (returnBook) => {
+    //     Validator.throwErrorIfInstanceOfClassIsIncorrect(returnBook, Book)
+    //     Validator.throwErrorIfBookNotExists(returnBook, this.borrowedBooks)
 
-        this.borrowedBooks = this.borrowedBooks.filter(borroweedBook => borroweedBook.id !== returnBook.id)
-        this.returnBookDate = new Date()
+    //     this.borrowedBooks = this.borrowedBooks.filter(borroweedBook => borroweedBook.id !== returnBook.id)
+    //     this.returnBookDate = new Date()
 
-        this.calculatePenalty() // Łamie solid?
-    }
+    //     this.calculatePenalty() // Łamie solid?
+    // }
 
     changeForHowManyDaysBookCanBeBorrowed = (days) => {
         Validator.throwErrorIfValueIsNotAPositiveNumber(days)
@@ -74,12 +74,6 @@ export class Booking {
 
     howLongInDaysBookWasBorrowed = () => {
         return Math.round((this.returnBookDate - this.borrowedBookDate) / 1000 / 60 / 60 / 24)
-    }
-
-    setPenatlyAmount = (penalty) => {
-        Validator.throwErrorIfValueIsNotAPositiveNumber(penalty)
-
-        return this.penalty = penalty
     }
 
     changePenalty = (newPenalty) => {
@@ -95,10 +89,12 @@ export class Booking {
     }
 
     getPenaltyAmount = () => {
+        // I don use this mothod
         return this.penalty
     }
 
     getBorrowedBooks = () => {
+        // I don use this mothod
         return this.borrowedBooks
     }
 }

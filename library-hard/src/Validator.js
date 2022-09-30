@@ -47,14 +47,15 @@ export class Validator {
         }
     }
 
-    static throwErrorIfBookNotExistsMultipleArguments = (books, allBorrowedBooksArray) => {
+    static throwErrorIfBookNotExistsMultipleArguments = (books, booksArray) => {
         const allBorrowedBooksId = []
-        allBorrowedBooksArray.forEach(book => {
+        booksArray.forEach(book => {
             allBorrowedBooksId.push(book.id)
         })
 
         books.forEach(removedBook => {
             if (!allBorrowedBooksId.includes(removedBook.id)) {
+                //I must able to see, with book does not exist
                 throw new Error(`This book does not exists`)
             }
         });

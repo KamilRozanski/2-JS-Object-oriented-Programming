@@ -62,7 +62,7 @@ export class Library {
         Validator.throwErrorIfBookNotExistsMultipleArguments(books, this.allBooks)
 
         const createdBooking = new Booking(user)
-        createdBooking.addBookToBookingList(...books)
+        createdBooking.addBooksToBookingList(...books)
         this.allBookings.push(createdBooking)
 
         // this.upDateAllAvaiableBooks(books)
@@ -88,7 +88,7 @@ export class Library {
         console.log(user)
         this.allBookings.find(booking => {
             if (booking.user.id === user.id) {
-                booking.returnBook(bookToReturn)
+                // booking.returnBook(bookToReturn)
             }
         })
     }
