@@ -18,34 +18,31 @@ const kamil = new User("Kamil", "Rózański")
 const dominika = new User("Dominika", "Rózańska")
 const krystian = new User("Krystian", "Rózański")
 
-const bookOne = new Book("title One", "author One", "photoOfTheBook One", "description One", 10)
-const bookTwo = new Book("title Two", "author Two", "photoOfTheBook Two", "description Two", 10)
-const bookThree = new Book("title Three", "author Three", "photoOfTheBook Three", "description Three", 10)
-const bookFour = new Book("title Four", "author Fourhree", "photoOfTheBook Four", "description Four", 10)
+const bookOne = new Book("title One", "author One", "photoOfTheBook One", "description One")
+const bookTwo = new Book("title Two", "author Two", "photoOfTheBook Two", "description Two")
+const bookThree = new Book("title Three", "author Three", "photoOfTheBook Three", "description Three")
+const bookFour = new Book("title Four", "author Fourhree", "photoOfTheBook Four", "description Four")
 
 const bookingKamil = new Booking(kamil)
 const bookingDominika = new Booking(dominika)
 
-bookingKamil.addBooksToBookingList(bookOne, bookTwo)
+bookingKamil.addBooksToBookingList(bookOne)
+bookingKamil.addBooksToBookingList(bookTwo)
 bookingDominika.addBooksToBookingList(bookThree)
 
-bookingKamil.removeBooksFromBookingList(bookOne, bookTwo)
 // bookingKamil.returnBook(bookOne)
 // bookingKamil.returnBook(bookTwo)
-// console.log(bookingKamil.getBorrowedBooks())
-
-console.log(bookingKamil)
+// console.log(bookingKamil)
 
 
+const library = new Library()
 
+library.addUser(kamil)
+library.addUser(dominika)
 
-// const library = new Library()
+library.addBook(bookOne)
+library.addBook(bookTwo)
+library.addBook(bookThree)
 
-// library.addUser(kamil)
-// library.addUser(dominika)
-
-// library.addBook(bookOne)
-// library.addBook(bookTwo)
-// library.addBook(bookThree)
-
-// library.borrowBooks(kamil, bookOne, bookTwo)
+library.borrowBooks(bookingKamil, bookingDominika)
+// console.log(library.getAvaiableBooks())

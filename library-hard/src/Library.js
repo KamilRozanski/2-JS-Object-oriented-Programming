@@ -55,53 +55,43 @@ export class Library {
         this.allBooks = this.allBooks.filter(bookInArray => bookInArray.id !== bookToRemove.id)
     }
 
-    borrowBooks = (user, ...books) => {
-        Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
-        Validator.throwErrorIfUserNotExists(user, this.allUsers)
-        Validator.isInstanceOfClassMultipleArguments(books, Book)
-        Validator.throwErrorIfBookNotExistsMultipleArguments(books, this.allBooks)
+    borrowBooks = (...booking) => {
+        // Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
+        // Validator.throwErrorIfUserNotExists(user, this.allUsers)
+        Validator.isInstanceOfClassMultipleArguments(booking, Booking)
+        // Validator.throwErrorIfBookNotExistsMultipleArguments(books, this.allBooks)
 
-        const createdBooking = new Booking(user)
-        createdBooking.addBooksToBookingList(...books)
-        this.allBookings.push(createdBooking)
-
-        // this.upDateAllAvaiableBooks(books)
+        console.log(booking)
+        this.allBookings.push(booking)
+        // const createdBooking = new Booking(user)
+        // createdBooking.addBooksToBookingList(...booking)
+        // this.allBookings.push(createdBooking)
     }
 
-    removeBookFromUserBooking = (user, book) => {
-        Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
-        Validator.throwErrorIfUserNotExists(user, this.allUsers)
-        Validator.throwErrorIfInstanceOfClassIsIncorrect(book, Book)
+    // removeBookFromUserBooking = (user, book) => {
+    //     Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
+    //     Validator.throwErrorIfUserNotExists(user, this.allUsers)
+    //     Validator.throwErrorIfInstanceOfClassIsIncorrect(book, Book)
 
-        this.allBookings.find(booking => {
-            if (booking.user.id === user.id) {
-                //usówam booking tylko z tablicy bookingów.
-                booking.removeBookFromBookingList(book)
-            }
-        })
-    }
+    //     this.allBookings.find(booking => {
+    //         if (booking.user.id === user.id) {
+    //             booking.removeBooksFromBookingList(book)
+    //         }
+    //     })
+    // }
 
     returnBook = (user, bookToReturn) => {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
         Validator.throwErrorIfInstanceOfClassIsIncorrect(bookToReturn, Book)
-        // Validator.throwErrorIfBookNotExists(bookToReturn, this.allBooks)
-        console.log(user)
-        this.allBookings.find(booking => {
+        Validator.throwErrorIfBookNotExists(bookToReturn, this.allBooks)
+
+        this.allBookings.forEach(booking => {
             if (booking.user.id === user.id) {
-                // booking.returnBook(bookToReturn)
+                booking.returnBook(bookToReturn)
             }
         })
-    }
 
-    upDateAllAvaiableBooks = (booksToUpDate) => {
-        return this.allBooks = this.allBooks.filter(({
-            id: allBooksID
-        }) => !booksToUpDate.some(({
-            id: booksToUpDateID
-        }) => {
-            return allBooksID === booksToUpDateID
-
-        }));
+        this.upDateAllAvaiableBooks(bookToReturn)
     }
 
     getAllUsers = () => {
@@ -117,6 +107,10 @@ export class Library {
     }
 
     getAvaiableBooks = () => {
-        return this.allBooks
+        return this.allAvaiableBooks
     }
 }
+
+
+//Questions
+// I should be albo to remove or add users in Library ??

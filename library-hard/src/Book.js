@@ -21,7 +21,16 @@ export class Book {
         this.photoOfTheBook = photoOfTheBook
         this.description = description
         this.quantity = quantity
+        this.borrowedBookDate = ""
+        this.returnBookDate = ""
         this.id = uuidv4()
+    }
+
+    setBorrowedDate = (date) => {
+        this.borrowedBookDate = date
+    }
+    setReturnedDate = (date) => {
+        this.returnBookDate = date
     }
 
     changeQuantity = (newQuantity) => {
