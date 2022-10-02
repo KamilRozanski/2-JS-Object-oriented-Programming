@@ -14,9 +14,9 @@ import {
 } from "./Library.js";
 
 
-const kamil = new User("Kamil", "Rózański")
-const dominika = new User("Dominika", "Rózańska")
-const krystian = new User("Krystian", "Rózański")
+const kamil = new User("Kamil", "Rozanski")
+const dominika = new User("Dominika", "Rozanski")
+const krystian = new User("Krystian", "Rozanski")
 
 const bookOne = new Book("title One", "author One", "photoOfTheBook One", "description One")
 const bookTwo = new Book("title Two", "author Two", "photoOfTheBook Two", "description Two")
@@ -30,19 +30,19 @@ bookingKamil.addBooksToBookingList(bookOne)
 bookingKamil.addBooksToBookingList(bookTwo)
 bookingDominika.addBooksToBookingList(bookThree)
 
-// bookingKamil.returnBook(bookOne)
-// bookingKamil.returnBook(bookTwo)
-// console.log(bookingKamil)
+
+// bookingKamil.removeBooksFromBookingList(bookOne)
+console.log(bookingKamil)
 
 
-const library = new Library()
+// const library = new Library()
 
-library.addUser(kamil)
-library.addUser(dominika)
+// library.addUser(kamil)
+// library.addUser(dominika)
 
-library.addBook(bookOne)
-library.addBook(bookTwo)
-library.addBook(bookThree)
+// library.addBook(bookOne)
+// library.addBook(bookTwo)
+// library.addBook(bookThree)
 
-library.borrowBooks(bookingKamil, bookingDominika)
+// library.borrowBooks(bookingKamil, bookingDominika)
 // console.log(library.getAvaiableBooks())

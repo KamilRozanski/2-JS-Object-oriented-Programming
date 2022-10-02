@@ -6,8 +6,6 @@ import {
 } from "./Validator.js";
 
 
-
-// Ma miec: Tytuł, Autora, uuid, losowe zdjęcie oraz krótki opis
 export class Book {
     constructor(title, author, photoOfTheBook, description, quantity = 1) {
         Validator.throwErrorIfValueIsNotAString(title)
@@ -21,16 +19,16 @@ export class Book {
         this.photoOfTheBook = photoOfTheBook
         this.description = description
         this.quantity = quantity
-        this.borrowedBookDate = ""
-        this.returnBookDate = ""
+        this.dateOfBorrow = ""
+        this.dateOfReturn = ""
         this.id = uuidv4()
     }
 
-    setBorrowedDate = (date) => {
-        this.borrowedBookDate = date
+    setDateOfBorrow = (date) => {
+        this.dateOfBorrow = date
     }
-    setReturnedDate = (date) => {
-        this.returnBookDate = date
+    setDateOfReturn = (date) => {
+        this.dateOfReturn = date
     }
 
     changeQuantity = (newQuantity) => {

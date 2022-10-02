@@ -61,7 +61,7 @@ export class Library {
         Validator.isInstanceOfClassMultipleArguments(booking, Booking)
         // Validator.throwErrorIfBookNotExistsMultipleArguments(books, this.allBooks)
 
-        console.log(booking)
+
         this.allBookings.push(booking)
         // const createdBooking = new Booking(user)
         // createdBooking.addBooksToBookingList(...booking)
@@ -110,7 +110,3 @@ export class Library {
         return this.allAvaiableBooks
     }
 }
-
-
-//Questions
-// I should be albo to remove or add users in Library ??
