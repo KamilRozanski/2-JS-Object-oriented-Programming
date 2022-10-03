@@ -3,16 +3,21 @@ import {
 } from "./Validator.js";
 
 import {
-    v4 as uuidv4
-} from 'uuid';
-
-import {
     User
 } from "./User.js";
 
 import {
     Book
 } from "./Book.js";
+
+// Booking dostaje użytkownika w constructorze
+
+// Ma mieć: datę wypożyczenia, datę zwrotu (+7d od wypożyczenia), listę wypożyczonych książek, kara
+
+// Ma umożliwiać: 
+// - usuwanie i dodawanie książki do listy wyporzyczonych książek
+// - zwrot - jeśli odbędzie się terminowo kara jest 0 - jesli nie - 
+// każdy dzień zwłoki to naliczenie jakiejś kary. 
 
 
 export class Booking {
@@ -23,7 +28,6 @@ export class Booking {
         this.forHowManyDaysBookCanBeBorrowed = 7
         this.borrowedBooks = []
         this.penalty = 1
-        this.id = uuidv4()
     }
 
     addBooksToBookingList = (addBook) => {

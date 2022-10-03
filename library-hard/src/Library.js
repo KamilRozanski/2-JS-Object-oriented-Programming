@@ -25,7 +25,6 @@ export class Library {
         this.allUsers = []
         this.allBooks = []
         this.allBookings = []
-        this.allAvaiableBooks = this.allBooks
     }
 
     addUser = (user) => {
