@@ -28,22 +28,22 @@ const bookingDominika = new Booking(dominika)
 
 bookingKamil.addBooksToBookingList(bookOne)
 bookingKamil.addBooksToBookingList(bookTwo)
-bookingKamil.addBooksToBookingList(bookThree)
+bookingDominika.addBooksToBookingList(bookThree)
 
 
-bookingKamil.removeBooksFromBookingList(bookOne)
-bookingKamil.removeBooksFromBookingList(bookTwo)
-console.log(bookingKamil)
+// bookingKamil.removeBooksFromBookingList(bookOne)
+// bookingKamil.removeBooksFromBookingList(bookTwo)
 
 
-// const library = new Library()
 
-// library.addUser(kamil)
-// library.addUser(dominika)
+const library = new Library()
 
-// library.addBook(bookOne)
-// library.addBook(bookTwo)
-// library.addBook(bookThree)
+library.addUser(kamil)
+library.addUser(dominika)
 
-// library.borrowBooks(bookingKamil, bookingDominika)
-// console.log(library.getAvaiableBooks())
+library.addBook(bookOne)
+library.addBook(bookTwo)
+library.addBook(bookThree)
+
+library.borrowBooks(bookingKamil, bookingDominika)
+console.log(library.getAllBookings())

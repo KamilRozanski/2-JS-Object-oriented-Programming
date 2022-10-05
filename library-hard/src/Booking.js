@@ -50,7 +50,7 @@ export class Booking {
 
         this.borrowedBooks.forEach(obj => {
             if (obj.bookId === bookToRemove.id) {
-                return obj.returnedDate = new Date()
+                obj.returnedDate = new Date()
             }
         })
     }
@@ -61,9 +61,10 @@ export class Booking {
         this.forHowManyDaysBookCanBeBorrowed = days
     }
 
-    howLongInDaysBookWasBorrowed = () => {
-        return Math.round((this.returnBookDate - this.borrowedBookDate) / 1000 / 60 / 60 / 24)
-    }
+    // howLongInDaysBookWasBorrowed = (borrowedDate, returnedDate) => {
+    //     const days = Math.floor((returnedDate - borrowedDate) / (24 * 60 * 60 * 1000));
+    //     return days
+    // }
 
     changePenalty = (newPenalty) => {
         Validator.throwErrorIfValueIsNotAPositiveNumber(newPenalty)
@@ -72,8 +73,9 @@ export class Booking {
     }
 
     calculatePenalty = () => {
-        if (this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed) {
-            this.penalty += (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.penalty
-        }
+        // console.log(this.howLongInDaysBookWasBorrowed(), this.forHowManyDaysBookCanBeBorrowed)
+        // if (this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed) {
+        //     this.penalty += (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.penalty
+        // }
     }
 }
