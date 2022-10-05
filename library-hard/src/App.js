@@ -28,10 +28,11 @@ const bookingDominika = new Booking(dominika)
 
 bookingKamil.addBooksToBookingList(bookOne)
 bookingKamil.addBooksToBookingList(bookTwo)
-bookingDominika.addBooksToBookingList(bookThree)
+bookingKamil.addBooksToBookingList(bookThree)
 
 
-// bookingKamil.removeBooksFromBookingList(bookOne)
+bookingKamil.removeBooksFromBookingList(bookOne)
+bookingKamil.removeBooksFromBookingList(bookTwo)
 console.log(bookingKamil)
 
 

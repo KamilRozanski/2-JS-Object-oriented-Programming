@@ -34,26 +34,26 @@ export class Booking {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(addBook, Book)
         Validator.throwErrorIfBookAlreadyExists(addBook, this.borrowedBooks)
 
-        addBook.setDateOfBorrow(new Date())
-        this.borrowedBooks.push(addBook)
+        const book = {
+            book: addBook.title,
+            bookId: addBook.id,
+            borrowedDate: new Date("2022 / 09 / 2"),
+            returnedDate: ""
+        }
+
+        this.borrowedBooks.push(book)
     }
 
-    removeBooksFromBookingList = (booksToRemove) => {
-        Validator.throwErrorIfInstanceOfClassIsIncorrect(booksToRemove, Book)
-        Validator.throwErrorIfBookNotExists(booksToRemove, this.borrowedBooks)
+    removeBooksFromBookingList = (bookToRemove) => {
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(bookToRemove, Book)
+        // Validator.throwErrorIfBookNotExists(returnBook, this.borrowedBooks)
 
-        this.borrowedBooks = this.borrowedBooks.filter(borroweedBook => borroweedBook.id !== booksToRemove.id)
+        this.borrowedBooks.forEach(obj => {
+            if (obj.bookId === bookToRemove.id) {
+                return obj.returnedDate = new Date()
+            }
+        })
     }
-
-    // returnBook = (returnBook) => {
-    //     Validator.throwErrorIfInstanceOfClassIsIncorrect(returnBook, Book)
-    //     Validator.throwErrorIfBookNotExists(returnBook, this.borrowedBooks)
-
-    //     returnBook.setReturnedDate(new Date())
-    //     this.borrowedBooks = this.borrowedBooks.filter(borroweedBook => borroweedBook.id !== returnBook.id)
-
-    //     // this.calculatePenalty()
-    // }
 
     changeForHowManyDaysBookCanBeBorrowed = (days) => {
         Validator.throwErrorIfValueIsNotAPositiveNumber(days)
@@ -75,15 +75,5 @@ export class Booking {
         if (this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed) {
             this.penalty += (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.penalty
         }
-    }
-
-    getPenaltyAmount = () => {
-        // I don use this mothod
-        return this.penalty
-    }
-
-    getBorrowedBooks = () => {
-        // I don use this mothod
-        return this.borrowedBooks
     }
 }
