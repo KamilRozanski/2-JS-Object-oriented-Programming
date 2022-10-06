@@ -31,9 +31,10 @@ export class Booking {
     }
 
     addBooksToBookingList = (addBook) => {
-        Validator.throwErrorIfInstanceOfClassIsIncorrect(addBook, Book)
+        // Validator.throwErrorIfInstanceOfClassIsIncorrect(addBook, Book)
         Validator.throwErrorIfBookAlreadyExists(addBook, this.borrowedBooks)
 
+        // console.log(addBook)
         const book = {
             book: addBook.title,
             bookId: addBook.id,

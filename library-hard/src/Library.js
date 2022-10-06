@@ -54,17 +54,17 @@ export class Library {
         this.allBooks = this.allBooks.filter(bookInArray => bookInArray.id !== bookToRemove.id)
     }
 
-    borrowBooks = (...booking) => {
-        // Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
-        // Validator.throwErrorIfUserNotExists(user, this.allUsers)
-        Validator.isInstanceOfClassMultipleArguments(booking, Booking)
+    borrowBooks = (user, ...book) => {
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
+        Validator.throwErrorIfUserNotExists(user, this.allUsers)
+        // Validator.isInstanceOfClassMultipleArguments(book, Book)
         // Validator.throwErrorIfBookNotExistsMultipleArguments(books, this.allBooks)
 
-
-        this.allBookings.push(booking)
-        // const createdBooking = new Booking(user)
-        // createdBooking.addBooksToBookingList(...booking)
-        // this.allBookings.push(createdBooking)
+        const createdBooking = new Booking(user)
+        createdBooking.addBooksToBookingList(book)
+        console.log(createdBooking)
+        this.allBookings.push(createdBooking)
+        // console.log(this.allBookings)
     }
 
     // removeBookFromUserBooking = (user, book) => {

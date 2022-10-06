@@ -23,12 +23,12 @@ const bookTwo = new Book("title Two", "author Two", "photoOfTheBook Two", "descr
 const bookThree = new Book("title Three", "author Three", "photoOfTheBook Three", "description Three")
 const bookFour = new Book("title Four", "author Fourhree", "photoOfTheBook Four", "description Four")
 
-const bookingKamil = new Booking(kamil)
-const bookingDominika = new Booking(dominika)
+// const bookingKamil = new Booking(kamil)
+// const bookingDominika = new Booking(dominika)
 
-bookingKamil.addBooksToBookingList(bookOne)
-bookingKamil.addBooksToBookingList(bookTwo)
-bookingDominika.addBooksToBookingList(bookThree)
+// bookingKamil.addBooksToBookingList(bookOne)
+// bookingKamil.addBooksToBookingList(bookTwo)
+// bookingDominika.addBooksToBookingList(bookThree)
 
 
 // bookingKamil.removeBooksFromBookingList(bookOne)
@@ -45,5 +45,6 @@ library.addBook(bookOne)
 library.addBook(bookTwo)
 library.addBook(bookThree)
 
-library.borrowBooks(bookingKamil, bookingDominika)
-console.log(library.getAllBookings())
+library.borrowBooks(kamil, bookOne, bookTwo)
+
+// console.log(library)
