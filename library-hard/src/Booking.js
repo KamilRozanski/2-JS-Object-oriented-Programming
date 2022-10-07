@@ -46,12 +46,17 @@ export class Booking {
 
     removeBooksFromBookingList = (bookToRemove) => {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(bookToRemove, Book)
-        // Validator.throwErrorIfBookNotExists(returnBook, this.borrowedBooks)
+        // Validator.throwErrorIfReturnedBookNotExists(bookToRemove, this.borrowedBooks)
 
-        this.borrowedBooks.forEach(obj => {
-            if (obj.bookId === bookToRemove.id) {
-                obj.returnedDate = new Date()
-            }
+        const book = this.borrowedBooks.find(obj => obj.bookId === bookToRemove.id)
+
+        if (book) {
+            book.returnedDate = new Date()
+            // this.calculatePenalty()
+        }
+
+        this.borrowedBooks = this.borrowedBooks.filter(booking => {
+            return booking.bookId !== bookToRemove.id
         })
     }
 
@@ -61,10 +66,10 @@ export class Booking {
         this.forHowManyDaysBookCanBeBorrowed = days
     }
 
-    // howLongInDaysBookWasBorrowed = (borrowedDate, returnedDate) => {
-    //     const days = Math.floor((returnedDate - borrowedDate) / (24 * 60 * 60 * 1000));
-    //     return days
-    // }
+    howLongInDaysBookWasBorrowed = (borrowedDate, returnedDate) => {
+        const days = Math.floor((returnedDate - borrowedDate) / (24 * 60 * 60 * 1000));
+        return days
+    }
 
     changePenalty = (newPenalty) => {
         Validator.throwErrorIfValueIsNotAPositiveNumber(newPenalty)
@@ -73,9 +78,9 @@ export class Booking {
     }
 
     calculatePenalty = () => {
-        // console.log(this.howLongInDaysBookWasBorrowed(), this.forHowManyDaysBookCanBeBorrowed)
-        // if (this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed) {
-        //     this.penalty += (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.penalty
-        // }
+        console.log(this.howLongInDaysBookWasBorrowed(), this.forHowManyDaysBookCanBeBorrowed)
+        if (this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed) {
+            this.penalty += (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.penalty
+        }
     }
 }

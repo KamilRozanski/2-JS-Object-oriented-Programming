@@ -47,6 +47,17 @@ export class Validator {
         }
     }
 
+    // static throwErrorIfReturnedBookNotExists = (book, array) => {
+    //     const result = []
+    //     array.forEach(el => {
+    //         result.push(el.bookId === book.id)
+    //     })
+    //     console.log(result)
+    //     console.log(result.every(el => !el))
+    //     return
+    // }
+
+
     static throwErrorIfBookNotExistsMultipleArguments = (books, booksArray) => {
         const allBorrowedBooksId = []
         booksArray.forEach(book => {
