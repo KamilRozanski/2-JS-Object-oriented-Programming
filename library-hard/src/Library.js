@@ -54,30 +54,24 @@ export class Library {
         this.allBooks = this.allBooks.filter(bookInArray => bookInArray.id !== bookToRemove.id)
     }
 
-    borrowBooks = (user, ...book) => {
+    borrowBooks = (user, book) => {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
         // Validator.isInstanceOfClassMultipleArguments(book, Book)
         // Validator.throwErrorIfBookNotExistsMultipleArguments(books, this.allBooks)
 
-        const createdBooking = new Booking(user)
-        createdBooking.addBooksToBookingList(book)
-        console.log(createdBooking)
-        this.allBookings.push(createdBooking)
-        // console.log(this.allBookings)
+        const isBookingExists = this.allBookings.find(booking => booking.user.id === user.id)
+
+        if (!isBookingExists) {
+            const createdBooking = new Booking(user)
+            createdBooking.addBooksToBookingList(book)
+            this.allBookings.push(createdBooking)
+        }
+
+        if (isBookingExists) {
+            isBookingExists.addBooksToBookingList(book)
+        }
     }
-
-    // removeBookFromUserBooking = (user, book) => {
-    //     Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
-    //     Validator.throwErrorIfUserNotExists(user, this.allUsers)
-    //     Validator.throwErrorIfInstanceOfClassIsIncorrect(book, Book)
-
-    //     this.allBookings.find(booking => {
-    //         if (booking.user.id === user.id) {
-    //             booking.removeBooksFromBookingList(book)
-    //         }
-    //     })
-    // }
 
     returnBook = (user, bookToReturn) => {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
