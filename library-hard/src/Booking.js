@@ -29,9 +29,9 @@ export class Booking {
     }
 
     addBooksToBooking = (addBook) => {
-        Validator.throwErrorIfInstanceOfClassIsIncorrect(addBook, Book)
+        // Validator.throwErrorIfInstanceOfClassIsIncorrect(addBook, Book)
         Validator.throwErrorIfBookAlreadyExists(addBook, this.borrowedBooks)
-
+        // console.log(addBook)
         const book = {
             book: addBook.title,
             bookId: addBook.id,
@@ -90,4 +90,8 @@ export class Booking {
     //         this.penalty += (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.penalty
     //     }
     // }
+
+    getAllBorroweedBooks = () => {
+        return this.borrowedBooks
+    }
 }

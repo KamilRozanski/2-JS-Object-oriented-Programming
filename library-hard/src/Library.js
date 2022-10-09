@@ -54,40 +54,44 @@ export class Library {
         this.allBooks = this.allBooks.filter(bookInArray => bookInArray.id !== bookToRemove.id)
     }
 
-    borrowBooks = (user, book) => {
+    borrowBooks = (user, ...books) => {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
-        Validator.throwErrorIfBookNotExists(book, this.allBooks)
         // Validator.isInstanceOfClassMultipleArguments(book, Book)
-        // Validator.throwErrorIfBookNotExistsMultipleArguments(book, this.allBooks)
+        Validator.throwErrorIfBookNotExistsMultipleArguments(books, this.allBooks)
 
         const isBookingExists = this.allBookings.find(booking => booking.user.id === user.id)
 
         if (!isBookingExists) {
             const createdBooking = new Booking(user)
-            createdBooking.addBooksToBooking(book)
-            this.allBookings.push(createdBooking)
+            books.forEach(book => {
+                createdBooking.addBooksToBooking(book)
+                console.log(book)
+                this.updateBooksList(book)
+                this.allBookings.push(createdBooking)
+            })
+
         }
 
         if (isBookingExists) {
-            isBookingExists.addBooksToBooking(book)
+            books.forEach(book => {
+                isBookingExists.addBooksToBooking(book)
+            })
         }
-
-        this.upDateBooksList(book)
     }
 
-    returnBooks = (bookToReturn) => {
-        Validator.throwErrorIfInstanceOfClassIsIncorrect(bookToReturn, Book)
+    returnBooks = (...booksToReturn) => {
+        // Validator.throwErrorIfInstanceOfClassIsIncorrect(booksToReturn, Book)
 
-        this.allBookings.forEach(booking => {
-            booking.removeBooksFromBooking(bookToReturn)
-        })
+        // this.allBookings.forEach(booking => {
+        //     console.log(booking.getAllBorroweedBooks())
+        // })
 
         //Add returned book to AllBooks
     }
 
-    upDateBooksList = (bookToUpdate) => {
-        this.allBooks = this.allBooks.filter(book => book.id !== bookToUpdate.id)
+    updateBooksList = (booksToUpdate) => {
+        this.allBooks = this.allBooks.filter(book => book.id !== booksToUpdate.id)
     }
 
     getAllUsers = () => {
@@ -103,6 +107,6 @@ export class Library {
     }
 
     getAvaiableBooks = () => {
-        return this.allAvaiableBooks
+        return this.allBooks
     }
 }
