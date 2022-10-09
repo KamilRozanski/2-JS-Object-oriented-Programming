@@ -25,62 +25,69 @@ export class Booking {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
 
         this.user = user
-        this.forHowManyDaysBookCanBeBorrowed = 7
         this.borrowedBooks = []
-        this.penalty = 1
     }
 
-    addBooksToBookingList = (addBook) => {
-        // Validator.throwErrorIfInstanceOfClassIsIncorrect(addBook, Book)
+    addBooksToBooking = (addBook) => {
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(addBook, Book)
         Validator.throwErrorIfBookAlreadyExists(addBook, this.borrowedBooks)
 
         const book = {
             book: addBook.title,
             bookId: addBook.id,
-            borrowedDate: new Date("2022 / 09 / 2"),
+            forHowManyDaysBookCanBeBorrowed: 7,
+            borrowedDate: new Date("2022 / 10 / 2"),
             returnedDate: ""
         }
 
         this.borrowedBooks.push(book)
     }
 
-    removeBooksFromBookingList = (bookToRemove) => {
+    removeBooksFromBooking = (bookToRemove) => {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(bookToRemove, Book)
         // Validator.throwErrorIfReturnedBookNotExists(bookToRemove, this.borrowedBooks)
 
-        const book = this.borrowedBooks.find(obj => obj.bookId === bookToRemove.id)
 
-        if (book) {
-            book.returnedDate = new Date()
-            // this.calculatePenalty()
-        }
-
-        this.borrowedBooks = this.borrowedBooks.filter(booking => {
-            return booking.bookId !== bookToRemove.id
+        this.borrowedBooks.forEach(borrowedBook => {
+            if (borrowedBook.bookId === bookToRemove.id) {
+                return borrowedBook.returnedDate = new Date
+            }
         })
+
+        // const book = this.borrowedBooks.find(obj => obj.bookId === bookToRemove.id)
+
+        // if (book) {
+        //     book.returnedDate = new Date()
+        // }
+
+        // this.borrowedBooks = this.borrowedBooks.filter(booking => {
+        //     return booking.bookId !== bookToRemove.id
+        // })
     }
 
-    changeForHowManyDaysBookCanBeBorrowed = (days) => {
-        Validator.throwErrorIfValueIsNotAPositiveNumber(days)
+    // changeForHowManyDaysBookCanBeBorrowed = (days) => {
+    //     Validator.throwErrorIfValueIsNotAPositiveNumber(days)
 
-        this.forHowManyDaysBookCanBeBorrowed = days
-    }
+    //     this.forHowManyDaysBookCanBeBorrowed = days
+    // }
 
-    howLongInDaysBookWasBorrowed = (borrowedDate, returnedDate) => {
-        const days = Math.floor((returnedDate - borrowedDate) / (24 * 60 * 60 * 1000));
-        return days
-    }
+    // howLongInDaysBookWasBorrowed = (borrowedDate, returnedDate) => {
+    //     const days = Math.floor((returnedDate - borrowedDate) / (24 * 60 * 60 * 1000));
+    //     //pracowac na Obj Date
+    //     return days
+    // }
 
-    changePenalty = (newPenalty) => {
-        Validator.throwErrorIfValueIsNotAPositiveNumber(newPenalty)
+    // changePenalty = (newPenalty) => {
+    //     Validator.throwErrorIfValueIsNotAPositiveNumber(newPenalty)
 
-        this.penalty = newPenalty
-    }
+    //     this.penalty = newPenalty
+    // }
 
-    calculatePenalty = () => {
-        console.log(this.howLongInDaysBookWasBorrowed(), this.forHowManyDaysBookCanBeBorrowed)
-        if (this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed) {
-            this.penalty += (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.penalty
-        }
-    }
+    // calculatePenalty = () => {
+    //     console.log(this.howLongInDaysBookWasBorrowed(), this.forHowManyDaysBookCanBeBorrowed)
+    //     const days = this.howLongInDaysBookWasBorrowed()
+    //     if (this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed) {
+    //         this.penalty += (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.penalty
+    //     }
+    // }
 }

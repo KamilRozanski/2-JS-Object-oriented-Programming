@@ -26,13 +26,14 @@ const bookFour = new Book("title Four", "author Fourhree", "photoOfTheBook Four"
 // const bookingKamil = new Booking(kamil)
 // const bookingDominika = new Booking(dominika)
 
-// bookingKamil.addBooksToBookingList(bookOne)
-// bookingKamil.addBooksToBookingList(bookTwo)
-// bookingDominika.addBooksToBookingList(bookThree)
+// bookingKamil.addBooksToBooking(bookOne)
+// bookingKamil.addBooksToBooking(bookTwo)
+// bookingDominika.addBooksToBooking(bookThree)
 
+// bookingKamil.removeBooksFromBooking(bookOne)
+// bookingKamil.removeBooksFromBooking(bookTwo)
 
-// bookingKamil.removeBooksFromBookingList(bookOne)
-// bookingKamil.removeBooksFromBookingList(bookTwo)
+// console.log(bookingKamil)
 
 
 
@@ -49,7 +50,7 @@ library.borrowBooks(kamil, bookOne)
 library.borrowBooks(kamil, bookTwo)
 library.borrowBooks(dominika, bookThree)
 
-// library.returnBook(bookThree)
+// library.returnBooks(bookThree)
 
 
 console.log(library.getAllBookings())

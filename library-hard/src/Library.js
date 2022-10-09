@@ -65,23 +65,25 @@ export class Library {
 
         if (!isBookingExists) {
             const createdBooking = new Booking(user)
-            createdBooking.addBooksToBookingList(book)
+            createdBooking.addBooksToBooking(book)
             this.allBookings.push(createdBooking)
         }
 
         if (isBookingExists) {
-            isBookingExists.addBooksToBookingList(book)
+            isBookingExists.addBooksToBooking(book)
         }
 
         this.upDateBooksList(book)
     }
 
-    returnBook = (bookToReturn) => {
+    returnBooks = (bookToReturn) => {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(bookToReturn, Book)
 
         this.allBookings.forEach(booking => {
-            booking.removeBooksFromBookingList(bookToReturn)
+            booking.removeBooksFromBooking(bookToReturn)
         })
+
+        //Add returned book to AllBooks
     }
 
     upDateBooksList = (bookToUpdate) => {

@@ -110,19 +110,3 @@ export class Validator {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-// static throwErrorIfBooksHasEnd = (quantity) => {
-//     if (quantity < 0) {
-//         throw new Error(`Quantity must be a positive number`)
-//     }
-// }
