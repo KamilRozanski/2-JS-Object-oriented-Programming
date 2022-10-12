@@ -29,7 +29,7 @@ export class Booking {
     }
 
     addBooksToBooking = (addBook) => {
-        // Validator.throwErrorIfInstanceOfClassIsIncorrect(addBook, Book)
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(addBook, Book)
         Validator.throwErrorIfBookAlreadyExists(addBook, this.borrowedBooks)
         // console.log(addBook)
         const book = {
@@ -45,7 +45,7 @@ export class Booking {
 
     removeBooksFromBooking = (bookToRemove) => {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(bookToRemove, Book)
-        // Validator.throwErrorIfReturnedBookNotExists(bookToRemove, this.borrowedBooks)
+        Validator.throwErrorIfReturnedBookNotExists(bookToRemove, this.borrowedBooks)
 
 
         this.borrowedBooks.forEach(borrowedBook => {
