@@ -57,7 +57,7 @@ export class Library {
     borrowBooks = (user, ...books) => {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
-        // Validator.isInstanceOfClassMultipleArguments(book, Book)
+        Validator.isInstanceOfClassMultipleArguments(books, Book)
         Validator.throwErrorIfBookNotExistsMultipleArguments(books, this.allBooks)
 
         const isBookingExists = this.allBookings.find(booking => booking.user.id === user.id)
@@ -66,7 +66,6 @@ export class Library {
             const createdBooking = new Booking(user)
             books.forEach(book => {
                 createdBooking.addBooksToBooking(book)
-                console.log(book)
                 this.updateBooksList(book)
                 this.allBookings.push(createdBooking)
             })
@@ -76,6 +75,7 @@ export class Library {
         if (isBookingExists) {
             books.forEach(book => {
                 isBookingExists.addBooksToBooking(book)
+                this.updateBooksList(book)
             })
         }
     }
@@ -91,7 +91,7 @@ export class Library {
     }
 
     updateBooksList = (booksToUpdate) => {
-        this.allBooks = this.allBooks.filter(book => book.id !== booksToUpdate.id)
+        return this.allBooks = this.allBooks.filter(book => book.id !== booksToUpdate.id)
     }
 
     getAllUsers = () => {

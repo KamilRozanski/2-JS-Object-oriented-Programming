@@ -56,13 +56,11 @@ export class Validator {
 
 
     static throwErrorIfBookNotExistsMultipleArguments = (booksToCheck, booksArray) => {
-        const result = booksArray.filter(el => {
-            // console.log(el)
-            // return !booksToCheck.some(elTwo => el.id === elTwo.id)
-        })
-        // console.log(result)
+        const result = booksArray.some(el => booksToCheck.some(bookToCheck => (bookToCheck.id === el.id)))
 
-        // const allBorrowedBooksId = []
+        if (!result) {
+            throw new Error("Book not Exists")
+        }
         // booksArray.forEach(book => {
         //     allBorrowedBooksId.push(book.id)
         // })

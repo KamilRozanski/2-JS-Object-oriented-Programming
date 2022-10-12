@@ -47,22 +47,9 @@ export class Booking {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(bookToRemove, Book)
         Validator.throwErrorIfReturnedBookNotExists(bookToRemove, this.borrowedBooks)
 
-
-        this.borrowedBooks.forEach(borrowedBook => {
-            if (borrowedBook.bookId === bookToRemove.id) {
-                return borrowedBook.returnedDate = new Date
-            }
+        this.borrowedBooks = this.borrowedBooks.filter(booking => {
+            return booking.bookId !== bookToRemove.id
         })
-
-        // const book = this.borrowedBooks.find(obj => obj.bookId === bookToRemove.id)
-
-        // if (book) {
-        //     book.returnedDate = new Date()
-        // }
-
-        // this.borrowedBooks = this.borrowedBooks.filter(booking => {
-        //     return booking.bookId !== bookToRemove.id
-        // })
     }
 
     // changeForHowManyDaysBookCanBeBorrowed = (days) => {
