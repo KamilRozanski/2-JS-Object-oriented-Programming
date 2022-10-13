@@ -31,19 +31,18 @@ export class Booking {
     addBooksToBooking = (addBook) => {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(addBook, Book)
         Validator.throwErrorIfBookAlreadyExists(addBook, this.borrowedBooks)
-        // console.log(addBook)
+
         const book = {
             book: addBook.title,
             bookId: addBook.id,
             forHowManyDaysBookCanBeBorrowed: 7,
             borrowedDate: new Date("2022 / 10 / 2"),
-            returnedDate: ""
         }
 
         this.borrowedBooks.push(book)
     }
 
-    removeBooksFromBooking = (bookToRemove) => {
+    removeBookFromBooking = (bookToRemove) => {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(bookToRemove, Book)
         Validator.throwErrorIfReturnedBookNotExists(bookToRemove, this.borrowedBooks)
 
@@ -78,7 +77,7 @@ export class Booking {
     //     }
     // }
 
-    getAllBorroweedBooks = () => {
+    getAllBorrowedBooks = () => {
         return this.borrowedBooks
     }
 }

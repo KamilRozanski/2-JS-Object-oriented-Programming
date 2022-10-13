@@ -67,9 +67,8 @@ export class Library {
             books.forEach(book => {
                 createdBooking.addBooksToBooking(book)
                 this.updateBooksList(book)
-                this.allBookings.push(createdBooking)
             })
-
+            this.allBookings.push(createdBooking)
         }
 
         if (isBookingExists) {
@@ -81,14 +80,15 @@ export class Library {
     }
 
     returnBooks = (...booksToReturn) => {
-        // Validator.throwErrorIfInstanceOfClassIsIncorrect(booksToReturn, Book)
+        // Validator.isInstanceOfClassMultipleArguments(booksToReturn, Book)
 
-        // this.allBookings.forEach(booking => {
-        //     console.log(booking.getAllBorroweedBooks())
-        // })
+        return this.allBookings.forEach(booking => {
+            console.log(booking)
+        })
 
-        //Add returned book to AllBooks
+
     }
+
 
     updateBooksList = (booksToUpdate) => {
         return this.allBooks = this.allBooks.filter(book => book.id !== booksToUpdate.id)
