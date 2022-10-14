@@ -65,7 +65,7 @@ export class Library {
         if (!isBookingExists) {
             const createdBooking = new Booking(user)
             books.forEach(book => {
-                createdBooking.addBooksToBooking(book)
+                createdBooking.addBookToBooking(book)
                 this.updateBooksList(book)
             })
             this.allBookings.push(createdBooking)
@@ -80,13 +80,25 @@ export class Library {
     }
 
     returnBooks = (...booksToReturn) => {
-        // Validator.isInstanceOfClassMultipleArguments(booksToReturn, Book)
+        Validator.isInstanceOfClassMultipleArguments(booksToReturn, Book)
+        // console.log(booksToReturn)
+        function findReturnedBook(borrowedBooksArr, returnedBooksArr) {
+            return borrowedBooksArr.find(borrowedBookObj => {
+                console.log(borrowedBookObj)
+                return returnedBooksArr.some(returnedBookObj => {
+                    // console.log(object1)
+                    // console.log(object2.id + "returned")
+                    return borrowedBookObj.bookId === returnedBookObj.id;
+                });
+            });
+        }
 
         return this.allBookings.forEach(booking => {
-            console.log(booking)
+            // console.log(booking.borrowedBooks)
+            // console.log(booksToReturn)
+            findReturnedBook(booking.borrowedBooks, booksToReturn)
+
         })
-
-
     }
 
 

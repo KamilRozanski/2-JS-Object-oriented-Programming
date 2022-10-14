@@ -28,7 +28,7 @@ export class Booking {
         this.borrowedBooks = []
     }
 
-    addBooksToBooking = (addBook) => {
+    addBookToBooking = (addBook) => {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(addBook, Book)
         Validator.throwErrorIfBookAlreadyExists(addBook, this.borrowedBooks)
 
@@ -76,8 +76,4 @@ export class Booking {
     //         this.penalty += (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.penalty
     //     }
     // }
-
-    getAllBorrowedBooks = () => {
-        return this.borrowedBooks
-    }
 }
