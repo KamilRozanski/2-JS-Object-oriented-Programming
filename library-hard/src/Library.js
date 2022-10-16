@@ -81,29 +81,35 @@ export class Library {
 
     returnBooks = (...booksToReturn) => {
         Validator.isInstanceOfClassMultipleArguments(booksToReturn, Book)
-        // console.log(booksToReturn)
-        function findReturnedBook(borrowedBooksArr, returnedBooksArr) {
-            return borrowedBooksArr.find(borrowedBookObj => {
-                console.log(borrowedBookObj)
-                return returnedBooksArr.some(returnedBookObj => {
-                    // console.log(object1)
-                    // console.log(object2.id + "returned")
-                    return borrowedBookObj.bookId === returnedBookObj.id;
-                });
-            });
-        }
+        // Validator.throwErrorIfBookNotExistsMultipleArguments(booksToReturn, this.allBookings) does not works
 
-        return this.allBookings.forEach(booking => {
-            // console.log(booking.borrowedBooks)
-            // console.log(booksToReturn)
-            findReturnedBook(booking.borrowedBooks, booksToReturn)
+        this.getReturnedBooksDate(booksToReturn)
 
+
+    }
+
+    getReturnedBooksDate = (booksToReturn) => {
+        // Validator.isArray(booksToReturnArray)
+
+        this.allBookings.filter(booking => {
+            booking.borrowedBooks.some(el => {
+                if (this.getReturnedBooksId(booksToReturn).includes(el.bookId)) {
+                    el.returnedDate = new Date()
+                }
+            })
         })
     }
 
-
     updateBooksList = (booksToUpdate) => {
         return this.allBooks = this.allBooks.filter(book => book.id !== booksToUpdate.id)
+    }
+
+    getReturnedBooksId = (booksToReturn) => {
+        // Validator.isArray(booksToReturnArray)
+
+        return booksToReturn.map(returnedBook => {
+            return returnedBook.id
+        })
     }
 
     getAllUsers = () => {
