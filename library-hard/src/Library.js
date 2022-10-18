@@ -83,12 +83,16 @@ export class Library {
         Validator.isInstanceOfClassMultipleArguments(booksToReturn, Book)
         // Validator.throwErrorIfBookNotExistsMultipleArguments(booksToReturn, this.allBookings) does not works
 
-        this.getReturnedBooksDate(booksToReturn)
+        this.setReturnedBooksDate(booksToReturn)
+        //caclulatePenalty
+        this.calculatePenalty(booksToReturn)
+        //removeBook from booking
+        //add book to Library
 
 
     }
 
-    getReturnedBooksDate = (booksToReturn) => {
+    setReturnedBooksDate = (booksToReturn) => {
         // Validator.isArray(booksToReturnArray)
 
         this.allBookings.filter(booking => {
@@ -96,6 +100,15 @@ export class Library {
                 if (this.getReturnedBooksId(booksToReturn).includes(el.bookId)) {
                     el.returnedDate = new Date()
                 }
+            })
+        })
+    }
+
+
+    calculatePenalty = (booksToReturn) => {
+        this.allBookings.filter(booking => {
+            booking.borrowedBooks.forEach(el => {
+                console.log(booking)
             })
         })
     }
