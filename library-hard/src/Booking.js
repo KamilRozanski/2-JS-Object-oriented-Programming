@@ -28,27 +28,18 @@ export class Booking {
         this.borrowedBooks = []
     }
 
-    addBookToBooking = (addBook) => {
-        Validator.throwErrorIfInstanceOfClassIsIncorrect(addBook, Book)
-        Validator.throwErrorIfBookAlreadyExists(addBook, this.borrowedBooks)
+    addBookToBooking = (addedBook) => {
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(addedBook, Book)
+        Validator.throwErrorIfBookAlreadyExists(addedBook, this.borrowedBooks)
 
-        const book = {
-            book: addBook.title,
-            bookId: addBook.id,
-            forHowManyDaysBookCanBeBorrowed: 7,
-            borrowedDate: new Date("2022 / 10 / 2"),
-        }
-
-        this.borrowedBooks.push(book)
+        this.borrowedBooks.push(addedBook)
     }
 
     removeBookFromBooking = (bookToRemove) => {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(bookToRemove, Book)
         Validator.throwErrorIfReturnedBookNotExists(bookToRemove, this.borrowedBooks)
 
-        this.borrowedBooks = this.borrowedBooks.filter(booking => {
-            return booking.bookId !== bookToRemove.id
-        })
+        this.borrowedBooks = this.borrowedBooks.filter(booking => booking.bookId !== bookToRemove.id)
     }
 
     // changeForHowManyDaysBookCanBeBorrowed = (days) => {

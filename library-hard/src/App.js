@@ -51,8 +51,8 @@ library.borrowBooks(kamil, bookOne, bookTwo)
 library.borrowBooks(dominika, bookThree)
 
 
-library.returnBooks(bookOne)
+// library.returnBooks(bookOne)
 
 
 
-// console.log(library.getAllBookings()[0])
+console.log(library.getAllBookings())
