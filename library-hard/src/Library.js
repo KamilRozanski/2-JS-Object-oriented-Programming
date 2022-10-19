@@ -65,16 +65,18 @@ export class Library {
         if (!existingBooking) {
             const createdBooking = new Booking(user)
             books.forEach(book => {
+                book.borrowedDate = new Date()
                 createdBooking.addBookToBooking(book)
-                this.updateBooksList(book)
+                this.removeBook(book)
             })
             this.allBookings.push(createdBooking)
         }
 
         if (existingBooking) {
             books.forEach(book => {
+                book.borrowedDate = new Date()
                 isBookingExists.addBookToBooking(book)
-                this.updateBooksList(book)
+                this.removeBook(book)
             })
         }
     }
@@ -83,33 +85,16 @@ export class Library {
         Validator.isInstanceOfClassMultipleArguments(booksToReturn, Book)
         // Validator.throwErrorIfBookNotExistsMultipleArguments(booksToReturn, this.allBookings)
 
-        this.allBookings.filter(booking => {
+        this.allBookings.forEach(booking => {
             booking.borrowedBooks.forEach(book => {
                 booksToReturn.forEach(bookToReturn => {
                     if (bookToReturn.id === book.id) {
                         booking.removeBookFromBooking(book)
+                        this.addBook(book)
                     }
                 })
             })
         })
-
-
-    }
-
-    updateBooksList = (booksToUpdate) => {
-        return this.allBooks = this.allBooks.filter(book => book.id !== booksToUpdate.id)
-    }
-
-    getReturnedBooksId = (booksToReturn) => {
-        // Validator.isArray(booksToReturnArray)
-
-        return booksToReturn.map(returnedBook => {
-            return returnedBook.id
-        })
-    }
-
-    getAllUsers = () => {
-        return this.allUsers
     }
 
     getAllBooks = () => {
@@ -118,9 +103,5 @@ export class Library {
 
     getAllBookings = () => {
         return this.allBookings
-    }
-
-    getAvaiableBooks = () => {
-        return this.allBooks
     }
 }

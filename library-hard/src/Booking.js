@@ -31,7 +31,7 @@ export class Booking {
     addBookToBooking = (addedBook) => {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(addedBook, Book)
         Validator.throwErrorIfBookAlreadyExists(addedBook, this.borrowedBooks)
-
+        
         this.borrowedBooks.push(addedBook)
     }
 
