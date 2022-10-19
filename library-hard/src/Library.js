@@ -25,6 +25,7 @@ export class Library {
         this.allUsers = []
         this.allBooks = []
         this.allBookings = []
+        this.penalty = 0
     }
 
     addUser = (user) => {
@@ -65,7 +66,7 @@ export class Library {
         if (!existingBooking) {
             const createdBooking = new Booking(user)
             books.forEach(book => {
-                book.borrowedDate = new Date()
+                book.borrowedDate = new Date("2022-09-01")
                 createdBooking.addBookToBooking(book)
                 this.removeBook(book)
             })
@@ -74,7 +75,7 @@ export class Library {
 
         if (existingBooking) {
             books.forEach(book => {
-                book.borrowedDate = new Date()
+                book.borrowedDate = new Date("2022-09-01")
                 isBookingExists.addBookToBooking(book)
                 this.removeBook(book)
             })
@@ -89,12 +90,19 @@ export class Library {
             booking.borrowedBooks.forEach(book => {
                 booksToReturn.forEach(bookToReturn => {
                     if (bookToReturn.id === book.id) {
+                        //calc
+                        this.calculatePenalty(book.borrowedDate)
                         booking.removeBookFromBooking(book)
                         this.addBook(book)
                     }
                 })
             })
         })
+    }
+
+    calculatePenalty = (borrowedDate) => {
+        const howManyDaysBookCanBeBorrowed = 14
+        console.log(new Date() - borrowedDate, Date.now(new Date() - borrowedDate))
     }
 
     getAllBooks = () => {
