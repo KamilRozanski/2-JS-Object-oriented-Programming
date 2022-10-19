@@ -31,7 +31,7 @@ const bookFour = new Book("title Four", "author Fourhree", "photoOfTheBook Four"
 // bookingDominika.addBookToBooking(bookThree)
 
 // bookingKamil.removeBookFromBooking(bookOne)
-// bookingKamil.removeBookFromBooking(bookTwo)
+
 
 // console.log(bookingKamil)
 
@@ -51,7 +51,7 @@ library.borrowBooks(kamil, bookOne, bookTwo)
 library.borrowBooks(dominika, bookThree)
 
 
-// library.returnBooks(bookOne)
+library.returnBooks(bookOne, bookTwo)
 
 
 

@@ -48,7 +48,8 @@ export class Validator {
     }
 
     static throwErrorIfReturnedBookNotExists = (book, array) => {
-        const result = array.some(el => el.bookId === book.id)
+        const result = array.some(el => el.id === book.id)
+
         if (!result) {
             throw new Error("The book not exists")
         }

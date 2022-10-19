@@ -60,7 +60,7 @@ export class Library {
         Validator.isInstanceOfClassMultipleArguments(books, Book)
         Validator.throwErrorIfBookNotExistsMultipleArguments(books, this.allBooks)
 
-        const existingBooking = this.allBookings.find(booking => booking.user.id === user.id) 
+        const existingBooking = this.allBookings.find(booking => booking.user.id === user.id)
 
         if (!existingBooking) {
             const createdBooking = new Booking(user)
@@ -81,31 +81,19 @@ export class Library {
 
     returnBooks = (...booksToReturn) => {
         Validator.isInstanceOfClassMultipleArguments(booksToReturn, Book)
-        // Validator.throwErrorIfBookNotExistsMultipleArguments(booksToReturn, this.allBookings) does not works
-
-
-        //caclulatePenalty
-        this.calculatePenalty(booksToReturn)
-        //removeBook from booking
-        //add book to Library
+        // Validator.throwErrorIfBookNotExistsMultipleArguments(booksToReturn, this.allBookings)
 
         this.allBookings.filter(booking => {
-            booking.borrowedBooks.some(book => {
-
+            booking.borrowedBooks.forEach(book => {
+                booksToReturn.forEach(bookToReturn => {
+                    if (bookToReturn.id === book.id) {
+                        booking.removeBookFromBooking(book)
+                    }
+                })
             })
         })
 
 
-    }
-
-
-
-    calculatePenalty = (booksToReturn) => {
-        this.allBookings.filter(booking => {
-            booking.borrowedBooks.forEach(el => {
-                console.log(booking)
-            })
-        })
     }
 
     updateBooksList = (booksToUpdate) => {

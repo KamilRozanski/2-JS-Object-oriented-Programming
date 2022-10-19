@@ -39,7 +39,8 @@ export class Booking {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(bookToRemove, Book)
         Validator.throwErrorIfReturnedBookNotExists(bookToRemove, this.borrowedBooks)
 
-        this.borrowedBooks = this.borrowedBooks.filter(booking => booking.bookId !== bookToRemove.id)
+        this.borrowedBooks = this.borrowedBooks.filter(booking => booking.id !== bookToRemove.id)
+
     }
 
     // changeForHowManyDaysBookCanBeBorrowed = (days) => {
