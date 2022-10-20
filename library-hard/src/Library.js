@@ -25,6 +25,7 @@ export class Library {
         this.allUsers = []
         this.allBooks = []
         this.allBookings = []
+        this.howManyDaysBookCanBeBorrowed = 14
         this.penalty = 0
     }
 
@@ -101,8 +102,9 @@ export class Library {
     }
 
     calculatePenalty = (borrowedDate) => {
-        const howManyDaysBookCanBeBorrowed = 14
-        console.log(new Date() - borrowedDate, Date.now(new Date() - borrowedDate))
+        const currentTime = new Date()
+        const days = Math.floor((currentTime - borrowedDate) / (24 * 60 * 60 * 1000));
+        console.log(days);
     }
 
     getAllBooks = () => {
