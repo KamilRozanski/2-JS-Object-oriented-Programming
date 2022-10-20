@@ -25,8 +25,7 @@ export class Library {
         this.allUsers = []
         this.allBooks = []
         this.allBookings = []
-        this.howManyDaysBookCanBeBorrowed = 14
-        this.penalty = 0
+        this.howLongBookCanBeBorrowed = 14
     }
 
     addUser = (user) => {
@@ -91,8 +90,7 @@ export class Library {
             booking.borrowedBooks.forEach(book => {
                 booksToReturn.forEach(bookToReturn => {
                     if (bookToReturn.id === book.id) {
-                        //calc
-                        this.calculatePenalty(book.borrowedDate)
+                        booking.setPenalty(this.calculatePenalty(book.borrowedDate, 1))
                         booking.removeBookFromBooking(book)
                         this.addBook(book)
                     }
@@ -101,10 +99,13 @@ export class Library {
         })
     }
 
-    calculatePenalty = (borrowedDate) => {
+    calculatePenalty = (borrowedDate, fee) => {
+
         const currentTime = new Date()
-        const days = Math.floor((currentTime - borrowedDate) / (24 * 60 * 60 * 1000));
-        console.log(days);
+        const howLongBookWasBorrowed = Math.floor((currentTime - borrowedDate) / (24 * 60 * 60 * 1000));
+        if (this.howLongBookCanBeBorrowed < howLongBookWasBorrowed) {
+            return fee * howLongBookWasBorrowed - this.howLongBookCanBeBorrowed
+        }
     }
 
     getAllBooks = () => {

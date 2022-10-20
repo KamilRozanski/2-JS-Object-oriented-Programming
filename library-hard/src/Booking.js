@@ -26,12 +26,13 @@ export class Booking {
 
         this.user = user
         this.borrowedBooks = []
+        this.penalty = 0
     }
 
     addBookToBooking = (addedBook) => {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(addedBook, Book)
         Validator.throwErrorIfBookAlreadyExists(addedBook, this.borrowedBooks)
-        
+
         this.borrowedBooks.push(addedBook)
     }
 
@@ -42,6 +43,11 @@ export class Booking {
         this.borrowedBooks = this.borrowedBooks.filter(booking => booking.id !== bookToRemove.id)
 
     }
+
+    setPenalty = (days) => {
+        this.penalty += days
+    }
+
 
     // changeForHowManyDaysBookCanBeBorrowed = (days) => {
     //     Validator.throwErrorIfValueIsNotAPositiveNumber(days)
