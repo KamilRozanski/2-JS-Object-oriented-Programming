@@ -17,6 +17,7 @@ export class Validator {
         }
     }
 
+
     static isInstanceOfClassMultipleArguments = (value, instance) => {
         //nazwa do poprawy
         value.forEach(el => {
@@ -75,31 +76,32 @@ export class Validator {
         }
     }
 
-    static throwErrorIfBookAlreadyExistsMultipleArguments = (books) => {
-        let allProvidedBooksId = []
-        books.some(book => {
-            let isBookAlreadyHasBeenAdded = allProvidedBooksId.includes(book.id)
-            if (isBookAlreadyHasBeenAdded) {
-                throw new Error("The book already exists on your list")
-            }
-            allProvidedBooksId.push(book.id)
-        });
-    }
+    // static throwErrorIfBookAlreadyExistsMultipleArguments = (books) => {
+    //     let allProvidedBooksId = []
+    //     books.some(book => {
+    //         let isBookAlreadyHasBeenAdded = allProvidedBooksId.includes(book.id)
+    //         if (isBookAlreadyHasBeenAdded) {
+    //             throw new Error("The book already exists on your list")
+    //         }
+    //         allProvidedBooksId.push(book.id)
+    //     });
+    // }
 
-    static throwErrorIfBookingNotExists = (user, bookingsArray) => {
-        const result = bookingsArray.some(bookingInArray => bookingInArray.user.id === user.id)
-        if (!result) {
-            throw new Error("The booking not exists")
-        }
-    }
-    static throwErrorIfBookingAlreadyExists = (user, book, bookingsArray) => {
-        const result = bookingsArray.some(bookingInArray => {
-            if (bookingInArray.user.id === user.id) {
-                console.log(bookingInArray.getBorrowedBooks())
-            }
-        })
-        if (result) {
-            throw new Error("The booking already exists")
-        }
-    }
+    // static throwErrorIfBookingNotExists = (user, bookingsArray) => {
+    //     const result = bookingsArray.some(bookingInArray => bookingInArray.user.id === user.id)
+    //     if (!result) {
+    //         throw new Error("The booking not exists")
+    //     }
+    // }
+
+    // static throwErrorIfBookingAlreadyExists = (user,bookingsArray) => {
+    //     const result = bookingsArray.some(bookingInArray => {
+    //         if (bookingInArray.user.id === user.id) {
+    //             console.log(bookingInArray.getBorrowedBooks())
+    //         }
+    //     })
+    //     if (result) {
+    //         throw new Error("The booking already exists")
+    //     }
+    // }
 }

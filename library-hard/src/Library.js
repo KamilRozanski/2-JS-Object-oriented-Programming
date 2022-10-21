@@ -100,9 +100,10 @@ export class Library {
     }
 
     calculatePenalty = (borrowedDate, fee) => {
+        Validator.throwErrorIfValueIsNotAPositiveNumber(fee)
+        Validator.throwErrorIfInstanceOfClassIsIncorrect(borrowedDate, Date)
 
-        const currentTime = new Date()
-        const howLongBookWasBorrowed = Math.floor((currentTime - borrowedDate) / (24 * 60 * 60 * 1000));
+        const howLongBookWasBorrowed = Math.floor((new Date() - borrowedDate) / (24 * 60 * 60 * 1000));
         if (this.howLongBookCanBeBorrowed < howLongBookWasBorrowed) {
             return fee * howLongBookWasBorrowed - this.howLongBookCanBeBorrowed
         }

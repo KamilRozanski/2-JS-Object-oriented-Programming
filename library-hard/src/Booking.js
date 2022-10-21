@@ -45,33 +45,7 @@ export class Booking {
     }
 
     setPenalty = (days) => {
+        Validator.throwErrorIfValueIsNotAPositiveNumber(days)
         this.penalty += days
     }
-
-
-    // changeForHowManyDaysBookCanBeBorrowed = (days) => {
-    //     Validator.throwErrorIfValueIsNotAPositiveNumber(days)
-
-    //     this.forHowManyDaysBookCanBeBorrowed = days
-    // }
-
-    // howLongInDaysBookWasBorrowed = (borrowedDate, returnedDate) => {
-    //     const days = Math.floor((returnedDate - borrowedDate) / (24 * 60 * 60 * 1000));
-    //     //pracowac na Obj Date
-    //     return days
-    // }
-
-    // changePenalty = (newPenalty) => {
-    //     Validator.throwErrorIfValueIsNotAPositiveNumber(newPenalty)
-
-    //     this.penalty = newPenalty
-    // }
-
-    // calculatePenalty = () => {
-    //     console.log(this.howLongInDaysBookWasBorrowed(), this.forHowManyDaysBookCanBeBorrowed)
-    //     const days = this.howLongInDaysBookWasBorrowed()
-    //     if (this.howLongInDaysBookWasBorrowed() > this.forHowManyDaysBookCanBeBorrowed) {
-    //         this.penalty += (this.howLongInDaysBookWasBorrowed() - this.forHowManyDaysBookCanBeBorrowed) * this.penalty
-    //     }
-    // }
 }
