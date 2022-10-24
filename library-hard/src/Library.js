@@ -85,18 +85,18 @@ export class Library {
     returnBooks = (...booksToReturn) => {
         Validator.isInstanceOfClassMultipleArguments(booksToReturn, Book)
         Validator.throwErrorIfReturnedBookNotExistsMultipleArguments(booksToReturn, this.allBookings) //do poprawy
-
-        this.allBookings.forEach(booking => {
-            booking.borrowedBooks.forEach(book => {
-                booksToReturn.map(bookToReturn => {
-                    if (bookToReturn.id === book.id) {
-                        booking.removeBookFromBooking(book)
-                        this.addBook(book)
-                        return this.calculatePenalty(book.borrowedDate, 1)
-                    }
-                })
-            })
-        })
+        //test
+        // this.allBookings.forEach(booking => {
+        //     booking.borrowedBooks.forEach(book => {
+        //         booksToReturn.map(bookToReturn => {
+        //             if (bookToReturn.id === book.id) {
+        //                 booking.removeBookFromBooking(book)
+        //                 this.addBook(book)
+        //                 return this.calculatePenalty(book.borrowedDate, 1)
+        //             }
+        //         })
+        //     })
+        // })
     }
 
     calculatePenalty = (borrowedDate, fee) => {
