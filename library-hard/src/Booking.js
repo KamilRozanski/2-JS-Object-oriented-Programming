@@ -26,7 +26,6 @@ export class Booking {
 
         this.user = user
         this.borrowedBooks = []
-        this.penalty = 0
     }
 
     addBookToBooking = (addedBook) => {
@@ -42,10 +41,5 @@ export class Booking {
 
         this.borrowedBooks = this.borrowedBooks.filter(booking => booking.id !== bookToRemove.id)
 
-    }
-
-    setPenalty = (days) => {
-        Validator.throwErrorIfValueIsNotAPositiveNumber(days)
-        this.penalty += days
     }
 }

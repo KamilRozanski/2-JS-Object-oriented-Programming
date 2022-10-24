@@ -52,7 +52,7 @@ library.borrowBooks(dominika, bookThree)
 
 
 library.returnBooks(bookOne, bookTwo)
-// library.returnBooks(bookThree)
+library.returnBooks(bookThree)
 
 
 
