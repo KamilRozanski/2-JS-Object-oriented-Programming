@@ -85,7 +85,7 @@ export class Library {
     returnBooks = (...booksToReturn) => {
         Validator.isInstanceOfClassMultipleArguments(booksToReturn, Book)
         Validator.throwErrorIfReturnedBookNotExistsMultipleArguments(booksToReturn, this.allBookings) //do poprawy
-        //test
+
         // this.allBookings.forEach(booking => {
         //     booking.borrowedBooks.forEach(book => {
         //         booksToReturn.map(bookToReturn => {
