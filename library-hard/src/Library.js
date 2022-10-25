@@ -55,14 +55,14 @@ export class Library {
         this.allBooks = this.allBooks.filter(bookInArray => bookInArray.id !== bookToRemove.id)
     }
 
-    borrowBooks = (user, book) => {
+    borrowBook = (user, book) => {
         Validator.throwErrorIfInstanceOfClassIsIncorrect(user, User)
         Validator.throwErrorIfUserNotExists(user, this.allUsers)
         Validator.throwErrorIfInstanceOfClassIsIncorrect(book, Book)
         Validator.throwErrorIfReturnedBookNotExists(book, this.allBooks)
 
         const createdBooking = new Booking(user)
-        createdBooking.borrowedDate = new Date()
+        createdBooking.borrowedDate = new Date("2022-09-01")
         createdBooking.addBookToBooking(book)
         this.allBookings.push(createdBooking)
         this.removeBook(book)
@@ -74,20 +74,19 @@ export class Library {
         Validator.isInstanceOfClassMultipleArguments(booksToReturn, Book)
         Validator.throwErrorIfReturnedBookNotExistsMultipleArguments(booksToReturn, this.allBookings) //do poprawy
 
-        this.allBookings.forEach(booking => {
-            booking.borrowedBooks.forEach(book => {
-                booksToReturn.map(bookToReturn => {
-                    if (bookToReturn.id === book.id) {
-                        booking.removeBookFromBooking(book)
-                        this.addBook(book)
-                        return this.calculatePenalty(book.borrowedDate, 1)
-                    }
-                })
+        this.allBookings.filter(booking => {
+            booking.getBorrowedBooks().forEach(borrowedBook => {
+                if (this.getBooksToReturnIDs(booksToReturn).includes(borrowedBook.id)) {
+                    booking.removeBookFromBooking(borrowedBook)
+                    this.calculatePenalty(booking.borrowedDate)
+                    this.addBook(borrowedBook)
+
+                }
             })
         })
     }
 
-    calculatePenalty = (borrowedDate, fee) => {
+    calculatePenalty = (borrowedDate, fee = 1) => {
         Validator.throwErrorIfValueIsNotAPositiveNumber(fee)
         Validator.throwErrorIfInstanceOfClassIsIncorrect(borrowedDate, Date)
 
@@ -99,6 +98,12 @@ export class Library {
 
     getAllBooks = () => {
         return this.allBooks
+    }
+
+    getBooksToReturnIDs(booksToReturn) {
+        return booksToReturn.map(bookToReturn => {
+            return bookToReturn.id
+        })
     }
 
     getAllBookings = () => {

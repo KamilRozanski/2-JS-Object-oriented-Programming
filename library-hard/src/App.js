@@ -46,14 +46,14 @@ library.addBook(bookOne)
 library.addBook(bookTwo)
 library.addBook(bookThree)
 
-library.borrowBooks(kamil, bookOne)
-// library.borrowBooks(kamil, bookTwo)
-library.borrowBooks(dominika, bookThree)
+library.borrowBook(kamil, bookOne)
+library.borrowBook(kamil, bookTwo)
+library.borrowBook(dominika, bookThree)
 
 
-// library.returnBooks(bookOne, bookTwo)
+library.returnBooks(bookOne)
 // library.returnBooks(bookThree)
 
 
 
-console.log(library.getAllBookings())
+// console.log(library.getAllBookings())

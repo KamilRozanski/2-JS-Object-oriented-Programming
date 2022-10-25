@@ -40,6 +40,10 @@ export class Booking {
         Validator.throwErrorIfReturnedBookNotExists(bookToRemove, this.borrowedBooks)
 
         this.borrowedBooks = this.borrowedBooks.filter(booking => booking.id !== bookToRemove.id)
-
     }
+
+    getBorrowedBooks = () => {
+        return this.borrowedBooks
+    }
+
 }
