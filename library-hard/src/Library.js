@@ -62,7 +62,7 @@ export class Library {
         Validator.throwErrorIfReturnedBookNotExists(book, this.allBooks)
 
         const createdBooking = new Booking(user)
-        createdBooking.borrowedDate = new Date("2022-09-01")
+        createdBooking.borrowedDate = new Date("2022-10-01")
         createdBooking.addBookToBooking(book)
         this.allBookings.push(createdBooking)
         this.removeBook(book)
@@ -72,7 +72,7 @@ export class Library {
 
     returnBooks = (...booksToReturn) => {
         Validator.isInstanceOfClassMultipleArguments(booksToReturn, Book)
-        Validator.throwErrorIfReturnedBookNotExistsMultipleArguments(booksToReturn, this.allBookings) //do poprawy
+        Validator.throwErrorIfReturnedBookNotExistsMultipleArguments(booksToReturn, this.allBookings)
 
         this.allBookings.filter(booking => {
             booking.getBorrowedBooks().forEach(borrowedBook => {
@@ -80,7 +80,6 @@ export class Library {
                     booking.removeBookFromBooking(borrowedBook)
                     this.calculatePenalty(booking.borrowedDate)
                     this.addBook(borrowedBook)
-
                 }
             })
         })
@@ -92,7 +91,7 @@ export class Library {
 
         const howLongBookWasBorrowed = Math.floor((new Date() - borrowedDate) / (24 * 60 * 60 * 1000));
         if (this.howLongBookCanBeBorrowed < howLongBookWasBorrowed) {
-            return fee * howLongBookWasBorrowed - this.howLongBookCanBeBorrowed
+            console.log(`You returned book with delay. You should pay $${fee * howLongBookWasBorrowed - this.howLongBookCanBeBorrowed} fee.`)
         }
     }
 

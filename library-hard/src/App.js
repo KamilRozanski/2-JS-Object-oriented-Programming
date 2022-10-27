@@ -51,7 +51,7 @@ library.borrowBook(kamil, bookTwo)
 library.borrowBook(dominika, bookThree)
 
 
-library.returnBooks(bookOne)
+library.returnBooks(bookOne, bookThree)
 // library.returnBooks(bookThree)
 
 
